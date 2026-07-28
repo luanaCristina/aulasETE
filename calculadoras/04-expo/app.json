@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "Calculadora",
+    "slug": "calculadora-expo",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "splash": { "backgroundColor": "#1a1a2e" },
+    "ios": { "bundleIdentifier": "com.ete.calculadora" },
+    "android": { "package": "com.ete.calculadora" }
+  }
+}

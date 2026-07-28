@@ -1,0 +1,88 @@
+/* ========================================
+   Media Queries — Responsividade
+   Abordagem: Mobile-First (min-width)
+   ======================================== */
+
+/* === TABLET (768px+) === */
+@media (min-width: 768px) {
+    :root {
+        --container-padding: 2rem;
+    }
+
+    .section__title {
+        font-size: var(--fs-2xl);
+    }
+
+    .hero__title {
+        font-size: var(--fs-3xl);
+    }
+
+    .hero__subtitle {
+        font-size: var(--fs-lg);
+    }
+
+    /* Artesãos: 2 colunas no tablet */
+    .artesaos__grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Participar: 3 colunas */
+    .participar__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Próxima edição: lado a lado */
+    .proxima-edicao__content {
+        flex-direction: row;
+    }
+
+    .proxima-edicao__info,
+    .proxima-edicao__destaques {
+        flex: 1;
+    }
+
+    /* Footer: 3 colunas */
+    .footer__container {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* === DESKTOP (1024px+) === */
+@media (min-width: 1024px) {
+    /* Header: menu horizontal, esconder hambúrguer */
+    .header__hamburger {
+        display: none;
+    }
+
+    .header__nav {
+        display: flex !important;
+        position: static;
+        box-shadow: none;
+        padding: 0;
+    }
+
+    .header__menu {
+        flex-direction: row;
+        gap: var(--space-lg);
+    }
+
+    /* Artesãos: 3 colunas no desktop */
+    .artesaos__grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Sobre: texto e números lado a lado */
+    .sobre__content {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .sobre__text {
+        flex: 2;
+    }
+
+    .sobre__numeros {
+        flex: 1;
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,0 +1,4 @@
+# Dependências Python — Módulo 1
+# Instalar com: pip install -r requirements.txt
+
+flask==3.0.3

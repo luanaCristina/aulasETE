@@ -1,0 +1,509 @@
+/* ========================================
+   Estilos Principais — Mobile First
+   Aluno: complete e personalize os estilos!
+   ======================================== */
+
+/* === BASE === */
+
+body {
+    font-family: var(--font-body);
+    font-size: var(--fs-base);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+}
+
+.container {
+    width: 100%;
+    max-width: var(--container-max);
+    margin: 0 auto;
+    padding: 0 var(--container-padding);
+}
+
+.section__title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+    color: var(--color-secondary-dark);
+}
+
+/* === SKIP LINK (Acessibilidade) === */
+
+.skip-link {
+    position: absolute;
+    top: -100%;
+    left: 0;
+    padding: var(--space-sm) var(--space-md);
+    background: var(--color-primary);
+    color: white;
+    z-index: 9999;
+    transition: top var(--transition-fast);
+}
+
+.skip-link:focus {
+    top: 0;
+}
+
+/* === BOTÕES === */
+
+.btn {
+    display: inline-block;
+    padding: var(--space-sm) var(--space-lg);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: var(--fs-base);
+    text-align: center;
+    transition: all var(--transition-base);
+}
+
+.btn--primary {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn--primary:hover,
+.btn--primary:focus {
+    background-color: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.btn--secondary {
+    background-color: transparent;
+    color: var(--color-primary);
+    border: 2px solid var(--color-primary);
+}
+
+.btn--secondary:hover,
+.btn--secondary:focus {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.btn--full {
+    width: 100%;
+}
+
+.btn:focus {
+    outline: 3px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+/* === HEADER === */
+
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-sm);
+    z-index: 1000;
+    padding: var(--space-md) 0;
+}
+
+.header__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header__logo {
+    font-family: var(--font-heading);
+    font-size: var(--fs-lg);
+    color: var(--color-primary);
+}
+
+.header__nav {
+    /* TODO: Aluno — no mobile, este nav deve ficar escondido e aparecer ao clicar no hambúrguer */
+    display: none;
+}
+
+.header__nav.active {
+    display: flex;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-md);
+    padding: var(--space-lg);
+}
+
+.header__menu {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    width: 100%;
+}
+
+.header__link {
+    font-weight: 500;
+    padding: var(--space-sm);
+    border-radius: var(--radius-sm);
+    transition: color var(--transition-fast);
+}
+
+.header__link:hover,
+.header__link:focus {
+    color: var(--color-primary);
+}
+
+/* === HAMBURGER === */
+
+.header__hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding: var(--space-sm);
+}
+
+.header__hamburger-line {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text);
+    border-radius: 2px;
+    transition: all var(--transition-base);
+}
+
+/* TODO: Aluno — adicionar animação de X quando o menu estiver aberto */
+
+/* === HERO === */
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: var(--space-3xl) var(--space-md);
+    background: linear-gradient(135deg, var(--color-secondary-dark) 0%, var(--color-secondary) 100%);
+    color: white;
+    /* TODO: Aluno — substituir por imagem de fundo com overlay */
+}
+
+.hero__title {
+    font-family: var(--font-heading);
+    font-size: var(--fs-2xl);
+    margin-bottom: var(--space-md);
+}
+
+.hero__subtitle {
+    font-size: var(--fs-md);
+    margin-bottom: var(--space-xl);
+    opacity: 0.9;
+}
+
+/* === SOBRE === */
+
+.sobre {
+    padding: var(--space-3xl) 0;
+}
+
+.sobre__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.sobre__text p {
+    margin-bottom: var(--space-md);
+    color: var(--color-text-light);
+}
+
+.sobre__numeros {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--space-md);
+}
+
+.sobre__card {
+    text-align: center;
+    padding: var(--space-lg);
+    background: var(--color-surface);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.sobre__numero {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: var(--fs-xl);
+    color: var(--color-primary);
+}
+
+.sobre__label {
+    font-size: var(--fs-sm);
+    color: var(--color-text-light);
+}
+
+/* === ARTESÃOS === */
+
+.artesaos {
+    padding: var(--space-3xl) 0;
+    background: var(--color-surface);
+}
+
+.artesaos__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+.artesao-card {
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    transition: transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.artesao-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-md);
+}
+
+.artesao-card__img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.artesao-card__content {
+    padding: var(--space-lg);
+}
+
+.artesao-card__nome {
+    font-family: var(--font-heading);
+    font-size: var(--fs-md);
+    margin-bottom: var(--space-xs);
+}
+
+.artesao-card__tipo {
+    display: inline-block;
+    font-size: var(--fs-sm);
+    color: var(--color-primary);
+    font-weight: 500;
+    margin-bottom: var(--space-sm);
+}
+
+.artesao-card__descricao {
+    font-size: var(--fs-sm);
+    color: var(--color-text-light);
+}
+
+/* === PRÓXIMA EDIÇÃO === */
+
+.proxima-edicao {
+    padding: var(--space-3xl) 0;
+}
+
+.proxima-edicao__content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xl);
+}
+
+.proxima-edicao__item {
+    padding: var(--space-sm) 0;
+    font-size: var(--fs-md);
+}
+
+.proxima-edicao__destaques h3 {
+    font-family: var(--font-heading);
+    margin-bottom: var(--space-md);
+}
+
+.proxima-edicao__destaques li {
+    padding: var(--space-sm) 0;
+    font-size: var(--fs-base);
+}
+
+/* === COMO PARTICIPAR === */
+
+.participar {
+    padding: var(--space-3xl) 0;
+    background: var(--color-surface);
+}
+
+.participar__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+.participar__card {
+    text-align: center;
+    padding: var(--space-xl);
+    background: var(--color-bg);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+}
+
+.participar__icon {
+    font-size: var(--fs-3xl);
+    display: block;
+    margin-bottom: var(--space-md);
+}
+
+.participar__card h3 {
+    font-family: var(--font-heading);
+    margin-bottom: var(--space-sm);
+}
+
+.participar__card p {
+    color: var(--color-text-light);
+    margin-bottom: var(--space-lg);
+}
+
+/* === FORMULÁRIO DE CONTATO === */
+
+.contato {
+    padding: var(--space-3xl) 0;
+}
+
+.contato__form {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.form-group {
+    margin-bottom: var(--space-lg);
+}
+
+.form-group label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: var(--space-xs);
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: var(--fs-base);
+    transition: border-color var(--transition-fast);
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(224, 122, 47, 0.2);
+}
+
+.form-group input.error,
+.form-group textarea.error {
+    border-color: var(--color-error);
+}
+
+.form-error {
+    display: block;
+    font-size: var(--fs-sm);
+    color: var(--color-error);
+    margin-top: var(--space-xs);
+    min-height: 1.2em;
+}
+
+.form-feedback {
+    margin-top: var(--space-lg);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    text-align: center;
+    font-weight: 500;
+}
+
+.form-feedback--success {
+    background: #E8F5E9;
+    color: var(--color-success);
+}
+
+.form-feedback--error {
+    background: #FFEBEE;
+    color: var(--color-error);
+}
+
+/* === FOOTER === */
+
+.footer {
+    background: var(--color-secondary-dark);
+    color: white;
+    padding: var(--space-3xl) 0 var(--space-md);
+}
+
+.footer__container {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-xl);
+    margin-bottom: var(--space-xl);
+}
+
+.footer h3,
+.footer h4 {
+    font-family: var(--font-heading);
+    margin-bottom: var(--space-md);
+}
+
+.footer__nav ul {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.footer__nav a:hover {
+    color: var(--color-primary);
+}
+
+.footer__social-links {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+}
+
+.footer__social-links a:hover {
+    color: var(--color-primary);
+}
+
+.footer__bottom {
+    text-align: center;
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    font-size: var(--fs-sm);
+    opacity: 0.8;
+}
+
+/* === BOTÃO VOLTAR AO TOPO === */
+
+.btn-top {
+    position: fixed;
+    bottom: var(--space-lg);
+    right: var(--space-lg);
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-primary);
+    color: white;
+    border-radius: 50%;
+    font-size: var(--fs-lg);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-base);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.btn-top.visible {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.btn-top:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+}

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Salão Beleza & Arte — Agendamentos</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <h1>💇 Salão Beleza & Arte</h1>
+        <p>Sistema de Agendamentos (Node.js + Express)</p>
+    </header>
+
+    <main class="main">
+        <section class="card">
+            <h2>📅 Novo Agendamento</h2>
+            <form id="form-agendamento">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="cliente">Cliente</label>
+                        <select id="cliente" required><option value="">Selecione...</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="profissional">Profissional</label>
+                        <select id="profissional" required><option value="">Selecione...</option></select>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="servico">Serviço</label>
+                        <select id="servico" required><option value="">Selecione...</option></select>
+                    </div>
+                    <div class="form-group">
+                        <label for="data-hora">Data e Hora</label>
+                        <input type="datetime-local" id="data-hora" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="observacoes">Observações</label>
+                    <textarea id="observacoes" rows="2"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Agendar</button>
+            </form>
+            <div id="feedback" class="feedback" hidden></div>
+        </section>
+
+        <section class="card">
+            <h2>📋 Agendamentos</h2>
+            <button class="btn btn-secondary" onclick="carregarAgendamentos()">🔄 Atualizar</button>
+            <div id="lista-agendamentos"><p>Carregando...</p></div>
+        </section>
+    </main>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

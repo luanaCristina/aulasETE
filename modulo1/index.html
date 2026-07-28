@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Feira Criativa Recife — Artesanato, cultura e economia criativa todo último sábado do mês em Casa Forte.">
+    <title>Feira Criativa Recife — Artesanato & Economia Criativa</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+    <!-- Skip Link para Acessibilidade -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- ==================== HEADER ==================== -->
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="#" class="header__logo">
+                🎨 Feira Criativa
+            </a>
+
+            <nav class="header__nav" id="nav" aria-label="Navegação principal">
+                <ul class="header__menu">
+                    <li><a href="#inicio" class="header__link">Início</a></li>
+                    <li><a href="#sobre" class="header__link">Sobre</a></li>
+                    <li><a href="#artesaos" class="header__link">Artesãos</a></li>
+                    <li><a href="#proxima-edicao" class="header__link">Próxima Edição</a></li>
+                    <li><a href="#contato" class="header__link">Contato</a></li>
+                </ul>
+            </nav>
+
+            <button class="header__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+                <span class="header__hamburger-line"></span>
+                <span class="header__hamburger-line"></span>
+                <span class="header__hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- ==================== HERO ==================== -->
+        <section class="hero" id="inicio">
+            <div class="container hero__container">
+                <h1 class="hero__title">Feira Criativa Recife</h1>
+                <p class="hero__subtitle">Artesanato, cultura e economia criativa — todo último sábado do mês</p>
+                <a href="#artesaos" class="btn btn--primary hero__cta">Conheça Nossos Artesãos</a>
+            </div>
+        </section>
+
+        <!-- ==================== SOBRE ==================== -->
+        <section class="sobre" id="sobre">
+            <div class="container">
+                <h2 class="section__title">Sobre a Feira</h2>
+
+                <div class="sobre__content">
+                    <div class="sobre__text">
+                        <p>
+                            <!-- TODO: Aluno deve preencher com a história da feira -->
+                            A Feira Criativa Recife nasceu em 2022 da vontade de reunir artesãos locais 
+                            em um espaço acolhedor e acessível. Aqui você encontra peças únicas feitas 
+                            à mão com amor e criatividade.
+                        </p>
+                        <p>
+                            Nosso objetivo é fortalecer a economia criativa do Recife, conectando 
+                            artesãos diretamente com a comunidade.
+                        </p>
+                    </div>
+
+                    <div class="sobre__numeros">
+                        <div class="sobre__card">
+                            <span class="sobre__numero">40+</span>
+                            <span class="sobre__label">Artesãos</span>
+                        </div>
+                        <div class="sobre__card">
+                            <span class="sobre__numero">3</span>
+                            <span class="sobre__label">Anos de Tradição</span>
+                        </div>
+                        <div class="sobre__card">
+                            <span class="sobre__numero">1.500+</span>
+                            <span class="sobre__label">Visitantes/mês</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== ARTESÃOS ==================== -->
+        <section class="artesaos" id="artesaos">
+            <div class="container">
+                <h2 class="section__title">Nossos Artesãos</h2>
+
+                <div class="artesaos__grid">
+                    <!-- Card 1 -->
+                    <article class="artesao-card">
+                        <img src="img/artesaos/artesao1.jpg" alt="Dona Maria com suas peças de cerâmica marajoara" class="artesao-card__img">
+                        <div class="artesao-card__content">
+                            <h3 class="artesao-card__nome">Maria da Cerâmica</h3>
+                            <span class="artesao-card__tipo">Cerâmica Artesanal</span>
+                            <p class="artesao-card__descricao">Peças decorativas e utilitárias inspiradas na cultura nordestina.</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 2 -->
+                    <article class="artesao-card">
+                        <img src="img/artesaos/artesao2.jpg" alt="João trabalhando em peças de macramê" class="artesao-card__img">
+                        <div class="artesao-card__content">
+                            <h3 class="artesao-card__nome">João do Macramê</h3>
+                            <span class="artesao-card__tipo">Macramê & Fibras</span>
+                            <p class="artesao-card__descricao">Cortinas, suportes para plantas e acessórios em fios naturais.</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 3 -->
+                    <article class="artesao-card">
+                        <img src="img/artesaos/artesao3.jpg" alt="Ana mostrando seus bordados coloridos" class="artesao-card__img">
+                        <div class="artesao-card__content">
+                            <h3 class="artesao-card__nome">Ana dos Bordados</h3>
+                            <span class="artesao-card__tipo">Bordado Manual</span>
+                            <p class="artesao-card__descricao">Peças exclusivas com bordados que contam histórias do sertão.</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 4 -->
+                    <article class="artesao-card">
+                        <img src="img/artesaos/artesao4.jpg" alt="Carlos produzindo velas artesanais" class="artesao-card__img">
+                        <div class="artesao-card__content">
+                            <h3 class="artesao-card__nome">Carlos das Velas</h3>
+                            <span class="artesao-card__tipo">Velas Artesanais</span>
+                            <p class="artesao-card__descricao">Velas perfumadas com cera de soja e essências naturais.</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 5 -->
+                    <article class="artesao-card">
+                        <img src="img/artesaos/artesao5.jpg" alt="Lucia com seus doces regionais" class="artesao-card__img">
+                        <div class="artesao-card__content">
+                            <h3 class="artesao-card__nome">Lúcia dos Doces</h3>
+                            <span class="artesao-card__tipo">Doces Regionais</span>
+                            <p class="artesao-card__descricao">Bolo de rolo, cocadas e compotas feitas com receitas de família.</p>
+                        </div>
+                    </article>
+
+                    <!-- Card 6 -->
+                    <article class="artesao-card">
+                        <img src="img/artesaos/artesao6.jpg" alt="Pedro esculpindo peças em madeira" class="artesao-card__img">
+                        <div class="artesao-card__content">
+                            <h3 class="artesao-card__nome">Pedro da Madeira</h3>
+                            <span class="artesao-card__tipo">Escultura em Madeira</span>
+                            <p class="artesao-card__descricao">Esculturas e utensílios entalhados à mão em madeira de reuso.</p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== PRÓXIMA EDIÇÃO ==================== -->
+        <section class="proxima-edicao" id="proxima-edicao">
+            <div class="container">
+                <h2 class="section__title">Próxima Edição</h2>
+
+                <div class="proxima-edicao__content">
+                    <div class="proxima-edicao__info">
+                        <div class="proxima-edicao__item">
+                            <strong>📅 Data:</strong> Último sábado do mês
+                        </div>
+                        <div class="proxima-edicao__item">
+                            <strong>🕗 Horário:</strong> 8h às 16h
+                        </div>
+                        <div class="proxima-edicao__item">
+                            <strong>📍 Local:</strong> Praça de Casa Forte, Recife - PE
+                        </div>
+                    </div>
+
+                    <div class="proxima-edicao__destaques">
+                        <h3>Atrações Especiais</h3>
+                        <ul>
+                            <li>🎵 Música ao vivo com artistas locais</li>
+                            <li>🏺 Oficina de cerâmica para crianças</li>
+                            <li>🍽️ Praça de alimentação com comida regional</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== COMO PARTICIPAR ==================== -->
+        <section class="participar" id="participar">
+            <div class="container">
+                <h2 class="section__title">Como Participar</h2>
+
+                <div class="participar__grid">
+                    <div class="participar__card">
+                        <span class="participar__icon">🏪</span>
+                        <h3>Seja Expositor</h3>
+                        <p>Traga seu artesanato para nossa feira e alcance novos clientes.</p>
+                        <a href="#contato" class="btn btn--secondary">Inscreva-se</a>
+                    </div>
+
+                    <div class="participar__card">
+                        <span class="participar__icon">🤝</span>
+                        <h3>Seja Voluntário</h3>
+                        <p>Ajude na organização e faça parte da nossa comunidade criativa.</p>
+                        <a href="#contato" class="btn btn--secondary">Quero Ajudar</a>
+                    </div>
+
+                    <div class="participar__card">
+                        <span class="participar__icon">💼</span>
+                        <h3>Seja Patrocinador</h3>
+                        <p>Apoie a cultura local e tenha sua marca associada à criatividade.</p>
+                        <a href="#contato" class="btn btn--secondary">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== FORMULÁRIO DE CONTATO ==================== -->
+        <section class="contato" id="contato">
+            <div class="container">
+                <h2 class="section__title">Entre em Contato</h2>
+
+                <form class="contato__form" id="form-contato" novalidate>
+                    <div class="form-group">
+                        <label for="nome">Nome completo *</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Seu nome completo">
+                        <span class="form-error" id="nome-error" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                        <span class="form-error" id="email-error" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(81) 99999-9999">
+                        <span class="form-error" id="telefone-error" aria-live="polite"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tipo-artesanato">Tipo de artesanato</label>
+                        <select id="tipo-artesanato" name="tipo-artesanato">
+                            <option value="">Selecione uma opção</option>
+                            <option value="ceramica">Cerâmica</option>
+                            <option value="macrame">Macramê</option>
+                            <option value="bordado">Bordado</option>
+                            <option value="madeira">Trabalho em Madeira</option>
+                            <option value="velas">Velas Artesanais</option>
+                            <option value="alimentos">Alimentos Artesanais</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem *</label>
+                        <textarea id="mensagem" name="mensagem" rows="5" required placeholder="Conte-nos como podemos ajudar..."></textarea>
+                        <span class="form-error" id="mensagem-error" aria-live="polite"></span>
+                    </div>
+
+                    <button type="submit" class="btn btn--primary btn--full">Enviar Mensagem</button>
+
+                    <div class="form-feedback" id="form-feedback" aria-live="polite" hidden></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ==================== FOOTER ==================== -->
+    <footer class="footer">
+        <div class="container footer__container">
+            <div class="footer__info">
+                <h3>Feira Criativa Recife</h3>
+                <p>Praça de Casa Forte, Recife - PE</p>
+                <p>contato@feiracriativarecife.com.br</p>
+            </div>
+
+            <div class="footer__nav">
+                <h4>Links Rápidos</h4>
+                <ul>
+                    <li><a href="#inicio">Início</a></li>
+                    <li><a href="#sobre">Sobre</a></li>
+                    <li><a href="#artesaos">Artesãos</a></li>
+                    <li><a href="#contato">Contato</a></li>
+                </ul>
+            </div>
+
+            <div class="footer__social">
+                <h4>Redes Sociais</h4>
+                <div class="footer__social-links">
+                    <a href="#" aria-label="Instagram da Feira Criativa">📷 Instagram</a>
+                    <a href="#" aria-label="Facebook da Feira Criativa">📘 Facebook</a>
+                    <a href="#" aria-label="WhatsApp da Feira Criativa">📱 WhatsApp</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer__bottom">
+            <p>&copy; 2025 Feira Criativa Recife — Todos os direitos reservados.</p>
+        </div>
+
+        <a href="#header" class="btn-top" aria-label="Voltar ao topo">↑</a>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="js/menu.js"></script>
+    <script src="js/scroll.js"></script>
+    <script src="js/form.js"></script>
+</body>
+</html>

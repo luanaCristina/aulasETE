@@ -1,0 +1,61 @@
+/* ========================================
+   CSS Custom Properties (Variáveis)
+   Aluno: personalize as cores e fontes aqui!
+   ======================================== */
+
+:root {
+    /* === Cores Principais === */
+    --color-primary: #E07A2F;        /* Laranja artesanal */
+    --color-primary-dark: #C4641F;   /* Laranja escuro (hover) */
+    --color-secondary: #2D6A4F;      /* Verde floresta */
+    --color-secondary-dark: #1B4332; /* Verde escuro */
+
+    /* === Cores Neutras === */
+    --color-bg: #FFFBF5;             /* Fundo creme */
+    --color-surface: #FFFFFF;         /* Fundo dos cards */
+    --color-text: #2C2C2C;           /* Texto principal */
+    --color-text-light: #6B6B6B;     /* Texto secundário */
+    --color-border: #E0D6CC;         /* Bordas sutis */
+
+    /* === Cores de Feedback === */
+    --color-success: #2D6A4F;
+    --color-error: #D32F2F;
+
+    /* === Tipografia === */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    --fs-xs: 0.75rem;    /* 12px */
+    --fs-sm: 0.875rem;   /* 14px */
+    --fs-base: 1rem;     /* 16px */
+    --fs-md: 1.125rem;   /* 18px */
+    --fs-lg: 1.5rem;     /* 24px */
+    --fs-xl: 2rem;       /* 32px */
+    --fs-2xl: 2.5rem;    /* 40px */
+    --fs-3xl: 3rem;      /* 48px */
+
+    /* === Espaçamentos === */
+    --space-xs: 0.25rem;  /* 4px */
+    --space-sm: 0.5rem;   /* 8px */
+    --space-md: 1rem;     /* 16px */
+    --space-lg: 1.5rem;   /* 24px */
+    --space-xl: 2rem;     /* 32px */
+    --space-2xl: 3rem;    /* 48px */
+    --space-3xl: 4rem;    /* 64px */
+
+    /* === Layout === */
+    --container-max: 1200px;
+    --container-padding: 1rem;
+
+    /* === Bordas e Sombras === */
+    --radius-sm: 4px;
+    --radius-md: 8px;
+    --radius-lg: 16px;
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.08);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.12);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.16);
+
+    /* === Transições === */
+    --transition-fast: 150ms ease;
+    --transition-base: 300ms ease;
+}

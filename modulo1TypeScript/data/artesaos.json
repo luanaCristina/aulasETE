@@ -1,0 +1,8 @@
+[
+  {"id":1,"nome":"Maria da Cerâmica","tipo":"Cerâmica Artesanal","descricao":"Peças decorativas inspiradas na cultura nordestina.","foto":"artesao1.jpg"},
+  {"id":2,"nome":"João do Macramê","tipo":"Macramê & Fibras","descricao":"Cortinas, suportes para plantas em fios naturais.","foto":"artesao2.jpg"},
+  {"id":3,"nome":"Ana dos Bordados","tipo":"Bordado Manual","descricao":"Bordados que contam histórias do sertão.","foto":"artesao3.jpg"},
+  {"id":4,"nome":"Carlos das Velas","tipo":"Velas Artesanais","descricao":"Velas perfumadas com cera de soja.","foto":"artesao4.jpg"},
+  {"id":5,"nome":"Lúcia dos Doces","tipo":"Doces Regionais","descricao":"Bolo de rolo, cocadas e compotas.","foto":"artesao5.jpg"},
+  {"id":6,"nome":"Pedro da Madeira","tipo":"Escultura em Madeira","descricao":"Esculturas em madeira de reuso.","foto":"artesao6.jpg"}
+]

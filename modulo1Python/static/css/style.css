@@ -1,0 +1,42 @@
+body { font-family: var(--font-body); font-size: var(--fs-base); color: var(--color-text); background: var(--color-bg); }
+.container { max-width: var(--container-max); margin: 0 auto; padding: 0 1rem; }
+.section__title { font-family: var(--font-heading); font-size: var(--fs-xl); text-align: center; margin-bottom: var(--space-2xl); color: var(--color-secondary-dark); }
+.skip-link { position: absolute; top: -100%; left: 0; padding: 0.5rem 1rem; background: var(--color-primary); color: white; z-index: 9999; }
+.skip-link:focus { top: 0; }
+.btn { display: inline-block; padding: 0.5rem 1.5rem; border-radius: var(--radius-md); font-weight: 600; transition: all var(--transition-base); }
+.btn--primary { background: var(--color-primary); color: white; }
+.btn--primary:hover { background: var(--color-primary-dark); transform: translateY(-2px); }
+.btn--full { width: 100%; }
+.header { position: fixed; top: 0; left: 0; right: 0; background: var(--color-surface); box-shadow: var(--shadow-sm); z-index: 1000; padding: var(--space-md) 0; }
+.header__container { display: flex; justify-content: space-between; align-items: center; }
+.header__logo { font-family: var(--font-heading); font-size: var(--fs-lg); color: var(--color-primary); }
+.header__nav { display: none; }
+.header__nav.active { display: flex; position: absolute; top: 100%; left: 0; right: 0; background: var(--color-surface); box-shadow: var(--shadow-md); padding: var(--space-lg); }
+.header__menu { display: flex; flex-direction: column; gap: var(--space-md); width: 100%; }
+.header__link { font-weight: 500; padding: 0.5rem; }
+.header__link:hover { color: var(--color-primary); }
+.header__hamburger { display: flex; flex-direction: column; gap: 5px; padding: 0.5rem; }
+.header__hamburger-line { display: block; width: 25px; height: 3px; background: var(--color-text); border-radius: 2px; }
+.hero { min-height: 100vh; display: flex; align-items: center; justify-content: center; text-align: center; padding: var(--space-3xl) var(--space-md); background: linear-gradient(135deg, var(--color-secondary-dark), var(--color-secondary)); color: white; }
+.hero__title { font-family: var(--font-heading); font-size: var(--fs-2xl); margin-bottom: var(--space-md); }
+.hero__subtitle { font-size: 1.125rem; margin-bottom: var(--space-xl); opacity: 0.9; }
+.sobre, .artesaos, .contato { padding: var(--space-3xl) 0; }
+.artesaos { background: var(--color-surface); }
+.artesaos__grid { display: grid; grid-template-columns: 1fr; gap: var(--space-lg); }
+.artesao-card { background: var(--color-bg); border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-sm); transition: transform var(--transition-base); }
+.artesao-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+.artesao-card__img { width: 100%; height: 200px; object-fit: cover; }
+.artesao-card__content { padding: var(--space-lg); }
+.artesao-card__nome { font-family: var(--font-heading); font-size: 1.125rem; }
+.artesao-card__tipo { font-size: 0.875rem; color: var(--color-primary); font-weight: 500; }
+.artesao-card__descricao { font-size: 0.875rem; color: var(--color-text-light); margin-top: 0.5rem; }
+.contato__form { max-width: 600px; margin: 0 auto; }
+.form-group { margin-bottom: var(--space-lg); }
+.form-group label { display: block; font-weight: 500; margin-bottom: 0.25rem; }
+.form-group input, .form-group select, .form-group textarea { width: 100%; padding: 0.5rem 1rem; border: 2px solid var(--color-border); border-radius: var(--radius-md); }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { outline: none; border-color: var(--color-primary); }
+.form-error { font-size: 0.875rem; color: var(--color-error); }
+.flash { padding: 1rem; border-radius: var(--radius-md); margin-bottom: 1rem; font-weight: 500; }
+.flash--success { background: #e8f5e9; color: var(--color-success); }
+.flash--error { background: #ffebee; color: var(--color-error); }
+.footer { text-align: center; padding: var(--space-xl) 0; background: var(--color-secondary-dark); color: white; }

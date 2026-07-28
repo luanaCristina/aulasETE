@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feira Criativa Recife</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header class="header"><h1>🎨 Feira Criativa Recife</h1></header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <h2>Artesanato & Economia Criativa</h2>
+      <p>Todo último sábado do mês — Casa Forte, Recife</p>
+    </section>
+
+    <section class="artesaos" id="artesaos">
+      <h2>Nossos Artesãos</h2>
+      <div class="grid">
+        <% artesaos.forEach(function(a) { %>
+        <article class="card">
+          <h3><%= a.nome %></h3>
+          <span class="tipo"><%= a.tipo %></span>
+          <p><%= a.descricao %></p>
+        </article>
+        <% }); %>
+      </div>
+    </section>
+
+    <section class="contato" id="contato">
+      <h2>Entre em Contato</h2>
+      <% if (flash) { %>
+        <div class="flash flash--<%= flash.type %>">
+          <% flash.messages.forEach(function(m) { %><p><%= m %></p><% }); %>
+        </div>
+      <% } %>
+      <form action="/contato" method="POST" novalidate>
+        <label>Nome *<input type="text" name="nome" required></label>
+        <label>E-mail *<input type="email" name="email" required></label>
+        <label>Telefone<input type="tel" name="telefone"></label>
+        <label>Tipo de artesanato
+          <select name="tipo-artesanato">
+            <option value="">Selecione</option>
+            <option value="ceramica">Cerâmica</option>
+            <option value="macrame">Macramê</option>
+            <option value="bordado">Bordado</option>
+            <option value="outro">Outro</option>
+          </select>
+        </label>
+        <label>Mensagem *<textarea name="mensagem" rows="4" required></textarea></label>
+        <button type="submit">Enviar</button>
+      </form>
+    </section>
+  </main>
+
+  <footer><p>&copy; 2025 Feira Criativa Recife</p></footer>
+  <script src="/js/form.js"></script>
+</body>
+</html>

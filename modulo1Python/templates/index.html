@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Feira Criativa Recife — Artesanato, cultura e economia criativa.">
+    <title>Feira Criativa Recife</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/reset.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/variables.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/responsive.css') }}">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
+    <!-- HEADER -->
+    <header class="header" id="header">
+        <div class="container header__container">
+            <a href="#" class="header__logo">🎨 Feira Criativa</a>
+            <nav class="header__nav" id="nav" aria-label="Navegação principal">
+                <ul class="header__menu">
+                    <li><a href="#inicio" class="header__link">Início</a></li>
+                    <li><a href="#sobre" class="header__link">Sobre</a></li>
+                    <li><a href="#artesaos" class="header__link">Artesãos</a></li>
+                    <li><a href="#contato" class="header__link">Contato</a></li>
+                </ul>
+            </nav>
+            <button class="header__hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false">
+                <span class="header__hamburger-line"></span>
+                <span class="header__hamburger-line"></span>
+                <span class="header__hamburger-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- HERO -->
+        <section class="hero" id="inicio">
+            <div class="container hero__container">
+                <h1 class="hero__title">Feira Criativa Recife</h1>
+                <p class="hero__subtitle">Artesanato, cultura e economia criativa — todo último sábado do mês</p>
+                <a href="#artesaos" class="btn btn--primary">Conheça Nossos Artesãos</a>
+            </div>
+        </section>
+
+        <!-- SOBRE -->
+        <section class="sobre" id="sobre">
+            <div class="container">
+                <h2 class="section__title">Sobre a Feira</h2>
+                <p>A Feira Criativa Recife nasceu em 2022 com o objetivo de reunir artesãos locais em um espaço acolhedor.</p>
+            </div>
+        </section>
+
+        <!-- ARTESÃOS — Renderizados pelo Jinja2 com dados do Python! -->
+        <section class="artesaos" id="artesaos">
+            <div class="container">
+                <h2 class="section__title">Nossos Artesãos</h2>
+                <div class="artesaos__grid">
+                    {% for artesao in artesaos %}
+                    <article class="artesao-card">
+                        <img src="{{ url_for('static', filename='img/' + artesao.foto) }}" 
+                             alt="{{ artesao.nome }} — {{ artesao.tipo }}" 
+                             class="artesao-card__img"
+                             onerror="this.src='https://via.placeholder.com/300x200?text={{ artesao.nome }}'">
+                        <div class="artesao-card__content">
+                            <h3 class="artesao-card__nome">{{ artesao.nome }}</h3>
+                            <span class="artesao-card__tipo">{{ artesao.tipo }}</span>
+                            <p class="artesao-card__descricao">{{ artesao.descricao }}</p>
+                        </div>
+                    </article>
+                    {% endfor %}
+                </div>
+            </div>
+        </section>
+
+        <!-- FORMULÁRIO DE CONTATO — Envia para rota Flask POST /contato -->
+        <section class="contato" id="contato">
+            <div class="container">
+                <h2 class="section__title">Entre em Contato</h2>
+
+                <!-- Mensagens Flash do Flask -->
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {% if messages %}
+                        {% for category, message in messages %}
+                        <div class="flash flash--{{ category }}">{{ message }}</div>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+
+                <form class="contato__form" id="form-contato" action="/contato" method="POST" novalidate>
+                    <div class="form-group">
+                        <label for="nome">Nome completo *</label>
+                        <input type="text" id="nome" name="nome" required placeholder="Seu nome">
+                        <span class="form-error" id="nome-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">E-mail *</label>
+                        <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com">
+                        <span class="form-error" id="email-error"></span>
+                    </div>
+                    <div class="form-group">
+                        <label for="telefone">Telefone</label>
+                        <input type="tel" id="telefone" name="telefone" placeholder="(81) 99999-9999">
+                    </div>
+                    <div class="form-group">
+                        <label for="tipo-artesanato">Tipo de artesanato</label>
+                        <select id="tipo-artesanato" name="tipo-artesanato">
+                            <option value="">Selecione...</option>
+                            <option value="ceramica">Cerâmica</option>
+                            <option value="macrame">Macramê</option>
+                            <option value="bordado">Bordado</option>
+                            <option value="madeira">Madeira</option>
+                            <option value="velas">Velas</option>
+                            <option value="alimentos">Alimentos</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="mensagem">Mensagem *</label>
+                        <textarea id="mensagem" name="mensagem" rows="4" required placeholder="Sua mensagem..."></textarea>
+                        <span class="form-error" id="mensagem-error"></span>
+                    </div>
+                    <button type="submit" class="btn btn--primary btn--full">Enviar Mensagem</button>
+                    <div class="form-feedback" id="form-feedback" hidden></div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Feira Criativa Recife — Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/menu.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/scroll.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/form.js') }}"></script>
+</body>
+</html>

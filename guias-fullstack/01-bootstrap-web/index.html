@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bootstrap Web App - Demonstração Completa</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="#">
+        <i class="bi bi-code-slash me-2"></i>BootstrapApp
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+        data-bs-target="#navbarMain" aria-controls="navbarMain"
+        aria-expanded="false" aria-label="Abrir navegação">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarMain">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item"><a class="nav-link active" href="#hero">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+          <li class="nav-item"><a class="nav-link" href="#carousel">Galeria</a></li>
+          <li class="nav-item"><a class="nav-link" href="#contato">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== HERO SECTION ==================== -->
+  <section id="hero" class="hero-section">
+    <div class="container text-center">
+      <h1>Bootstrap 5 em Ação</h1>
+      <p class="lead mb-4">Grid responsivo, componentes de mercado e Carousel acessível</p>
+      <a href="#features" class="btn btn-light btn-lg me-2">
+        <i class="bi bi-grid me-1"></i>Ver Features
+      </a>
+      <a href="#carousel" class="btn btn-outline-light btn-lg">
+        <i class="bi bi-images me-1"></i>Galeria
+      </a>
+      <div class="mt-4">
+        <span class="badge bg-light text-dark me-1">Responsivo</span>
+        <span class="badge bg-light text-dark me-1">Acessível</span>
+        <span class="badge bg-light text-dark">Mobile-First</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FEATURES - GRID + CARDS ==================== -->
+  <section id="features" class="py-5">
+    <div class="container">
+      <h2 class="text-center section-title">Funcionalidades</h2>
+      <div class="row g-4">
+        <!-- Card 1 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-grid-3x3-gap-fill fs-1 text-primary mb-3"></i>
+              <h5 class="card-title">Grid System</h5>
+              <p class="card-text">Sistema de 12 colunas com Flexbox, breakpoints responsivos e containers fluidos.</p>
+              <span class="badge bg-primary">Layout</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 2 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-puzzle-fill fs-1 text-success mb-3"></i>
+              <h5 class="card-title">Componentes</h5>
+              <p class="card-text">Cards, Modals, Navbar, Badges, Buttons e Forms prontos para produção.</p>
+              <span class="badge bg-success">UI Kit</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 3 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-universal-access fs-1 text-warning mb-3"></i>
+              <h5 class="card-title">Acessibilidade</h5>
+              <p class="card-text">ARIA roles, labels semânticos e navegação por teclado integrados.</p>
+              <span class="badge bg-warning text-dark">A11y</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 4 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-phone-fill fs-1 text-info mb-3"></i>
+              <h5 class="card-title">Mobile-First</h5>
+              <p class="card-text">Desenvolvido priorizando a experiência em dispositivos móveis.</p>
+              <span class="badge bg-info text-dark">Responsivo</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 5 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-speedometer2 fs-1 text-danger mb-3"></i>
+              <h5 class="card-title">Performance</h5>
+              <p class="card-text">CSS otimizado, carregamento rápido e bundle mínimo via CDN.</p>
+              <span class="badge bg-danger">Fast</span>
+            </div>
+          </div>
+        </div>
+        <!-- Card 6 -->
+        <div class="col-12 col-md-6 col-lg-4">
+          <div class="card card-custom h-100">
+            <div class="card-body text-center">
+              <i class="bi bi-palette-fill fs-1 text-secondary mb-3"></i>
+              <h5 class="card-title">Customizável</h5>
+              <p class="card-text">Variáveis CSS, temas e override simples para identidade visual.</p>
+              <span class="badge bg-secondary">Theming</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CAROUSEL ==================== -->
+  <section id="carousel" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center section-title">Galeria Interativa</h2>
+      <div id="carouselDemo" class="carousel slide carousel-fade carousel-custom"
+        data-bs-ride="carousel" data-bs-interval="5000"
+        role="region" aria-roledescription="carousel" aria-label="Galeria de imagens do projeto">
+
+        <!-- Indicadores -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="0"
+            class="active" aria-current="true" aria-label="Slide 1"></button>
+          <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="1"
+            aria-label="Slide 2"></button>
+          <button type="button" data-bs-target="#carouselDemo" data-bs-slide-to="2"
+            aria-label="Slide 3"></button>
+        </div>
+
+        <!-- Slides -->
+        <div class="carousel-inner rounded-3 overflow-hidden">
+          <div class="carousel-item active" role="group" aria-roledescription="slide" aria-label="1 de 3">
+            <img src="https://picsum.photos/1200/450?random=10" class="d-block w-100" alt="Imagem de tecnologia e desenvolvimento">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Desenvolvimento Web Moderno</h5>
+              <p>Ferramentas e frameworks que aceleram a entrega.</p>
+            </div>
+          </div>
+          <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="2 de 3">
+            <img src="https://picsum.photos/1200/450?random=20" class="d-block w-100" alt="Equipe colaborando em projeto">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Trabalho em Equipe</h5>
+              <p>Colaboração eficiente com ferramentas integradas.</p>
+            </div>
+          </div>
+          <div class="carousel-item" role="group" aria-roledescription="slide" aria-label="3 de 3">
+            <img src="https://picsum.photos/1200/450?random=30" class="d-block w-100" alt="Dashboard de métricas e dados">
+            <div class="carousel-caption d-none d-md-block">
+              <h5>Dados e Métricas</h5>
+              <p>Decisões baseadas em dados reais.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Controles -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselDemo" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselDemo" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Próximo</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== MODAL DEMO ==================== -->
+  <section class="py-5">
+    <div class="container text-center">
+      <h2 class="section-title">Demonstração de Modal</h2>
+      <p class="text-muted mb-4">Clique no botão abaixo para abrir um Modal Bootstrap com formulário.</p>
+      <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#demoModal">
+        <i class="bi bi-window-stack me-2"></i>Abrir Modal
+      </button>
+    </div>
+  </section>
+
+  <!-- Modal -->
+  <div class="modal fade" id="demoModal" tabindex="-1" aria-labelledby="demoModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="demoModalLabel">Formulário de Contato</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="mb-3">
+              <label for="modalNome" class="form-label">Nome</label>
+              <input type="text" class="form-control" id="modalNome" placeholder="Seu nome completo">
+            </div>
+            <div class="mb-3">
+              <label for="modalEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="modalEmail" placeholder="email@exemplo.com">
+            </div>
+            <div class="mb-3">
+              <label for="modalMsg" class="form-label">Mensagem</label>
+              <textarea class="form-control" id="modalMsg" rows="3" placeholder="Digite sua mensagem"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="button" class="btn btn-primary">Enviar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== FORMULÁRIO DE CONTATO ==================== -->
+  <section id="contato" class="py-5 bg-light">
+    <div class="container">
+      <h2 class="text-center section-title">Contato</h2>
+      <div class="row justify-content-center">
+        <div class="col-12 col-md-8 col-lg-6">
+          <form class="card card-custom p-4">
+            <div class="mb-3">
+              <label for="nome" class="form-label">Nome completo</label>
+              <input type="text" class="form-control" id="nome" required>
+            </div>
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input type="email" class="form-control" id="email" required>
+            </div>
+            <div class="mb-3">
+              <label for="assunto" class="form-label">Assunto</label>
+              <select class="form-select" id="assunto">
+                <option selected disabled>Selecione...</option>
+                <option>Suporte</option>
+                <option>Comercial</option>
+                <option>Parceria</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="mensagem" class="form-label">Mensagem</label>
+              <textarea class="form-control" id="mensagem" rows="4" required></textarea>
+            </div>
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="termos" required>
+              <label class="form-check-label" for="termos">Aceito os termos de uso</label>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">
+              <i class="bi bi-send me-2"></i>Enviar Mensagem
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="footer-custom text-white text-center py-4">
+    <div class="container">
+      <p class="mb-1">&copy; 2026 BootstrapApp — Demonstração de Componentes</p>
+      <p class="mb-0 opacity-75">
+        Feito com <i class="bi bi-heart-fill text-danger"></i> e Bootstrap 5
+      </p>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

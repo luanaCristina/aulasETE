@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadora — Python/Flask</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="calculator">
+    <div class="badge">🐍 Python + Flask</div>
+    <div class="display" id="display">0</div>
+    <div class="inputs">
+      <input type="number" id="numA" placeholder="Número 1" step="any">
+      <select id="operador">
+        <option value="+">+</option>
+        <option value="-">−</option>
+        <option value="*">×</option>
+        <option value="/">÷</option>
+      </select>
+      <input type="number" id="numB" placeholder="Número 2" step="any">
+    </div>
+    <button class="btn-calc" onclick="enviarCalculo()">Calcular (via Server)</button>
+    <p id="info" class="info"></p>
+  </div>
+  <script>
+    async function enviarCalculo() {
+      const a = parseFloat(document.getElementById('numA').value) || 0;
+      const b = parseFloat(document.getElementById('numB').value) || 0;
+      const operador = document.getElementById('operador').value;
+
+      const res = await fetch('/calcular', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ a, operador, b })
+      });
+      const data = await res.json();
+
+      const display = document.getElementById('display');
+      const info = document.getElementById('info');
+
+      if (data.erro) {
+        display.textContent = 'Erro';
+        info.textContent = data.erro;
+        info.style.color = '#e94560';
+      } else {
+        display.textContent = data.resultado;
+        info.textContent = `${a} ${operador} ${b} = ${data.resultado}`;
+        info.style.color = '#00d4aa';
+      }
+    }
+  </script>
+</body>
+</html>

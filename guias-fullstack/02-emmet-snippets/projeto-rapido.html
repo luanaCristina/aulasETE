@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Rápido — Construído com Emmet</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    .hero { background: linear-gradient(135deg, #1e3c72, #2a5298); color: white; padding: 5rem 0; }
+    .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+    .card { border: none; box-shadow: 0 2px 10px rgba(0,0,0,0.1); transition: transform 0.2s; }
+    .card:hover { transform: translateY(-3px); }
+  </style>
+</head>
+<body>
+  <!-- 
+    ABREVIAÇÃO EMMET USADA PARA GERAR A ESTRUTURA BASE:
+    
+    div.container>(header.hero.text-center.rounded-3.mb-5>(h1{Projeto Rápido}+p.lead{Construído 
+    inteiramente com expansões Emmet em segundos}+a.btn.btn-light.btn-lg[href="#features"]
+    {Explorar}))+section#features.py-5>(h2.text-center.mb-4{Funcionalidades}+div.row.g-4>
+    (div.col-md-4>div.card.h-100>(div.card-body.text-center>(div.feature-icon{🚀}+h5.card-title
+    {Feature $}+p.card-text{Descrição da funcionalidade $ do projeto.})))*3)+footer.bg-dark
+    .text-white.text-center.py-3.mt-5>p{© 2026 Projeto Rápido — Feito com Emmet}
+  -->
+
+  <div class="container">
+    <header class="hero text-center rounded-3 mb-5">
+      <h1>Projeto Rápido</h1>
+      <p class="lead">Construído inteiramente com expansões Emmet em segundos</p>
+      <a href="#features" class="btn btn-light btn-lg">Explorar</a>
+    </header>
+
+    <section id="features" class="py-5">
+      <h2 class="text-center mb-4">Funcionalidades</h2>
+      <div class="row g-4">
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon">🚀</div>
+              <h5 class="card-title">Velocidade</h5>
+              <p class="card-text">Estrutura HTML completa gerada com uma única expansão Emmet.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon">🎯</div>
+              <h5 class="card-title">Precisão</h5>
+              <p class="card-text">Classes, IDs e atributos aplicados sem erros de digitação.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card h-100">
+            <div class="card-body text-center">
+              <div class="feature-icon">⚡</div>
+              <h5 class="card-title">Produtividade</h5>
+              <p class="card-text">Redução de 80% no tempo de escrita de markup repetitivo.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-dark text-white text-center py-3 mt-5 rounded-3">
+      <p class="mb-0">&copy; 2026 Projeto Rápido — Feito com Emmet</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

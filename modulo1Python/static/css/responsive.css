@@ -1,0 +1,9 @@
+@media (min-width: 768px) {
+    .artesaos__grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (min-width: 1024px) {
+    .header__hamburger { display: none; }
+    .header__nav { display: flex !important; position: static; box-shadow: none; padding: 0; }
+    .header__menu { flex-direction: row; gap: var(--space-lg); }
+    .artesaos__grid { grid-template-columns: repeat(3, 1fr); }
+}
