@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Integrador II — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>📚 Projeto Integrador II</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🔗 Projeto Integrador <span class="accent">II</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 40h — Módulo 2</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"No PI2, você deixa de ser programador e se torna desenvolvedor — entrega software completo, com frontend, backend e documentação."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: O QUE É PI2 -->
+    <section class="slide slide--content" data-title="O que é PI2?">
+      <h2>🔍 O que é o Projeto Integrador II?</h2>
+      <p>O PI2 conecta as disciplinas do <strong>Módulo 2</strong> em uma aplicação web completa com API REST.</p>
+
+      <div class="columns" style="margin-top: 24px;">
+        <div class="card">
+          <h3>🔗 Disciplinas Integradas</h3>
+          <ul>
+            <li><strong>Desenvolvimento Web</strong> — Frontend HTML/CSS/JS</li>
+            <li><strong>Engenharia de Software</strong> — UML + Processos</li>
+            <li><strong>Design Centrado no Usuário</strong> — UX/UI</li>
+          </ul>
+          <p style="margin-top:12px; color: var(--text-light); font-size:0.95rem;">Do protótipo Figma ao deploy funcional.</p>
+        </div>
+        <div class="card">
+          <h3>🎯 Objetivo</h3>
+          <p>Desenvolver uma <strong>aplicação web full-stack</strong> com API REST em Node.js, frontend responsivo e documentação UML completa.</p>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>O PI2 simula o fluxo real de uma equipe de desenvolvimento ágil.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 10 Semanas</h2>
+      <table>
+        <thead><tr><th>Semana</th><th>Etapa</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Definição + UML Inicial</td><td>Diagrama de Casos de Uso + Escopo</td></tr>
+          <tr><td>2</td><td>Modelagem Completa</td><td>Diagrama de Classes + DER atualizado</td></tr>
+          <tr><td>3</td><td>Setup do Projeto</td><td>Repo Git Flow + package.json + estrutura</td></tr>
+          <tr><td>4-5</td><td>API REST (Backend)</td><td>Rotas CRUD + Middleware + Validação</td></tr>
+          <tr><td>6-7</td><td>Frontend HTML/CSS/JS</td><td>Telas responsivas consumindo a API</td></tr>
+          <tr><td>8</td><td>Testes + Integração</td><td>Testes unitários + integração front↔back</td></tr>
+          <tr><td>9</td><td>Documentação + Deploy</td><td>README + UML final + deploy (Render/Vercel)</td></tr>
+          <tr><td>10</td><td><strong>APRESENTAÇÃO FINAL</strong></td><td>Demo ao vivo + pitch (12 min)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: METODOLOGIA -->
+    <section class="slide slide--dark" data-title="Metodologia">
+      <h2>⚙️ Metodologia: Kanban + Git Flow</h2>
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>📋 Kanban Board</h3>
+          <ul>
+            <li><strong>Backlog</strong> — Todas as tarefas futuras</li>
+            <li><strong>To Do</strong> — Sprint atual (máx 5 cards)</li>
+            <li><strong>In Progress</strong> — Em desenvolvimento (máx 2 por pessoa)</li>
+            <li><strong>Code Review</strong> — Aguardando revisão do colega</li>
+            <li><strong>Done</strong> — Mergeado na main</li>
+          </ul>
+          <p style="margin-top:12px; color:#94A3B8; font-size:0.9rem;">Ferramenta: GitHub Projects</p>
+        </div>
+        <div class="card">
+          <h3>🌿 Git Flow</h3>
+          <ul>
+            <li><code>main</code> — Produção (sempre estável)</li>
+            <li><code>develop</code> — Integração contínua</li>
+            <li><code>feature/*</code> — Uma branch por funcionalidade</li>
+            <li><code>hotfix/*</code> — Correções urgentes</li>
+          </ul>
+          <h3 style="margin-top:16px;">📝 Convenção de Commits</h3>
+          <ul>
+            <li><code>feat:</code> nova funcionalidade</li>
+            <li><code>fix:</code> correção de bug</li>
+            <li><code>docs:</code> documentação</li>
+            <li><code>style:</code> formatação (sem lógica)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: ENTREGÁVEIS -->
+    <section class="slide slide--content" data-title="Entregáveis">
+      <h2>📦 Entregáveis Obrigatórios</h2>
+      <table>
+        <thead><tr><th>Artefato</th><th>Descrição</th><th>Tecnologia</th></tr></thead>
+        <tbody>
+          <tr><td><strong>API REST</strong></td><td>CRUD completo com autenticação simples</td><td>Node.js + Express + PostgreSQL</td></tr>
+          <tr><td><strong>Frontend</strong></td><td>Interface responsiva consumindo a API</td><td>HTML5 + CSS3 + JavaScript (Fetch API)</td></tr>
+          <tr><td><strong>UML</strong></td><td>Casos de Uso + Classes + Sequência</td><td>Draw.io, Lucidchart ou StarUML</td></tr>
+          <tr><td><strong>Testes</strong></td><td>Mínimo 5 testes unitários da API</td><td>Jest + Supertest</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Code Review obrigatório:</strong> Todo PR precisa de aprovação de pelo menos 1 colega. Merges diretos na main = -10% na nota.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: RUBRICA -->
+    <section class="slide slide--content" data-title="Rubrica">
+      <h2>📊 Rubrica de Avaliação</h2>
+      <table>
+        <thead><tr><th>Critério</th><th>Peso</th><th>Excelente (10)</th><th>Insuficiente (0-4)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>API REST</strong></td><td>25%</td><td>CRUD completo, validação, status codes corretos</td><td>Apenas 1 rota ou sem validação</td></tr>
+          <tr><td><strong>Frontend</strong></td><td>25%</td><td>Responsivo, acessível, consome todas as rotas</td><td>Estático ou não conectado à API</td></tr>
+          <tr><td><strong>UML + Eng. Software</strong></td><td>20%</td><td>3 diagramas consistentes com o código</td><td>Diagramas genéricos ou ausentes</td></tr>
+          <tr><td><strong>Testes</strong></td><td>15%</td><td>5+ testes passando, cobertura real</td><td>Sem testes ou todos falhando</td></tr>
+          <tr><td><strong>Git Flow + Processo</strong></td><td>15%</td><td>Branches, PRs com review, commits frequentes</td><td>Tudo na main, 1 commit</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 7: DICAS -->
+    <section class="slide slide--dark" data-title="Dicas">
+      <h2>💡 Dicas e Erros Comuns</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>✅ Faça</h3>
+          <ul>
+            <li>Comece pela API — o frontend depende dela</li>
+            <li>Use Postman/Insomnia para testar rotas</li>
+            <li>CSS Mobile-first (media queries depois)</li>
+            <li>Documente os endpoints no README</li>
+            <li>Faça deploy cedo (mesmo incompleto)</li>
+            <li>UML deve refletir o código REAL</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>❌ Evite</h3>
+          <ul>
+            <li>Frontend bonito com API quebrada</li>
+            <li>CORS não configurado (erro clássico!)</li>
+            <li>Senhas em texto plano no banco</li>
+            <li>Diagramas UML copiados da internet</li>
+            <li>Ignorar responsividade no mobile</li>
+            <li>Commit de <code>node_modules/</code></li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Dica:</strong> Teste a API ANTES de conectar o frontend. Use <code>console.log</code> no fetch para debugar.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo — PI2</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Item</th><th>Detalhes</th></tr></thead>
+          <tbody>
+            <tr><td>Duração</td><td>10 semanas (40h)</td></tr>
+            <tr><td>Equipe</td><td>3-4 pessoas</td></tr>
+            <tr><td>Metodologia</td><td>Kanban + Git Flow</td></tr>
+            <tr><td>Stack</td><td>Node.js + Express + HTML/CSS/JS + PostgreSQL</td></tr>
+            <tr><td>Entrega final</td><td>Demo ao vivo + deploy + repositório</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">🚀</span>
+        <span>"Software pronto é software em produção. Se não está deployado, é apenas exercício."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 8</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

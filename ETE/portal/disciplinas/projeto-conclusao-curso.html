@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto de Conclusão de Curso — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>📚 PCC Evolutivo</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🎓 PCC Evolutivo<br><span class="accent">Do Console ao Full-Stack</span></h1>
+      <p class="subtitle">Projeto de Conclusão de Curso — 3 Módulos Integrados</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Um único produto que evolui do terminal até o deploy em nuvem — sua jornada completa como desenvolvedor."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: VISÃO GERAL -->
+    <section class="slide slide--content" data-title="Visão Geral AgendaPro">
+      <h2>🔍 Visão Geral: AgendaPro</h2>
+      <p>O PCC é um <strong>produto único e evolutivo</strong> — o <strong>AgendaPro</strong> — que cresce a cada módulo do curso.</p>
+
+      <div class="columns" style="margin-top: 24px;">
+        <div class="card">
+          <h3>📱 O que é o AgendaPro?</h3>
+          <p>Sistema de <strong>agendamento de consultas médicas</strong> que evolui em complexidade:</p>
+          <ol>
+            <li><strong>Módulo 1:</strong> CLI Python + PostgreSQL</li>
+            <li><strong>Módulo 2:</strong> API REST Node.js + Frontend Web</li>
+            <li><strong>Módulo 3:</strong> TypeScript + React + Deploy Cloud</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>🎯 Por que evolutivo?</h3>
+          <ul>
+            <li>Simula a realidade: software cresce com o tempo</li>
+            <li>Cada módulo agrega valor ao anterior</li>
+            <li>Portfólio profissional no GitHub</li>
+            <li>Apresentação final = Demo Day com banca</li>
+          </ul>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Mesmo projeto, 3 tecnologias, 1 portfólio completo.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: MÓDULO 1 -->
+    <section class="slide slide--dark" data-title="Módulo 1: Python CLI">
+      <h2>🐍 Módulo 1: Python CLI + PostgreSQL</h2>
+      <p style="color:#94A3B8;">Semanas 1-20 — Fundação do sistema</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>📦 Entregas</h3>
+          <ul>
+            <li>DER com mín. 6 tabelas (pacientes, médicos, consultas, especialidades, horários, convênios)</li>
+            <li>Script SQL: DDL + Seeds + Views</li>
+            <li>App Python CLI com menu interativo</li>
+            <li>CRUD completo de pacientes e consultas</li>
+            <li>Regras de negócio (conflito de horário, cancelamento)</li>
+            <li>README.md com prints do terminal</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🛠️ Tecnologias</h3>
+          <ul>
+            <li>Python 3.12+</li>
+            <li>PostgreSQL 16</li>
+            <li>psycopg2 (conexão)</li>
+            <li>python-dotenv (variáveis)</li>
+            <li>Git + GitHub</li>
+          </ul>
+          <h3 style="margin-top:16px;">✅ Critério de Aprovação</h3>
+          <p>CRUD funcional + DER normalizado + README + commits frequentes</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: MÓDULO 2 -->
+    <section class="slide slide--dark" data-title="Módulo 2: API REST">
+      <h2>🌐 Módulo 2: API REST Node.js</h2>
+      <p style="color:#94A3B8;">Semanas 21-40 — Backend web + Frontend</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>📦 Entregas</h3>
+          <ul>
+            <li>API REST Express com todas as rotas do CLI</li>
+            <li>Autenticação JWT (login paciente/admin)</li>
+            <li>Frontend HTML/CSS/JS consumindo a API</li>
+            <li>Tela de agendamento com calendário</li>
+            <li>UML: Casos de Uso + Sequência</li>
+            <li>5+ testes com Jest + Supertest</li>
+            <li>Deploy no Render (backend) + Vercel (front)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🛠️ Tecnologias</h3>
+          <ul>
+            <li>Node.js 20 LTS</li>
+            <li>Express 4.x</li>
+            <li>PostgreSQL (mesmo banco do M1)</li>
+            <li>JWT + bcrypt</li>
+            <li>HTML5 + CSS3 + Fetch API</li>
+            <li>Jest + Supertest</li>
+          </ul>
+          <h3 style="margin-top:16px;">✅ Critério de Aprovação</h3>
+          <p>API deployada + frontend responsivo + testes passando</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: MÓDULO 3 -->
+    <section class="slide slide--accent" data-title="Módulo 3: TypeScript + React">
+      <h2>⚛️ Módulo 3: TypeScript + React + Deploy</h2>
+      <p>Semanas 41-60 — Versão profissional do AgendaPro</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Entregas</h3>
+          <ul>
+            <li>Migração da API para TypeScript strict</li>
+            <li>Frontend React com Vite + TypeScript</li>
+            <li>Design System com componentes reutilizáveis</li>
+            <li>Testes E2E com Cypress ou Playwright</li>
+            <li>CI/CD com GitHub Actions</li>
+            <li>Docker + Docker Compose</li>
+            <li>Monorepo organizado</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>🛠️ Tecnologias</h3>
+          <ul>
+            <li>TypeScript 5.x (strict mode)</li>
+            <li>React 18 + Vite</li>
+            <li>TailwindCSS ou CSS Modules</li>
+            <li>Zod (validação)</li>
+            <li>Docker + Compose</li>
+            <li>GitHub Actions (CI/CD)</li>
+          </ul>
+          <h3 style="margin-top:16px;">✅ Critério de Aprovação</h3>
+          <p>App full-stack TS deployado + CI/CD + Demo Day</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: ESTRUTURA DO REPOSITÓRIO -->
+    <section class="slide slide--content" data-title="Estrutura do Repositório">
+      <h2>📁 Estrutura do Repositório</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📂 Monorepo AgendaPro</h3>
+          <div class="code-block">
+            <span class="lang-badge">Estrutura</span>
+            <code>agendapro/
+├── README.md (visão geral)
+├── docs/
+│   ├── DER.png
+│   ├── uml-casos-uso.png
+│   ├── uml-sequencia.png
+│   └── arquitetura.md
+├── modulo1-cli/
+│   ├── src/
+│   ├── sql/
+│   ├── requirements.txt
+│   └── README.md
+├── modulo2-api/
+│   ├── src/
+│   ├── tests/
+│   ├── package.json
+│   └── README.md
+├── modulo3-fullstack/
+│   ├── backend/
+│   ├── frontend/
+│   ├── docker-compose.yml
+│   └── README.md
+└── .github/
+    └── workflows/ci.yml</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>📋 Regras do Repositório</h3>
+          <ul>
+            <li>Cada módulo tem seu próprio README</li>
+            <li>README raiz explica o projeto completo</li>
+            <li>Branch <code>main</code> sempre estável</li>
+            <li>Tags para cada entrega: <code>v1.0</code>, <code>v2.0</code>, <code>v3.0</code></li>
+            <li><code>.gitignore</code> global + por módulo</li>
+            <li><code>.env.example</code> (nunca commitar .env!)</li>
+          </ul>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span>O repositório É o portfólio. Cuide dele como se fosse seu LinkedIn.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: TIMELINE -->
+    <section class="slide slide--content" data-title="Timeline 60 Semanas">
+      <h2>📅 Timeline Completa — 60 Semanas</h2>
+      <table>
+        <thead><tr><th>Período</th><th>Módulo</th><th>Marco Principal</th></tr></thead>
+        <tbody>
+          <tr><td>Sem 1-5</td><td>M1</td><td>DER finalizado + SQL funcional</td></tr>
+          <tr><td>Sem 6-10</td><td>M1</td><td>CLI Python completa + README</td></tr>
+          <tr><td>Sem 11-15</td><td>M1</td><td>Refinamento + testes + apresentação M1</td></tr>
+          <tr><td>Sem 16-20</td><td>M1→M2</td><td>Entrega M1 + planejamento API</td></tr>
+          <tr><td>Sem 21-30</td><td>M2</td><td>API REST completa + testes</td></tr>
+          <tr><td>Sem 31-40</td><td>M2</td><td>Frontend + deploy + apresentação M2</td></tr>
+          <tr><td>Sem 41-50</td><td>M3</td><td>Migração TS + React + Docker</td></tr>
+          <tr><td>Sem 51-57</td><td>M3</td><td>CI/CD + testes E2E + polimento</td></tr>
+          <tr><td>Sem 58-59</td><td>M3</td><td>Ensaio do pitch + ajustes finais</td></tr>
+          <tr><td>Sem 60</td><td><strong>🎓</strong></td><td><strong>DEMO DAY — Apresentação para banca</strong></td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 8: DEMO DAY -->
+    <section class="slide slide--section" data-title="Demo Day">
+      <h1>🎤 Demo Day<br><span class="accent">Roteiro do Pitch</span></h1>
+      <p class="subtitle">15 minutos que podem abrir portas para estágio e emprego.</p>
+      <p style="margin-top: 24px; font-size: 1.2rem; opacity: 0.9;">Apresentação para banca com professores e convidados da indústria.</p>
+    </section>
+
+    <!-- SLIDE 9: RUBRICA FINAL -->
+    <section class="slide slide--content" data-title="Rubrica Final">
+      <h2>📊 Rubrica Final do PCC</h2>
+      <table>
+        <thead><tr><th>Critério</th><th>Peso</th><th>O que avaliamos</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Evolução Técnica</strong></td><td>25%</td><td>Crescimento visível entre M1 → M2 → M3</td></tr>
+          <tr><td><strong>Código + Arquitetura</strong></td><td>25%</td><td>Clean code, padrões, separação de camadas</td></tr>
+          <tr><td><strong>Deploy + DevOps</strong></td><td>15%</td><td>App funcionando online + CI/CD</td></tr>
+          <tr><td><strong>Documentação</strong></td><td>15%</td><td>README, UML, ADRs, CHANGELOG</td></tr>
+          <tr><td><strong>Pitch / Demo Day</strong></td><td>20%</td><td>Clareza, demo funcional, domínio técnico</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Roteiro do Pitch (15 min):</strong> Problema (2 min) → Solução (3 min) → Demo ao vivo (5 min) → Arquitetura (3 min) → Aprendizados (2 min)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎓 Sua Jornada Começa Agora</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Módulo</th><th>Tech</th><th>Resultado</th></tr></thead>
+          <tbody>
+            <tr><td>1 — CLI</td><td>Python + PostgreSQL</td><td>App no terminal</td></tr>
+            <tr><td>2 — Web</td><td>Node.js + HTML/CSS/JS</td><td>API + Frontend deployado</td></tr>
+            <tr><td>3 — Pro</td><td>TypeScript + React + Docker</td><td>Full-stack com CI/CD</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">🚀</span>
+        <span>"Em 60 semanas, você sairá do 'Hello World' para um sistema em produção no seu portfólio."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 10</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

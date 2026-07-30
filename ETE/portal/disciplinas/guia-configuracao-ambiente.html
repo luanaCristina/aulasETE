@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guia de Configuração de Ambiente — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>📚 Configuração de Ambiente</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🛠️ Guia de Configuração<br>de <span class="accent">Ambiente</span></h1>
+      <p class="subtitle">Tudo que você precisa instalar para o curso — Passo a passo</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Ambiente configurado = aula sem travamentos. Reserve 1 hora ANTES da primeira aula para instalar tudo."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: PYTHON -->
+    <section class="slide slide--content" data-title="Python 3.12+">
+      <h2>🐍 Python 3.12+ — Instalação</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🪟 Windows</h3>
+          <ol>
+            <li>Acesse <strong>python.org/downloads</strong></li>
+            <li>Baixe Python 3.12.x (64-bit)</li>
+            <li>⚠️ Marque <strong>"Add Python to PATH"</strong></li>
+            <li>Clique em "Install Now"</li>
+            <li>Verifique no terminal:</li>
+          </ol>
+          <div class="code-block" style="margin-top:8px;">
+            <span class="lang-badge">CMD</span>
+            <code>python --version
+# Python 3.12.x
+
+pip --version
+# pip 24.x</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🍎 macOS</h3>
+          <ol>
+            <li>Instale o Homebrew (se não tiver):</li>
+          </ol>
+          <div class="code-block" style="margin-top:8px;">
+            <span class="lang-badge">Terminal</span>
+            <code>/bin/bash -c "$(curl -fsSL
+  https://raw.githubusercontent.com/
+  Homebrew/install/HEAD/install.sh)"
+
+brew install python@3.12
+
+python3 --version
+# Python 3.12.x</code>
+          </div>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>No macOS, use <code>python3</code> e <code>pip3</code> (não <code>python</code>).</span>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Pacotes essenciais:</strong> <code>pip install psycopg2-binary python-dotenv</code></span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: VS CODE -->
+    <section class="slide slide--dark" data-title="VS Code + Extensões">
+      <h2>💻 VS Code + Extensões Essenciais</h2>
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>📥 Instalação</h3>
+          <ol>
+            <li>Acesse <strong>code.visualstudio.com</strong></li>
+            <li>Baixe a versão para seu SO</li>
+            <li>Instale e abra</li>
+            <li>Ative sincronização (Sign in com GitHub)</li>
+          </ol>
+          <h3 style="margin-top:16px;">⚙️ Configurações Recomendadas</h3>
+          <div class="code-block">
+            <span class="lang-badge">settings.json</span>
+            <code>{
+  "editor.fontSize": 16,
+  "editor.tabSize": 2,
+  "editor.formatOnSave": true,
+  "terminal.integrated.fontSize": 14,
+  "files.autoSave": "afterDelay"
+}</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🧩 Extensões Obrigatórias</h3>
+          <table>
+            <thead><tr><th>Extensão</th><th>Para quê</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Python</strong> (Microsoft)</td><td>IntelliSense + debug</td></tr>
+              <tr><td><strong>Pylance</strong></td><td>Type checking Python</td></tr>
+              <tr><td><strong>SQLTools</strong></td><td>Conectar ao PostgreSQL</td></tr>
+              <tr><td><strong>ESLint</strong></td><td>Linter JavaScript/TS</td></tr>
+              <tr><td><strong>Prettier</strong></td><td>Formatação automática</td></tr>
+              <tr><td><strong>Live Server</strong></td><td>Preview HTML local</td></tr>
+              <tr><td><strong>GitLens</strong></td><td>Histórico de commits visual</td></tr>
+              <tr><td><strong>Thunder Client</strong></td><td>Testar APIs (como Postman)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: POSTGRESQL -->
+    <section class="slide slide--content" data-title="PostgreSQL 16 + pgAdmin">
+      <h2>🐘 PostgreSQL 16 + pgAdmin 4</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📥 Instalação (Windows + Mac)</h3>
+          <ol>
+            <li>Acesse <strong>postgresql.org/download</strong></li>
+            <li>Baixe o instalador EDB (inclui pgAdmin)</li>
+            <li>Durante a instalação:
+              <ul>
+                <li>Porta: <strong>5432</strong> (padrão)</li>
+                <li>Senha do superusuário: <strong>postgres</strong></li>
+                <li>Marque pgAdmin 4 e Command Line Tools</li>
+              </ul>
+            </li>
+            <li>Finalize e reinicie se necessário</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>✅ Verificação</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code># Verificar versão
+psql --version
+# psql (PostgreSQL) 16.x
+
+# Conectar ao banco
+psql -U postgres
+# Digitar senha: postgres
+
+# Listar bancos
+\l
+
+# Sair
+\q</code>
+          </div>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>pgAdmin 4:</strong> Interface gráfica para gerenciar o banco. Abra em <code>localhost:5050</code> ou pelo atalho.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: NODE.JS -->
+    <section class="slide slide--content" data-title="Node.js + npm">
+      <h2>🟢 Node.js 20 LTS + npm</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📥 Instalação Recomendada</h3>
+          <ol>
+            <li>Acesse <strong>nodejs.org</strong></li>
+            <li>Baixe a versão <strong>LTS</strong> (20.x)</li>
+            <li>Instale com as opções padrão</li>
+            <li>Reinicie o terminal</li>
+          </ol>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Terminal</span>
+            <code># Verificar
+node --version   # v20.x.x
+npm --version    # 10.x.x
+
+# Criar projeto
+mkdir meu-projeto && cd meu-projeto
+npm init -y</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>📦 Pacotes que usaremos</h3>
+          <table>
+            <thead><tr><th>Pacote</th><th>Função</th></tr></thead>
+            <tbody>
+              <tr><td><code>express</code></td><td>Framework web (API)</td></tr>
+              <tr><td><code>pg</code></td><td>Conexão PostgreSQL</td></tr>
+              <tr><td><code>dotenv</code></td><td>Variáveis de ambiente</td></tr>
+              <tr><td><code>cors</code></td><td>Cross-origin requests</td></tr>
+              <tr><td><code>nodemon</code></td><td>Auto-reload em dev</td></tr>
+              <tr><td><code>jest</code></td><td>Testes unitários</td></tr>
+            </tbody>
+          </table>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Bash</span>
+            <code>npm install express pg dotenv cors
+npm install -D nodemon jest</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: GIT + GITHUB -->
+    <section class="slide slide--dark" data-title="Git + GitHub">
+      <h2>🐙 Git + GitHub</h2>
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>📥 Instalação do Git</h3>
+          <p><strong>Windows:</strong> <code>git-scm.com</code> (Git Bash incluído)</p>
+          <p><strong>macOS:</strong> <code>xcode-select --install</code> ou <code>brew install git</code></p>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Terminal</span>
+            <code># Configuração inicial (OBRIGATÓRIA)
+git config --global user.name "Seu Nome"
+git config --global user.email "email@exemplo.com"
+git config --global init.defaultBranch main
+
+# Verificar
+git --version   # git version 2.4x.x</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🔑 GitHub — Configuração</h3>
+          <ol>
+            <li>Crie conta em <strong>github.com</strong></li>
+            <li>Gere chave SSH:</li>
+          </ol>
+          <div class="code-block" style="margin-top:8px;">
+            <span class="lang-badge">Terminal</span>
+            <code>ssh-keygen -t ed25519 -C "seu@email.com"
+# Enter para tudo (sem senha)
+
+cat ~/.ssh/id_ed25519.pub
+# Copie a chave inteira</code>
+          </div>
+          <ol start="3">
+            <li>GitHub → Settings → SSH Keys → New</li>
+            <li>Cole a chave e salve</li>
+            <li>Teste: <code>ssh -T git@github.com</code></li>
+          </ol>
+          <p style="margin-top:8px; color:#94A3B8; font-size:0.9rem;">✓ "Hi username! You've successfully authenticated"</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: SOLUÇÃO DE PROBLEMAS -->
+    <section class="slide slide--content" data-title="Solução de Problemas">
+      <h2>🚨 Solução de Problemas Comuns</h2>
+      <table>
+        <thead><tr><th>Problema</th><th>Causa</th><th>Solução</th></tr></thead>
+        <tbody>
+          <tr><td><code>'python' não reconhecido</code></td><td>PATH não configurado</td><td>Reinstalar marcando "Add to PATH"</td></tr>
+          <tr><td><code>'psql' não reconhecido</code></td><td>PostgreSQL bin não no PATH</td><td>Adicionar <code>C:\Program Files\PostgreSQL\16\bin</code> ao PATH</td></tr>
+          <tr><td><code>FATAL: password authentication failed</code></td><td>Senha errada do postgres</td><td>Reinstalar ou alterar via pgAdmin</td></tr>
+          <tr><td><code>'node' não reconhecido</code></td><td>Node não instalado ou PATH</td><td>Reinstalar Node.js + reiniciar terminal</td></tr>
+          <tr><td><code>Permission denied (publickey)</code></td><td>SSH não configurado</td><td>Gerar chave SSH e adicionar no GitHub</td></tr>
+          <tr><td><code>EACCES npm</code></td><td>Permissão no macOS</td><td><code>sudo chown -R $USER /usr/local/lib/node_modules</code></td></tr>
+          <tr><td>VS Code não acha Python</td><td>Interpretador errado</td><td>Ctrl+Shift+P → "Python: Select Interpreter"</td></tr>
+          <tr><td><code>port 5432 already in use</code></td><td>PostgreSQL já rodando</td><td>Fechar pgAdmin ou reiniciar serviço</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--tip" style="margin-top:12px;">
+        <span class="icon">💡</span>
+        <span><strong>Regra de ouro:</strong> Feche e reabra o terminal depois de instalar qualquer coisa. O PATH só atualiza com novo terminal.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: ENCERRAMENTO / CHECKLIST -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>✅ Checklist Final</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Ferramenta</th><th>Comando de Verificação</th><th>Versão Esperada</th></tr></thead>
+          <tbody>
+            <tr><td>✅ Python</td><td><code>python --version</code></td><td>3.12+</td></tr>
+            <tr><td>✅ pip</td><td><code>pip --version</code></td><td>24+</td></tr>
+            <tr><td>✅ VS Code</td><td>Abrir normalmente</td><td>Última versão</td></tr>
+            <tr><td>✅ PostgreSQL</td><td><code>psql --version</code></td><td>16+</td></tr>
+            <tr><td>✅ pgAdmin 4</td><td>Abrir interface web</td><td>8+</td></tr>
+            <tr><td>✅ Node.js</td><td><code>node --version</code></td><td>20+</td></tr>
+            <tr><td>✅ npm</td><td><code>npm --version</code></td><td>10+</td></tr>
+            <tr><td>✅ Git</td><td><code>git --version</code></td><td>2.40+</td></tr>
+            <tr><td>✅ GitHub SSH</td><td><code>ssh -T git@github.com</code></td><td>"successfully authenticated"</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">🎉</span>
+        <span>Se todos os checks passaram — você está pronto para o curso! Nos vemos na primeira aula.</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 8</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

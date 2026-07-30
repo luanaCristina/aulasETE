@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Integrador I — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>📚 Projeto Integrador I</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🔗 Projeto Integrador <span class="accent">I</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 40h — Módulo 1</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"A integração entre disciplinas é onde a mágica acontece — aqui você conecta tudo que aprendeu."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: O QUE É PI1 -->
+    <section class="slide slide--content" data-title="O que é PI1?">
+      <h2>🔍 O que é o Projeto Integrador I?</h2>
+      <p>O PI1 é o projeto que <strong>conecta as disciplinas do Módulo 1</strong> em uma entrega real e funcional.</p>
+
+      <div class="columns" style="margin-top: 24px;">
+        <div class="card">
+          <h3>🔗 Disciplinas Integradas</h3>
+          <ul>
+            <li><strong>Banco de Dados</strong> — Modelagem e SQL</li>
+            <li><strong>Python</strong> — Lógica e programação</li>
+            <li><strong>Lógica Computacional</strong> — Algoritmos e estruturas</li>
+          </ul>
+          <p style="margin-top:12px; color: var(--text-light); font-size:0.95rem;">As 3 disciplinas convergem em UM produto.</p>
+        </div>
+        <div class="card">
+          <h3>🎯 Objetivo</h3>
+          <p>Desenvolver uma <strong>aplicação CLI em Python</strong> que gerencia dados persistidos em <strong>PostgreSQL</strong>, aplicando algoritmos e estruturas de dados aprendidos em Lógica.</p>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>O PI1 prova que você sabe construir software funcional de ponta a ponta.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 10 Semanas de Projeto</h2>
+      <table>
+        <thead><tr><th>Semana</th><th>Etapa</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Definição do Problema</td><td>Documento de escopo (1 página)</td></tr>
+          <tr><td>2</td><td>Modelagem do Banco</td><td>DER (Diagrama Entidade-Relacionamento)</td></tr>
+          <tr><td>3</td><td>Script SQL</td><td>CREATE TABLE + INSERTs de exemplo</td></tr>
+          <tr><td>4-5</td><td>CRUD em Python</td><td>Módulo de conexão + operações básicas</td></tr>
+          <tr><td>6</td><td>Regras de Negócio</td><td>Validações e tratamento de erros</td></tr>
+          <tr><td>7</td><td>Menu CLI Interativo</td><td>Interface completa no terminal</td></tr>
+          <tr><td>8</td><td>Testes e Refinamento</td><td>Cenários de teste documentados</td></tr>
+          <tr><td>9</td><td>README + Documentação</td><td>README.md completo no GitHub</td></tr>
+          <tr><td>10</td><td><strong>APRESENTAÇÃO FINAL</strong></td><td>Demo ao vivo + defesa oral (10 min)</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: METODOLOGIA -->
+    <section class="slide slide--dark" data-title="Metodologia">
+      <h2>⚙️ Metodologia: Scrum Adaptado</h2>
+      <p>Usamos uma versão simplificada do Scrum para equipes de 3-4 pessoas.</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>📋 Cerimônias</h3>
+          <ul>
+            <li><strong>Sprint Planning</strong> — Início de cada sprint (2 semanas)</li>
+            <li><strong>Daily</strong> — 5 min no início da aula</li>
+            <li><strong>Sprint Review</strong> — Demo a cada 2 semanas</li>
+            <li><strong>Retrospectiva</strong> — O que melhorar?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎭 Papéis</h3>
+          <ul>
+            <li><strong>Product Owner</strong> — Define prioridades (rodízio)</li>
+            <li><strong>Scrum Master</strong> — Facilita e remove blockers</li>
+            <li><strong>Dev Team</strong> — Todos codam!</li>
+          </ul>
+          <h3 style="margin-top:16px;">📊 Ferramentas</h3>
+          <ul>
+            <li>GitHub Projects (Kanban board)</li>
+            <li>Issues para cada tarefa</li>
+            <li>Commits descritivos em português</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: ENTREGÁVEIS -->
+    <section class="slide slide--content" data-title="Entregáveis">
+      <h2>📦 Entregáveis Obrigatórios</h2>
+      <table>
+        <thead><tr><th>Artefato</th><th>Descrição</th><th>Formato</th></tr></thead>
+        <tbody>
+          <tr><td><strong>DER</strong></td><td>Diagrama com mín. 4 tabelas relacionadas</td><td>Imagem PNG/PDF (brModelo ou dbdiagram.io)</td></tr>
+          <tr><td><strong>Script SQL</strong></td><td>DDL + DML (criação + dados de exemplo)</td><td>Arquivo .sql no repositório</td></tr>
+          <tr><td><strong>App Python CLI</strong></td><td>CRUD completo com menu interativo</td><td>Código Python 3.12+ no GitHub</td></tr>
+          <tr><td><strong>README.md</strong></td><td>Instruções de instalação + uso + prints</td><td>Markdown no repositório</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Repositório obrigatório:</strong> Todo o projeto deve estar no GitHub com commits frequentes. Projetos sem histórico de commits perdem 20% da nota.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: RUBRICA -->
+    <section class="slide slide--content" data-title="Rubrica de Avaliação">
+      <h2>📊 Rubrica de Avaliação</h2>
+      <table>
+        <thead><tr><th>Critério</th><th>Peso</th><th>Excelente (10)</th><th>Insuficiente (0-4)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Modelagem (DER)</strong></td><td>20%</td><td>Normalizado, relações corretas, constraints</td><td>Tabelas soltas, sem FK</td></tr>
+          <tr><td><strong>SQL</strong></td><td>20%</td><td>DDL + DML funcional, sem erros</td><td>Não executa ou incompleto</td></tr>
+          <tr><td><strong>Python CLI</strong></td><td>30%</td><td>CRUD completo, tratamento de erros, UX no terminal</td><td>Apenas 1 operação ou crasheia</td></tr>
+          <tr><td><strong>Documentação</strong></td><td>15%</td><td>README completo, prints, instruções claras</td><td>Sem README ou vazio</td></tr>
+          <tr><td><strong>Processo (Scrum)</strong></td><td>15%</td><td>Commits frequentes, board atualizado, colaboração</td><td>1 commit no último dia</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 7: DICAS E ERROS COMUNS -->
+    <section class="slide slide--dark" data-title="Dicas e Erros Comuns">
+      <h2>💡 Dicas e Erros Comuns</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>✅ Faça</h3>
+          <ul>
+            <li>Comece pelo DER — o banco guia o código</li>
+            <li>Faça commits diários (mesmo incompletos)</li>
+            <li>Use <code>psycopg2</code> ou <code>sqlalchemy</code> para conexão</li>
+            <li>Trate <strong>TODAS</strong> as exceções do banco</li>
+            <li>Teste com dados reais (não apenas "teste123")</li>
+            <li>Peça feedback antes da semana 10</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>❌ Evite</h3>
+          <ul>
+            <li>Deixar tudo para a última semana</li>
+            <li>Código sem comentários ou docstrings</li>
+            <li>SQL injection (use parâmetros!)</li>
+            <li>Repositório sem .gitignore</li>
+            <li>Um membro faz tudo sozinho</li>
+            <li>README dizendo "projeto da escola"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Dica de ouro:</strong> Se o DER estiver bom, o código praticamente se escreve sozinho. Invista tempo na modelagem!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo — PI1</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Item</th><th>Detalhes</th></tr></thead>
+          <tbody>
+            <tr><td>Duração</td><td>10 semanas (40h)</td></tr>
+            <tr><td>Equipe</td><td>3-4 pessoas</td></tr>
+            <tr><td>Metodologia</td><td>Scrum adaptado</td></tr>
+            <tr><td>Tecnologias</td><td>Python + PostgreSQL + Git</td></tr>
+            <tr><td>Entrega final</td><td>Demo ao vivo + repositório GitHub</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">🚀</span>
+        <span>"O melhor momento para começar o PI era ontem. O segundo melhor momento é agora."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 8</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>
