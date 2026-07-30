@@ -1,0 +1,366 @@
+/* ===================================================
+   ETE Pernambuco — Portal de Apresentações
+   styles.css — Motor de slides + estilização
+   Profª Luana Cristina | 2026.2
+   =================================================== */
+
+/* Reset e Base */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary: #2563EB;
+  --primary-dark: #1D4ED8;
+  --primary-light: #EFF6FF;
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --bg: #F9FAFB;
+  --bg-dark: #0F172A;
+  --text: #111827;
+  --text-light: #6B7280;
+  --white: #FFFFFF;
+  --radius: 12px;
+  --font: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --mono: 'Fira Code', 'JetBrains Mono', 'Cascadia Code', monospace;
+  --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+html, body {
+  font-family: var(--font);
+  background: var(--bg-dark);
+  color: var(--text);
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ===== SLIDES ENGINE ===== */
+.slides-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 80px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(40px);
+  transition: opacity var(--transition), transform var(--transition), visibility 0s 0.3s;
+  overflow-y: auto;
+}
+
+.slide.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+  transition: opacity var(--transition), transform var(--transition), visibility 0s;
+}
+
+.slide.prev {
+  transform: translateX(-40px);
+}
+
+/* ===== SLIDE THEMES ===== */
+.slide--cover {
+  background: linear-gradient(135deg, var(--bg-dark) 0%, #1E293B 100%);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.slide--content {
+  background: var(--white);
+}
+
+.slide--dark {
+  background: var(--bg-dark);
+  color: var(--white);
+}
+
+.slide--accent {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+  color: var(--white);
+}
+
+.slide--section {
+  background: linear-gradient(135deg, #1E293B 0%, #334155 100%);
+  color: var(--white);
+  text-align: center;
+  align-items: center;
+}
+
+/* ===== TYPOGRAPHY ===== */
+.slide h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  letter-spacing: -0.025em;
+}
+
+.slide h2 {
+  font-size: 2.4rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.slide h3 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.slide p, .slide li {
+  font-size: 1.25rem;
+  line-height: 1.6;
+  color: inherit;
+}
+
+.slide--content p, .slide--content li {
+  color: var(--text);
+}
+
+.slide ul, .slide ol {
+  padding-left: 24px;
+  margin: 12px 0;
+}
+
+.slide li { margin-bottom: 8px; }
+
+.accent { color: var(--primary); }
+.slide--dark .accent, .slide--accent .accent { color: #93C5FD; }
+.subtitle { font-size: 1.4rem; opacity: 0.85; font-weight: 400; margin-top: 8px; }
+
+/* ===== CODE BLOCKS ===== */
+.code-block {
+  background: #1E293B;
+  border-radius: var(--radius);
+  padding: 24px;
+  margin: 16px 0;
+  overflow-x: auto;
+  position: relative;
+}
+
+.code-block code {
+  font-family: var(--mono);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #E2E8F0;
+  white-space: pre;
+}
+
+.code-block .lang-badge {
+  position: absolute;
+  top: 8px;
+  right: 12px;
+  background: var(--primary);
+  color: white;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+/* Code tabs (multi-stack) */
+.code-tabs { display: flex; gap: 0; margin-top: 16px; }
+.code-tab {
+  padding: 10px 20px;
+  background: #334155;
+  color: #94A3B8;
+  border: none;
+  cursor: pointer;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: background var(--transition), color var(--transition);
+}
+.code-tab:first-child { border-radius: var(--radius) 0 0 0; }
+.code-tab:last-child { border-radius: 0 var(--radius) 0 0; }
+.code-tab.active { background: #1E293B; color: #FFFFFF; }
+
+.code-panel { display: none; }
+.code-panel.active { display: block; }
+
+/* ===== TABLES ===== */
+.slide table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 1rem;
+}
+
+.slide th, .slide td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #E5E7EB;
+}
+
+.slide th {
+  background: var(--primary-light);
+  font-weight: 600;
+  color: var(--primary-dark);
+}
+
+.slide--dark th { background: rgba(255,255,255,0.1); color: #93C5FD; }
+.slide--dark td { border-color: rgba(255,255,255,0.1); }
+
+/* ===== CALLOUTS ===== */
+.callout {
+  padding: 16px 20px;
+  border-radius: var(--radius);
+  margin: 16px 0;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.callout--tip { background: #ECFDF5; border-left: 4px solid var(--success); }
+.callout--warning { background: #FFFBEB; border-left: 4px solid var(--warning); }
+.callout--danger { background: #FEF2F2; border-left: 4px solid var(--error); }
+.callout--info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+
+.callout .icon { font-size: 1.4rem; flex-shrink: 0; }
+
+/* ===== COLUMNS / GRID ===== */
+.columns { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin: 20px 0; }
+.columns--3 { grid-template-columns: 1fr 1fr 1fr; }
+
+.card {
+  background: var(--white);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+.slide--dark .card { background: #1E293B; }
+
+/* ===== SIDEBAR / NAV ===== */
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 300px;
+  height: 100vh;
+  background: #0F172A;
+  border-right: 1px solid #1E293B;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform var(--transition);
+  overflow-y: auto;
+  padding: 20px 0;
+}
+
+.sidebar.open { transform: translateX(0); }
+
+.sidebar h3 {
+  color: #94A3B8;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  padding: 8px 20px;
+  margin-top: 16px;
+}
+
+.sidebar-item {
+  display: block;
+  width: 100%;
+  padding: 10px 20px;
+  background: none;
+  border: none;
+  color: #CBD5E1;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.sidebar-item:hover { background: #1E293B; color: #FFFFFF; }
+.sidebar-item.active { background: var(--primary); color: #FFFFFF; font-weight: 600; }
+
+/* ===== CONTROLS BAR ===== */
+.controls {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  z-index: 999;
+  border-top: 1px solid #1E293B;
+}
+
+.controls button {
+  background: none;
+  border: 1px solid #334155;
+  color: #CBD5E1;
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-family: var(--font);
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition);
+}
+
+.controls button:hover { background: #1E293B; border-color: var(--primary); color: #FFFFFF; }
+
+.controls .progress-text {
+  color: #94A3B8;
+  font-size: 0.85rem;
+  min-width: 80px;
+  text-align: center;
+}
+
+.controls .btn-fullscreen {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.controls .btn-fullscreen:hover { background: var(--primary-dark); }
+
+.controls .btn-menu {
+  position: absolute;
+  left: 16px;
+}
+
+/* ===== PROGRESS BAR ===== */
+.progress-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 3px;
+  background: var(--primary);
+  z-index: 1001;
+  transition: width var(--transition);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .slide { padding: 30px 24px; }
+  .slide h1 { font-size: 2rem; }
+  .slide h2 { font-size: 1.6rem; }
+  .slide p, .slide li { font-size: 1rem; }
+  .columns { grid-template-columns: 1fr; }
+  .sidebar { width: 260px; }
+}
+
+/* ===== FULLSCREEN MODE ===== */
+:fullscreen .controls { opacity: 0; transition: opacity 0.3s; }
+:fullscreen .controls:hover { opacity: 1; }
+:fullscreen .progress-bar { display: none; }

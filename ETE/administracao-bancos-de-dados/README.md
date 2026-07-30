@@ -1875,6 +1875,295 @@ CREATE INDEX idx_manutencoes_veiculo ON manutencoes(veiculo_id);
 
 ---
 
+## 🚨 Plano de Contingência Pedagógica (Aulas Práticas sem Laboratório)
+
+> ⚠️ **Quando usar este plano:** Laboratório indisponível (manutenção, queda de energia, falta de internet, máquinas com defeito). O objetivo é manter o aprendizado ativo e produtivo mesmo sem computadores.
+
+### 🔀 Fluxograma de Decisão Rápida
+
+```
+┌─────────────────────────────────────────────┐
+│  🚨 LABORATÓRIO INDISPONÍVEL — E AGORA?     │
+└─────────────────────┬───────────────────────┘
+                      │
+                      ▼
+        ┌─────────────────────────────┐
+        │ Alunos têm smartphones com  │
+        │ internet disponível?        │
+        └──────────────┬──────────────┘
+               ┌───────┴───────┐
+               │               │
+            SIM ▼           NÃO ▼
+  ┌──────────────────┐  ┌──────────────────────────┐
+  │ ▶ OPÇÃO A: BYOD  │  │ Professora tem materiais │
+  │ (Smartphone)     │  │ impressos / quadro?      │
+  └──────────────────┘  └────────────┬─────────────┘
+                              ┌──────┴──────┐
+                              │             │
+                           SIM ▼          NÃO ▼
+                 ┌───────────────────┐  ┌──────────────────┐
+                 │ ▶ OPÇÃO B:        │  │ ▶ OPÇÃO C:       │
+                 │ DESPLUGADA        │  │ ESTUDO DE CASO   │
+                 │ (Unplugged)       │  │ / PBL            │
+                 └───────────────────┘  └──────────────────┘
+```
+
+---
+
+### 📱 Opção A: BYOD (Bring Your Own Device — Smartphone)
+
+> 💡 **Conceito:** Alunos usam seus próprios celulares para praticar SQL e modelagem de dados.
+
+#### Ferramentas Mobile para Bancos de Dados
+
+| Ferramenta | Sistema | Link | Melhor Para |
+|-----------|---------|------|-------------|
+| **Replit Mobile** | Android/iOS | App ou navegador | SQL online com PostgreSQL |
+| **DB Fiddle** | Qualquer | dbfiddle.uk (navegador) | Testar queries SQL rapidamente |
+| **Khan Academy SQL** | Qualquer | khanacademy.org (navegador) | Exercícios guiados de SQL |
+| **SQLiteOnline** | Qualquer | sqliteonline.com (navegador) | Praticar DDL e DML no celular |
+
+#### Atividades Adaptadas para Smartphone
+
+| Atividade | Duração | Ferramenta | Semanas Aplicáveis |
+|-----------|---------|------------|-------------------|
+| Escrever queries SELECT no DB Fiddle | 30 min | DB Fiddle | 12-14 |
+| Exercícios interativos Khan Academy SQL | 40 min | Khan Academy | 11-13 |
+| Criar tabelas via DDL no Replit | 30 min | Replit Mobile | 8-10 |
+| Quiz de normalização (Kahoot/Google Forms) | 20 min | Navegador | 6-7 |
+| Analisar schemas no GitHub Mobile | 20 min | GitHub App | 4-7 |
+
+#### 📋 Roteiro da Professora (Opção A)
+
+```
+DURAÇÃO TOTAL: 50 minutos
+
+1. [5 min]  Anunciar atividade BYOD — alunos acessam ferramenta no celular
+2. [5 min]  Projetar QR Code / escrever URL no quadro (DB Fiddle ou Khan Academy)
+3. [5 min]  Explicar o desafio SQL do dia no quadro (tabela + perguntas)
+4. [25 min] Alunos resolvem queries no celular — professora circula e auxilia
+5. [5 min]  Alunos compartilham soluções no quadro (ditam ou escrevem)
+6. [5 min]  Fechamento: conceitos-chave revisados, dúvidas respondidas
+```
+
+#### 📋 Guia do Aluno (para projetar ou escrever no quadro)
+
+> 🎯 **Hoje a aula é no celular!**
+> 1. Acesse o link/QR Code fornecido pela professora
+> 2. Leia o enunciado no quadro (tabela e perguntas)
+> 3. Escreva suas queries SQL na ferramenta
+> 4. Teste executando e verifique o resultado
+> 5. Anote a query final no caderno
+
+---
+
+### 📝 Opção B: Atividades Desplugadas (Unplugged)
+
+> 💡 **Conceito:** Aprender modelagem e SQL sem computador, usando materiais físicos e dinâmicas corporais.
+
+#### Atividade B1 — Modelagem DER em Cartolina com Post-its 🟢
+
+**Semanas aplicáveis:** 4–7
+
+**Materiais:** Cartolina A2, post-its coloridos (3 cores), barbante, caneta pilot
+
+**Dinâmica:**
+- Post-its **amarelos** = Entidades (retângulos do DER)
+- Post-its **verdes** = Atributos
+- Post-its **rosa** = Relacionamentos (losango)
+- **Barbante** = Linhas de conexão (cardinalidade escrita com pilot)
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Dividir turma em grupos de 4-5 alunos
+2. [5 min]  Apresentar o cenário/problema no quadro (ex: "Sistema de Delivery")
+3. [3 min]  Distribuir materiais (cartolina + post-its + barbante)
+4. [20 min] Grupos modelam o DER colando post-its e conectando com barbante
+5. [10 min] Cada grupo apresenta seu modelo (2 min por grupo)
+6. [7 min]  Professora corrige coletivamente no quadro — apontar erros comuns
+```
+
+#### Atividade B2 — "SQL Humano" 🟡
+
+**Semanas aplicáveis:** 11–14
+
+**Conceito:** Alunos SÃO os registros de uma tabela. A professora "executa" queries e os alunos respondem fisicamente.
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Distribuir cartões de "registro" para cada aluno:
+            Exemplo: "Nome: Ana | Idade: 22 | Cidade: Recife | Curso: ADS"
+
+2. [3 min]  Desenhar no quadro a estrutura da "tabela":
+            alunos(nome, idade, cidade, curso)
+
+3. [20 min] Executar queries — alunos reagem:
+            
+            Professora grita: "SELECT * FROM alunos WHERE cidade = 'Recife'"
+            → Alunos de Recife se LEVANTAM
+            
+            "SELECT nome FROM alunos WHERE idade > 20 ORDER BY nome"
+            → Alunos com idade > 20 levantam E se organizam em fila alfabética
+            
+            "SELECT cidade, COUNT(*) FROM alunos GROUP BY cidade"
+            → Alunos se agrupam por cidade, contam quantos são
+
+4. [10 min] Alunos CRIAM queries no caderno para os colegas executarem
+5. [7 min]  Duplas trocam queries e "executam" uma da outra
+6. [5 min]  Fechamento: conceito de SELECT, WHERE, ORDER BY, GROUP BY
+```
+
+#### Atividade B3 — Teste de Mesa SQL 🟡
+
+**Semanas aplicáveis:** 12–16
+
+**Materiais:** Folhas impressas com tabelas de dados + queries para resolver à mão
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Distribuir folha com tabela impressa (8-10 registros) e 5 queries
+2. [3 min]  Explicar: "Vocês SÃO o PostgreSQL. Leiam a query e escrevam
+             o resultado que o banco retornaria."
+3. [25 min] Alunos resolvem individualmente (podem consultar resumo SQL)
+4. [10 min] Correção coletiva no quadro — professora "executa" passo a passo
+5. [7 min]  Discussão: "Qual query foi mais difícil? Por quê?"
+```
+
+**Exemplo de exercício impresso:**
+
+| id | nome | cidade | salario |
+|----|------|--------|---------|
+| 1 | Ana | Recife | 3500 |
+| 2 | Carlos | Olinda | 4200 |
+| 3 | Maria | Recife | 5100 |
+| 4 | João | Caruaru | 2800 |
+| 5 | Paula | Recife | 3900 |
+
+> **Query 1:** `SELECT nome, salario FROM funcionarios WHERE cidade = 'Recife' ORDER BY salario DESC;`
+> **Query 2:** `SELECT cidade, AVG(salario) FROM funcionarios GROUP BY cidade HAVING AVG(salario) > 3500;`
+
+#### Atividade B4 — Normalização com Cartões 🔴
+
+**Semanas aplicáveis:** 6–7
+
+**Materiais:** Cartões de papel (tamanho carta de baralho) com nomes de atributos
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Distribuir conjunto de cartões para cada grupo (ex: 15 atributos
+            de uma tabela denormalizada: pedido_id, cliente_nome, cliente_cpf,
+            produto_nome, produto_preco, quantidade, etc.)
+2. [3 min]  Explicar: "Esta tabela está na Forma NÃO Normal. Separem os
+            cartões em grupos que formem tabelas na 3FN."
+3. [20 min] Grupos organizam cartões em "tabelas" sobre a mesa
+            — Identificar chaves primárias (virar cartão de cor diferente)
+            — Identificar chaves estrangeiras (conectar com setas de caneta)
+4. [10 min] Fotografar soluções dos grupos (professora projeta / mostra)
+5. [7 min]  Correção: mostrar a solução ideal no quadro
+6. [5 min]  Discussão: "Quais dependências funcionais vocês identificaram?"
+```
+
+#### 📋 Guia do Aluno (Opção B — para escrever no quadro)
+
+> 🎯 **Hoje trabalhamos SEM COMPUTADOR!**
+> - Nas atividades com post-its: modele como se fosse o draw.io, mas com as mãos
+> - No "SQL Humano": preste atenção nos comandos — VOCÊ é o banco de dados!
+> - No teste de mesa: leia a query como o PostgreSQL leria — passo a passo, da esquerda para a direita
+> - Na normalização: pense "este atributo depende de TODA a chave ou só de parte?"
+
+---
+
+### 💼 Opção C: Estudo de Caso / PBL (Problem-Based Learning)
+
+> 💡 **Conceito:** Resolver problemas reais de modelagem e dados usando análise, debate e raciocínio crítico — sem precisar de computador.
+
+#### Caso C1 — "Como o iFood organiza seus dados?" 🟡
+
+**Semanas aplicáveis:** 4–7
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Apresentar o problema: "O iFood tem milhões de restaurantes,
+            pedidos e entregas. Como será o banco de dados deles?"
+2. [10 min] Alunos discutem em grupos: identificar ENTIDADES
+            (Restaurante, Pedido, Entregador, Cliente, Prato, Avaliação...)
+3. [15 min] Cada grupo desenha um DER parcial em folha A3
+4. [10 min] Apresentação: cada grupo mostra 1 relacionamento que identificou
+5. [5 min]  Professora consolida no quadro o modelo "ideal simplificado"
+6. [5 min]  Reflexão: "Quais decisões de modelagem afetam a performance?"
+```
+
+#### Caso C2 — Refatoração de Banco Denormalizado 🔴
+
+**Semanas aplicáveis:** 6–7, 17
+
+**Material impresso:** Tabela com dados redundantes e anomalias evidentes
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Distribuir folha com tabela "denormalizada" de uma loja virtual:
+            (pedido_id, cliente_nome, cliente_email, cliente_cidade,
+             produto_nome, produto_categoria, preco, qtd, data_pedido)
+
+2. [5 min]  Perguntar: "O que acontece se o cliente mudar de cidade?
+            Quantas linhas precisam ser atualizadas?"
+
+3. [15 min] Alunos identificam anomalias e propõem normalização até 3FN
+            — Desenhar no caderno as tabelas resultantes
+            — Indicar PKs e FKs
+
+4. [10 min] Duplas trocam soluções e fazem "code review" da normalização
+
+5. [10 min] Correção coletiva — professora mostra solução no quadro
+
+6. [5 min]  Conexão: "Esta refatoração é o que empresas reais fazem
+            quando o sistema cresce e fica lento/inconsistente"
+```
+
+#### 📋 Guia do Aluno (Opção C — para escrever no quadro)
+
+> 🎯 **Hoje somos consultores de banco de dados!**
+> 1. Leia o caso apresentado pela professora
+> 2. Identifique: Quais são as entidades? Quais os relacionamentos?
+> 3. Desenhe o modelo (DER ou tabelas normalizadas) no caderno
+> 4. Prepare-se para defender suas decisões de modelagem para a turma
+
+---
+
+### 📊 Rubrica de Avaliação Adaptada (Aulas de Contingência)
+
+| Critério | Peso | 10 (Excelente) | 7 (Bom) | 4 (Insuficiente) |
+|----------|:----:|:--------------:|:--------:|:-----------------:|
+| **Participação ativa** | 30% | Engajou em todas as etapas, contribuiu com ideias | Participou mas com pouca iniciativa | Ficou passivo/não contribuiu |
+| **Correção técnica** | 30% | Modelagem/SQL sem erros lógicos, normalização correta | Pequenos erros que não comprometem o conceito | Erros graves de compreensão (FK incorretas, violação de FN) |
+| **Trabalho em equipe** | 20% | Colaborou ativamente, ouviu e contribuiu | Participou quando solicitado | Não interagiu com o grupo |
+| **Registro escrito** | 20% | Caderno organizado com DER/queries completos | Resolução parcial mas legível | Sem registro ou ilegível |
+
+> 🎯 **Nota:** Atividades de contingência têm o MESMO PESO que aulas regulares no conceito de participação.
+
+---
+
+### 🖨️ Kit de Materiais para Impressão
+
+> 💡 **Dica:** Mantenha estes materiais impressos na pasta da disciplina para uso imediato quando necessário.
+
+| Material | Quantidade | Uso |
+|----------|-----------|-----|
+| Tabelas de dados para teste de mesa SQL (5 exercícios) | 20 cópias | Atividade B3 — Teste de Mesa |
+| Cartões de atributos para normalização (1 jogo = 20 cartões) | 5 jogos | Atividade B4 — Normalização |
+| Cartões de "registro" para SQL Humano (dados fictícios) | 30 cartões | Atividade B2 — SQL Humano |
+| Tabela denormalizada de loja virtual (1 página) | 20 cópias | Caso C2 — Refatoração |
+| Resumo de comandos SQL (DDL + DML — 1 página frente/verso) | 40 cópias | Apoio para todas as atividades |
+| Caso iFood simplificado (enunciado + requisitos) | 20 cópias | Caso C1 — Estudo de Caso |
+
+---
+
 <p align="center">
   <strong>📚 Bons estudos! Qualquer dúvida, procure a professora no horário de atendimento.</strong><br/>
   <em>Material elaborado para a disciplina de Administração de Bancos de Dados — ETE Pernambuco — 2026.2</em>

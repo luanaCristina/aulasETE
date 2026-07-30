@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administração de Bancos de Dados — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>🗄️ Administração de BD</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🗄️ Administração de<br><span class="accent">Bancos de Dados</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 80h — Módulo 1</p>
+      <p style="color:#94A3B8; margin-top: 16px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div style="margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <span style="background:#336791; padding:6px 16px; border-radius:20px; font-size:0.9rem;">🐘 PostgreSQL</span>
+        <span style="background:#DC382D; padding:6px 16px; border-radius:20px; font-size:0.9rem;">📊 SQL</span>
+        <span style="background:#2D6B4D; padding:6px 16px; border-radius:20px; font-size:0.9rem;">🖥️ pgAdmin</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: EMENTA E COMPETÊNCIAS -->
+    <section class="slide slide--content" data-title="Ementa e Competências">
+      <h2>📋 Ementa e Competências</h2>
+      <div class="columns">
+        <div>
+          <h3>📄 Informações da Disciplina</h3>
+          <table>
+            <tbody>
+              <tr><td><strong>Carga Horária</strong></td><td>80h (4h/semana)</td></tr>
+              <tr><td><strong>Módulo</strong></td><td>1 — Fundamentos</td></tr>
+              <tr><td><strong>SGBD Principal</strong></td><td>PostgreSQL 16+</td></tr>
+              <tr><td><strong>Ferramentas</strong></td><td>pgAdmin 4, DBeaver, terminal psql</td></tr>
+              <tr><td><strong>Pré-requisito</strong></td><td>Nenhum (começamos do zero)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>🎯 Competências</h3>
+          <ul>
+            <li>Projetar modelos relacionais (DER)</li>
+            <li>Normalizar tabelas até 3FN</li>
+            <li>Escrever DDL (CREATE, ALTER, DROP)</li>
+            <li>Manipular dados com DML (SELECT, INSERT, UPDATE, DELETE)</li>
+            <li>Criar consultas com JOINs e subqueries</li>
+            <li>Administrar usuários e permissões</li>
+            <li>Conectar BD com aplicações (Python, TS, Mobile)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Conceitos: BD, SGBD, Modelo Relacional</td><td>Mapa mental + exercício conceitual</td></tr>
+          <tr><td>3-4</td><td>Modelagem DER</td><td>DER completo (5+ entidades)</td></tr>
+          <tr><td>5-6</td><td>Normalização (1FN, 2FN, 3FN)</td><td>Tabela normalizada + justificativa</td></tr>
+          <tr><td>7-8</td><td>DDL: CREATE, ALTER, DROP</td><td>Script SQL criando banco do projeto</td></tr>
+          <tr><td>9</td><td>DML: INSERT, UPDATE, DELETE</td><td>Script de carga de dados (seed)</td></tr>
+          <tr><td>10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Prova prática: DER → SQL</td></tr>
+          <tr><td>11-13</td><td>SELECT avançado: JOINs, GROUP BY, HAVING</td><td>10 consultas progressivas</td></tr>
+          <tr><td>14-15</td><td>Subqueries, Views, Índices</td><td>Otimização de consultas lentas</td></tr>
+          <tr><td>16-17</td><td>Multi-stack: BD + Python/TS/Mobile</td><td>CRUD funcional em 1 stack</td></tr>
+          <tr><td>18-19</td><td>Projeto Final: Sistema completo</td><td>BD + API + documentação</td></tr>
+          <tr><td>20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Prova prática + entrega do projeto</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: CONCEITOS FUNDAMENTAIS -->
+    <section class="slide slide--content" data-title="Conceitos Fundamentais">
+      <h2>📚 Conceitos Fundamentais</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🤔 O que é um Banco de Dados?</h3>
+          <p>Uma coleção <strong>organizada</strong> de dados que permite busca, inserção e atualização de forma eficiente.</p>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Analogia:</strong> Planilha Excel = arquivo solto na gaveta. Banco de Dados = biblioteca com catálogo, índice e bibliotecária.</span>
+          </div>
+          <h3 style="margin-top:16px;">📊 SGBD (Sistema Gerenciador)</h3>
+          <ul>
+            <li><strong>PostgreSQL</strong> — robusto, grátis, padrão do mercado</li>
+            <li><strong>MySQL</strong> — popular em web (WordPress)</li>
+            <li><strong>SQLite</strong> — embutido (mobile/desktop)</li>
+            <li><strong>SQL Server</strong> — corporativo (Microsoft)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏗️ Modelo Relacional</h3>
+          <table>
+            <thead><tr><th>Conceito</th><th>Analogia</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Tabela</strong></td><td>Planilha do Excel</td></tr>
+              <tr><td><strong>Linha (registro)</strong></td><td>1 ficha de cadastro</td></tr>
+              <tr><td><strong>Coluna (campo)</strong></td><td>1 campo do formulário</td></tr>
+              <tr><td><strong>Chave Primária (PK)</strong></td><td>CPF — identifica unicamente</td></tr>
+              <tr><td><strong>Chave Estrangeira (FK)</strong></td><td>Link entre fichas</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span>Banco de Dados ≠ Excel. BD garante: integridade, concorrência, backup, segurança.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: MODELAGEM DER -->
+    <section class="slide slide--dark" data-title="Modelagem DER">
+      <h2>📐 Modelagem: Diagrama Entidade-Relacionamento</h2>
+      <p>O DER é o <strong>mapa do banco</strong> — mostra entidades, atributos e como se conectam.</p>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>🧩 Componentes do DER</h3>
+          <ul>
+            <li><strong>Entidade</strong> — retângulo (Ex: Cliente, Produto, Pedido)</li>
+            <li><strong>Atributo</strong> — elipse (Ex: nome, cpf, preço)</li>
+            <li><strong>Relacionamento</strong> — losango (Ex: "realiza", "contém")</li>
+            <li><strong>Cardinalidade</strong> — quantos de cada lado</li>
+          </ul>
+          <h3 style="margin-top:16px;">📊 Cardinalidades</h3>
+          <table>
+            <tbody>
+              <tr><td><strong>1:1</strong></td><td>Pessoa ↔ CPF</td></tr>
+              <tr><td><strong>1:N</strong></td><td>Cliente ↔ Pedidos</td></tr>
+              <tr><td><strong>N:M</strong></td><td>Aluno ↔ Disciplinas</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>📝 Exemplo: Pet Shop</h3>
+          <div class="code-block">
+            <span class="lang-badge">DER (ASCII)</span>
+            <code>┌──────────┐       ┌──────────────┐       ┌──────────┐
+│  CLIENTE │ 1   N │   CONSULTA   │ N   1 │   PET    │
+│──────────│───────│──────────────│───────│──────────│
+│ id (PK)  │       │ id (PK)      │       │ id (PK)  │
+│ nome     │       │ data         │       │ nome     │
+│ telefone │       │ diagnostico  │       │ especie  │
+│ email    │       │ cliente_id(FK)│      │ raca     │
+└──────────┘       │ pet_id (FK)  │       │ cliente_id│
+                   │ vet_id (FK)  │       └──────────┘
+                   └──────────────┘
+                          │ N
+                          │
+                          │ 1
+                   ┌──────────────┐
+                   │ VETERINARIO  │
+                   │──────────────│
+                   │ id (PK)      │
+                   │ nome         │
+                   │ crmv         │
+                   └──────────────┘</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: NORMALIZAÇÃO -->
+    <section class="slide slide--content" data-title="Normalização">
+      <h2>🔧 Normalização: 1FN, 2FN, 3FN</h2>
+      <p>Normalizar = <strong>eliminar redundâncias</strong> e garantir integridade dos dados.</p>
+      <div class="columns" style="margin-top:16px;">
+        <div>
+          <h3>❌ Antes (não normalizada)</h3>
+          <table>
+            <thead><tr><th>pedido_id</th><th>cliente</th><th>telefone</th><th>produto</th><th>preco</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Ana</td><td>9999-1234</td><td>Teclado, Mouse</td><td>150, 80</td></tr>
+              <tr><td>2</td><td>Ana</td><td>9999-1234</td><td>Monitor</td><td>900</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:8px; color:var(--text-light);">Problemas: dados repetidos, múltiplos valores em 1 célula.</p>
+        </div>
+        <div>
+          <h3>✅ Depois (3FN)</h3>
+          <p><strong>Tabela: clientes</strong></p>
+          <table>
+            <thead><tr><th>id</th><th>nome</th><th>telefone</th></tr></thead>
+            <tbody><tr><td>1</td><td>Ana</td><td>9999-1234</td></tr></tbody>
+          </table>
+          <p style="margin-top:8px;"><strong>Tabela: pedidos</strong></p>
+          <table>
+            <thead><tr><th>id</th><th>cliente_id</th><th>data</th></tr></thead>
+            <tbody><tr><td>1</td><td>1</td><td>2026-08-01</td></tr></tbody>
+          </table>
+          <p style="margin-top:8px;"><strong>Tabela: itens_pedido</strong></p>
+          <table>
+            <thead><tr><th>pedido_id</th><th>produto</th><th>preco</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Teclado</td><td>150</td></tr>
+              <tr><td>1</td><td>Mouse</td><td>80</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">📌</span>
+        <span><strong>1FN:</strong> valores atômicos | <strong>2FN:</strong> sem dependência parcial | <strong>3FN:</strong> sem dependência transitiva</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: DDL -->
+    <section class="slide slide--dark" data-title="DDL: CREATE, ALTER, DROP">
+      <h2>🏗️ DDL — Linguagem de Definição de Dados</h2>
+      <p style="color:#94A3B8;">Comandos que criam e modificam a <strong>estrutura</strong> do banco.</p>
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">SQL</span>
+        <code>-- Criar tabela de clientes
+CREATE TABLE clientes (
+    id          SERIAL PRIMARY KEY,
+    nome        VARCHAR(100) NOT NULL,
+    email       VARCHAR(150) UNIQUE NOT NULL,
+    telefone    VARCHAR(20),
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+-- Criar tabela de pets (FK para clientes)
+CREATE TABLE pets (
+    id          SERIAL PRIMARY KEY,
+    nome        VARCHAR(80) NOT NULL,
+    especie     VARCHAR(30) NOT NULL CHECK (especie IN ('cão','gato','ave','outro')),
+    raca        VARCHAR(50),
+    cliente_id  INTEGER NOT NULL REFERENCES clientes(id) ON DELETE CASCADE
+);
+
+-- Alterar tabela: adicionar coluna
+ALTER TABLE clientes ADD COLUMN cpf VARCHAR(14) UNIQUE;
+
+-- Remover tabela (CUIDADO!)
+DROP TABLE IF EXISTS pets;</code>
+      </div>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>DROP é irreversível!</strong> Sempre use IF EXISTS e faça backup antes.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: DML -->
+    <section class="slide slide--dark" data-title="DML: CRUD">
+      <h2>📝 DML — Manipulação de Dados (CRUD)</h2>
+      <p style="color:#94A3B8;">Comandos do dia a dia: inserir, buscar, atualizar, deletar.</p>
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">SQL</span>
+        <code>-- INSERT: cadastrar cliente
+INSERT INTO clientes (nome, email, telefone)
+VALUES ('Maria Silva', 'maria@email.com', '(81) 99999-1234');
+
+-- SELECT: buscar clientes de Recife
+SELECT id, nome, email
+FROM clientes
+WHERE telefone LIKE '(81)%'
+ORDER BY nome;
+
+-- SELECT com JOIN: pets com seus donos
+SELECT p.nome AS pet, p.especie, c.nome AS dono
+FROM pets p
+INNER JOIN clientes c ON c.id = p.cliente_id;
+
+-- UPDATE: atualizar telefone
+UPDATE clientes
+SET telefone = '(81) 98888-5678'
+WHERE email = 'maria@email.com';
+
+-- DELETE: remover cliente (cascade remove pets)
+DELETE FROM clientes WHERE id = 5;</code>
+      </div>
+      <div class="callout callout--tip" style="margin-top:12px;">
+        <span class="icon">💡</span>
+        <span><strong>CRUD:</strong> Create (INSERT) | Read (SELECT) | Update (UPDATE) | Delete (DELETE)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: MULTI-STACK -->
+    <section class="slide slide--section" data-title="Multi-Stack">
+      <h1>🔗 Mesma Query,<br><span class="accent">3 Linguagens</span></h1>
+      <p class="subtitle">SQL puro → Python → TypeScript → Mobile (Expo)</p>
+      <p style="margin-top: 24px; font-size: 1.2rem; opacity: 0.9;">A lógica é o fundamento soberano; linguagens e frameworks são apenas sintaxe.</p>
+    </section>
+
+    <section class="slide slide--dark" data-title="Code: SQL em 3 Stacks">
+      <h2>💻 Buscar Clientes — Multi-Stack</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">A mesma consulta SQL executada em diferentes ambientes</p>
+      <div class="code-tabs">
+        <button class="code-tab active">SQL Puro</button>
+        <button class="code-tab">Python (psycopg2)</button>
+        <button class="code-tab">TypeScript (pg)</button>
+        <button class="code-tab">Mobile (Expo)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">SQL</span>
+          <code>-- Buscar clientes com seus pets
+SELECT c.nome, c.email, p.nome AS pet, p.especie
+FROM clientes c
+LEFT JOIN pets p ON p.cliente_id = c.id
+WHERE c.nome ILIKE '%silva%'
+ORDER BY c.nome;</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">Python</span>
+          <code>import psycopg2
+
+conn = psycopg2.connect(
+    host="localhost", database="petshop",
+    user="postgres", password="postgres"
+)
+cur = conn.cursor()
+
+cur.execute("""
+    SELECT c.nome, c.email, p.nome AS pet, p.especie
+    FROM clientes c
+    LEFT JOIN pets p ON p.cliente_id = c.id
+    WHERE c.nome ILIKE %s
+    ORDER BY c.nome
+""", ('%silva%',))
+
+for row in cur.fetchall():
+    print(f"{row[0]} | {row[2]} ({row[3]})")
+
+cur.close()
+conn.close()</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript</span>
+          <code>import { Pool } from 'pg';
+
+const pool = new Pool({
+  host: 'localhost', database: 'petshop',
+  user: 'postgres', password: 'postgres',
+});
+
+async function buscarClientes(nome: string) {
+  const { rows } = await pool.query(
+    `SELECT c.nome, c.email, p.nome AS pet, p.especie
+     FROM clientes c
+     LEFT JOIN pets p ON p.cliente_id = c.id
+     WHERE c.nome ILIKE $1
+     ORDER BY c.nome`,
+    [`%${nome}%`]
+  );
+  return rows;
+}
+
+// Express route
+app.get('/api/clientes', async (req, res) => {
+  const data = await buscarClientes(req.query.nome || '');
+  res.json(data);
+});</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript (Expo)</span>
+          <code>// src/services/api.ts — Consumindo a API no Mobile
+import { useState, useEffect } from 'react';
+import { FlatList, Text, View } from 'react-native';
+
+export function ClientesList() {
+  const [clientes, setClientes] = useState([]);
+
+  useEffect(() => {
+    fetch('http://192.168.1.100:3000/api/clientes?nome=silva')
+      .then(res => res.json())
+      .then(data => setClientes(data))
+      .catch(err => console.error(err));
+  }, []);
+
+  return (
+    &lt;FlatList
+      data={clientes}
+      keyExtractor={(item) => item.email}
+      renderItem={({ item }) => (
+        &lt;View style={{ padding: 12 }}&gt;
+          &lt;Text style={{ fontWeight: 'bold' }}&gt;{item.nome}&lt;/Text&gt;
+          &lt;Text&gt;🐾 {item.pet} ({item.especie})&lt;/Text&gt;
+        &lt;/View&gt;
+      )}
+    /&gt;
+  );
+}</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Modelar DER de uma biblioteca</td><td>DER com 3 entidades + cardinalidades</td></tr>
+          <tr><td>🟢 Fácil</td><td>Normalizar tabela de vendas</td><td>Tabelas em 3FN + justificativa</td></tr>
+          <tr><td>🟡 Médio</td><td>Criar banco com DDL completo</td><td>Script SQL (CREATE + constraints)</td></tr>
+          <tr><td>🟡 Médio</td><td>10 consultas SELECT progressivas</td><td>Queries com JOIN, GROUP BY, HAVING</td></tr>
+          <tr><td>🔴 Desafiador</td><td>CRUD completo em Python ou TS</td><td>App funcional conectando ao PostgreSQL</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Progressão:</strong> DER (papel) → SQL (pgAdmin) → Código (VS Code) → App (Expo)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: PROJETOS -->
+    <section class="slide slide--accent" data-title="Projetos">
+      <h2>🚀 Projetos Hands-on</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Projeto Intermediário (Sem 1-10)</h3>
+          <p><strong>Valor:</strong> 30% da nota</p>
+          <p style="margin-top:8px;"><strong>🐾 Pet Shop Database</strong></p>
+          <ul>
+            <li>DER com 5+ entidades</li>
+            <li>Normalização documentada</li>
+            <li>Script DDL completo</li>
+            <li>Seed com 20+ registros</li>
+            <li>10 consultas SELECT úteis</li>
+          </ul>
+          <p style="margin-top:12px; font-size:0.9rem;"><strong>Rubrica:</strong> DER correto (30%) + SQL funcional (40%) + Documentação (30%)</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Projeto Final (Sem 11-20)</h3>
+          <p><strong>Valor:</strong> 40% da nota</p>
+          <p style="margin-top:8px;"><strong>🏥 Sistema Completo (tema livre)</strong></p>
+          <ul>
+            <li>DER avançado (8+ entidades)</li>
+            <li>DDL + DML + Views + Índices</li>
+            <li>API funcional (Python ou TypeScript)</li>
+            <li>Conexão front-end (Web ou Mobile)</li>
+            <li>Documentação técnica</li>
+            <li><strong>Backup e restore demonstrados</strong></li>
+          </ul>
+          <p style="margin-top:12px; font-size:0.9rem;"><strong>Rubrica:</strong> Modelagem (25%) + SQL (25%) + Integração (25%) + Docs (25%)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: PLANO DE CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Plano de Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <p style="color:#94A3B8;">Se o lab estiver indisponível, a aula NÃO para. Escolha uma opção:</p>
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>🧠 SQL Humano</h3>
+          <p><strong>Atividade em grupo:</strong></p>
+          <ul>
+            <li>Tabelas desenhadas no quadro</li>
+            <li>Alunos executam SELECT "na mão"</li>
+            <li>JOINs com cartões coloridos</li>
+            <li>WHERE como filtro físico</li>
+            <li>Votação: qual query retorna mais?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📐 DER em Cartolina</h3>
+          <p><strong>Com material físico:</strong></p>
+          <ul>
+            <li>Entidades em post-its</li>
+            <li>Linhas com barbante (relações)</li>
+            <li>Cardinalidade com números</li>
+            <li>Normalização: reorganizar post-its</li>
+            <li>Apresentação para a turma</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Teste de Mesa</h3>
+          <p><strong>Rastrear queries no papel:</strong></p>
+          <ul>
+            <li>Tabelas impressas</li>
+            <li>Circular resultados de SELECT</li>
+            <li>Riscar linhas de DELETE</li>
+            <li>Anotar efeitos de UPDATE</li>
+            <li>Validar constraints manualmente</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: RECURSOS -->
+    <section class="slide slide--content" data-title="Recursos">
+      <h2>📚 Referências e Recursos Gratuitos</h2>
+      <div class="columns">
+        <div>
+          <h3>🛠️ Ferramentas</h3>
+          <ul>
+            <li><strong>PostgreSQL</strong> — postgresql.org (grátis)</li>
+            <li><strong>pgAdmin 4</strong> — interface gráfica oficial</li>
+            <li><strong>DBeaver</strong> — IDE universal para BD</li>
+            <li><strong>DB Fiddle</strong> — SQL online (sem instalar)</li>
+            <li><strong>dbdiagram.io</strong> — DER online gratuito</li>
+            <li><strong>DrawSQL</strong> — diagramas colaborativos</li>
+          </ul>
+        </div>
+        <div>
+          <h3>🎓 Cursos e Materiais</h3>
+          <ul>
+            <li><strong>SQLZoo</strong> — exercícios interativos</li>
+            <li><strong>W3Schools SQL</strong> — referência rápida</li>
+            <li><strong>Khan Academy</strong> — Intro to SQL (PT-BR)</li>
+            <li><strong>Curso em Vídeo</strong> — MySQL (Guanabara)</li>
+            <li><strong>PostgreSQL Tutorial</strong> — postgresqltutorial.com</li>
+            <li><strong>Mode Analytics</strong> — SQL Tutorial avançado</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Dica:</strong> Use DB Fiddle (db-fiddle.com) para praticar SQL sem instalar nada — direto do navegador!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Projeto Intermediário (Pet Shop)</td><td>30%</td><td>10</td></tr>
+            <tr><td>Projeto Final (Sistema Completo)</td><td>40%</td><td>19-20</td></tr>
+            <tr><td>Prova Regimental (Prática)</td><td>30%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">🐘</span>
+        <span>"Dados são o novo petróleo — mas só valem algo quando bem organizados."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 15</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

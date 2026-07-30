@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programação Python Desktop — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>📚 Programação Python Desktop</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🐍 Programação Python<br><span class="accent">Desktop</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 80h — Módulo 1</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Python é a linguagem que te ensina a pensar como programador — simples de ler, poderosa de executar."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: EMENTA E COMPETÊNCIAS -->
+    <section class="slide slide--content" data-title="Ementa e Competências">
+      <h2>📋 Ementa e Competências</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📖 Ementa</h3>
+          <ul>
+            <li>Fundamentos de Python (variáveis, tipos, operadores)</li>
+            <li>Estruturas de controle (if/elif/else, for, while)</li>
+            <li>Funções, módulos e pacotes</li>
+            <li>Interfaces gráficas com Tkinter</li>
+            <li>Conexão e manipulação de banco de dados PostgreSQL</li>
+            <li>CRUD completo com interface desktop</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎯 Competências</h3>
+          <ul>
+            <li>Resolver problemas com lógica algorítmica em Python</li>
+            <li>Criar interfaces gráficas funcionais com Tkinter</li>
+            <li>Conectar aplicações desktop a bancos de dados</li>
+            <li>Implementar operações CRUD completas</li>
+            <li>Aplicar boas práticas de organização de código</li>
+            <li>Comparar soluções Multi-Stack (Python vs Web vs Mobile)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Pré-requisitos:</strong> Lógica de Programação (Flowgorithm/Portugol). Se domina lógica, Python é apenas nova sintaxe!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas (80h)</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Ambiente + Variáveis e Tipos</td><td>Script com input/output funcional</td></tr>
+          <tr><td>3-4</td><td>Estruturas de Controle</td><td>Calculadora com menu</td></tr>
+          <tr><td>5-6</td><td>Funções e Módulos</td><td>Módulo reutilizável de validação</td></tr>
+          <tr><td>7-8</td><td>Tkinter — Interfaces Gráficas</td><td>Formulário com widgets básicos</td></tr>
+          <tr><td>9-10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>App GUI com 3+ funcionalidades</td></tr>
+          <tr><td>11-12</td><td>PostgreSQL + psycopg2</td><td>Script de conexão + queries</td></tr>
+          <tr><td>13-14</td><td>CRUD Completo</td><td>Módulo com Create/Read/Update/Delete</td></tr>
+          <tr><td>15-16</td><td>Integração GUI + Banco</td><td>Tela de cadastro funcional</td></tr>
+          <tr><td>17-18</td><td>Projeto Biblioteca</td><td>Sistema completo (MVP)</td></tr>
+          <tr><td>19-20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Projeto Final + Apresentação</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: VARIÁVEIS E TIPOS -->
+    <section class="slide slide--content" data-title="Variáveis e Tipos">
+      <h2>📦 Variáveis e Tipos em Python</h2>
+      <p>Python usa <strong>tipagem dinâmica</strong> — o tipo é determinado automaticamente pelo valor atribuído.</p>
+      <div class="columns" style="margin-top: 16px;">
+        <div class="card">
+          <h3>Tipos Primitivos</h3>
+          <table>
+            <thead><tr><th>Tipo</th><th>Exemplo</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><code>int</code></td><td><code>idade = 17</code></td><td>Números inteiros</td></tr>
+              <tr><td><code>float</code></td><td><code>nota = 8.5</code></td><td>Números decimais</td></tr>
+              <tr><td><code>str</code></td><td><code>nome = "Ana"</code></td><td>Textos</td></tr>
+              <tr><td><code>bool</code></td><td><code>ativo = True</code></td><td>Verdadeiro/Falso</td></tr>
+              <tr><td><code>list</code></td><td><code>notas = [7, 8, 9]</code></td><td>Coleções ordenadas</td></tr>
+              <tr><td><code>dict</code></td><td><code>{"chave": "valor"}</code></td><td>Pares chave-valor</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div class="code-block">
+            <span class="lang-badge">Python</span>
+            <code># Variáveis e tipos em Python
+nome = input("Seu nome: ")       # str
+idade = int(input("Idade: "))    # int
+altura = float(input("Altura: "))# float
+maior = idade >= 18              # bool
+
+# Estruturas compostas
+aluno = {
+    "nome": nome,
+    "idade": idade,
+    "notas": [7.5, 8.0, 9.2]
+}
+
+print(f"{nome} tem {idade} anos")
+print(f"Média: {sum(aluno['notas'])/3:.1f}")</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: ESTRUTURAS DE CONTROLE -->
+    <section class="slide slide--content" data-title="Estruturas de Controle">
+      <h2>🔀 Estruturas de Controle</h2>
+      <div class="columns">
+        <div>
+          <h3>Condicional (if/elif/else)</h3>
+          <div class="code-block">
+            <span class="lang-badge">Python</span>
+            <code># Sistema de notas
+nota = float(input("Nota: "))
+
+if nota >= 7.0:
+    situacao = "Aprovado ✅"
+elif nota >= 5.0:
+    situacao = "Recuperação ⚠️"
+else:
+    situacao = "Reprovado ❌"
+
+print(f"Situação: {situacao}")</code>
+          </div>
+        </div>
+        <div>
+          <h3>Repetição (for / while)</h3>
+          <div class="code-block">
+            <span class="lang-badge">Python</span>
+            <code># FOR — quando sabe quantas vezes
+alunos = ["Ana", "João", "Maria"]
+for aluno in alunos:
+    print(f"Chamada: {aluno}")
+
+# WHILE — quando depende de condição
+tentativas = 0
+while tentativas < 3:
+    senha = input("Senha: ")
+    if senha == "1234":
+        print("Acesso liberado!")
+        break
+    tentativas += 1</code>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Indentação é obrigatória em Python!</strong> Use sempre 4 espaços. Sem { } — a indentação define os blocos.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: FUNÇÕES E MÓDULOS -->
+    <section class="slide slide--content" data-title="Funções e Módulos">
+      <h2>🔧 Funções e Módulos</h2>
+      <p>Funções organizam o código em blocos reutilizáveis. Módulos agrupam funções relacionadas.</p>
+      <div class="columns">
+        <div>
+          <div class="code-block">
+            <span class="lang-badge">Python</span>
+            <code># validacoes.py — Módulo de validação
+def validar_cpf(cpf: str) -> bool:
+    """Valida CPF com 11 dígitos."""
+    cpf = cpf.replace(".", "").replace("-", "")
+    if len(cpf) != 11:
+        return False
+    if cpf == cpf[0] * 11:
+        return False
+    return True
+
+def validar_email(email: str) -> bool:
+    """Verifica se email contém @ e ."""
+    return "@" in email and "." in email
+
+def validar_idade(idade: int) -> bool:
+    """Idade entre 0 e 130."""
+    return 0 <= idade <= 130</code>
+          </div>
+        </div>
+        <div>
+          <div class="code-block">
+            <span class="lang-badge">Python</span>
+            <code># main.py — Importando o módulo
+from validacoes import (
+    validar_cpf,
+    validar_email,
+    validar_idade
+)
+
+cpf = input("CPF: ")
+if validar_cpf(cpf):
+    print("✅ CPF válido")
+else:
+    print("❌ CPF inválido")
+
+email = input("Email: ")
+if validar_email(email):
+    print("✅ Email válido")
+else:
+    print("❌ Email inválido")</code>
+          </div>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Cada arquivo .py é um módulo. <code>import</code> permite reutilizar em qualquer projeto!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: TKINTER GUI (code-tabs) -->
+    <section class="slide slide--dark" data-title="Tkinter GUI (Multi-Stack)">
+      <h2>🖥️ Interfaces Gráficas — Multi-Stack</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Mesma tela de cadastro em 3 plataformas diferentes</p>
+      <div class="code-tabs">
+        <button class="code-tab active">Python (Tkinter)</button>
+        <button class="code-tab">Mobile (Expo/RN)</button>
+        <button class="code-tab">Web (HTML Form)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">Python</span>
+          <code>import tkinter as tk
+from tkinter import ttk, messagebox
+
+class CadastroApp:
+    def __init__(self, root):
+        root.title("Cadastro de Aluno")
+        root.geometry("400x300")
+
+        ttk.Label(root, text="Nome:").pack(pady=5)
+        self.nome = ttk.Entry(root, width=40)
+        self.nome.pack()
+
+        ttk.Label(root, text="Email:").pack(pady=5)
+        self.email = ttk.Entry(root, width=40)
+        self.email.pack()
+
+        ttk.Button(root, text="Salvar",
+                   command=self.salvar).pack(pady=20)
+
+    def salvar(self):
+        messagebox.showinfo("Sucesso",
+            f"Aluno {self.nome.get()} cadastrado!")
+
+root = tk.Tk()
+app = CadastroApp(root)
+root.mainloop()</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TSX</span>
+          <code>// CadastroScreen.tsx (Expo/React Native)
+import { useState } from 'react';
+import { View, TextInput, Button, Alert } from 'react-native';
+
+export default function CadastroScreen() {
+  const [nome, setNome] = useState('');
+  const [email, setEmail] = useState('');
+
+  const salvar = () => {
+    Alert.alert('Sucesso', `Aluno ${nome} cadastrado!`);
+  };
+
+  return (
+    &lt;View style={{ padding: 20 }}&gt;
+      &lt;TextInput placeholder="Nome" value={nome}
+        onChangeText={setNome} style={styles.input} /&gt;
+      &lt;TextInput placeholder="Email" value={email}
+        onChangeText={setEmail} style={styles.input} /&gt;
+      &lt;Button title="Salvar" onPress={salvar} /&gt;
+    &lt;/View&gt;
+  );
+}</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">HTML</span>
+          <code>&lt;!-- cadastro.html --&gt;
+&lt;form id="formCadastro" class="form-card"&gt;
+  &lt;label for="nome"&gt;Nome:&lt;/label&gt;
+  &lt;input type="text" id="nome" required /&gt;
+
+  &lt;label for="email"&gt;Email:&lt;/label&gt;
+  &lt;input type="email" id="email" required /&gt;
+
+  &lt;button type="submit"&gt;Salvar&lt;/button&gt;
+&lt;/form&gt;
+
+&lt;script&gt;
+document.getElementById('formCadastro')
+  .addEventListener('submit', (e) =&gt; {
+    e.preventDefault();
+    const nome = document.getElementById('nome').value;
+    alert(`Aluno ${nome} cadastrado!`);
+  });
+&lt;/script&gt;</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: CONEXÃO POSTGRESQL (code-tabs) -->
+    <section class="slide slide--dark" data-title="Conexão PostgreSQL (Multi-Stack)">
+      <h2>🗄️ Conexão com Banco de Dados — Multi-Stack</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Mesma operação de banco em 3 linguagens</p>
+      <div class="code-tabs">
+        <button class="code-tab active">Python (psycopg2)</button>
+        <button class="code-tab">Node.js (pg/TS)</button>
+        <button class="code-tab">Web (fetch API)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">Python</span>
+          <code>import psycopg2
+
+# Conexão com PostgreSQL
+conn = psycopg2.connect(
+    host="localhost",
+    database="biblioteca",
+    user="postgres",
+    password="postgres"
+)
+cursor = conn.cursor()
+
+# INSERT
+cursor.execute("""
+    INSERT INTO livros (titulo, autor, ano)
+    VALUES (%s, %s, %s)
+""", ("Dom Casmurro", "Machado de Assis", 1899))
+conn.commit()
+
+# SELECT
+cursor.execute("SELECT * FROM livros")
+livros = cursor.fetchall()
+for livro in livros:
+    print(f"{livro[1]} — {livro[2]}")
+
+conn.close()</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript</span>
+          <code>// database.ts (Node.js + pg)
+import { Pool } from 'pg';
+
+const pool = new Pool({
+  host: 'localhost',
+  database: 'biblioteca',
+  user: 'postgres',
+  password: 'postgres'
+});
+
+// INSERT
+await pool.query(
+  `INSERT INTO livros (titulo, autor, ano)
+   VALUES ($1, $2, $3)`,
+  ['Dom Casmurro', 'Machado de Assis', 1899]
+);
+
+// SELECT
+const { rows } = await pool.query(
+  'SELECT * FROM livros'
+);
+rows.forEach(livro =&gt;
+  console.log(`${livro.titulo} — ${livro.autor}`)
+);</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">JavaScript</span>
+          <code>// Frontend — consumindo API REST
+const response = await fetch('/api/livros', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({
+    titulo: 'Dom Casmurro',
+    autor: 'Machado de Assis',
+    ano: 1899
+  })
+});
+const novoLivro = await response.json();
+
+// Listar livros
+const res = await fetch('/api/livros');
+const livros = await res.json();
+livros.forEach(livro =&gt; {
+  console.log(`${livro.titulo} — ${livro.autor}`);
+});</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: CRUD COMPLETO -->
+    <section class="slide slide--content" data-title="CRUD Completo">
+      <h2>🔄 CRUD Completo — Padrão de Projeto</h2>
+      <p>As 4 operações fundamentais de qualquer sistema de informação:</p>
+      <table>
+        <thead><tr><th>Operação</th><th>SQL</th><th>Python (psycopg2)</th><th>Quando usar</th></tr></thead>
+        <tbody>
+          <tr><td><strong>C</strong>reate</td><td>INSERT INTO</td><td><code>cursor.execute("INSERT...")</code></td><td>Cadastrar novo registro</td></tr>
+          <tr><td><strong>R</strong>ead</td><td>SELECT</td><td><code>cursor.fetchall()</code></td><td>Listar/buscar dados</td></tr>
+          <tr><td><strong>U</strong>pdate</td><td>UPDATE ... SET</td><td><code>cursor.execute("UPDATE...")</code></td><td>Editar registro existente</td></tr>
+          <tr><td><strong>D</strong>elete</td><td>DELETE FROM</td><td><code>cursor.execute("DELETE...")</code></td><td>Remover registro</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Sempre use parâmetros (%s)!</strong> Nunca concatene strings no SQL — evita SQL Injection.</span>
+      </div>
+      <div class="callout callout--tip" style="margin-top:12px;">
+        <span class="icon">💡</span>
+        <span><strong>Padrão:</strong> Cada tabela do banco ganha um módulo Python com 4 funções: <code>criar()</code>, <code>listar()</code>, <code>atualizar()</code>, <code>excluir()</code>.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Calculadora com Menu</td><td>Script com 4 operações + loop</td></tr>
+          <tr><td>🟢 Fácil</td><td>Validador de CPF</td><td>Função com retorno bool</td></tr>
+          <tr><td>🟡 Médio</td><td>Lista de Tarefas (CLI)</td><td>CRUD em lista com persistência em arquivo</td></tr>
+          <tr><td>🟡 Médio</td><td>Cadastro com Tkinter</td><td>Formulário GUI com validações</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Mini Sistema com Banco</td><td>CRUD completo + PostgreSQL + GUI</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Exercícios (20%) + Projeto Intermediário (30%) + Projeto Final Biblioteca (50%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: PROJETO BIBLIOTECA -->
+    <section class="slide slide--accent" data-title="Projeto Biblioteca">
+      <h2>🚀 Projeto Final — Sistema Biblioteca</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Requisitos Funcionais</h3>
+          <ul>
+            <li>Cadastro de livros (título, autor, ISBN, ano)</li>
+            <li>Cadastro de usuários (nome, matrícula, curso)</li>
+            <li>Registro de empréstimos e devoluções</li>
+            <li>Busca por título, autor ou ISBN</li>
+            <li>Relatório de livros emprestados</li>
+            <li>Controle de multa por atraso</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>🛠️ Requisitos Técnicos</h3>
+          <ul>
+            <li>Interface gráfica com Tkinter</li>
+            <li>PostgreSQL como banco de dados</li>
+            <li>Mínimo 3 tabelas relacionadas</li>
+            <li>Funções organizadas em módulos</li>
+            <li>Tratamento de erros (try/except)</li>
+            <li>README.md com instruções de uso</li>
+          </ul>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Bônus:</strong> +1 ponto se entregar versão Web (Flask) ou Mobile (Expo).</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: CONTINGÊNCIA + ENCERRAMENTO -->
+    <section class="slide slide--dark" data-title="Contingência e Encerramento">
+      <h2>🚨 Contingência + Encerramento</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📱 Sem Laboratório?</h3>
+          <ul>
+            <li><strong>Replit.com</strong> — Python online (grátis)</li>
+            <li><strong>Google Colab</strong> — Notebooks Python</li>
+            <li><strong>Celular:</strong> Pydroid 3 (Android)</li>
+            <li><strong>Desplugada:</strong> Pseudocódigo no papel → análise em grupo</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Resumo de Avaliação</h3>
+          <table>
+            <thead><tr><th>Componente</th><th>Peso</th><th>Semana</th></tr></thead>
+            <tbody>
+              <tr><td>Exercícios</td><td>20%</td><td>Contínuo</td></tr>
+              <tr><td>Projeto Intermediário</td><td>30%</td><td>10</td></tr>
+              <tr><td>Projeto Biblioteca</td><td>50%</td><td>19-20</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="callout callout--info" style="max-width:700px; margin-top:24px;">
+        <span class="icon">💡</span>
+        <span>"A lógica é soberana — Python é apenas a sintaxe. Se você domina o raciocínio, domina qualquer linguagem."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:24px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 12</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

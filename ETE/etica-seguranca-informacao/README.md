@@ -782,6 +782,388 @@ def ver_dados(id):
 
 ---
 
+## 🚨 Plano de Contingência Pedagógica (Aulas Práticas sem Laboratório)
+
+> ⚠️ **Quando usar este plano?** Quando não houver acesso ao laboratório de informática (manutenção, falta de energia, reserva indisponível, equipamentos com defeito, etc.)
+
+> 💡 **Princípio:** Nenhuma aula é desperdiçada. Atividades práticas e avaliativas podem acontecer sem computador.
+
+---
+
+### 🅰️ Opção A: BYOD (Bring Your Own Device) — Smartphone
+
+> 🎯 **Ideal quando:** Alunos possuem smartphone com acesso à internet (Wi-Fi da escola ou dados móveis)
+
+#### Ferramentas Mobile Gratuitas
+
+| Ferramenta | Plataforma | Uso na Disciplina |
+|-----------|-----------|-------------------|
+| **Have I Been Pwned** | Navegador mobile | Verificar se email/senha foi vazado em data breaches reais |
+| **Privacy Checker Tools** | Navegador mobile | Verificar configurações de privacidade de redes sociais |
+| **SSL Labs** (Qualys) | Navegador mobile | Analisar certificados HTTPS e segurança de sites |
+
+#### Atividades Adaptadas para Smartphone
+
+| Semana/Bloco | Atividade Original (PC) | Adaptação Mobile |
+|-------------|------------------------|-----------------|
+| Semanas 1-4 | Análise de cases de segurança | Pesquisar no celular: últimos vazamentos BR no Google News |
+| Semanas 5-8 | CyberChef (criptografia) | SSL Labs: inspecionar certificado de 3 sites no celular |
+| Semanas 9-12 | Configurar firewall | Have I Been Pwned: verificar se emails próprios foram vazados |
+| Semanas 13-16 | Análise de LGPD | Privacy Checker: auditar privacidade do próprio Instagram/WhatsApp |
+| Semanas 17-18 | Pentest conceitual | SSL Labs: classificar a nota de segurança de 5 sites gov.br |
+
+#### 📋 Roteiro do Professor — Opção A
+
+```
+ANTES DA AULA:
+1. Verificar Wi-Fi da escola está funcionando
+2. Preparar lista de sites para análise (3 seguros, 2 com problemas)
+3. Testar se haveibeenpwned.com funciona na rede da escola
+4. Preparar QR Code com links das ferramentas
+
+DURANTE A AULA:
+1. (5 min) Contextualizar a atividade e compartilhar links via QR Code
+2. (10 min) Demonstrar a ferramenta no projetor (usar celular espelhado)
+3. (25 min) Alunos executam a análise no smartphone
+4. (10 min) Discussão: "O que descobriram? Alguém teve dados vazados?"
+
+AVALIAÇÃO:
+• Relatório com screenshots das análises realizadas
+• Conclusões e recomendações de segurança pessoal
+• Upload no Google Classroom ou envio via canal definido
+```
+
+#### 📱 Guia do Aluno — Opção A
+
+```
+MATERIAIS NECESSÁRIOS:
+✅ Smartphone carregado (mínimo 40% de bateria)
+✅ Navegador atualizado (Chrome ou Safari)
+✅ Email pessoal para verificar no Have I Been Pwned
+
+ATIVIDADE 1 — HAVE I BEEN PWNED:
+1. Acessar haveibeenpwned.com
+2. Digitar seu email pessoal no campo
+3. Verificar: apareceu algum vazamento? Quantos? De quais serviços?
+4. Anotar: data do vazamento, dados expostos, serviço afetado
+5. AÇÃO: se vazou, trocar senha imediatamente!
+
+ATIVIDADE 2 — SSL LABS:
+1. Acessar ssllabs.com/ssltest
+2. Digitar URL de um site (ex: banco, governo, escola)
+3. Anotar: nota (A, B, C, F), protocolo TLS, validade do certificado
+4. Comparar 3 sites: qual é mais seguro? Por quê?
+
+ENTREGA:
+• Tabela com resultados dos testes + análise
+• Recomendações pessoais de segurança (mínimo 3)
+```
+
+---
+
+### 🅱️ Opção B: Atividades Desplugadas (Unplugged)
+
+> 🎯 **Ideal quando:** Não há internet disponível OU alunos não têm smartphone
+
+#### Atividade B1: "Criptografia César no Papel"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Fundamentos de criptografia simétrica |
+| **Duração** | 40 minutos |
+| **Materiais** | Folha com alfabeto, lápis, borracha, mensagens para cifrar |
+| **Objetivo** | Cada aluno criptografa e descriptografa mensagem com cifra de deslocamento |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Explicar: Cifra de César = deslocar cada letra N posições no alfabeto. Ex: A+3=D, B+3=E. Chave = número de deslocamento.
+2. (5 min) Demonstrar no quadro: "SEGURANCA" com chave 3 = "VHJXUDQFD"
+3. (20 min) Atividade em duplas:
+   - Cada aluno escreve uma mensagem secreta (frase curta)
+   - Cifra com chave escolhida (1-25) e entrega ao colega
+   - Colega tenta decifrar SEM saber a chave (força bruta — testar todas as 25!)
+4. (5 min) Discussão: "Por que a Cifra de César é insegura hoje?" → brute force com computador
+
+**📱 Guia do Aluno:**
+```
+TABELA DE REFERÊNCIA (Chave = 3):
+A B C D E F G H I J K L M N O P Q R S T U V W X Y Z
+↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓ ↓
+D E F G H I J K L M N O P Q R S T U V W X Y Z A B C
+
+SUA MISSÃO:
+1. Escreva uma mensagem secreta: ________________
+2. Escolha sua chave (1-25): ___
+3. Cifre a mensagem: ________________
+4. Entregue ao colega (SEM revelar a chave!)
+5. Receba a mensagem cifrada do colega
+6. Decifre testando chaves até achar: ________________
+```
+
+---
+
+#### Atividade B2: "Simulação de Ataque Phishing"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Engenharia social — identificação de phishing |
+| **Duração** | 40 minutos |
+| **Materiais** | 5 emails impressos (3 legítimos + 2 phishing), checklist de análise |
+| **Objetivo** | Alunos recebem 5 emails impressos e devem identificar qual é phishing |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Revisar: sinais de phishing — urgência, erros de português, links suspeitos, remetente estranho, ameaças
+2. (5 min) Distribuir "inbox" impressa com 5 emails (mistura de reais e phishing bem feitos)
+3. (20 min) Alunos analisam cada email e marcam: ✅ LEGÍTIMO ou 🚨 PHISHING + justificativa
+4. (5 min) Revelar respostas — quem caiu no phishing? Discutir os sinais que deveriam alertar
+
+**📱 Guia do Aluno — Checklist de cada email:**
+- [ ] Remetente: o domínio está correto? (ex: @banco.com.br vs @banc0-seguro.xyz)
+- [ ] Urgência: está forçando você a agir IMEDIATAMENTE? ("conta será bloqueada em 2h!")
+- [ ] Link: a URL parece legítima? (hover mental: bit.ly/x9z = suspeito)
+- [ ] Erros: tem erros de português ou formatação estranha?
+- [ ] Pedido: está pedindo senha, CPF ou dados bancários por email?
+- [ ] Saudação: é genérica ("Prezado cliente") ou personalizada?
+- **Veredito:** ✅ Legítimo / 🚨 Phishing — Justificativa: ______________
+
+---
+
+#### Atividade B3: "LGPD na Prática"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Proteção de dados pessoais e minimização |
+| **Duração** | 40 minutos |
+| **Materiais** | Formulário de cadastro impresso (fictício), caneta colorida |
+| **Objetivo** | Recebem formulário de cadastro e devem marcar quais dados são necessários vs excessivos |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Revisar: princípio de minimização da LGPD — coletar APENAS o necessário para a finalidade
+2. (5 min) Distribuir formulário de cadastro fictício (app de delivery) com 20+ campos
+3. (20 min) Alunos marcam com VERDE (necessário), AMARELO (discutível), VERMELHO (excessivo/abusivo) + justificam base legal
+4. (5 min) Discussão: "Seu app do Projeto Integrador coleta dados desnecessários?"
+
+**📱 Guia do Aluno — Formulário para analisar:**
+```
+APP: "DeliverJá" — aplicativo de delivery de comida
+FINALIDADE: entregar pedidos de comida no endereço do usuário
+
+CAMPOS DO CADASTRO (marque com cores):
+□ Nome completo ............... [  ] Necessário  [  ] Excessivo
+□ CPF ........................ [  ] Necessário  [  ] Excessivo
+□ Data de nascimento ......... [  ] Necessário  [  ] Excessivo
+□ Email ...................... [  ] Necessário  [  ] Excessivo
+□ Telefone ................... [  ] Necessário  [  ] Excessivo
+□ Endereço de entrega ........ [  ] Necessário  [  ] Excessivo
+□ Estado civil ............... [  ] Necessário  [  ] Excessivo
+□ Profissão .................. [  ] Necessário  [  ] Excessivo
+□ Renda mensal ............... [  ] Necessário  [  ] Excessivo
+□ Biometria facial ........... [  ] Necessário  [  ] Excessivo
+□ Localização em tempo real .. [  ] Necessário  [  ] Excessivo
+□ Lista de contatos .......... [  ] Necessário  [  ] Excessivo
+□ Religião ................... [  ] Necessário  [  ] Excessivo
+□ Orientação sexual .......... [  ] Necessário  [  ] Excessivo
+□ Forma de pagamento ......... [  ] Necessário  [  ] Excessivo
+□ Histórico médico ........... [  ] Necessário  [  ] Excessivo
+```
+Para cada "Excessivo", escreva: por que esse dado NÃO é necessário para entregar comida?
+
+---
+
+#### Atividade B4: "Firewall Humano"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Funcionamento de firewalls e regras de filtragem |
+| **Duração** | 30 minutos |
+| **Materiais** | Cartões coloridos (pacotes), regras no quadro, espaço para fila |
+| **Objetivo** | Alunos em fila = pacotes de rede, professor = firewall, decide ALLOW/DENY |
+
+**📋 Roteiro do Professor:**
+1. (5 min) Escrever REGRAS no quadro: "ALLOW porta 80 (HTTP)", "ALLOW porta 443 (HTTPS)", "DENY porta 22 (SSH de fora)", "DENY qualquer IP de 192.168.x.x externo"
+2. (5 min) Distribuir cartões: cada aluno recebe um cartão com "Sou um pacote — Porta: 443, IP origem: 200.1.2.3, destino: servidor web" (variar dados)
+3. (15 min) Fila de "pacotes" passa pelo "firewall" (professor ou aluno designado). Firewall lê o cartão e decide: "ALLOW — pode passar!" ou "DENY — bloqueado, volte!"
+4. (5 min) Discussão: "O que acontece se configurarmos DENY ALL?" (nada funciona), "E ALLOW ALL?" (inseguro)
+
+**📱 Guia do Aluno:**
+- Você é um PACOTE DE REDE viajando pela internet
+- Seu cartão tem: porta de destino, IP de origem, protocolo
+- Quando chegar ao Firewall, mostre seu cartão
+- Se for PERMITIDO pelas regras do quadro → passe e sente do outro lado (rede interna)
+- Se for NEGADO → volte para o fim da fila (pacote descartado)
+- Anote: quantos pacotes foram bloqueados? Quais regras os pegaram?
+
+---
+
+#### Atividade B5: "Análise de Termo de Uso"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Consciência sobre termos abusivos e direitos do usuário |
+| **Duração** | 40 minutos |
+| **Materiais** | Termos de uso impressos (trechos de apps reais), marca-texto |
+| **Objetivo** | Ler termos reais de apps e encontrar cláusulas abusivas ou preocupantes |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Explicar: "Ninguém lê Termos de Uso — mas eles dizem o que a empresa pode fazer com seus dados!" Mostrar estatísticas (estudo: "levaria 76 dias de trabalho para ler todos os TdU que aceitamos")
+2. (5 min) Distribuir 2 páginas de trechos reais (WhatsApp, Instagram, TikTok — selecionados e impressos)
+3. (20 min) Alunos leem e marcam com marca-texto: VERDE = OK/esperado, AMARELO = discutível, VERMELHO = abusivo/preocupante
+4. (5 min) Cada grupo apresenta o trecho mais preocupante encontrado
+
+**📱 Guia do Aluno:**
+- Leia com atenção — imagine que está assinando um contrato
+- Marque cláusulas sobre: compartilhamento de dados com terceiros, coleta de localização, uso de dados para publicidade, direito de excluir conta
+- Para cada trecho VERMELHO, escreva: "Isso viola qual princípio da LGPD?"
+- Pergunta final: "Mesmo sabendo disso, você continuaria usando o app? Por quê?"
+
+---
+
+#### Atividade B6: "Auditoria de Segurança em Código Impresso"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Identificar vulnerabilidades OWASP em código |
+| **Duração** | 40 minutos |
+| **Materiais** | Código impresso com vulnerabilidades (Python/JS), caneta vermelha |
+| **Objetivo** | Encontrar SQL Injection, XSS, senhas hardcoded em código impresso |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Revisar top 3 vulnerabilidades: SQL Injection, XSS, credenciais hardcoded — como identificar
+2. (5 min) Distribuir 3 trechos de código impresso (cada um com 2-4 vulnerabilidades)
+3. (20 min) Alunos circulam vulnerabilidades com caneta vermelha + escrevem a correção
+4. (5 min) Correção coletiva: quantas vulnerabilidades a turma encontrou no total?
+
+**📱 Guia do Aluno — Código para auditar:**
+```python
+# TRECHO 1 — Login (Python/Flask)
+senha_admin = "admin123"  # 🔴 ???
+
+@app.route('/login')
+def login():
+    user = request.args['usuario']
+    query = f"SELECT * FROM users WHERE name='{user}'"  # 🔴 ???
+    resultado = db.execute(query)
+    return f"<h1>Bem-vindo {user}</h1>"  # 🔴 ???
+```
+- Circule CADA vulnerabilidade
+- Ao lado, escreva: nome da vulnerabilidade (OWASP) + código corrigido
+- Dica: são pelo menos 3 problemas neste trecho!
+
+---
+
+### 🅲 Opção C: Estudo de Caso / PBL (Problem-Based Learning)
+
+> 🎯 **Ideal quando:** Aula geminada (2 horários seguidos) para debate aprofundado
+
+#### Caso 1: "Vazamento da Equifax — 147 milhões de CPFs"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Falha de segurança em escala massiva |
+| **Formato** | Análise do incidente + plano de resposta (40-50 min) |
+| **Conexão** | Semanas 1-4 (CIA Triad, ameaças) |
+
+**Dinâmica:**
+1. Professor narra: "2017 — Equifax (bureau de crédito dos EUA) sofre vazamento de 147M de pessoas. Motivo: patch de segurança do Apache Struts não aplicado por 2 meses."
+2. Perguntas: "Qual pilar CIA foi violado?", "Quem é responsável?", "O que deveria ter sido feito?"
+3. Grupos criam: "Plano de Resposta a Incidentes" — 5 passos que a Equifax deveria ter executado
+4. Debate: "No Brasil, pela LGPD, qual seria a multa?" (calcular 2% do faturamento)
+
+---
+
+#### Caso 2: "LGPD — Multa de R$50M para Telecom"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Compliance e consequências de não conformidade |
+| **Formato** | Tribunal simulado (40-50 min) |
+| **Conexão** | Semanas 13-16 (LGPD, ética) |
+
+**Dinâmica:**
+1. Cenário: "Empresa de telecom compartilhou dados de 10 milhões de clientes com parceiros de marketing SEM consentimento. ANPD multou em R$50M."
+2. Tribunal simulado:
+   - Grupo 1 = ANPD (acusação): quais princípios LGPD foram violados?
+   - Grupo 2 = Empresa (defesa): quais argumentos para reduzir a multa?
+   - Grupo 3 = Juízes: decidem o valor final da multa e justificam
+3. Veredito + discussão sobre como prevenir
+
+---
+
+#### Caso 3: "Hacker Kevin Mitnick — Engenharia Social"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Fator humano na segurança da informação |
+| **Formato** | Storytelling + debate ético (40-50 min) |
+| **Conexão** | Semanas 3-4 (engenharia social) e Semanas 15-16 (ética) |
+
+**Dinâmica:**
+1. Professor narra história de Kevin Mitnick: hacker mais procurado dos EUA nos anos 90, usava MAIS engenharia social que código. Preso, depois virou consultor de segurança.
+2. Perguntas éticas: "Depois de cumprir pena, ele deveria poder trabalhar com segurança?", "Contratar ex-hackers é ético?", "Existe hacking 'do bem'?"
+3. Debate: "O maior risco de segurança é tecnológico ou humano?"
+4. Exercício: cada aluno escreve 3 cenários de engenharia social que poderiam funcionar NA ESCOLA (sem executar!) + como se defender de cada um
+
+---
+
+### 📊 Rubrica de Avaliação Adaptada (Atividades sem Laboratório)
+
+| Critério | Excelente (10-9) | Bom (8-7) | Regular (6-5) | Insuficiente (<5) |
+|----------|-----------------|-----------|---------------|-------------------|
+| **Compreensão conceitual** | Demonstra domínio de CIA/criptografia/LGPD | Boa compreensão com pequenas lacunas | Compreensão superficial dos conceitos | Não demonstra compreensão |
+| **Identificação de riscos** | Encontra todas as vulnerabilidades/riscos | Encontra maioria dos riscos | Encontra apenas os mais óbvios | Não identifica riscos |
+| **Pensamento crítico/ético** | Argumentação sólida, múltiplas perspectivas | Boa argumentação | Opinião sem fundamentação | Não participa do debate |
+| **Aplicação prática** | Propõe soluções viáveis e bem fundamentadas | Soluções boas com pequenas lacunas | Soluções genéricas/superficiais | Não propõe soluções |
+| **Entrega/Documentação** | Completa, organizada, dentro do prazo | Completa com pequenos ajustes | Incompleta mas entregue | Não entregou |
+
+> 💡 **Nota:** Atividades de contingência têm o **mesmo peso** das atividades regulares. Segurança da informação é 90% comportamento humano — não precisa de computador para aprender!
+
+---
+
+### 🖨️ Kit de Materiais para Impressão
+
+| Material | Quantidade | Uso |
+|----------|-----------|-----|
+| Emails de phishing + legítimos (5) | 1 set por dupla | Atividade B2 |
+| Formulário de cadastro fictício | 1 por aluno | Atividade B3 |
+| Código com vulnerabilidades (3 trechos) | 1 por aluno | Atividade B6 |
+| Tabela Cifra de César (alfabeto) | 1 por aluno | Atividade B1 |
+| Trechos de Termos de Uso reais | 2 páginas por dupla | Atividade B5 |
+| Cartões "Pacote de Rede" (para firewall) | 1 por aluno | Atividade B4 |
+| QR Code com links das ferramentas | 1 por mesa | Opção A |
+
+---
+
+### 🔀 Fluxograma de Decisão Rápida
+
+```
+┌─────────────────────────────────────────┐
+│   🚨 LABORATÓRIO INDISPONÍVEL!          │
+│   O que fazer em 2 minutos:             │
+└─────────────────┬───────────────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────┐
+│ Alunos têm smartphone + internet?       │
+└──────┬──────────────────────┬───────────┘
+       │ SIM                  │ NÃO
+       ▼                      ▼
+┌──────────────┐    ┌─────────────────────┐
+│ OPÇÃO A:     │    │ Tem material        │
+│ BYOD         │    │ impresso pronto?    │
+│ HaveIBeen    │    └──────┬────────┬─────┘
+│ Pwned /      │           │ SIM    │ NÃO
+│ SSL Labs     │           ▼        ▼
+└──────────────┘    ┌────────┐ ┌─────────┐
+                    │OPÇÃO B:│ │OPÇÃO C: │
+                    │Unplug- │ │Estudo de│
+                    │ged     │ │Caso/PBL │
+                    │(B1-B6) │ │(debate) │
+                    └────────┘ └─────────┘
+```
+
+> ⚠️ **Dica da Profª Luana:** Mantenha sempre 5 cópias dos emails de phishing (B2) e da tabela de Cifra de César (B1) na sua pasta. São as atividades mais rápidas de aplicar sem preparação prévia!
+
+---
+
 ## 📚 Referências
 
 ### Segurança da Informação

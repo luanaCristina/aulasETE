@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Engenharia de Software — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>📚 Engenharia de Software</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>⚙️ Engenharia de<br><span class="accent">Software</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 40h — Módulo 1</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Software sem engenharia é improvisação. Engenharia sem software é teoria. Precisamos dos dois."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: O QUE É ES -->
+    <section class="slide slide--content" data-title="O que é Engenharia de Software?">
+      <h2>🔍 O que é Engenharia de Software?</h2>
+      <p>É a aplicação de <strong>princípios de engenharia</strong> ao desenvolvimento de software — planejamento, processo, qualidade e entrega previsível.</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>🎯 Por que precisamos?</h3>
+          <ul>
+            <li>Software cresce em complexidade (milhões de linhas)</li>
+            <li>Equipes distribuídas precisam de processo</li>
+            <li>Bugs em produção custam <strong>100x mais</strong> que em desenvolvimento</li>
+            <li>Prazo e orçamento precisam ser previsíveis</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Pilares da ES</h3>
+          <ul>
+            <li><strong>Processo:</strong> Como organizamos o trabalho</li>
+            <li><strong>Método:</strong> Técnicas para análise e design</li>
+            <li><strong>Ferramenta:</strong> Suporte automatizado</li>
+            <li><strong>Qualidade:</strong> Métricas e testes</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Analogia:</strong> Construir software sem ES é como construir um prédio sem planta — pode até ficar em pé, mas vai custar caro e cair rápido.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas (40h)</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Introdução à ES + Ciclo de Vida</td><td>Mapa mental dos modelos</td></tr>
+          <tr><td>3-4</td><td>Metodologias (Cascata vs Ágil)</td><td>Comparativo em tabela</td></tr>
+          <tr><td>5-6</td><td>Scrum na Prática</td><td>Product Backlog + Sprint Planning</td></tr>
+          <tr><td>7-8</td><td>Requisitos e User Stories</td><td>10 User Stories com critérios de aceite</td></tr>
+          <tr><td>9-10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Backlog + Board + Sprint simulada</td></tr>
+          <tr><td>11-12</td><td>UML — Diagramas Essenciais</td><td>Caso de Uso + Classes + Sequência</td></tr>
+          <tr><td>13-14</td><td>Git e Versionamento</td><td>Repositório com branches e PRs</td></tr>
+          <tr><td>15-16</td><td>Qualidade e Testes</td><td>Plano de testes + casos de teste</td></tr>
+          <tr><td>17-18</td><td>Sprint Simulation (Projeto)</td><td>Software + documentação completa</td></tr>
+          <tr><td>19-20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Apresentação Sprint Review</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: METODOLOGIAS -->
+    <section class="slide slide--content" data-title="Cascata vs Ágil">
+      <h2>🔄 Metodologias: Cascata vs. Ágil</h2>
+      <table>
+        <thead><tr><th>Critério</th><th>Cascata (Waterfall)</th><th>Ágil (Scrum/Kanban)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Abordagem</strong></td><td>Sequencial (fases lineares)</td><td>Iterativo (ciclos curtos)</td></tr>
+          <tr><td><strong>Mudanças</strong></td><td>Caras e difíceis</td><td>Bem-vindas a cada sprint</td></tr>
+          <tr><td><strong>Entrega</strong></td><td>Tudo no final</td><td>Incrementos a cada 2-4 semanas</td></tr>
+          <tr><td><strong>Documentação</strong></td><td>Extensiva e detalhada</td><td>Suficiente ("working software")</td></tr>
+          <tr><td><strong>Feedback</strong></td><td>Só no final (UAT)</td><td>Contínuo (Sprint Review)</td></tr>
+          <tr><td><strong>Risco</strong></td><td>Descobre problemas tarde</td><td>Descobre cedo e corrige</td></tr>
+          <tr><td><strong>Ideal para</strong></td><td>Requisitos fixos (hardware, médico)</td><td>Requisitos evolutivos (apps, web)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Mercado atual:</strong> 71% das empresas de TI usam metodologias ágeis (State of Agile Report, 2024).</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: SCRUM -->
+    <section class="slide slide--dark" data-title="Scrum">
+      <h2>🏃 Scrum — Framework Ágil</h2>
+      <div class="columns columns--3" style="margin-top: 20px;">
+        <div class="card">
+          <h3>👥 Papéis</h3>
+          <ul>
+            <li><strong>Product Owner:</strong> Define O QUE construir (prioriza backlog)</li>
+            <li><strong>Scrum Master:</strong> Remove impedimentos, facilita cerimônias</li>
+            <li><strong>Dev Team:</strong> Define COMO construir (auto-organizado)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📅 Cerimônias</h3>
+          <ul>
+            <li><strong>Sprint Planning:</strong> O que entra na sprint?</li>
+            <li><strong>Daily Standup:</strong> 15min — O que fiz/farei/impedimentos</li>
+            <li><strong>Sprint Review:</strong> Demo para stakeholders</li>
+            <li><strong>Retrospectiva:</strong> O que melhorar?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📦 Artefatos</h3>
+          <ul>
+            <li><strong>Product Backlog:</strong> Lista priorizada de features</li>
+            <li><strong>Sprint Backlog:</strong> Itens selecionados para a sprint</li>
+            <li><strong>Incremento:</strong> Software funcional entregue</li>
+            <li><strong>Definition of Done:</strong> Critérios de "pronto"</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Sprint = time-box!</strong> Duração fixa (1-4 semanas). Se não terminou, volta pro backlog — NÃO estica o prazo.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: REQUISITOS E USER STORIES -->
+    <section class="slide slide--content" data-title="Requisitos e User Stories">
+      <h2>📋 Requisitos e User Stories</h2>
+      <div class="columns">
+        <div>
+          <h3>Formato de User Story</h3>
+          <div class="code-block">
+            <span class="lang-badge">Template</span>
+            <code>COMO [persona/papel do usuário]
+QUERO [ação/funcionalidade]
+PARA [benefício/valor de negócio]
+
+--- Critérios de Aceite ---
+✅ DADO que [contexto]
+   QUANDO [ação]
+   ENTÃO [resultado esperado]</code>
+          </div>
+          <h3 style="margin-top:16px;">Exemplo Real</h3>
+          <div class="code-block">
+            <span class="lang-badge">User Story</span>
+            <code>COMO paciente
+QUERO agendar consulta pelo app
+PARA não precisar ligar para o consultório
+
+✅ DADO que há horários disponíveis
+   QUANDO seleciono médico + data + horário
+   ENTÃO recebo confirmação por push</code>
+          </div>
+        </div>
+        <div>
+          <h3>INVEST — Qualidade da Story</h3>
+          <table>
+            <thead><tr><th>Letra</th><th>Significado</th></tr></thead>
+            <tbody>
+              <tr><td><strong>I</strong></td><td>Independente (sem dependências)</td></tr>
+              <tr><td><strong>N</strong></td><td>Negociável (não é contrato)</td></tr>
+              <tr><td><strong>V</strong></td><td>Valiosa (entrega valor ao usuário)</td></tr>
+              <tr><td><strong>E</strong></td><td>Estimável (equipe consegue pontuar)</td></tr>
+              <tr><td><strong>S</strong></td><td>Small (cabe em 1 sprint)</td></tr>
+              <tr><td><strong>T</strong></td><td>Testável (tem critérios de aceite)</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Se a story não tem critério de aceite, ela não está "pronta para desenvolvimento".</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: UML DIAGRAMAS -->
+    <section class="slide slide--content" data-title="UML Diagramas">
+      <h2>📐 UML — Diagramas Essenciais</h2>
+      <div class="columns columns--3">
+        <div class="card">
+          <h3>📊 Caso de Uso</h3>
+          <p><strong>Mostra:</strong> O que o sistema FAZ (visão do usuário)</p>
+          <ul>
+            <li>Atores (stick figures)</li>
+            <li>Casos de uso (elipses)</li>
+            <li>Relacionamentos (include, extend)</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.9rem; color:var(--text-light);">📍 Fase: Requisitos</p>
+        </div>
+        <div class="card">
+          <h3>🏗️ Diagrama de Classes</h3>
+          <p><strong>Mostra:</strong> ESTRUTURA do sistema (dados + relações)</p>
+          <ul>
+            <li>Classes (atributos + métodos)</li>
+            <li>Associações (1:1, 1:N, N:M)</li>
+            <li>Herança e composição</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.9rem; color:var(--text-light);">📍 Fase: Design</p>
+        </div>
+        <div class="card">
+          <h3>🔄 Diagrama de Sequência</h3>
+          <p><strong>Mostra:</strong> COMO objetos se comunicam no tempo</p>
+          <ul>
+            <li>Objetos (lifelines)</li>
+            <li>Mensagens (setas)</li>
+            <li>Ordem temporal (top→bottom)</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.9rem; color:var(--text-light);">📍 Fase: Design detalhado</p>
+        </div>
+      </div>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🛠️</span>
+        <span><strong>Ferramentas gratuitas:</strong> draw.io (diagramas), PlantUML (texto→diagrama), Mermaid.js (Markdown→diagrama).</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: GIT E VERSIONAMENTO -->
+    <section class="slide slide--dark" data-title="Git e Versionamento">
+      <h2>🌿 Git e Versionamento</h2>
+      <p style="color:#94A3B8;">Controle de versão é a espinha dorsal do desenvolvimento em equipe.</p>
+      <div class="columns" style="margin-top:16px;">
+        <div>
+          <h3>Comandos Essenciais</h3>
+          <div class="code-block">
+            <span class="lang-badge">Bash</span>
+            <code># Configuração inicial
+git config --global user.name "Seu Nome"
+git config --global user.email "email@email.com"
+
+# Fluxo básico
+git init
+git add .
+git commit -m "feat: tela de login"
+git push origin main
+
+# Branches (trabalho em equipe)
+git checkout -b feature/cadastro
+git commit -m "feat: formulário de cadastro"
+git push origin feature/cadastro
+# → Abrir Pull Request no GitHub</code>
+          </div>
+        </div>
+        <div>
+          <h3>🌳 Git Flow Simplificado</h3>
+          <table>
+            <thead><tr><th>Branch</th><th>Propósito</th></tr></thead>
+            <tbody>
+              <tr><td><code>main</code></td><td>Código em produção (estável)</td></tr>
+              <tr><td><code>develop</code></td><td>Integração das features</td></tr>
+              <tr><td><code>feature/*</code></td><td>Nova funcionalidade</td></tr>
+              <tr><td><code>hotfix/*</code></td><td>Correção urgente em produção</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span><strong>NUNCA faça commit direto na main!</strong> Sempre crie uma branch → faça PR → peça code review.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: QUALIDADE E TESTES -->
+    <section class="slide slide--content" data-title="Qualidade e Testes">
+      <h2>🧪 Qualidade de Software e Testes</h2>
+      <div class="columns">
+        <div>
+          <h3>Pirâmide de Testes</h3>
+          <table>
+            <thead><tr><th>Nível</th><th>O que testa</th><th>Velocidade</th><th>Quantidade</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Unitário</strong></td><td>Função isolada</td><td>⚡ Rápido</td><td>Muitos (70%)</td></tr>
+              <tr><td><strong>Integração</strong></td><td>Módulos juntos</td><td>🔄 Médio</td><td>Alguns (20%)</td></tr>
+              <tr><td><strong>E2E</strong></td><td>Sistema completo</td><td>🐢 Lento</td><td>Poucos (10%)</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Cada bug encontrado em produção custa <strong>100x mais</strong> do que se fosse encontrado na fase de testes.</span>
+          </div>
+        </div>
+        <div>
+          <h3>Tipos de Teste</h3>
+          <ul>
+            <li><strong>Funcional:</strong> O sistema faz o que deveria?</li>
+            <li><strong>Usabilidade:</strong> É fácil de usar?</li>
+            <li><strong>Performance:</strong> É rápido sob carga?</li>
+            <li><strong>Segurança:</strong> Está protegido?</li>
+            <li><strong>Regressão:</strong> Nada que funcionava quebrou?</li>
+          </ul>
+          <h3 style="margin-top:16px;">Caso de Teste (Template)</h3>
+          <div class="code-block">
+            <span class="lang-badge">Markdown</span>
+            <code>**CT-01:** Login com credenciais válidas
+**Pré-condição:** Usuário cadastrado
+**Passos:** 1. Acessar /login
+            2. Digitar email e senha
+            3. Clicar "Entrar"
+**Resultado esperado:** Redireciona para /dashboard</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Comparativo de Metodologias</td><td>Tabela Cascata vs Ágil (próprias palavras)</td></tr>
+          <tr><td>🟢 Fácil</td><td>User Stories</td><td>5 stories com critérios de aceite (INVEST)</td></tr>
+          <tr><td>🟡 Médio</td><td>Diagrama de Caso de Uso</td><td>Sistema com 3+ atores e 8+ casos de uso</td></tr>
+          <tr><td>🟡 Médio</td><td>Repositório Git</td><td>Repo com 3+ branches, PRs e commits semânticos</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Plano de Testes</td><td>10 casos de teste + relatório de execução</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Exercícios (20%) + Sprint Simulation (50%) + Prova (30%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: PROJETO SPRINT SIMULATION -->
+    <section class="slide slide--accent" data-title="Projeto: Sprint Simulation">
+      <h2>🚀 Projeto Final — Sprint Simulation</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 O Projeto</h3>
+          <p>Equipes de 4-5 alunos simulam <strong>2 sprints completas</strong> de um sistema real:</p>
+          <ul>
+            <li>Definir papéis (PO, SM, Devs)</li>
+            <li>Criar Product Backlog (15+ stories)</li>
+            <li>Sprint Planning (selecionar stories)</li>
+            <li>Daily Standups (registrar em ata)</li>
+            <li>Sprint Review (demo funcional)</li>
+            <li>Retrospectiva (melhorias)</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📄 Entregáveis</h3>
+          <ul>
+            <li>Product Backlog priorizado no GitHub Projects</li>
+            <li>Diagrama de Caso de Uso (draw.io)</li>
+            <li>Diagrama de Classes</li>
+            <li>Repositório Git com branches e PRs</li>
+            <li>Plano de Testes (5+ casos)</li>
+            <li>Apresentação Sprint Review (10 min)</li>
+          </ul>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Sugestão de tema:</strong> AgendaPro (sistema de agendamento), e-commerce simplificado, ou sistema de chamados.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: CONTINGÊNCIA + ENCERRAMENTO -->
+    <section class="slide slide--dark" data-title="Contingência e Encerramento">
+      <h2>🚨 Contingência + Encerramento</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📱 Sem Laboratório?</h3>
+          <ul>
+            <li><strong>draw.io</strong> — Diagramas UML (funciona no celular)</li>
+            <li><strong>GitHub Mobile</strong> — Issues e Projects</li>
+            <li><strong>Miro/FigJam</strong> — Quadro Scrum online</li>
+            <li><strong>Desplugada:</strong> Kanban com post-its + diagramas no quadro</li>
+            <li><strong>PBL:</strong> Análise de cases reais (Spotify Squads, etc.)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Resumo de Avaliação</h3>
+          <table>
+            <thead><tr><th>Componente</th><th>Peso</th><th>Semana</th></tr></thead>
+            <tbody>
+              <tr><td>Exercícios</td><td>20%</td><td>Contínuo</td></tr>
+              <tr><td>Sprint Simulation</td><td>50%</td><td>17-20</td></tr>
+              <tr><td>Prova Regimental</td><td>30%</td><td>20</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="callout callout--info" style="max-width:700px; margin-top:24px;">
+        <span class="icon">💡</span>
+        <span>"Engenharia de Software não é burocracia — é a diferença entre entregar software que funciona e software que funciona BEM."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:24px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 12</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

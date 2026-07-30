@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto Integrador III — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+
+  <nav class="sidebar">
+    <h3>📚 Projeto Integrador III</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🚀 Projeto Integrador <span class="accent">III</span></h1>
+      <p class="subtitle">Full-stack + Deploy — Módulo 3 — 80h</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"O PI3 é onde TUDO se conecta: Mobile + Backend + Design + Segurança → App real no ar."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: VISÃO GERAL PI3 -->
+    <section class="slide slide--content" data-title="Visão Geral PI3">
+      <h2>🎯 Visão Geral — Projeto Integrador III</h2>
+      <p>O PI3 integra <strong>todas as disciplinas do Módulo 3</strong> em um produto funcional e publicado.</p>
+
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>🔗 Disciplinas Integradas</h3>
+          <ul>
+            <li>📱 <strong>Mobile Android:</strong> App React Native</li>
+            <li>☁️ <strong>Banco Cloud:</strong> Firebase backend</li>
+            <li>🎨 <strong>Design Interfaces:</strong> UI Kit MD3</li>
+            <li>🔒 <strong>Ética e Segurança:</strong> Auditoria + LGPD</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📦 Produto Final: AgendaPro</h3>
+          <ul>
+            <li>App mobile funcional (Expo)</li>
+            <li>Backend Firebase configurado</li>
+            <li>UI seguindo Material Design 3</li>
+            <li>Security Rules implementadas</li>
+            <li>Publicado (APK + Hosting)</li>
+            <li>Documentação completa</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Diferencial:</strong> Este não é um "trabalho de escola" — é um projeto de portfólio real que vai para o GitHub e LinkedIn.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA SPRINTS -->
+    <section class="slide slide--content" data-title="Cronograma (Sprints)">
+      <h2>📅 Cronograma — 5 Sprints (20 Semanas)</h2>
+      <table>
+        <thead><tr><th>Sprint</th><th>Semanas</th><th>Foco</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Sprint 1</strong></td><td>1-4</td><td>Planejamento + Setup</td><td>Backlog, wireframes, repo criado, Firebase setup</td></tr>
+          <tr><td><strong>Sprint 2</strong></td><td>5-8</td><td>MVP — Funcionalidades Core</td><td>Auth + CRUD + Navegação funcionando</td></tr>
+          <tr><td><strong>Sprint 3</strong></td><td>9-12</td><td>Features Completas</td><td>Todas telas + integração Firebase completa</td></tr>
+          <tr><td><strong>Sprint 4</strong></td><td>13-16</td><td>Polish + Segurança</td><td>UI final + Security Rules + testes</td></tr>
+          <tr><td><strong>Sprint 5</strong></td><td>17-20</td><td>Deploy + Demo Day</td><td>APK publicado + pitch + documentação</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Cada sprint tem uma entrega obrigatória.</strong> Sprint sem entrega = nota proporcional reduzida. Não deixe para a última semana!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: ARQUITETURA DO SISTEMA -->
+    <section class="slide slide--dark" data-title="Arquitetura do Sistema">
+      <h2>🏗️ Arquitetura do Sistema — AgendaPro</h2>
+      <p style="color:#94A3B8;">Visão geral das camadas e tecnologias.</p>
+
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">Diagrama</span>
+        <code>┌─────────────────────────────────────────────────────────┐
+│                    USUÁRIO (Paciente/Médico)              │
+└────────────────────────────┬────────────────────────────┘
+                             │
+┌────────────────────────────▼────────────────────────────┐
+│              📱 FRONTEND (React Native + Expo)            │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐   │
+│  │  Screens │ │Components│ │  Context │ │Navigation│   │
+│  └──────────┘ └──────────┘ └──────────┘ └──────────┘   │
+└────────────────────────────┬────────────────────────────┘
+                             │ Firebase SDK
+┌────────────────────────────▼────────────────────────────┐
+│                ☁️ FIREBASE (Backend as a Service)         │
+│  ┌──────────┐ ┌──────────┐ ┌──────────┐ ┌──────────┐   │
+│  │   Auth   │ │Firestore │ │ Storage  │ │Functions │   │
+│  └──────────┘ └──────────┘ └──────────┘ └──────────┘   │
+│  ┌──────────────────────────────────────────────────┐   │
+│  │           🔒 Security Rules (LGPD)                │   │
+│  └──────────────────────────────────────────────────┘   │
+└────────────────────────────┬────────────────────────────┘
+                             │
+┌────────────────────────────▼────────────────────────────┐
+│              🌐 DEPLOY                                    │
+│  APK (EAS Build) + Web (Firebase Hosting/Vercel)         │
+└─────────────────────────────────────────────────────────┘</code>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: SCRUM NA PRÁTICA -->
+    <section class="slide slide--content" data-title="Scrum na Prática">
+      <h2>🔄 Scrum na Prática — Cerimônias</h2>
+      <p>Metodologia ágil aplicada ao projeto em equipe (3-4 pessoas).</p>
+
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>📋 Sprint Planning</h3>
+          <p><strong>Quando:</strong> Início de cada sprint</p>
+          <ul>
+            <li>Selecionar itens do backlog</li>
+            <li>Estimar esforço (P/M/G)</li>
+            <li>Distribuir tarefas</li>
+            <li>Definir meta do sprint</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Daily Standup</h3>
+          <p><strong>Quando:</strong> Toda aula (5 min)</p>
+          <ul>
+            <li>O que fiz desde a última aula?</li>
+            <li>O que vou fazer hoje?</li>
+            <li>Algum impedimento?</li>
+          </ul>
+          <p style="font-size:0.9rem; color:var(--text-light);">Em pé, máximo 15 min!</p>
+        </div>
+        <div class="card">
+          <h3>🔍 Sprint Review</h3>
+          <p><strong>Quando:</strong> Final de cada sprint</p>
+          <ul>
+            <li>Demo do que foi feito</li>
+            <li>Feedback da professora</li>
+            <li>Retrospectiva (o que melhorar)</li>
+            <li>Atualizar backlog</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Ferramenta:</strong> GitHub Projects (Kanban board) — To Do | In Progress | Review | Done</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: FRONTEND + BACKEND INTEGRAÇÃO -->
+    <section class="slide slide--dark" data-title="Frontend + Backend">
+      <h2>🔗 Frontend + Backend — Integração</h2>
+      <p style="color:#94A3B8;">Como o app mobile se comunica com o Firebase.</p>
+
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">TSX</span>
+        <code>// Fluxo completo: Agendar Consulta
+// screens/BookAppointment.tsx
+
+import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
+import { db } from '../config/firebase';
+import { useAuth } from '../contexts/AuthContext';
+
+export function BookAppointmentScreen({ route, navigation }) {
+  const { user } = useAuth();
+  const { doctorId, doctorName } = route.params;
+  const [date, setDate] = useState('');
+  const [time, setTime] = useState('');
+  const [loading, setLoading] = useState(false);
+
+  const handleBook = async () => {
+    if (!date || !time) return Alert.alert('Erro', 'Preencha data e hora');
+    setLoading(true);
+
+    try {
+      await addDoc(collection(db, 'appointments'), {
+        patientId: user.uid,
+        patientName: user.displayName,
+        doctorId,
+        doctorName,
+        date,
+        time,
+        status: 'confirmed',
+        createdAt: serverTimestamp(),
+      });
+
+      Alert.alert('Sucesso! ✅', 'Consulta agendada com sucesso!');
+      navigation.goBack();
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível agendar. Tente novamente.');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // ... return JSX com formulário
+}</code>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: DEPLOY -->
+    <section class="slide slide--content" data-title="Deploy">
+      <h2>🌐 Deploy — Publicando o Projeto</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📱 Mobile (EAS Build)</h3>
+          <ol>
+            <li><code>eas build:configure</code></li>
+            <li><code>eas build --platform android --profile preview</code></li>
+            <li>Baixar APK gerado</li>
+            <li>Instalar no celular (QR code)</li>
+            <li>Compartilhar link de download</li>
+          </ol>
+          <p style="margin-top:8px; color:var(--text-light);">Tempo: ~15 min na nuvem (grátis)</p>
+        </div>
+        <div class="card">
+          <h3>🌐 Web (Firebase Hosting / Vercel)</h3>
+          <ol>
+            <li><code>npm install -g firebase-tools</code></li>
+            <li><code>firebase init hosting</code></li>
+            <li><code>firebase deploy</code></li>
+            <li>URL pública: projeto.web.app</li>
+          </ol>
+          <p style="margin-top:12px;"><strong>Alternativa — Vercel:</strong></p>
+          <ol>
+            <li>Conectar repo GitHub</li>
+            <li>Deploy automático a cada push</li>
+            <li>URL: projeto.vercel.app</li>
+          </ol>
+        </div>
+      </div>
+
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>CI/CD básico:</strong> Configure GitHub Actions para rodar <code>npm test</code> antes de cada deploy automático.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: DEMO DAY -->
+    <section class="slide slide--section" data-title="Demo Day">
+      <h1>🎤 Demo Day — <span class="accent">Roteiro do Pitch</span></h1>
+      <p class="subtitle">Apresentação final do projeto para banca avaliadora.</p>
+      <div style="text-align:left; max-width:700px; margin-top:32px;">
+        <table>
+          <thead><tr><th>Etapa</th><th>Duração</th><th>Conteúdo</th></tr></thead>
+          <tbody>
+            <tr><td>1. Problema</td><td>1 min</td><td>Qual dor resolve? Para quem?</td></tr>
+            <tr><td>2. Solução</td><td>1 min</td><td>O que é o AgendaPro?</td></tr>
+            <tr><td>3. Demo ao vivo</td><td>5 min</td><td>Fluxo principal no celular</td></tr>
+            <tr><td>4. Arquitetura</td><td>2 min</td><td>Stack técnica + decisões</td></tr>
+            <tr><td>5. Aprendizados</td><td>1 min</td><td>Desafios e soluções</td></tr>
+            <tr><td>6. Perguntas</td><td>3 min</td><td>Banca pergunta, equipe responde</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: CODE REVIEW E QUALIDADE -->
+    <section class="slide slide--content" data-title="Code Review e Qualidade">
+      <h2>🔍 Code Review e Qualidade de Código</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>✅ Checklist de Code Review</h3>
+          <ul>
+            <li>☐ Código legível (nomes claros)</li>
+            <li>☐ Sem console.log em produção</li>
+            <li>☐ TypeScript sem <code>any</code></li>
+            <li>☐ Tratamento de erros (try/catch)</li>
+            <li>☐ Componentes pequenos e focados</li>
+            <li>☐ Sem credenciais hardcoded</li>
+            <li>☐ README atualizado</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Métricas de Qualidade</h3>
+          <table>
+            <thead><tr><th>Métrica</th><th>Meta</th></tr></thead>
+            <tbody>
+              <tr><td>TypeScript strict</td><td>0 erros</td></tr>
+              <tr><td>ESLint warnings</td><td>≤ 5</td></tr>
+              <tr><td>Commits descritivos</td><td>100%</td></tr>
+              <tr><td>README completo</td><td>✅</td></tr>
+              <tr><td>Sem secrets no repo</td><td>✅</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Pull Requests entre membros do grupo = prática profissional real.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios por Sprint</h2>
+      <table>
+        <thead><tr><th>Sprint</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>Sprint 1</td><td>Setup completo + backlog</td><td>Repo + GitHub Project + wireframes</td></tr>
+          <tr><td>Sprint 2</td><td>MVP funcional (Auth + 1 CRUD)</td><td>App rodando no Expo Go</td></tr>
+          <tr><td>Sprint 3</td><td>Todas as features implementadas</td><td>Demo em aula + code review</td></tr>
+          <tr><td>Sprint 4</td><td>Security audit + UI polish</td><td>Relatório + visual final</td></tr>
+          <tr><td>Sprint 5</td><td>Deploy + Demo Day</td><td>APK + pitch + docs</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Commits individuais são rastreados!</strong> Cada membro precisa ter contribuições no GitHub. Código copiado = zero para o copiador.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: RUBRICA FINAL -->
+    <section class="slide slide--accent" data-title="Rubrica Final">
+      <h2>📊 Rubrica de Avaliação Final</h2>
+      <table style="margin-top:16px;">
+        <thead><tr><th>Critério</th><th>Peso</th><th>Excelente (10)</th><th>Insuficiente (0-4)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Funcionalidade</strong></td><td>25%</td><td>Todas features funcionando</td><td>App não roda/crasha</td></tr>
+          <tr><td><strong>Código</strong></td><td>20%</td><td>TypeScript strict, organizado</td><td>JS puro, desorganizado</td></tr>
+          <tr><td><strong>Design/UI</strong></td><td>15%</td><td>MD3 consistente, acessível</td><td>Sem padrão visual</td></tr>
+          <tr><td><strong>Segurança</strong></td><td>15%</td><td>Rules, auth, validação</td><td>Rules abertas, sem auth</td></tr>
+          <tr><td><strong>Deploy</strong></td><td>10%</td><td>APK gerado + web no ar</td><td>Não publicou</td></tr>
+          <tr><td><strong>Documentação</strong></td><td>10%</td><td>README + arquitetura</td><td>Sem README</td></tr>
+          <tr><td><strong>Pitch</strong></td><td>5%</td><td>Claro, dentro do tempo</td><td>Não apresentou</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Nota individual:</strong> 70% projeto do grupo + 30% contribuição individual (commits + participação nas dailys).</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo — PI3</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Sprint Reviews (1-4)</td><td>30%</td><td>4, 8, 12, 16</td></tr>
+            <tr><td>Projeto Final + Deploy</td><td>40%</td><td>19-20</td></tr>
+            <tr><td>Demo Day (Pitch)</td><td>20%</td><td>20</td></tr>
+            <tr><td>Contribuição Individual</td><td>10%</td><td>Contínua</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"O Projeto Integrador é a prova de que vocês sabem construir software real — do planejamento ao deploy."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 12</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

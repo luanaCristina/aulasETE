@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Thinking — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>💡 Design Thinking</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>💡 Design <span class="accent">Thinking</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 40h — Módulo 1</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">🚀</span>
+        <span>"Não se trata de ter boas ideias — se trata de resolver problemas reais para pessoas reais."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: O QUE É DESIGN THINKING -->
+    <section class="slide slide--content" data-title="O que é Design Thinking?">
+      <h2>🧠 O que é Design Thinking?</h2>
+      <p>Uma metodologia centrada no ser humano para resolver problemas complexos de forma <strong>criativa e colaborativa</strong>, usada por empresas como Google, Apple e IDEO.</p>
+
+      <div class="callout callout--tip">
+        <span class="icon">💡</span>
+        <span><strong>Analogia:</strong> Imagine que você precisa montar uma festa surpresa. Ao invés de escolher tudo sozinho, você entrevista os amigos da pessoa, descobre os gostos dela, testa ideias rápidas e ajusta. Isso é Design Thinking!</span>
+      </div>
+
+      <div class="columns" style="margin-top: 24px;">
+        <div class="card">
+          <h3>🔄 As 5 Etapas</h3>
+          <ol>
+            <li><strong>Empatizar</strong> — Ouvir e observar pessoas</li>
+            <li><strong>Definir</strong> — Sintetizar o problema real</li>
+            <li><strong>Idear</strong> — Gerar muitas soluções</li>
+            <li><strong>Prototipar</strong> — Construir rápido e barato</li>
+            <li><strong>Testar</strong> — Validar com usuários reais</li>
+          </ol>
+          <p style="margin-top:12px; color: var(--text-light); font-size:0.95rem;">↻ Processo iterativo — volte quantas vezes precisar!</p>
+        </div>
+        <div class="card">
+          <h3>🎯 Competências desta disciplina</h3>
+          <ul>
+            <li>Conduzir pesquisa empática com stakeholders</li>
+            <li>Formular POV statements e HMW questions</li>
+            <li>Facilitar sessões de brainstorm</li>
+            <li>Criar protótipos rápidos (papel e digital)</li>
+            <li>Testar hipóteses com ciclos curtos</li>
+            <li>Conectar artefatos de DT ao código</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Introdução ao DT + Mindset</td><td>Mural "Problemas que me incomodam"</td></tr>
+          <tr><td>3-4</td><td>Empatia: pesquisa de campo</td><td>Entrevistas + Mapa de Empatia</td></tr>
+          <tr><td>5-6</td><td>Definição: POV e HMW</td><td>POV Statement + 5 HMW Questions</td></tr>
+          <tr><td>7-8</td><td>Ideação: brainstorm e priorização</td><td>Crazy 8's + Mapa de impacto/esforço</td></tr>
+          <tr><td>9</td><td>Prototipação rápida</td><td>Protótipo de papel (5+ telas)</td></tr>
+          <tr><td>10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Pitch: Problema → Protótipo (5 min)</td></tr>
+          <tr><td>11-12</td><td>Teste com usuários</td><td>Script + Execução + Relatório</td></tr>
+          <tr><td>13-14</td><td>Iteração baseada em feedback</td><td>Protótipo v2 (digital ou papel)</td></tr>
+          <tr><td>15-16</td><td>Conexão com código: MVP features</td><td>User Stories técnicas + wireflow</td></tr>
+          <tr><td>17-18</td><td>Projeto Final: sprint completa</td><td>Ciclo DT completo (novo problema)</td></tr>
+          <tr><td>19</td><td>Apresentação dos projetos</td><td>Pitch final + portfólio DT</td></tr>
+          <tr><td>20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Avaliação teórica + portfólio</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: EMPATIA E PESQUISA -->
+    <section class="slide slide--content" data-title="Empatia e Pesquisa">
+      <h2>❤️ Empatia e Pesquisa</h2>
+      <p>A primeira etapa é <strong>sair da sua cabeça</strong> e entender o mundo do outro.</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>🔍 Técnicas de Pesquisa</h3>
+          <ul>
+            <li><strong>Entrevista empática</strong> — perguntas abertas, ouvir sem julgar</li>
+            <li><strong>Observação de campo</strong> — shadowing, um dia na vida</li>
+            <li><strong>Questionários online</strong> — Google Forms (escala + aberta)</li>
+            <li><strong>Desk research</strong> — dados públicos, fóruns, reviews</li>
+            <li><strong>Mapa de stakeholders</strong> — quem influencia a solução</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🗺️ Mapa de Empatia</h3>
+          <table>
+            <tbody>
+              <tr><td><strong>👁️ Vê</strong></td><td>O que observa no ambiente</td></tr>
+              <tr><td><strong>👂 Ouve</strong></td><td>O que as pessoas ao redor dizem</td></tr>
+              <tr><td><strong>💬 Fala e Faz</strong></td><td>Comportamento observável</td></tr>
+              <tr><td><strong>💭 Pensa e Sente</strong></td><td>Medos, desejos, frustações</td></tr>
+              <tr><td><strong>😤 Dores</strong></td><td>Obstáculos e problemas</td></tr>
+              <tr><td><strong>🎯 Ganhos</strong></td><td>O que deseja alcançar</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Regra de ouro:</strong> Nunca pergunte "Você gostaria de...?" — observe o que as pessoas FAZEM, não o que dizem que fariam.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: DEFINIÇÃO HMW -->
+    <section class="slide slide--dark" data-title="Definição: HMW">
+      <h2>🎯 Definição: POV e HMW</h2>
+      <p>Transformar dados de pesquisa em um <strong>ponto de vista claro</strong> sobre o problema.</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>📝 POV Statement (Ponto de Vista)</h3>
+          <p style="font-size: 1.1rem; margin-top:12px; padding: 16px; background:rgba(255,255,255,0.05); border-radius:8px; border-left: 4px solid #60A5FA;">
+            <strong>[Usuário]</strong> precisa de <strong>[necessidade]</strong> porque <strong>[insight]</strong>
+          </p>
+          <p style="margin-top:12px; color:#93C5FD; font-style:italic;">
+            Exemplo: "Mariana, técnica em enfermagem, precisa de um agendamento rápido pelo celular porque trabalha em turnos e não tem tempo de ligar durante o horário comercial."
+          </p>
+        </div>
+        <div class="card">
+          <h3>❓ HMW — "How Might We?"</h3>
+          <p style="margin-top:8px;">Transformar o problema em perguntas de oportunidade:</p>
+          <ul style="margin-top:12px;">
+            <li>HMW reduzir o agendamento para menos de 2 minutos?</li>
+            <li>HMW lembrar Mariana das consultas sem que ela precise anotar?</li>
+            <li>HMW permitir agendamento fora do horário comercial?</li>
+            <li>HMW mostrar disponibilidade sem precisar ligar?</li>
+            <li>HMW tornar o cancelamento tão fácil quanto agendar?</li>
+          </ul>
+          <div class="callout callout--tip" style="margin-top:16px;">
+            <span class="icon">💡</span>
+            <span>Cada HMW vira pelo menos 1 funcionalidade no seu app!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: IDEAÇÃO -->
+    <section class="slide slide--content" data-title="Ideação">
+      <h2>🌟 Ideação: Gerando Soluções</h2>
+      <p>Quantidade antes de qualidade. O objetivo é ter <strong>muitas ideias</strong> — filtrar vem depois.</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>🧠 Técnicas de Ideação</h3>
+          <ul>
+            <li><strong>Brainstorm clássico</strong> — regras: não julgue, construa sobre ideias dos outros, vá por quantidade</li>
+            <li><strong>Crazy 8's</strong> — 8 ideias em 8 minutos (1 por quadrante)</li>
+            <li><strong>Analogias forçadas</strong> — "E se nosso app fosse um hotel 5 estrelas?"</li>
+            <li><strong>SCAMPER</strong> — Substituir, Combinar, Adaptar, Modificar, Propor, Eliminar, Reverter</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Priorização</h3>
+          <table>
+            <thead><tr><th></th><th>Baixo Esforço</th><th>Alto Esforço</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Alto Impacto</strong></td><td>✅ FAÇA AGORA</td><td>📋 Planeje</td></tr>
+              <tr><td><strong>Baixo Impacto</strong></td><td>🤷 Se sobrar tempo</td><td>❌ Descarte</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:12px; font-size:0.95rem; color:var(--text-light);">Use <strong>Voting Dots</strong>: cada pessoa tem 3 votos (adesivos) para distribuir nas ideias preferidas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: PROTOTIPAÇÃO RÁPIDA -->
+    <section class="slide slide--accent" data-title="Prototipação Rápida">
+      <h2>⚡ Prototipação Rápida</h2>
+      <p>O objetivo do protótipo é <strong>aprender rápido</strong>, não construir algo bonito.</p>
+
+      <div class="columns" style="margin-top: 20px;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📱 Tipos de Protótipo</h3>
+          <table>
+            <thead><tr><th>Tipo</th><th>Quando usar</th><th>Tempo</th></tr></thead>
+            <tbody>
+              <tr><td>🗒️ Papel</td><td>Primeira validação de fluxo</td><td>15 min</td></tr>
+              <tr><td>📐 Wireframe digital</td><td>Feedback de estrutura</td><td>1-2h</td></tr>
+              <tr><td>🎨 Alta fidelidade</td><td>Validação visual + interação</td><td>1-2 dias</td></tr>
+              <tr><td>💻 MVP funcional</td><td>Validação real com dados</td><td>1-2 semanas</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>💥 Princípios</h3>
+          <ul>
+            <li><strong>Fail Fast</strong> — Errar cedo é barato; errar tarde é caro</li>
+            <li><strong>MVP</strong> — Mínimo Produto Viável: o menor pedaço que entrega valor</li>
+            <li><strong>Fidelidade progressiva</strong> — Comece no papel → digital → código</li>
+            <li><strong>Testável</strong> — Se não pode ser testado, não é protótipo</li>
+          </ul>
+          <div class="callout callout--info" style="margin-top:16px;">
+            <span class="icon">📌</span>
+            <span>Um protótipo de papel de 15 minutos pode evitar 2 semanas de código errado.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: CONEXÃO COM CÓDIGO -->
+    <section class="slide slide--section" data-title="Conexão com Código">
+      <h1>🔗 Do Design Thinking ao <span class="accent">Código</span></h1>
+      <p class="subtitle">Artefatos de DT viram features reais no app Mobile (Expo) e Web</p>
+      <p style="margin-top: 24px; font-size: 1.2rem; opacity: 0.9;">A lógica é o fundamento soberano; linguagens e frameworks são apenas sintaxe.</p>
+    </section>
+
+    <!-- SLIDE 8b: CODE TABS -->
+    <section class="slide slide--dark" data-title="DT → Código: MVP Feature">
+      <h2>💻 HMW → User Story → Código MVP</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">HMW: "Como podemos permitir agendamento em &lt; 2 min?" → Feature: Agendamento Rápido</p>
+      <div class="code-tabs">
+        <button class="code-tab active">Mobile (Expo/TS)</button>
+        <button class="code-tab">Web (HTML/JS)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript</span>
+          <code>// src/screens/QuickBooking.tsx — MVP do agendamento rápido
+import { useState } from 'react';
+import { View, Text, TouchableOpacity, Alert } from 'react-native';
+
+export function QuickBooking({ doctor, date, time }) {
+  const [loading, setLoading] = useState(false);
+
+  async function handleConfirm() {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ doctorId: doctor.id, date, time }),
+      });
+      if (res.ok) Alert.alert('✅ Consulta agendada!');
+    } catch (err) {
+      Alert.alert('❌ Erro ao agendar');
+    } finally { setLoading(false); }
+  }
+
+  return (
+    &lt;View style={{ padding: 24 }}&gt;
+      &lt;Text style={{ fontSize: 20, fontWeight: 'bold' }}&gt;
+        Confirmar Consulta
+      &lt;/Text&gt;
+      &lt;Text&gt;🩺 {doctor.nome} — {date} às {time}&lt;/Text&gt;
+      &lt;TouchableOpacity onPress={handleConfirm}&gt;
+        &lt;Text&gt;{loading ? 'Agendando...' : 'Confirmar ✓'}&lt;/Text&gt;
+      &lt;/TouchableOpacity&gt;
+    &lt;/View&gt;
+  );
+}</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">HTML + JavaScript</span>
+          <code>&lt;!-- quick-booking.html — MVP Web --&gt;
+&lt;section id="quick-booking"&gt;
+  &lt;h2&gt;Confirmar Consulta&lt;/h2&gt;
+  &lt;p id="booking-details"&gt;&lt;/p&gt;
+  &lt;button id="btn-confirm"&gt;Confirmar ✓&lt;/button&gt;
+&lt;/section&gt;
+
+&lt;script&gt;
+document.getElementById('btn-confirm')
+  .addEventListener('click', async () => {
+    const btn = document.getElementById('btn-confirm');
+    btn.textContent = 'Agendando...';
+    btn.disabled = true;
+
+    try {
+      const res = await fetch('/api/appointments', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ doctorId, date, time }),
+      });
+      if (res.ok) alert('✅ Consulta agendada!');
+      else alert('❌ Horário indisponível');
+    } catch (err) {
+      alert('❌ Erro de conexão');
+    } finally {
+      btn.textContent = 'Confirmar ✓';
+      btn.disabled = false;
+    }
+  });
+&lt;/script&gt;</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Mapa de Empatia</td><td>Mapa completo de 1 persona pesquisada</td></tr>
+          <tr><td>🟢 Fácil</td><td>HMW Questions</td><td>5 perguntas HMW a partir de 1 POV</td></tr>
+          <tr><td>🟡 Médio</td><td>Crazy 8's em grupo</td><td>8 sketches + 2 ideias priorizadas</td></tr>
+          <tr><td>🟡 Médio</td><td>Protótipo de Papel</td><td>5 telas testáveis + script de teste</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Sprint DT completa</td><td>Ciclo Empatizar→Testar em 1 aula (90 min)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Dica:</strong> Todos os exercícios podem ser feitos com papel e caneta se não houver laboratório disponível.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: PROJETOS -->
+    <section class="slide slide--accent" data-title="Projetos">
+      <h2>🚀 Projetos Hands-on</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Projeto Intermediário (Sem 1-10)</h3>
+          <p><strong>Valor:</strong> 30% da nota</p>
+          <p style="margin-top:8px;"><strong>Desafio:</strong> Resolver 1 problema real da escola</p>
+          <ul>
+            <li>Pesquisa empática (5+ entrevistas)</li>
+            <li>Mapa de Empatia + POV Statement</li>
+            <li>5 HMW Questions</li>
+            <li>Sessão Crazy 8's documentada</li>
+            <li>Protótipo de papel (5+ telas)</li>
+            <li>Teste com 3 colegas + relatório</li>
+          </ul>
+          <p style="margin-top:12px; font-size:0.9rem;"><strong>Rubrica:</strong> Profundidade da pesquisa (30%) + Criatividade (30%) + Teste real (40%)</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Projeto Final (Sem 11-20)</h3>
+          <p><strong>Valor:</strong> 40% da nota</p>
+          <p style="margin-top:8px;"><strong>Desafio:</strong> Sprint DT para problema da comunidade</p>
+          <ul>
+            <li>Ciclo DT completo (novo problema)</li>
+            <li>Pesquisa com pessoas da comunidade</li>
+            <li>Protótipo digital (Figma/Canva)</li>
+            <li>Teste de usabilidade documentado</li>
+            <li>Iteração baseada em feedback</li>
+            <li><strong>Conexão com código:</strong> User Stories técnicas</li>
+          </ul>
+          <p style="margin-top:12px; font-size:0.9rem;"><strong>Rubrica:</strong> Empatia real (25%) + Ideação criativa (25%) + Protótipo testável (25%) + Iteração (25%)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: PLANO DE CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Plano de Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <p style="color:#94A3B8;">Se o lab estiver indisponível, a aula NÃO para. Escolha uma opção:</p>
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>📱 Opção A: BYOD</h3>
+          <p><strong>Apps no celular:</strong></p>
+          <ul>
+            <li>Miro / FigJam (quadro colaborativo)</li>
+            <li>Google Forms (pesquisa)</li>
+            <li>Canva (protótipo visual)</li>
+            <li>Marvel App (foto → protótipo)</li>
+            <li>Notion (documentação)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Opção B: Desplugada</h3>
+          <p><strong>Com papel e caneta:</strong></p>
+          <ul>
+            <li>Entrevista ao vivo (duplas/trios)</li>
+            <li>Mapa de Empatia em cartolina</li>
+            <li>Crazy 8's no papel A4 dobrado</li>
+            <li>Protótipo em papel quadriculado</li>
+            <li>Teste de usabilidade presencial</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Opção C: PBL</h3>
+          <p><strong>Estudos de caso:</strong></p>
+          <ul>
+            <li>Case Nubank: como resolveram fila</li>
+            <li>Case Uber: pivotando de limousine</li>
+            <li>Debate: redesign da cantina escolar</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.9rem; color:#94A3B8;">Mesmos critérios de avaliação!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Projeto Intermediário</td><td>30%</td><td>10</td></tr>
+            <tr><td>Projeto Final + User Stories</td><td>40%</td><td>19-20</td></tr>
+            <tr><td>Prova Regimental</td><td>30%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"A inovação não nasce de tecnologia — nasce de empatia com quem usa."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 13</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

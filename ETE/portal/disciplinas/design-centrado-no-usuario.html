@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design Centrado no Usuário — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>📚 Design Centrado no Usuário</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🎨 Design Centrado<br>no <span class="accent">Usuário</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 40h</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Não projetamos para nós mesmos — projetamos para as pessoas que vão usar o software."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: O QUE É DCU -->
+    <section class="slide slide--content" data-title="O que é DCU?">
+      <h2>🔍 O que é Design Centrado no Usuário?</h2>
+      <p>Uma abordagem de projeto onde <strong>todas as decisões</strong> são tomadas com base em dados reais sobre os usuários — não em "achismos" da equipe.</p>
+
+      <div class="callout callout--tip">
+        <span class="icon">💡</span>
+        <span><strong>Analogia:</strong> Imagine um restaurante que cria o cardápio SEM perguntar aos clientes o que gostam. O DCU é como fazer pesquisa ANTES de montar o cardápio.</span>
+      </div>
+
+      <div class="columns" style="margin-top: 24px;">
+        <div class="card">
+          <h3>🔄 O Ciclo do DCU</h3>
+          <ol>
+            <li><strong>Pesquisar</strong> — Entender o usuário</li>
+            <li><strong>Definir</strong> — Sintetizar insights</li>
+            <li><strong>Prototipar</strong> — Criar soluções</li>
+            <li><strong>Testar</strong> — Validar com usuários</li>
+          </ol>
+          <p style="margin-top:12px; color: var(--text-light); font-size:0.95rem;">↻ Repetir até acertar!</p>
+        </div>
+        <div class="card">
+          <h3>🎯 Competências desta disciplina</h3>
+          <ul>
+            <li>Conduzir pesquisa com usuários reais</li>
+            <li>Criar personas baseadas em dados</li>
+            <li>Mapear jornadas identificando dores</li>
+            <li>Prototipar no Figma (baixa/alta fid.)</li>
+            <li>Testar usabilidade e iterar</li>
+            <li>Exportar artefatos para código</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-3</td><td>Pesquisa de Usuário</td><td>Formulário + Relatório de Insights</td></tr>
+          <tr><td>4-5</td><td>Personas e User Stories</td><td>Ficha de Persona + 10 User Stories</td></tr>
+          <tr><td>6</td><td>Benchmarking</td><td>Tabela comparativa (3 concorrentes)</td></tr>
+          <tr><td>7</td><td>Jornada do Usuário</td><td>Mapa de Jornada visual</td></tr>
+          <tr><td>8-9</td><td>Wireframes</td><td>5+ telas baixa fidelidade</td></tr>
+          <tr><td>10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Pitch: Persona + Jornada + Wireframes</td></tr>
+          <tr><td>11-12</td><td>Design Visual e Style Guide</td><td>Paleta + Tipografia + Componentes</td></tr>
+          <tr><td>13-14</td><td>Protótipo Alta Fidelidade</td><td>Figma navegável (8+ telas)</td></tr>
+          <tr><td>15</td><td>Acessibilidade (WCAG)</td><td>Relatório de acessibilidade</td></tr>
+          <tr><td>16-17</td><td>Teste de Usabilidade</td><td>Script + Execução + Relatório</td></tr>
+          <tr><td>18-19</td><td>Iteração + Exportação</td><td>Protótipo v2 + Assets para devs</td></tr>
+          <tr><td>20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Portfólio UX + Protótipo Final</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: BENCHMARKING -->
+    <section class="slide slide--content" data-title="Benchmarking: iFood vs 99Food">
+      <h2>📊 Caso Real: iFood vs. 99Food</h2>
+      <p>Mesmo problema (pedir comida), UX radicalmente diferentes dependendo da <strong>persona</strong>.</p>
+      <table>
+        <thead><tr><th>Critério</th><th>iFood</th><th>99Food</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Público-alvo</strong></td><td>Classes B/C, 25-45 anos</td><td>Classes C/D, 18-35 anos</td></tr>
+          <tr><td><strong>Proposta de valor</strong></td><td>Variedade + velocidade</td><td>Menor preço + cupons</td></tr>
+          <tr><td><strong>UX principal</strong></td><td>Descoberta (explorar)</td><td>Objetivo direto (pedir rápido)</td></tr>
+          <tr><td><strong>Ponto forte</strong></td><td>Filtros + avaliações</td><td>Cashback + frete grátis</td></tr>
+          <tr><td><strong>Ponto fraco</strong></td><td>Excesso de informação</td><td>Poucos restaurantes</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info">
+        <span class="icon">🎯</span>
+        <span><strong>Lição:</strong> O mesmo problema gera soluções de UX opostas quando a persona muda!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: PERSONA -->
+    <section class="slide slide--dark" data-title="Persona">
+      <h2>👤 Construindo uma Persona</h2>
+      <p>Uma persona é uma <strong>síntese de dados reais</strong> — não ficção criativa.</p>
+      <div class="columns" style="margin-top: 20px;">
+        <div class="card">
+          <h3>Persona: Mariana Silva, 28 anos</h3>
+          <p><strong>Ocupação:</strong> Técnica em Enfermagem — Recife/PE</p>
+          <p><strong>📱 Digital:</strong> Android (85% do tempo), Instagram + WhatsApp</p>
+          <p style="margin-top:12px;"><strong>😤 Dores:</strong></p>
+          <ul>
+            <li>Não agenda consultas sem fila</li>
+            <li>Apps pedem dados demais</li>
+            <li>Esquece horários de consultas</li>
+          </ul>
+          <p style="margin-top:12px;"><strong>🎯 Objetivos:</strong></p>
+          <ul>
+            <li>Agendar pelo celular em &lt; 2 min</li>
+            <li>Receber lembretes automáticos</li>
+            <li>Histórico médico acessível</li>
+          </ul>
+          <p style="margin-top:12px; font-style:italic; color:#93C5FD;">"Eu só quero marcar minha consulta sem ligar pra 5 lugares."</p>
+        </div>
+        <div class="card">
+          <h3>⚠️ Erros Comuns</h3>
+          <ul>
+            <li>❌ Criar persona ANTES da pesquisa</li>
+            <li>❌ Dores genéricas ("quer facilidade")</li>
+            <li>❌ Baseada no próprio perfil do designer</li>
+            <li>❌ Sem frase-chave emocional</li>
+          </ul>
+          <h3 style="margin-top:24px;">✅ Checklist de Qualidade</h3>
+          <ul>
+            <li>✓ Baseada em dados reais (5+ respostas)</li>
+            <li>✓ Dores específicas e observáveis</li>
+            <li>✓ Objetivos viram funcionalidades</li>
+            <li>✓ Frase-chave captura emoção real</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: DO DESIGN AO CÓDIGO -->
+    <section class="slide slide--section" data-title="Do Design ao Código">
+      <h1>🔗 Do Design ao <span class="accent">Código</span></h1>
+      <p class="subtitle">Todo artefato de DCU se transforma em código real nas aplicações Mobile e Web.</p>
+      <p style="margin-top: 24px; font-size: 1.2rem; opacity: 0.9;">A lógica é o fundamento soberano; linguagens e frameworks são apenas sintaxe.</p>
+    </section>
+
+    <!-- SLIDE 7: TABELA ARTEFATO → CÓDIGO -->
+    <section class="slide slide--content" data-title="Artefato → Código">
+      <h2>📊 Do Artefato de Design ao Código</h2>
+      <table>
+        <thead><tr><th>Artefato DCU</th><th>Mobile (Expo/RN)</th><th>Web (HTML/CSS/JS)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Persona</strong></td><td>Funcionalidades prioritárias no App.tsx</td><td>User Stories → rotas da API</td></tr>
+          <tr><td><strong>Jornada</strong></td><td>Fluxo de navegação (react-navigation)</td><td>Sitemap e rotas do frontend</td></tr>
+          <tr><td><strong>Wireframe</strong></td><td>Estrutura dos componentes</td><td>HTML semântico</td></tr>
+          <tr><td><strong>Style Guide</strong></td><td>Arquivo theme.ts (tokens)</td><td>CSS Custom Properties (:root)</td></tr>
+          <tr><td><strong>Protótipo</strong></td><td>Referência pixel-perfect</td><td>Referência para CSS + layout</td></tr>
+          <tr><td><strong>Teste de Usabilidade</strong></td><td>Issues → refatoração de UX</td><td>Ajustes no front com dados</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--warning">
+        <span class="icon">⚠️</span>
+        <span>A MESMA especificação do Figma vira <code>theme.ts</code> no mobile e <code>:root</code> no CSS. O design é UM — a sintaxe se adapta.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: STYLE GUIDE → CÓDIGO (Multi-stack) -->
+    <section class="slide slide--dark" data-title="Style Guide → Código">
+      <h2>🎨 Style Guide → Design Tokens no Código</h2>
+      <div class="code-tabs">
+        <button class="code-tab active">Mobile (Expo/TS)</button>
+        <button class="code-tab">Web (CSS)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript</span>
+          <code>// src/theme/index.ts — Tokens do Style Guide
+export const theme = {
+  colors: {
+    primary: '#2563EB',
+    success: '#10B981',
+    warning: '#F59E0B',
+    error: '#EF4444',
+    background: '#F9FAFB',
+    text: '#111827',
+  },
+  typography: {
+    title: { fontFamily: 'Inter_700Bold', fontSize: 24 },
+    subtitle: { fontFamily: 'Inter_600SemiBold', fontSize: 18 },
+    body: { fontFamily: 'Inter_400Regular', fontSize: 16 },
+  },
+  spacing: { xs: 4, sm: 8, md: 12, lg: 16, xl: 24 },
+  borderRadius: { card: 8, button: 24, input: 8 },
+};</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">CSS</span>
+          <code>/* styles/variables.css — Tokens exportados do Figma */
+:root {
+  --color-primary: #2563EB;
+  --color-success: #10B981;
+  --color-warning: #F59E0B;
+  --color-error: #EF4444;
+  --color-bg: #F9FAFB;
+  --color-text: #111827;
+
+  --font-family: 'Inter', system-ui, sans-serif;
+  --font-title: 700 24px/1.2 var(--font-family);
+  --font-subtitle: 600 18px/1.3 var(--font-family);
+  --font-body: 400 16px/1.5 var(--font-family);
+
+  --space-xs: 4px;  --space-sm: 8px;
+  --space-md: 12px; --space-lg: 16px; --space-xl: 24px;
+  --radius-card: 8px; --radius-button: 24px;
+}</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: COMPONENTE (Multi-stack) -->
+    <section class="slide slide--dark" data-title="Componente: DoctorCard">
+      <h2>🧩 Do Protótipo ao Componente Real</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Mesma spec do Figma → implementação em 2 plataformas</p>
+      <div class="code-tabs">
+        <button class="code-tab active">React Native (Expo)</button>
+        <button class="code-tab">HTML + CSS (Web)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">TSX</span>
+          <code>// src/components/DoctorCard.tsx
+export function DoctorCard({ nome, especialidade, avaliacao, fotoUrl, onPress }) {
+  return (
+    &lt;TouchableOpacity style={styles.card} onPress={onPress}&gt;
+      &lt;Image source={{ uri: fotoUrl }} style={styles.foto} /&gt;
+      &lt;View style={styles.info}&gt;
+        &lt;Text style={styles.nome}&gt;{nome}&lt;/Text&gt;
+        &lt;Text style={styles.especialidade}&gt;{especialidade}&lt;/Text&gt;
+        &lt;Text&gt;⭐ {avaliacao.toFixed(1)}&lt;/Text&gt;
+      &lt;/View&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+}
+// padding: 16px | border-radius: 8px | gap: 12px — DO STYLE GUIDE</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">HTML + CSS</span>
+          <code>&lt;article class="doctor-card"&gt;
+  &lt;img src="foto.jpg" alt="Dr. João" class="doctor-card__foto" /&gt;
+  &lt;div class="doctor-card__info"&gt;
+    &lt;h3 class="doctor-card__nome"&gt;Dr. João Silva&lt;/h3&gt;
+    &lt;p class="doctor-card__especialidade"&gt;Cardiologia&lt;/p&gt;
+    &lt;span&gt;⭐ 4.8&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+/* CSS: mesmas specs do Figma */
+.doctor-card {
+  display: flex; padding: var(--space-lg); /* 16px */
+  border-radius: var(--radius-card);       /* 8px */
+  gap: var(--space-md);                    /* 12px */
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: TESTE DE USABILIDADE -->
+    <section class="slide slide--content" data-title="Teste de Usabilidade">
+      <h2>🧪 Teste de Usabilidade</h2>
+      <div class="columns">
+        <div>
+          <h3>Script do Moderador</h3>
+          <ol>
+            <li><strong>Introdução (2 min):</strong> "Não testamos você — testamos o design."</li>
+            <li><strong>Tarefas (15 min):</strong> 5 tarefas específicas</li>
+            <li><strong>Pós-teste (5 min):</strong> Escala 1-5 + "o que mudaria?"</li>
+          </ol>
+          <h3 style="margin-top:20px;">5 Tarefas de Teste</h3>
+          <ol>
+            <li>Agendar consulta com cardiologista</li>
+            <li>Cancelar essa consulta</li>
+            <li>Encontrar histórico de consultas</li>
+            <li>Trocar foto de perfil</li>
+            <li>Encontrar médico pelo convênio</li>
+          </ol>
+        </div>
+        <div>
+          <h3>📊 Métricas</h3>
+          <table>
+            <thead><tr><th>Métrica</th><th>Meta</th></tr></thead>
+            <tbody>
+              <tr><td>Taxa de sucesso</td><td>≥ 80%</td></tr>
+              <tr><td>Tempo na tarefa</td><td>&lt; 30s (simples)</td></tr>
+              <tr><td>Erros por tarefa</td><td>≤ 1</td></tr>
+              <tr><td>SUS Score</td><td>≥ 68 pontos</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:16px;">
+            <span class="icon">💡</span>
+            <span>Testar com 5 usuários encontra 85% dos problemas (Jakob Nielsen).</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Pesquisa de Usuário</td><td>Google Forms (8 perguntas, 5 respostas)</td></tr>
+          <tr><td>🟢 Fácil</td><td>Persona Baseada em Dados</td><td>Ficha completa da persona primária</td></tr>
+          <tr><td>🟡 Médio</td><td>Benchmarking</td><td>Tabela comparativa de 3 apps</td></tr>
+          <tr><td>🟡 Médio</td><td>Mapa de Jornada</td><td>Jornada 5 etapas com oportunidades</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Protótipo Navegável</td><td>5+ telas Figma linkadas + Style Guide</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Projeto Intermediário (30%) + Projeto Final (40%) + Prova (30%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: PROJETOS -->
+    <section class="slide slide--accent" data-title="Projetos">
+      <h2>🚀 Projetos Hands-on</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Projeto Intermediário (Sem 1-10)</h3>
+          <p><strong>Valor:</strong> 30% da nota</p>
+          <ul>
+            <li>Formulário de Pesquisa</li>
+            <li>Relatório de Insights</li>
+            <li>Persona Primária + Secundária</li>
+            <li>Benchmarking (3 apps)</li>
+            <li>Mapa de Jornada</li>
+            <li>10 User Stories priorizadas</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Projeto Final (Sem 11-20)</h3>
+          <p><strong>Valor:</strong> 40% da nota</p>
+          <ul>
+            <li>Style Guide completo</li>
+            <li>Protótipo alta fidelidade (8+ telas)</li>
+            <li>Checklist de Acessibilidade</li>
+            <li>Teste de Usabilidade (3+ pessoas)</li>
+            <li>Protótipo v2 (iterado)</li>
+            <li><strong>design-to-code.md</strong> (obrigatório!)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Plano de Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <p style="color:#94A3B8;">Se o lab estiver indisponível, a aula NÃO para. Escolha uma opção:</p>
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>📱 Opção A: BYOD</h3>
+          <p><strong>Apps no celular:</strong></p>
+          <ul>
+            <li>Figma Mobile</li>
+            <li>Canva</li>
+            <li>Miro</li>
+            <li>Google Forms</li>
+            <li>Marvel App (foto → protótipo)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Opção B: Desplugada</h3>
+          <p><strong>Com papel e caneta:</strong></p>
+          <ul>
+            <li>Entrevista ao vivo (duplas)</li>
+            <li>Persona em cartolina</li>
+            <li>Wireframe no papel quadriculado</li>
+            <li>Style Guide com lápis de cor</li>
+            <li>Teste com protótipo de papel</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Opção C: PBL</h3>
+          <p><strong>Estudos de caso:</strong></p>
+          <ul>
+            <li>Redesign do Nubank</li>
+            <li>iFood vs 99Food (debate)</li>
+            <li>Análise heurística de código impresso</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.9rem; color:#94A3B8;">Mesmos critérios de avaliação!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: RECURSOS -->
+    <section class="slide slide--content" data-title="Recursos Gratuitos">
+      <h2>📚 Referências e Recursos Gratuitos</h2>
+      <div class="columns">
+        <div>
+          <h3>📖 Livros & Docs</h3>
+          <ul>
+            <li><strong>"Don't Make Me Think"</strong> — Steve Krug</li>
+            <li><strong>"Design do Dia a Dia"</strong> — Don Norman</li>
+            <li>Material Design 3 — Google</li>
+            <li>WCAG 2.1 — W3C</li>
+            <li>Laws of UX — lawsofux.com</li>
+          </ul>
+          <h3 style="margin-top:20px;">🎓 Cursos Gratuitos</h3>
+          <ul>
+            <li>Google UX Design (Coursera)</li>
+            <li>Figma para Iniciantes (YouTube)</li>
+            <li>Acessibilidade Digital (Gov.br)</li>
+          </ul>
+        </div>
+        <div>
+          <h3>🛠️ Ferramentas</h3>
+          <ul>
+            <li><strong>Figma</strong> — Prototipação (grátis para estudantes)</li>
+            <li><strong>Maze</strong> — Testes de usabilidade</li>
+            <li><strong>Contrast Checker</strong> — Acessibilidade de cores</li>
+            <li><strong>Coolors</strong> — Gerador de paletas</li>
+            <li><strong>Phosphor Icons</strong> — Ícones open source</li>
+            <li><strong>unDraw</strong> — Ilustrações SVG</li>
+          </ul>
+          <h3 style="margin-top:20px;">🎥 YouTube</h3>
+          <ul>
+            <li>Figma (oficial)</li>
+            <li>Mergo (PT-BR)</li>
+            <li>UX Unicórnio (PT-BR)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Projeto Intermediário</td><td>30%</td><td>10</td></tr>
+            <tr><td>Projeto Final + design-to-code</td><td>40%</td><td>19-20</td></tr>
+            <tr><td>Prova Regimental</td><td>30%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Design sem pesquisa é decoração. Design com pesquisa é solução."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 15</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

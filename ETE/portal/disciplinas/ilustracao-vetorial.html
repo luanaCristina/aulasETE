@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ilustração Vetorial — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+
+  <nav class="sidebar">
+    <h3>📚 Ilustração Vetorial</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>✏️ Ilustração <span class="accent">Vetorial</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — Módulo 2 — 40h</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Vetores são matemática que vira arte — escaláveis ao infinito sem perder qualidade."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: VETOR VS RASTER -->
+    <section class="slide slide--content" data-title="Vetor vs Raster">
+      <h2>🔍 Vetor vs. Raster — Qual a Diferença?</h2>
+      <p>Entender a diferença fundamental entre imagens vetoriais e bitmap é o primeiro passo.</p>
+
+      <table>
+        <thead><tr><th>Critério</th><th>Vetor (SVG, AI)</th><th>Raster (PNG, JPG)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Composição</strong></td><td>Fórmulas matemáticas (pontos, curvas)</td><td>Grade de pixels coloridos</td></tr>
+          <tr><td><strong>Escala</strong></td><td>♾️ Sem perda de qualidade</td><td>❌ Pixela ao ampliar</td></tr>
+          <tr><td><strong>Tamanho de arquivo</strong></td><td>Leve (formas simples)</td><td>Pesado (muitos pixels)</td></tr>
+          <tr><td><strong>Ideal para</strong></td><td>Ícones, logos, UI, animações</td><td>Fotos, texturas complexas</td></tr>
+          <tr><td><strong>Editabilidade</strong></td><td>Cada elemento é um objeto</td><td>Pixels individuais</td></tr>
+          <tr><td><strong>Ferramentas</strong></td><td>Inkscape, Figma, Illustrator</td><td>GIMP, Photoshop, Canva</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--tip">
+        <span class="icon">💡</span>
+        <span><strong>Regra prática:</strong> Se a imagem é feita de formas geométricas e precisa escalar → Vetor. Se é uma foto real com milhões de cores → Raster.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Fundamentos: Vetor vs Raster</td><td>Exercício comparativo</td></tr>
+          <tr><td>3-4</td><td>Inkscape — Interface e Ferramentas</td><td>3 ícones básicos</td></tr>
+          <tr><td>5-6</td><td>Princípios: Geometria e Grid</td><td>Ícone em grid 24x24</td></tr>
+          <tr><td>7-8</td><td>Curvas Bézier e Paths</td><td>Ilustração com paths</td></tr>
+          <tr><td>9</td><td>Cores, Gradientes e Acessibilidade</td><td>Paleta + contraste WCAG</td></tr>
+          <tr><td>10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Set de 5 ícones (Inkscape)</td></tr>
+          <tr><td>11-12</td><td>Figma — Componentes vetoriais</td><td>Ícones como components no Figma</td></tr>
+          <tr><td>13-14</td><td>SVG no Código (HTML, React Native)</td><td>Ícones implementados no código</td></tr>
+          <tr><td>15-16</td><td>Animação SVG (CSS + Lottie)</td><td>2 ícones animados</td></tr>
+          <tr><td>17-18</td><td>Projeto Icon Set — AgendaPro</td><td>12 ícones + documentação</td></tr>
+          <tr><td>19</td><td>Exportação e Otimização</td><td>SVG otimizado (SVGO)</td></tr>
+          <tr><td>20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Portfólio vetorial completo</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: FERRAMENTAS -->
+    <section class="slide slide--content" data-title="Ferramentas">
+      <h2>🛠️ Ferramentas — Inkscape & Figma</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🖊️ Inkscape (Desktop)</h3>
+          <ul>
+            <li><strong>Gratuito</strong> e open source</li>
+            <li>Melhor para SVG detalhado</li>
+            <li>Paths avançados e Bézier</li>
+            <li>Exportação SVG limpa</li>
+            <li>Ideal para ilustrações complexas</li>
+          </ul>
+          <p style="margin-top:12px; color:var(--text-light);">📥 Download: inkscape.org</p>
+        </div>
+        <div class="card">
+          <h3>🎨 Figma (Web/Desktop)</h3>
+          <ul>
+            <li><strong>Gratuito</strong> para estudantes</li>
+            <li>Colaboração em tempo real</li>
+            <li>Componentes reutilizáveis</li>
+            <li>Auto-layout e variantes</li>
+            <li>Exportação multi-formato</li>
+          </ul>
+          <p style="margin-top:12px; color:var(--text-light);">🌐 Acesso: figma.com (navegador)</p>
+        </div>
+      </div>
+
+      <div class="callout callout--info" style="margin-top:20px;">
+        <span class="icon">🎯</span>
+        <span><strong>Na prática:</strong> Use Inkscape para criar SVGs detalhados → importe no Figma para montar o design system → exporte para o código.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: PRINCÍPIOS DE DESIGN -->
+    <section class="slide slide--dark" data-title="Princípios de Design">
+      <h2>📐 Princípios — Geometria e Grid</h2>
+      <p>Todo ícone profissional começa com um <strong>grid base</strong> e formas geométricas simples.</p>
+
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>📏 Grid de Ícones (24x24)</h3>
+          <ul>
+            <li><strong>Live area:</strong> 20x20px (centro)</li>
+            <li><strong>Padding:</strong> 2px em cada lado</li>
+            <li><strong>Stroke:</strong> 2px consistente</li>
+            <li><strong>Cantos:</strong> Border-radius 2px</li>
+            <li><strong>Ângulos:</strong> 45° ou 90° preferíveis</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🔷 Formas Primitivas</h3>
+          <ul>
+            <li>Círculo → Perfil, notificação</li>
+            <li>Quadrado → Card, calendário</li>
+            <li>Triângulo → Play, setas</li>
+            <li>Retângulo → Listas, menus</li>
+            <li>Combinações → Complexidade</li>
+          </ul>
+          <p style="margin-top:12px; font-style:italic; color:#93C5FD;">"Simplifique até não poder remover mais nada."</p>
+        </div>
+      </div>
+
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Consistência:</strong> Todos os ícones de um set devem usar o MESMO grid, peso de stroke e estilo (outline ou filled).</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: SVG NO CÓDIGO -->
+    <section class="slide slide--dark" data-title="SVG no Código">
+      <h2>💻 SVG no Código — Multi-Stack</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">O mesmo ícone vetorial implementado em diferentes contextos</p>
+      <div class="code-tabs">
+        <button class="code-tab active">SVG Inline (HTML)</button>
+        <button class="code-tab">React Native SVG</button>
+        <button class="code-tab">CSS Background</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">HTML</span>
+          <code>&lt;!-- Ícone de calendário inline no HTML --&gt;
+&lt;svg width="24" height="24" viewBox="0 0 24 24"
+     fill="none" stroke="currentColor" stroke-width="2"
+     stroke-linecap="round" stroke-linejoin="round"&gt;
+  &lt;rect x="3" y="4" width="18" height="18" rx="2" /&gt;
+  &lt;line x1="16" y1="2" x2="16" y2="6" /&gt;
+  &lt;line x1="8" y1="2" x2="8" y2="6" /&gt;
+  &lt;line x1="3" y1="10" x2="21" y2="10" /&gt;
+&lt;/svg&gt;
+
+&lt;!-- Vantagem: cor herda via CSS (currentColor) --&gt;
+&lt;style&gt;
+  svg { color: #2563EB; transition: color 0.2s; }
+  svg:hover { color: #1D4ED8; }
+&lt;/style&gt;</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TSX</span>
+          <code>// components/icons/CalendarIcon.tsx
+import Svg, { Rect, Line } from 'react-native-svg';
+
+export function CalendarIcon({ size = 24, color = '#2563EB' }) {
+  return (
+    &lt;Svg width={size} height={size} viewBox="0 0 24 24"
+         fill="none" stroke={color} strokeWidth={2}
+         strokeLinecap="round" strokeLinejoin="round"&gt;
+      &lt;Rect x={3} y={4} width={18} height={18} rx={2} /&gt;
+      &lt;Line x1={16} y1={2} x2={16} y2={6} /&gt;
+      &lt;Line x1={8} y1={2} x2={8} y2={6} /&gt;
+      &lt;Line x1={3} y1={10} x2={21} y2={10} /&gt;
+    &lt;/Svg&gt;
+  );
+}
+
+// Uso: &lt;CalendarIcon size={32} color="#10B981" /&gt;</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">CSS</span>
+          <code>/* Ícone como background SVG encodado */
+.btn-calendar::before {
+  content: '';
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%232563EB' stroke-width='2'%3E%3Crect x='3' y='4' width='18' height='18' rx='2'/%3E%3Cline x1='16' y1='2' x2='16' y2='6'/%3E%3Cline x1='8' y1='2' x2='8' y2='6'/%3E%3Cline x1='3' y1='10' x2='21' y2='10'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* Limitação: cor fixa no SVG encodado (não herda) */</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Recriar 3 ícones do Material Icons</td><td>SVG no Inkscape (export .svg)</td></tr>
+          <tr><td>🟢 Fácil</td><td>Converter raster → vetor (trace)</td><td>Logo vetorizada</td></tr>
+          <tr><td>🟡 Médio</td><td>Criar ícone no grid 24x24</td><td>Ícone original + screenshot do grid</td></tr>
+          <tr><td>🟡 Médio</td><td>Implementar SVG inline no HTML</td><td>Página com 5 ícones interativos</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Icon set completo (8 ícones)</td><td>Figma + código + documentação</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Projeto Intermediário (30%) + Projeto Final Icon Set (40%) + Prova (30%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: PROJETO -->
+    <section class="slide slide--accent" data-title="Projeto: Icon Set AgendaPro">
+      <h2>🚀 Projeto Final — Icon Set AgendaPro</h2>
+      <p>Criar um set de ícones vetoriais profissional para o app AgendaPro.</p>
+      <div class="columns" style="margin-top:20px;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📋 Requisitos</h3>
+          <ul>
+            <li>12 ícones mínimo (grid 24x24)</li>
+            <li>Estilo consistente (outline 2px)</li>
+            <li>Paleta de cores do AgendaPro</li>
+            <li>Versão light + dark mode</li>
+            <li>SVG otimizado (SVGO)</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Entregáveis</h3>
+          <ul>
+            <li>Arquivo Figma com components</li>
+            <li>Pasta SVG exportada e otimizada</li>
+            <li>Componente React Native (1 ícone)</li>
+            <li>Página HTML de showcase</li>
+            <li>README com guia de uso</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:20px;">
+        <span class="icon">💡</span>
+        <span><strong>Ícones obrigatórios:</strong> Home, Calendar, User, Search, Bell, Settings, Plus, Heart, Clock, Check, X, Menu</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <p style="color:#94A3B8;">Se o lab estiver indisponível, a aula NÃO para.</p>
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>📱 Opção A: BYOD</h3>
+          <ul>
+            <li>Figma no navegador (celular)</li>
+            <li>Vectornator (iPad/iPhone)</li>
+            <li>Boxy SVG (Chromebook)</li>
+            <li>SVG Edit online</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Opção B: Desplugada</h3>
+          <ul>
+            <li>Desenho em grid no papel</li>
+            <li>Exercício de simplificação</li>
+            <li>Análise de ícones impressos</li>
+            <li>Redesign no papel quadriculado</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Opção C: Teórica</h3>
+          <ul>
+            <li>Análise de icon sets famosos</li>
+            <li>Estudo de caso: Material Icons</li>
+            <li>Debate: Flat vs Skeuomorphic</li>
+            <li>Quiz de princípios vetoriais</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo da Disciplina</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Projeto Intermediário (5 ícones)</td><td>30%</td><td>10</td></tr>
+            <tr><td>Projeto Final (Icon Set AgendaPro)</td><td>40%</td><td>18-20</td></tr>
+            <tr><td>Prova Regimental</td><td>30%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Um bom ícone comunica em milissegundos o que palavras levam segundos para dizer."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 10</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programação Web HTML/CSS/JS — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar">
+    <h3>📚 Programação Web HTML/CSS/JS</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🌐 Programação Web<br><span class="accent">HTML / CSS / JS</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 160h — Módulo 2</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"A web é a plataforma mais democrática do mundo — qualquer pessoa com um navegador acessa seu trabalho."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: EMENTA E COMPETÊNCIAS -->
+    <section class="slide slide--content" data-title="Ementa e Competências">
+      <h2>📋 Ementa e Competências</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📖 Ementa</h3>
+          <ul>
+            <li>HTML5 semântico e acessibilidade</li>
+            <li>CSS3: Box Model, Flexbox, Grid</li>
+            <li>Responsividade (Mobile First)</li>
+            <li>JavaScript: DOM, eventos, fetch API</li>
+            <li>Integração com APIs REST</li>
+            <li>Projeto: Landing Page + Dashboard</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎯 Competências</h3>
+          <ul>
+            <li>Criar páginas semânticas e acessíveis</li>
+            <li>Estilizar layouts responsivos com CSS moderno</li>
+            <li>Manipular DOM com JavaScript vanilla</li>
+            <li>Consumir e exibir dados de APIs</li>
+            <li>Publicar sites (GitHub Pages / Vercel)</li>
+            <li>Comparar abordagens Multi-Stack</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas (160h)</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>HTML5 Semântico + Acessibilidade</td><td>Página com tags semânticas</td></tr>
+          <tr><td>3-4</td><td>CSS3: Box Model + Flexbox</td><td>Layout de cards responsivo</td></tr>
+          <tr><td>5-6</td><td>CSS Grid + Media Queries</td><td>Layout 3 colunas adaptável</td></tr>
+          <tr><td>7-8</td><td>JavaScript: DOM + Eventos</td><td>Página interativa com JS</td></tr>
+          <tr><td>9-10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Landing Page completa</td></tr>
+          <tr><td>11-12</td><td>JS Avançado: Arrays, Objetos, Fetch</td><td>App consumindo API pública</td></tr>
+          <tr><td>13-14</td><td>Integração com Backend (REST)</td><td>CRUD frontend conectado</td></tr>
+          <tr><td>15-16</td><td>Projeto Dashboard</td><td>Dashboard com gráficos + dados</td></tr>
+          <tr><td>17-18</td><td>Publicação + Performance</td><td>Site publicado (GitHub Pages)</td></tr>
+          <tr><td>19-20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Projeto Final + Apresentação</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: HTML5 SEMÂNTICO -->
+    <section class="slide slide--content" data-title="HTML5 Semântico">
+      <h2>🏗️ HTML5 Semântico</h2>
+      <p>Tags semânticas dão <strong>significado</strong> ao conteúdo — melhoram SEO, acessibilidade e manutenção.</p>
+      <div class="columns">
+        <div>
+          <h3>❌ HTML genérico</h3>
+          <div class="code-block">
+            <span class="lang-badge">HTML</span>
+            <code>&lt;div class="header"&gt;
+  &lt;div class="nav"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="main"&gt;
+  &lt;div class="article"&gt;...&lt;/div&gt;
+  &lt;div class="sidebar"&gt;...&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="footer"&gt;...&lt;/div&gt;</code>
+          </div>
+        </div>
+        <div>
+          <h3>✅ HTML semântico</h3>
+          <div class="code-block">
+            <span class="lang-badge">HTML</span>
+            <code>&lt;header&gt;
+  &lt;nav&gt;...&lt;/nav&gt;
+&lt;/header&gt;
+&lt;main&gt;
+  &lt;article&gt;...&lt;/article&gt;
+  &lt;aside&gt;...&lt;/aside&gt;
+&lt;/main&gt;
+&lt;footer&gt;...&lt;/footer&gt;</code>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Regra de ouro:</strong> Se existe uma tag HTML com o significado que você quer, use-a em vez de &lt;div&gt;.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: CSS3 BOX MODEL + FLEXBOX -->
+    <section class="slide slide--content" data-title="CSS3: Box Model e Flexbox">
+      <h2>📦 CSS3 — Box Model e Flexbox</h2>
+      <div class="columns">
+        <div>
+          <h3>Box Model</h3>
+          <div class="code-block">
+            <span class="lang-badge">CSS</span>
+            <code>/* Todo elemento é uma CAIXA */
+.card {
+  /* Conteúdo */
+  width: 300px;
+  /* Espaço interno */
+  padding: 16px;
+  /* Borda */
+  border: 1px solid #e5e7eb;
+  /* Espaço externo */
+  margin: 12px;
+  /* Truque: padding não soma na width */
+  box-sizing: border-box;
+}</code>
+          </div>
+        </div>
+        <div>
+          <h3>Flexbox (1 direção)</h3>
+          <div class="code-block">
+            <span class="lang-badge">CSS</span>
+            <code>/* Container flex */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+/* Cards lado a lado */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.card {
+  flex: 1 1 300px; /* cresce, encolhe, base */
+}</code>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout--warning" style="margin-top:12px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Sempre use <code>box-sizing: border-box</code>!</strong> Sem isso, padding e border somam na largura total.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: CSS GRID E RESPONSIVIDADE -->
+    <section class="slide slide--content" data-title="CSS Grid e Responsividade">
+      <h2>📐 CSS Grid e Responsividade</h2>
+      <div class="columns">
+        <div>
+          <h3>CSS Grid (2 direções)</h3>
+          <div class="code-block">
+            <span class="lang-badge">CSS</span>
+            <code>/* Layout de dashboard */
+.dashboard {
+  display: grid;
+  grid-template-columns: 250px 1fr;
+  grid-template-rows: 60px 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar content";
+  min-height: 100vh;
+}
+.header  { grid-area: header; }
+.sidebar { grid-area: sidebar; }
+.content { grid-area: content; }</code>
+          </div>
+        </div>
+        <div>
+          <h3>📱 Mobile First</h3>
+          <div class="code-block">
+            <span class="lang-badge">CSS</span>
+            <code>/* Base: mobile (1 coluna) */
+.grid-cards {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+/* Tablet: 2 colunas */
+@media (min-width: 768px) {
+  .grid-cards {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop: 3 colunas */
+@media (min-width: 1024px) {
+  .grid-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: JAVASCRIPT DOM -->
+    <section class="slide slide--content" data-title="JavaScript DOM">
+      <h2>🧠 JavaScript — Manipulação do DOM</h2>
+      <p>O DOM (Document Object Model) é a representação da página HTML como objetos JavaScript.</p>
+      <div class="columns">
+        <div>
+          <h3>Seleção de Elementos</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>// Seleção moderna
+const titulo = document.querySelector('h1');
+const cards = document.querySelectorAll('.card');
+const form = document.getElementById('meuForm');
+
+// Modificar conteúdo
+titulo.textContent = 'Novo Título';
+titulo.style.color = '#2563EB';
+
+// Criar elementos
+const novoCard = document.createElement('div');
+novoCard.classList.add('card');
+novoCard.innerHTML = `
+  &lt;h3&gt;Novo Card&lt;/h3&gt;
+  &lt;p&gt;Conteúdo dinâmico&lt;/p&gt;
+`;
+document.querySelector('.container')
+  .appendChild(novoCard);</code>
+          </div>
+        </div>
+        <div>
+          <h3>Template Literals</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>// Renderizar lista de dados
+const alunos = [
+  { nome: 'Ana', nota: 9.2 },
+  { nome: 'João', nota: 7.5 },
+  { nome: 'Maria', nota: 8.8 }
+];
+
+const listaHTML = alunos.map(aluno => `
+  &lt;li class="aluno-item"&gt;
+    &lt;span&gt;${aluno.nome}&lt;/span&gt;
+    &lt;span class="nota"&gt;${aluno.nota}&lt;/span&gt;
+  &lt;/li&gt;
+`).join('');
+
+document.querySelector('.lista-alunos')
+  .innerHTML = listaHTML;</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: EVENTOS E INTERATIVIDADE -->
+    <section class="slide slide--content" data-title="Eventos e Interatividade">
+      <h2>🖱️ Eventos e Interatividade</h2>
+      <div class="columns">
+        <div>
+          <h3>Event Listeners</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>// Formulário de busca
+const form = document.querySelector('#busca');
+const input = document.querySelector('#termo');
+const resultado = document.querySelector('#resultado');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const termo = input.value.trim();
+
+  if (!termo) {
+    resultado.textContent = 'Digite algo!';
+    return;
+  }
+
+  resultado.innerHTML = `
+    Buscando: &lt;strong&gt;${termo}&lt;/strong&gt;...
+  `;
+  buscarDados(termo);
+});</code>
+          </div>
+        </div>
+        <div>
+          <h3>Eventos Comuns</h3>
+          <table>
+            <thead><tr><th>Evento</th><th>Quando dispara</th></tr></thead>
+            <tbody>
+              <tr><td><code>click</code></td><td>Clique no elemento</td></tr>
+              <tr><td><code>submit</code></td><td>Envio de formulário</td></tr>
+              <tr><td><code>input</code></td><td>Digitação em campo</td></tr>
+              <tr><td><code>keydown</code></td><td>Tecla pressionada</td></tr>
+              <tr><td><code>change</code></td><td>Valor alterado (select)</td></tr>
+              <tr><td><code>DOMContentLoaded</code></td><td>HTML carregado</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><code>e.preventDefault()</code> impede o comportamento padrão (ex: recarregar página no submit).</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: MULTI-STACK (code-tabs) -->
+    <section class="slide slide--dark" data-title="Multi-Stack: Componente">
+      <h2>🔀 Mesmo Componente — 3 Plataformas</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Card de produto implementado em HTML/CSS, React Native e TypeScript</p>
+      <div class="code-tabs">
+        <button class="code-tab active">HTML + CSS (Web)</button>
+        <button class="code-tab">React Native (Expo)</button>
+        <button class="code-tab">TypeScript (Tipado)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">HTML + CSS</span>
+          <code>&lt;article class="product-card"&gt;
+  &lt;img src="produto.jpg" alt="Tênis Nike" /&gt;
+  &lt;div class="product-card__body"&gt;
+    &lt;h3&gt;Tênis Nike Air&lt;/h3&gt;
+    &lt;p class="price"&gt;R$ 299,90&lt;/p&gt;
+    &lt;button class="btn-primary"&gt;Comprar&lt;/button&gt;
+  &lt;/div&gt;
+&lt;/article&gt;
+
+&lt;style&gt;
+.product-card {
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.07);
+  overflow: hidden;
+}
+.product-card img { width: 100%; height: 200px; object-fit: cover; }
+.product-card__body { padding: 16px; }
+.price { font-size: 1.25rem; font-weight: 700; color: #10B981; }
+&lt;/style&gt;</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TSX</span>
+          <code>// ProductCard.tsx (React Native / Expo)
+import { View, Image, Text, TouchableOpacity, StyleSheet } from 'react-native';
+
+export function ProductCard({ nome, preco, imagemUrl, onComprar }) {
+  return (
+    &lt;View style={styles.card}&gt;
+      &lt;Image source={{ uri: imagemUrl }} style={styles.imagem} /&gt;
+      &lt;View style={styles.body}&gt;
+        &lt;Text style={styles.nome}&gt;{nome}&lt;/Text&gt;
+        &lt;Text style={styles.preco}&gt;R$ {preco.toFixed(2)}&lt;/Text&gt;
+        &lt;TouchableOpacity style={styles.btn} onPress={onComprar}&gt;
+          &lt;Text style={styles.btnText}&gt;Comprar&lt;/Text&gt;
+        &lt;/TouchableOpacity&gt;
+      &lt;/View&gt;
+    &lt;/View&gt;
+  );
+}</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript</span>
+          <code>// types/Product.ts — Interface tipada
+interface Product {
+  id: string;
+  nome: string;
+  preco: number;
+  imagemUrl: string;
+  estoque: number;
+}
+
+// Função de renderização tipada
+function renderProductCard(product: Product): string {
+  return `
+    &lt;article class="product-card"&gt;
+      &lt;img src="${product.imagemUrl}" alt="${product.nome}" /&gt;
+      &lt;div class="product-card__body"&gt;
+        &lt;h3&gt;${product.nome}&lt;/h3&gt;
+        &lt;p class="price"&gt;R$ ${product.preco.toFixed(2)}&lt;/p&gt;
+        &lt;span class="stock"&gt;${product.estoque} disponíveis&lt;/span&gt;
+      &lt;/div&gt;
+    &lt;/article&gt;
+  `;
+}</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: FETCH API -->
+    <section class="slide slide--content" data-title="Fetch API e Integração">
+      <h2>🔌 Fetch API — Consumindo Dados</h2>
+      <div class="columns">
+        <div>
+          <h3>GET — Buscar dados</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>// Buscar lista de produtos da API
+async function carregarProdutos() {
+  try {
+    const response = await fetch('/api/produtos');
+    if (!response.ok) throw new Error('Erro na API');
+
+    const produtos = await response.json();
+    renderizarLista(produtos);
+  } catch (error) {
+    exibirErro('Falha ao carregar produtos');
+  }
+}
+
+function renderizarLista(produtos) {
+  const html = produtos.map(p => `
+    &lt;div class="card"&gt;${p.nome} — R$${p.preco}&lt;/div&gt;
+  `).join('');
+  document.querySelector('#lista').innerHTML = html;
+}</code>
+          </div>
+        </div>
+        <div>
+          <h3>POST — Enviar dados</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>// Cadastrar novo produto
+async function cadastrarProduto(dados) {
+  const response = await fetch('/api/produtos', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(dados)
+  });
+
+  if (response.ok) {
+    const novo = await response.json();
+    alert(`Produto ${novo.nome} criado!`);
+    carregarProdutos(); // atualiza lista
+  }
+}
+
+// Uso no formulário
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  cadastrarProduto({ nome, preco });
+});</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Página Pessoal Semântica</td><td>HTML5 com header, main, footer, nav</td></tr>
+          <tr><td>🟢 Fácil</td><td>Galeria de Cards (Flexbox)</td><td>6 cards responsivos com imagem</td></tr>
+          <tr><td>🟡 Médio</td><td>Layout Dashboard (Grid)</td><td>Sidebar + header + conteúdo grid</td></tr>
+          <tr><td>🟡 Médio</td><td>Todo List com JS</td><td>CRUD de tarefas com localStorage</td></tr>
+          <tr><td>🔴 Desafiador</td><td>App de Clima (Fetch API)</td><td>Consulta API externa + exibe dados</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Exercícios (15%) + Landing Page (25%) + Dashboard Final (40%) + Prova (20%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: PROJETO LANDING PAGE -->
+    <section class="slide slide--accent" data-title="Projeto Landing Page">
+      <h2>🚀 Projeto Intermediário — Landing Page</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Requisitos</h3>
+          <ul>
+            <li>Tema: produto/serviço fictício (ou real)</li>
+            <li>Mínimo 5 seções (hero, features, sobre, depoimentos, contato)</li>
+            <li>100% responsivo (mobile + desktop)</li>
+            <li>HTML semântico (validador W3C)</li>
+            <li>Animações CSS (transitions/animations)</li>
+            <li>Formulário funcional (validação JS)</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>🛠️ Tecnologias</h3>
+          <ul>
+            <li>HTML5 + CSS3 (sem frameworks)</li>
+            <li>JavaScript vanilla</li>
+            <li>Google Fonts + ícones (Phosphor/Lucide)</li>
+            <li>Publicação: GitHub Pages</li>
+          </ul>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Bônus:</strong> +1 ponto se tiver dark mode toggle com JS.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: PROJETO FINAL DASHBOARD -->
+    <section class="slide slide--accent" data-title="Projeto Final: Dashboard">
+      <h2>🚀 Projeto Final — Dashboard Interativo</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Requisitos Funcionais</h3>
+          <ul>
+            <li>Consumir API REST (própria ou pública)</li>
+            <li>Exibir dados em tabela dinâmica</li>
+            <li>Filtros e busca em tempo real</li>
+            <li>Gráficos (Chart.js ou similar)</li>
+            <li>CRUD completo no frontend</li>
+            <li>Estado: loading, erro, vazio, sucesso</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>🛠️ Requisitos Técnicos</h3>
+          <ul>
+            <li>JavaScript modular (módulos ES6)</li>
+            <li>Fetch API com async/await</li>
+            <li>CSS Grid para layout do dashboard</li>
+            <li>Responsivo (funciona no celular)</li>
+            <li>Tratamento de erros gracioso</li>
+            <li>README.md com instruções</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <div class="columns columns--3">
+        <div class="card">
+          <h3>📱 Opção A: Online</h3>
+          <ul>
+            <li><strong>CodePen</strong> — HTML/CSS/JS no navegador</li>
+            <li><strong>Replit</strong> — Ambiente completo</li>
+            <li><strong>StackBlitz</strong> — IDE web</li>
+            <li><strong>Celular:</strong> Spck Editor</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Opção B: Desplugada</h3>
+          <ul>
+            <li>Wireframes no papel quadriculado</li>
+            <li>Escrever HTML/CSS no caderno</li>
+            <li>Análise heurística de sites impressos</li>
+            <li>Quiz de seletores CSS</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Opção C: PBL</h3>
+          <ul>
+            <li>Redesign de site real (análise crítica)</li>
+            <li>Comparar layouts (Flexbox vs Grid)</li>
+            <li>Acessibilidade: auditar sites reais</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Exercícios contínuos</td><td>15%</td><td>Contínuo</td></tr>
+            <tr><td>Landing Page</td><td>25%</td><td>9-10</td></tr>
+            <tr><td>Dashboard Final</td><td>40%</td><td>17-18</td></tr>
+            <tr><td>Prova Regimental</td><td>20%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"HTML é o esqueleto, CSS é a pele, JavaScript é o cérebro. Juntos, criam experiências incríveis."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 15</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Edição de Imagens — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar">
+    <h3>📚 Edição de Imagens</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🖼️ Edição de<br><span class="accent">Imagens</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 40h — Módulo 2</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Uma interface bonita sem assets de qualidade é como um carro de luxo com pintura descascada."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: FUNDAMENTOS -->
+    <section class="slide slide--content" data-title="Fundamentos Visuais">
+      <h2>🎨 Fundamentos de Composição Visual</h2>
+      <div class="columns columns--3">
+        <div class="card">
+          <h3>📐 Regra dos Terços</h3>
+          <p>Divida a imagem em 9 quadrantes iguais. Posicione elementos importantes nas <strong>intersecções</strong> das linhas.</p>
+          <ul>
+            <li>Guia o olhar do observador</li>
+            <li>Cria dinamismo (evita centralizar tudo)</li>
+            <li>Funciona em fotos, UI e banners</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎨 Teoria das Cores</h3>
+          <ul>
+            <li><strong>RGB:</strong> Telas (luz aditiva)</li>
+            <li><strong>CMYK:</strong> Impressão (tinta subtrativa)</li>
+            <li><strong>HSL:</strong> Mais intuitivo para ajustes</li>
+            <li><strong>Complementares:</strong> Contraste alto</li>
+            <li><strong>Análogas:</strong> Harmonia suave</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📏 Hierarquia Visual</h3>
+          <ul>
+            <li><strong>Tamanho:</strong> Maior = mais importante</li>
+            <li><strong>Contraste:</strong> Destaca do fundo</li>
+            <li><strong>Espaçamento:</strong> Agrupa relacionados</li>
+            <li><strong>Cor:</strong> Chama atenção para CTAs</li>
+            <li><strong>Tipografia:</strong> Peso define importância</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Conexão com código:</strong> Estes princípios guiam suas escolhas de CSS — padding, font-size, color, layout!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas (40h)</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Fundamentos (composição, cores, tipografia)</td><td>Moodboard digital</td></tr>
+          <tr><td>3-4</td><td>Ferramentas: GIMP e Photopea</td><td>Edição básica (recorte, ajuste, texto)</td></tr>
+          <tr><td>5-6</td><td>Tratamento Fotográfico</td><td>3 fotos tratadas (antes/depois)</td></tr>
+          <tr><td>7-8</td><td>Criação de Assets para UI</td><td>Ícones + avatares + cards</td></tr>
+          <tr><td>9-10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Kit de assets para interface</td></tr>
+          <tr><td>11-12</td><td>Banners e Peças para Redes Sociais</td><td>3 peças (post, story, capa)</td></tr>
+          <tr><td>13-14</td><td>Exportação Otimizada (formatos, tamanhos)</td><td>Assets exportados para 3 plataformas</td></tr>
+          <tr><td>15-16</td><td>Mockups e Apresentação de Projetos</td><td>Mockup de app/site com assets</td></tr>
+          <tr><td>17-18</td><td>Projeto Kit de Assets para AgendaPro</td><td>Kit completo entregue</td></tr>
+          <tr><td>19-20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Apresentação + portfólio visual</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: FERRAMENTAS -->
+    <section class="slide slide--content" data-title="Ferramentas: GIMP e Photopea">
+      <h2>🛠️ Ferramentas de Edição</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🐧 GIMP (Desktop — Gratuito)</h3>
+          <ul>
+            <li><strong>O que é:</strong> Editor profissional open source</li>
+            <li><strong>Forte em:</strong> Tratamento de fotos, composição, pintura digital</li>
+            <li><strong>Extensões:</strong> Scripts Python/Script-Fu</li>
+            <li><strong>Formatos:</strong> PSD, PNG, JPEG, TIFF, XCF</li>
+            <li><strong>Desvantagem:</strong> Interface menos intuitiva</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.9rem;">🔗 gimp.org — Windows, Mac, Linux</p>
+        </div>
+        <div class="card">
+          <h3>🌐 Photopea (Web — Gratuito)</h3>
+          <ul>
+            <li><strong>O que é:</strong> Photoshop online (sem instalar)</li>
+            <li><strong>Forte em:</strong> Edição rápida, compatibilidade PSD</li>
+            <li><strong>Vantagem:</strong> Funciona no navegador (Chromebook!)</li>
+            <li><strong>Formatos:</strong> PSD, XD, Sketch, SVG, PNG</li>
+            <li><strong>Desvantagem:</strong> Precisa de internet</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.9rem;">🔗 photopea.com — Qualquer navegador</p>
+        </div>
+      </div>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Na aula:</strong> Usaremos ambos — GIMP para projetos complexos e Photopea como plano B (funciona sem instalar).</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: TRATAMENTO FOTOGRÁFICO -->
+    <section class="slide slide--content" data-title="Tratamento Fotográfico">
+      <h2>📸 Tratamento Fotográfico</h2>
+      <div class="columns">
+        <div>
+          <h3>Fluxo de Edição (Passo a Passo)</h3>
+          <ol>
+            <li><strong>Crop:</strong> Enquadramento (regra dos terços)</li>
+            <li><strong>Níveis/Curvas:</strong> Ajuste de exposição</li>
+            <li><strong>Balanço de Branco:</strong> Temperatura da cor</li>
+            <li><strong>Saturação:</strong> Vibração das cores</li>
+            <li><strong>Nitidez:</strong> Unsharp Mask (com moderação)</li>
+            <li><strong>Remoção de imperfeições:</strong> Clone/Heal</li>
+            <li><strong>Exportação:</strong> Formato e tamanho adequados</li>
+          </ol>
+        </div>
+        <div>
+          <h3>📏 Formatos e Uso</h3>
+          <table>
+            <thead><tr><th>Formato</th><th>Uso ideal</th><th>Compressão</th></tr></thead>
+            <tbody>
+              <tr><td><strong>JPEG</strong></td><td>Fotos (web/redes)</td><td>Com perda (70-85%)</td></tr>
+              <tr><td><strong>PNG</strong></td><td>Ícones, logos, transparência</td><td>Sem perda</td></tr>
+              <tr><td><strong>WebP</strong></td><td>Web moderna (menor tamanho)</td><td>Com/sem perda</td></tr>
+              <tr><td><strong>SVG</strong></td><td>Ícones vetoriais, logos</td><td>Vetorial (escala ∞)</td></tr>
+              <tr><td><strong>AVIF</strong></td><td>Next-gen web (melhor compressão)</td><td>Com perda</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span><strong>Regra:</strong> Fotos = JPEG/WebP | Transparência = PNG | Ícones = SVG</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: EXPORTAÇÃO DE ASSETS (code-tabs) -->
+    <section class="slide slide--dark" data-title="Exportação de Assets (Multi-Stack)">
+      <h2>📦 Assets no Código — Multi-Stack</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Mesma imagem usada em 3 plataformas com abordagens diferentes</p>
+      <div class="code-tabs">
+        <button class="code-tab active">Web (HTML &lt;img&gt;)</button>
+        <button class="code-tab">React Native (Image)</button>
+        <button class="code-tab">CSS (Background)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">HTML</span>
+          <code>&lt;!-- Imagem responsiva com fallback --&gt;
+&lt;picture&gt;
+  &lt;source srcset="hero-banner.avif" type="image/avif" /&gt;
+  &lt;source srcset="hero-banner.webp" type="image/webp" /&gt;
+  &lt;img
+    src="hero-banner.jpg"
+    alt="Banner do AgendaPro - Agende consultas facilmente"
+    width="1200"
+    height="600"
+    loading="lazy"
+    class="hero-image"
+  /&gt;
+&lt;/picture&gt;
+
+&lt;!-- Ícone SVG inline (permite CSS) --&gt;
+&lt;svg class="icon" width="24" height="24" viewBox="0 0 24 24"&gt;
+  &lt;path d="M12 2L2 7l10 5 10-5-10-5z" fill="currentColor"/&gt;
+&lt;/svg&gt;</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TSX</span>
+          <code>// React Native — Imagem com dimensões
+import { Image, StyleSheet } from 'react-native';
+
+// Asset local (exportado do GIMP/Photopea)
+&lt;Image
+  source={require('../assets/hero-banner.png')}
+  style={styles.heroBanner}
+  resizeMode="cover"
+  accessibilityLabel="Banner do AgendaPro"
+/&gt;
+
+// Asset remoto (CDN)
+&lt;Image
+  source={{ uri: 'https://cdn.app.com/banner.webp' }}
+  style={styles.heroBanner}
+  resizeMode="cover"
+/&gt;
+
+const styles = StyleSheet.create({
+  heroBanner: { width: '100%', height: 200, borderRadius: 12 }
+});</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">CSS</span>
+          <code>/* Background image otimizado */
+.hero-section {
+  background-image:
+    image-set(
+      url('hero-banner.avif') type('image/avif'),
+      url('hero-banner.webp') type('image/webp'),
+      url('hero-banner.jpg') type('image/jpeg')
+    );
+  background-size: cover;
+  background-position: center;
+  min-height: 400px;
+}
+
+/* Ícone como mask (permite colorir via CSS) */
+.icon-calendar {
+  width: 24px;
+  height: 24px;
+  background-color: var(--color-primary);
+  mask-image: url('icons/calendar.svg');
+  mask-size: contain;
+  mask-repeat: no-repeat;
+}</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Recorte e ajuste de foto</td><td>Foto tratada (antes/depois)</td></tr>
+          <tr><td>🟢 Fácil</td><td>Criação de avatar/ícone</td><td>3 ícones em SVG ou PNG transparente</td></tr>
+          <tr><td>🟡 Médio</td><td>Banner para rede social</td><td>Post Instagram + Story (dimensões corretas)</td></tr>
+          <tr><td>🟡 Médio</td><td>Composição com camadas</td><td>Montagem com 3+ camadas (transparência)</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Kit UI completo</td><td>10 assets exportados (ícones + fotos + banners)</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Exercícios (30%) + Kit de Assets para AgendaPro (50%) + Prova Prática (20%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: PROJETO KIT ASSETS -->
+    <section class="slide slide--accent" data-title="Projeto: Kit de Assets">
+      <h2>🚀 Projeto Final — Kit de Assets para AgendaPro</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Entregáveis Obrigatórios</h3>
+          <ul>
+            <li>Logo do app (3 variações: cor, monocromática, ícone)</li>
+            <li>Splash screen (1080x1920px)</li>
+            <li>8 ícones de navegação (SVG + PNG @1x @2x @3x)</li>
+            <li>3 fotos tratadas (perfil de médico)</li>
+            <li>Banner promocional (web + mobile)</li>
+            <li>Favicon + Open Graph image</li>
+            <li>Paleta de cores exportada (hex + tokens)</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📏 Especificações Técnicas</h3>
+          <table>
+            <thead><tr><th>Asset</th><th>Formato</th><th>Tamanho</th></tr></thead>
+            <tbody>
+              <tr><td>Ícones</td><td>SVG + PNG</td><td>24px, 48px, 96px</td></tr>
+              <tr><td>Fotos</td><td>WebP + JPEG fallback</td><td>≤ 200KB cada</td></tr>
+              <tr><td>Banner mobile</td><td>PNG/WebP</td><td>375×200px @2x</td></tr>
+              <tr><td>Banner web</td><td>WebP/JPEG</td><td>1200×400px</td></tr>
+              <tr><td>Favicon</td><td>ICO + PNG</td><td>32px, 180px, 512px</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Integração:</strong> Estes assets serão usados nas disciplinas de Web e Mobile!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <div class="columns columns--3">
+        <div class="card">
+          <h3>📱 Opção A: Online</h3>
+          <ul>
+            <li><strong>Photopea.com</strong> — Funciona no celular</li>
+            <li><strong>Canva</strong> — Banners e posts</li>
+            <li><strong>Remove.bg</strong> — Remover fundo</li>
+            <li><strong>Pixlr</strong> — Editor rápido</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Opção B: Desplugada</h3>
+          <ul>
+            <li>Análise de composição (imagens impressas)</li>
+            <li>Moodboard com recortes de revista</li>
+            <li>Storyboard de UI no papel</li>
+            <li>Teoria das cores com lápis de cor</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Opção C: Celular</h3>
+          <ul>
+            <li><strong>Snapseed</strong> — Tratamento de fotos</li>
+            <li><strong>Canva Mobile</strong> — Criação de peças</li>
+            <li><strong>Vectornator</strong> — Vetores (iOS)</li>
+            <li>Fotografia com análise de composição</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Exercícios práticos</td><td>30%</td><td>Contínuo</td></tr>
+            <tr><td>Kit de Assets (AgendaPro)</td><td>50%</td><td>17-18</td></tr>
+            <tr><td>Prova Prática</td><td>20%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Design sem assets é wireframe. Assets sem otimização é site lento. Excelência é o equilíbrio entre beleza e performance."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 10</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

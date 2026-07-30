@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Banco de Dados Cloud / Firebase — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+
+  <nav class="sidebar">
+    <h3>📚 Banco de Dados Cloud</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>☁️ Banco de Dados <span class="accent">Cloud / Firebase</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — Módulo 3 — 80h</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Na era cloud, o banco de dados não está no seu computador — está disponível em qualquer lugar do mundo."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: SQL VS NOSQL -->
+    <section class="slide slide--content" data-title="SQL vs NoSQL">
+      <h2>🔍 SQL vs. NoSQL — Quando Usar Cada Um?</h2>
+      <table>
+        <thead><tr><th>Critério</th><th>SQL (PostgreSQL, MySQL)</th><th>NoSQL (Firestore, MongoDB)</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Estrutura</strong></td><td>Tabelas com schema fixo</td><td>Documentos/Coleções flexíveis</td></tr>
+          <tr><td><strong>Relações</strong></td><td>JOINs entre tabelas</td><td>Dados desnormalizados/embutidos</td></tr>
+          <tr><td><strong>Escala</strong></td><td>Vertical (mais hardware)</td><td>Horizontal (mais servidores)</td></tr>
+          <tr><td><strong>Consultas</strong></td><td>SQL poderoso e flexível</td><td>Queries limitadas, mas rápidas</td></tr>
+          <tr><td><strong>Ideal para</strong></td><td>Transações financeiras, relatórios</td><td>Apps real-time, mobile, IoT</td></tr>
+          <tr><td><strong>Exemplo</strong></td><td>Sistema bancário, ERP</td><td>Chat, rede social, AgendaPro</td></tr>
+        </tbody>
+      </table>
+
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Nesta disciplina:</strong> Foco em Firebase (NoSQL) para apps mobile e web em tempo real. Conceitos SQL são pré-requisito do Módulo 1.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>SQL vs NoSQL + Firebase Setup</td><td>Projeto criado no console</td></tr>
+          <tr><td>3-4</td><td>Firestore: Estrutura de Dados</td><td>Modelagem de coleções</td></tr>
+          <tr><td>5-6</td><td>Firestore: CRUD Completo</td><td>App com Create/Read/Update/Delete</td></tr>
+          <tr><td>7-8</td><td>Realtime Database vs Firestore</td><td>Chat simples (realtime)</td></tr>
+          <tr><td>9</td><td>Queries e Índices</td><td>Buscas compostas otimizadas</td></tr>
+          <tr><td>10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>CRUD + Realtime funcional</td></tr>
+          <tr><td>11-12</td><td>Security Rules</td><td>Rules para o AgendaPro</td></tr>
+          <tr><td>13-14</td><td>Firebase Auth + Storage</td><td>Upload de imagens + auth</td></tr>
+          <tr><td>15-16</td><td>Cloud Functions (introdução)</td><td>Trigger de notificação</td></tr>
+          <tr><td>17-18</td><td>Projeto: Backend AgendaPro</td><td>Backend completo no Firebase</td></tr>
+          <tr><td>19</td><td>Monitoramento e Performance</td><td>Dashboard de métricas</td></tr>
+          <tr><td>20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Backend publicado + docs</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: FIREBASE SETUP -->
+    <section class="slide slide--dark" data-title="Firebase Setup">
+      <h2>🔧 Firebase Setup — Primeiros Passos</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📋 Passo a Passo</h3>
+          <ol>
+            <li>Criar conta Google (se necessário)</li>
+            <li>Acessar <strong>console.firebase.google.com</strong></li>
+            <li>Criar novo projeto</li>
+            <li>Ativar Firestore Database</li>
+            <li>Ativar Authentication</li>
+            <li>Copiar config para o app</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>⚙️ Configuração no Expo</h3>
+          <div class="code-block">
+            <span class="lang-badge">Bash</span>
+            <code># Instalar SDK Firebase
+npx expo install firebase
+
+# Estrutura recomendada:
+# src/config/firebase.ts</code>
+          </div>
+          <div class="code-block" style="margin-top:8px;">
+            <span class="lang-badge">TypeScript</span>
+            <code>// src/config/firebase.ts
+import { initializeApp } from 'firebase/app';
+import { getFirestore } from 'firebase/firestore';
+import { getAuth } from 'firebase/auth';
+
+const firebaseConfig = {
+  apiKey: "sua-api-key",
+  authDomain: "projeto.firebaseapp.com",
+  projectId: "seu-projeto-id",
+  storageBucket: "projeto.appspot.com",
+  appId: "seu-app-id"
+};
+
+const app = initializeApp(firebaseConfig);
+export const db = getFirestore(app);
+export const auth = getAuth(app);</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: FIRESTORE CRUD -->
+    <section class="slide slide--dark" data-title="Firestore CRUD">
+      <h2>📝 Firestore — CRUD Completo</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">As 4 operações fundamentais em qualquer banco de dados.</p>
+
+      <div class="code-block">
+        <span class="lang-badge">TypeScript</span>
+        <code>import { collection, addDoc, getDocs, updateDoc, deleteDoc, doc } from 'firebase/firestore';
+import { db } from '../config/firebase';
+
+// CREATE — Adicionar documento
+const criar = async () => {
+  await addDoc(collection(db, 'appointments'), {
+    patientId: 'uid123', doctorName: 'Dr. João',
+    date: '2026-08-15', time: '14:00', status: 'confirmed'
+  });
+};
+
+// READ — Buscar todos os documentos
+const listar = async () => {
+  const snap = await getDocs(collection(db, 'appointments'));
+  return snap.docs.map(d => ({ id: d.id, ...d.data() }));
+};
+
+// UPDATE — Atualizar campo específico
+const atualizar = async (id: string) => {
+  await updateDoc(doc(db, 'appointments', id), { status: 'cancelled' });
+};
+
+// DELETE — Remover documento
+const remover = async (id: string) => {
+  await deleteDoc(doc(db, 'appointments', id));
+};</code>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: REALTIME DATABASE -->
+    <section class="slide slide--content" data-title="Realtime Database">
+      <h2>⚡ Realtime Database — Dados em Tempo Real</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🔄 Firestore (Realtime Listeners)</h3>
+          <ul>
+            <li>Escuta mudanças automaticamente</li>
+            <li>Atualização instantânea na UI</li>
+            <li>Offline-first (cache local)</li>
+            <li>Ideal para: chat, notificações, dashboards</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Comparativo</h3>
+          <table>
+            <thead><tr><th></th><th>Firestore</th><th>Realtime DB</th></tr></thead>
+            <tbody>
+              <tr><td>Modelo</td><td>Documentos</td><td>JSON tree</td></tr>
+              <tr><td>Queries</td><td>Compostas</td><td>Simples</td></tr>
+              <tr><td>Offline</td><td>✅ Nativo</td><td>✅ Nativo</td></tr>
+              <tr><td>Escala</td><td>Melhor</td><td>Limitada</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Recomendação:</strong> Use Firestore para o AgendaPro. Realtime Database é melhor para chat ou presença online.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: RULES E SECURITY -->
+    <section class="slide slide--dark" data-title="Rules e Security">
+      <h2>🔒 Security Rules — Protegendo seus Dados</h2>
+      <p style="color:#94A3B8;">Rules definem QUEM pode ler/escrever QUAIS dados.</p>
+
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">Firestore Rules</span>
+        <code>rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Usuários: só lê/escreve seu próprio perfil
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Agendamentos: paciente lê os seus, médico lê os dele
+    match /appointments/{appointmentId} {
+      allow read: if request.auth != null &&
+        (resource.data.patientId == request.auth.uid ||
+         resource.data.doctorId == request.auth.uid);
+      allow create: if request.auth != null &&
+        request.resource.data.patientId == request.auth.uid;
+      allow update: if request.auth != null &&
+        resource.data.patientId == request.auth.uid;
+      allow delete: if false; // Ninguém deleta — só cancela
+    }
+  }
+}</code>
+      </div>
+
+      <div class="callout callout--warning" style="margin-top:12px;">
+        <span class="icon">⚠️</span>
+        <span><strong>NUNCA</strong> use <code>allow read, write: if true</code> em produção! Sempre valide autenticação e propriedade.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: MULTI-STACK -->
+    <section class="slide slide--dark" data-title="Multi-Stack">
+      <h2>🔀 Multi-Stack — Firebase em Diferentes SDKs</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Mesmo CRUD, 3 formas de acessar o Firestore</p>
+      <div class="code-tabs">
+        <button class="code-tab active">Firebase JS SDK</button>
+        <button class="code-tab">Python Admin SDK</button>
+        <button class="code-tab">REST API (cURL)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript</span>
+          <code>// Frontend/Mobile — Firebase JS SDK v9+
+import { collection, addDoc, serverTimestamp } from 'firebase/firestore';
+
+const criarAgendamento = async (data: AppointmentData) => {
+  const docRef = await addDoc(collection(db, 'appointments'), {
+    ...data,
+    createdAt: serverTimestamp(),
+    status: 'confirmed'
+  });
+  console.log('Criado com ID:', docRef.id);
+};</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">Python</span>
+          <code># Backend/Scripts — Firebase Admin SDK (Python)
+import firebase_admin
+from firebase_admin import credentials, firestore
+
+cred = credentials.Certificate('service-account.json')
+firebase_admin.initialize_app(cred)
+db = firestore.client()
+
+def criar_agendamento(data: dict):
+    doc_ref = db.collection('appointments').add({
+        **data,
+        'createdAt': firestore.SERVER_TIMESTAMP,
+        'status': 'confirmed'
+    })
+    print(f'Criado com ID: {doc_ref[1].id}')</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">Bash</span>
+          <code># REST API — Acessar Firestore sem SDK
+curl -X POST \
+  "https://firestore.googleapis.com/v1/projects/SEU-PROJETO/databases/(default)/documents/appointments" \
+  -H "Authorization: Bearer $(gcloud auth print-access-token)" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "fields": {
+      "patientId": {"stringValue": "uid123"},
+      "doctorName": {"stringValue": "Dr. João"},
+      "date": {"stringValue": "2026-08-15"},
+      "status": {"stringValue": "confirmed"}
+    }
+  }'
+
+# Útil para: testes, automações, integrações externas</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: AUTH E STORAGE -->
+    <section class="slide slide--content" data-title="Auth e Storage">
+      <h2>🔐 Firebase Auth + Storage</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🔑 Authentication</h3>
+          <ul>
+            <li><strong>Email/Senha</strong> — Cadastro padrão</li>
+            <li><strong>Google Sign-In</strong> — OAuth 2.0</li>
+            <li><strong>Anônimo</strong> — Sem cadastro</li>
+            <li><strong>Telefone</strong> — SMS (SMS custa)</li>
+          </ul>
+          <p style="margin-top:12px; color:var(--text-light);">onAuthStateChanged() → listener global</p>
+        </div>
+        <div class="card">
+          <h3>📁 Cloud Storage</h3>
+          <ul>
+            <li>Upload de imagens (perfil, documentos)</li>
+            <li>Gera URL pública ou privada</li>
+            <li>Rules de acesso por usuário</li>
+            <li>Limites: tipo, tamanho, caminho</li>
+          </ul>
+          <p style="margin-top:12px; color:var(--text-light);">Caminho: /users/{uid}/avatar.jpg</p>
+        </div>
+      </div>
+
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Pattern:</strong> Auth fornece o UID → Use UID como chave para organizar dados no Firestore e Storage.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Setup Firebase + primeira coleção</td><td>Documento criado no console</td></tr>
+          <tr><td>🟢 Fácil</td><td>CRUD com interface web simples</td><td>Formulário HTML + Firebase</td></tr>
+          <tr><td>🟡 Médio</td><td>Realtime listener (lista ao vivo)</td><td>Dados atualizando em tempo real</td></tr>
+          <tr><td>🟡 Médio</td><td>Security Rules personalizadas</td><td>Teste de permissões no emulador</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Auth + Storage + Firestore integrado</td><td>App completo com upload de foto</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Projeto Intermediário (30%) + Backend AgendaPro (40%) + Prova (30%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: PROJETO BACKEND AGENDAPRO -->
+    <section class="slide slide--accent" data-title="Projeto: Backend AgendaPro">
+      <h2>🚀 Projeto Final — Backend AgendaPro</h2>
+      <p>Estrutura completa de backend Firebase para o app AgendaPro.</p>
+      <div class="columns" style="margin-top:20px;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📋 Coleções Firestore</h3>
+          <ul>
+            <li><strong>users/</strong> — perfis (pacientes e médicos)</li>
+            <li><strong>appointments/</strong> — agendamentos</li>
+            <li><strong>doctors/</strong> — catálogo de médicos</li>
+            <li><strong>notifications/</strong> — lembretes</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Entregáveis</h3>
+          <ul>
+            <li>Modelagem de dados (diagrama)</li>
+            <li>Security Rules completas</li>
+            <li>CRUD funcional testado</li>
+            <li>Auth configurado (email + Google)</li>
+            <li>Storage para avatares</li>
+            <li>README com documentação da API</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo da Disciplina</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>CRUD + Realtime (parcial)</td><td>30%</td><td>10</td></tr>
+            <tr><td>Backend AgendaPro (final)</td><td>40%</td><td>18-20</td></tr>
+            <tr><td>Prova Regimental</td><td>30%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Dados são o petróleo do século XXI — mas só têm valor quando bem estruturados, seguros e acessíveis."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 12</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

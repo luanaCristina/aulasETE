@@ -1963,6 +1963,316 @@ programa {
 
 ---
 
+## 🚨 Plano de Contingência Pedagógica (Aulas Práticas sem Laboratório)
+
+> ⚠️ **Quando usar este plano:** Laboratório indisponível (manutenção, queda de energia, falta de internet, máquinas com defeito). O objetivo é manter o aprendizado ativo e produtivo mesmo sem computadores.
+
+### 🔀 Fluxograma de Decisão Rápida
+
+```
+┌─────────────────────────────────────────────┐
+│  🚨 LABORATÓRIO INDISPONÍVEL — E AGORA?     │
+└─────────────────────┬───────────────────────┘
+                      │
+                      ▼
+        ┌─────────────────────────────┐
+        │ Alunos têm smartphones com  │
+        │ internet disponível?        │
+        └──────────────┬──────────────┘
+               ┌───────┴───────┐
+               │               │
+            SIM ▼           NÃO ▼
+  ┌──────────────────┐  ┌──────────────────────────┐
+  │ ▶ OPÇÃO A: BYOD  │  │ Professora tem materiais │
+  │ (Smartphone)     │  │ impressos / quadro?      │
+  └──────────────────┘  └────────────┬─────────────┘
+                              ┌──────┴──────┐
+                              │             │
+                           SIM ▼          NÃO ▼
+                 ┌───────────────────┐  ┌──────────────────┐
+                 │ ▶ OPÇÃO B:        │  │ ▶ OPÇÃO C:       │
+                 │ DESPLUGADA        │  │ ESTUDO DE CASO   │
+                 │ (Unplugged)       │  │ / PBL            │
+                 └───────────────────┘  └──────────────────┘
+```
+
+---
+
+### 📱 Opção A: BYOD (Bring Your Own Device — Smartphone)
+
+> 💡 **Conceito:** Alunos usam seus próprios celulares para praticar algoritmos e lógica de programação.
+
+#### Ferramentas Mobile para Lógica e Algoritmos
+
+| Ferramenta | Sistema | Link | Melhor Para |
+|-----------|---------|------|-------------|
+| **Portugol Online** | Qualquer | webportugol.com (navegador) | Escrever pseudocódigo em português |
+| **Grasshopper (Google)** | Android/iOS | App Store / Play Store | Lógica de programação gamificada |
+| **SoloLearn** | Android/iOS | App Store / Play Store | Exercícios interativos de lógica |
+| **Replit Mobile** | Android/iOS | App ou navegador | IDE completa no celular |
+
+#### Atividades Adaptadas para Smartphone
+
+| Atividade | Duração | Ferramenta | Semanas Aplicáveis |
+|-----------|---------|------------|-------------------|
+| Escrever algoritmos simples em Portugol Online | 30 min | Portugol Online | 3-6 |
+| Desafios de lógica no Grasshopper | 20 min | Grasshopper | 1-4 |
+| Exercícios de condicionais/loops no SoloLearn | 30 min | SoloLearn | 7-11 |
+| Programar algoritmo de ordenação no Replit | 40 min | Replit Mobile | 15-16 |
+| Quiz interativo de lógica (Kahoot/Google Forms) | 20 min | Navegador | 1-17 |
+
+#### 📋 Roteiro da Professora (Opção A)
+
+```
+DURAÇÃO TOTAL: 50 minutos
+
+1. [5 min]  Anunciar atividade BYOD — alunos abrem ferramenta no celular
+2. [5 min]  Projetar QR Code / escrever URL no quadro (Portugol Online)
+3. [5 min]  Escrever o enunciado do exercício no quadro
+4. [25 min] Alunos codificam no celular — professora circula e auxilia
+5. [5 min]  2-3 alunos ditam/mostram suas soluções para a turma
+6. [5 min]  Fechamento: conceitos-chave revisados no quadro
+```
+
+#### 📋 Guia do Aluno (para projetar ou escrever no quadro)
+
+> 🎯 **Hoje a aula é no celular!**
+> 1. Acesse o link/QR Code fornecido pela professora
+> 2. Leia o enunciado no quadro
+> 3. Escreva seu algoritmo na ferramenta
+> 4. Teste executando com diferentes valores
+> 5. Anote a solução final no caderno
+
+---
+
+### 📝 Opção B: Atividades Desplugadas (Unplugged)
+
+> 💡 **Conceito:** Aprender lógica e algoritmos sem computador, usando papel, caneta, corpo e dinâmicas em grupo.
+
+#### Atividade B1 — Teste de Mesa em Papel 🟢
+
+**Semanas aplicáveis:** 3–17 (qualquer semana!)
+
+**Materiais:** Folha de papel, lápis/caneta, borracha
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Escrever no quadro um algoritmo em Portugol (5-15 linhas)
+2. [3 min]  Explicar: "Vocês SÃO o Portugol Studio. Executem LINHA POR LINHA
+             e anotem o valor de cada variável a cada passo."
+3. [2 min]  Desenhar modelo da tabela de teste de mesa no quadro:
+            | Passo | variável1 | variável2 | saída |
+4. [20 min] Alunos executam manualmente, preenchendo a tabela
+5. [10 min] Correção coletiva no quadro — professora executa passo a passo
+6. [5 min]  Perguntar: "Em qual passo o valor mudou? Por quê?"
+```
+
+**Exemplo para o quadro:**
+```
+programa {
+    funcao inicio() {
+        inteiro x, y, temp
+        x = 8
+        y = 3
+        temp = x
+        x = y
+        y = temp
+        escreva(x, " ", y)
+    }
+}
+```
+
+| Passo | x | y | temp | Saída |
+|:-----:|:-:|:-:|:----:|-------|
+| 1 | 8 | ? | ? | — |
+| 2 | 8 | 3 | ? | — |
+| 3 | 8 | 3 | 8 | — |
+| 4 | 3 | 3 | 8 | — |
+| 5 | 3 | 8 | 8 | — |
+| 6 | 3 | 8 | 8 | "3 8" |
+
+#### Atividade B2 — "Algoritmo do Sanduíche" 🟢
+
+**Semanas aplicáveis:** 1–3
+
+**Materiais:** Folha de papel, pão, ingredientes simulados (opcional)
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Desafio: "Escrevam instruções TÃO PRECISAS para fazer um
+             sanduíche que eu vou executar LITERALMENTE."
+2. [15 min] Alunos escrevem individualmente (mín. 10 passos)
+3. [15 min] Professora "executa" 2-3 algoritmos dos alunos LITERALMENTE:
+            - "Coloque o presunto" → coloca em cima da mesa (não disse no pão!)
+            - "Abra o pão" → rasga ao meio (não disse cortar!)
+            → Risos + aprendizado sobre PRECISÃO e AMBIGUIDADE
+4. [5 min]  Reescrever: alunos corrigem seus algoritmos
+5. [5 min]  Conexão: "O computador faz EXATAMENTE o que mandamos.
+             Sem bom senso. Precisamos ser PRECISOS."
+6. [5 min]  Fechamento: relação com bugs no código
+```
+
+#### Atividade B3 — Ordenação com Cartas de Baralho 🟡
+
+**Semanas aplicáveis:** 15–16
+
+**Materiais:** 1 baralho por grupo (ou cartões numerados de 1 a 10)
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Distribuir 10 cartas embaralhadas por grupo (números à mostra)
+2. [5 min]  Explicar Bubble Sort no quadro com exemplo visual:
+            "Compare dois vizinhos. Se estão fora de ordem, TROQUE."
+3. [15 min] Grupos executam Bubble Sort fisicamente com as cartas:
+            - A cada "passada", percorrem da esquerda para a direita
+            - Contam quantas trocas fizeram
+            - Repetem até nenhuma troca ocorrer
+4. [10 min] Repetir com Selection Sort:
+            "Encontre o MENOR de todos. Coloque na posição 1. Repita."
+5. [10 min] Discussão: "Qual método fez menos trocas? Qual é mais rápido?"
+6. [5 min]  Anotar no caderno: pseudocódigo do Bubble Sort
+```
+
+#### Atividade B4 — Fluxogramas em Papel Quadriculado 🟢
+
+**Semanas aplicáveis:** 2–9
+
+**Materiais:** Papel quadriculado A4, régua, caneta colorida (opcional)
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Revisar no quadro os símbolos: início/fim, processo, decisão, E/S
+2. [5 min]  Apresentar o problema do dia (ex: "Verificar se número é primo")
+3. [25 min] Alunos desenham o fluxograma no papel quadriculado:
+            - Usar régua para formas geométricas
+            - Numerar os passos dentro dos símbolos
+            - Indicar Sim/Não nas decisões
+4. [10 min] Trocar com colega ao lado → "Code review visual":
+            "O fluxograma do colega está correto? Faltou algum caminho?"
+5. [5 min]  Correção coletiva: professora desenha versão correta no quadro
+```
+
+#### Atividade B5 — "Code Review Humano" 🟡
+
+**Semanas aplicáveis:** 5–17
+
+**Materiais:** Folhas impressas com algoritmos contendo bugs
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Distribuir folha com algoritmo em Portugol que tem 3-5 bugs
+2. [3 min]  Explicar: "Encontrem TODOS os erros. Circulem e escrevam
+             a correção ao lado. Trabalhem em DUPLA."
+3. [20 min] Duplas analisam o código — professora dá dicas se necessário
+4. [10 min] Correção coletiva: cada dupla apresenta 1 bug encontrado
+5. [7 min]  Professora mostra versão corrigida — alunos comparam
+6. [5 min]  Reflexão: "Quais tipos de erro são mais comuns?"
+```
+
+#### 📋 Guia do Aluno (Opção B — para escrever no quadro)
+
+> 🎯 **Hoje trabalhamos SEM COMPUTADOR!**
+> - No teste de mesa: VOCÊ é o Portugol Studio. Execute linha por linha!
+> - No Algoritmo do Sanduíche: seja o mais PRECISO possível!
+> - Na ordenação: movam as cartas fisicamente — contem as trocas!
+> - No code review: leia o código como um DETETIVE — cada linha pode ter um bug
+
+---
+
+### 💼 Opção C: Estudo de Caso / PBL (Problem-Based Learning)
+
+> 💡 **Conceito:** Resolver problemas reais de lógica usando análise crítica, debate e raciocínio — sem precisar de computador.
+
+#### Caso C1 — Análise de Pseudocódigo com Bugs 🟡
+
+**Semanas aplicáveis:** 5–17
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Distribuir folha com pseudocódigo impresso (2 algoritmos, cada um
+            com 3-4 bugs de lógica: loop infinito, variável não inicializada,
+            condição invertida, off-by-one)
+2. [3 min]  Contextualizar: "Estes algoritmos foram escritos por um
+            programador júnior. Vocês são a equipe de QA."
+3. [20 min] Grupos analisam, identificam bugs e propõem correções
+4. [10 min] Cada grupo apresenta os bugs encontrados + correção
+5. [7 min]  Professora revela TODOS os bugs (incluindo os não encontrados)
+6. [5 min]  Discussão: "Como prevenir esses erros? (Teste de mesa!)"
+```
+
+#### Caso C2 — Otimização do Algoritmo de Troco 🔴
+
+**Semanas aplicáveis:** 10–14
+
+```
+ROTEIRO DA PROFESSORA:
+
+1. [5 min]  Apresentar o problema: "Um caixa de supermercado precisa
+            dar troco usando o MENOR número possível de cédulas/moedas.
+            Cédulas disponíveis: 100, 50, 20, 10, 5, 2, 1.
+            Moedas: 0.50, 0.25, 0.10, 0.05, 0.01"
+
+2. [5 min]  Exemplo no quadro: Troco = R$ 47,63
+            → 2×20 + 1×5 + 1×2 + 1×0.50 + 1×0.10 + 3×0.01
+
+3. [15 min] Alunos escrevem o ALGORITMO (pseudocódigo) no caderno:
+            - Usar estrutura de repetição
+            - Usar vetores para as cédulas
+            - Contar quantas de cada
+
+4. [10 min] Desafio extra: "E se NÃO tiver cédulas de 20? Como muda?"
+
+5. [10 min] Duplas trocam algoritmos e fazem teste de mesa com valor diferente
+
+6. [5 min]  Conexão: "Este é o Algoritmo Guloso (Greedy) — usado em
+             otimização, roteamento, IA..."
+```
+
+#### 📋 Guia do Aluno (Opção C — para escrever no quadro)
+
+> 🎯 **Hoje somos analistas de algoritmos!**
+> 1. Leia o caso apresentado pela professora com atenção
+> 2. Identifique: Qual é o problema? Quais são as restrições?
+> 3. Escreva sua solução em pseudocódigo no caderno
+> 4. Faça o teste de mesa com pelo menos 2 valores diferentes
+> 5. Prepare-se para explicar sua lógica à turma
+
+---
+
+### 📊 Rubrica de Avaliação Adaptada (Aulas de Contingência)
+
+| Critério | Peso | 10 (Excelente) | 7 (Bom) | 4 (Insuficiente) |
+|----------|:----:|:--------------:|:--------:|:-----------------:|
+| **Participação ativa** | 30% | Engajou em todas as etapas, contribuiu com ideias | Participou mas com pouca iniciativa | Ficou passivo/não contribuiu |
+| **Correção técnica** | 30% | Algoritmo/lógica sem erros, teste de mesa correto | Pequenos erros que não comprometem o raciocínio | Erros graves (loop infinito, lógica invertida) |
+| **Trabalho em equipe** | 20% | Colaborou ativamente, ouviu e contribuiu | Participou quando solicitado | Não interagiu com o grupo |
+| **Registro escrito** | 20% | Caderno organizado com algoritmo e teste de mesa | Resolução parcial mas legível | Sem registro ou ilegível |
+
+> 🎯 **Nota:** Atividades de contingência têm o MESMO PESO que aulas regulares no conceito de participação.
+
+---
+
+### 🖨️ Kit de Materiais para Impressão
+
+> 💡 **Dica:** Mantenha estes materiais impressos na pasta da disciplina para uso imediato quando necessário.
+
+| Material | Quantidade | Uso |
+|----------|-----------|-----|
+| Algoritmos em Portugol com bugs (5 exercícios de dificuldade crescente) | 20 cópias | Atividade B5 — Code Review Humano |
+| Templates de Teste de Mesa em branco (tabela de variáveis) | 40 cópias | Atividade B1 — Teste de Mesa |
+| Cartões numerados de 1 a 10 (ou usar baralho) | 5 jogos | Atividade B3 — Ordenação com Cartas |
+| Folhas de papel quadriculado A4 | 40 folhas | Atividade B4 — Fluxogramas |
+| Resumo de símbolos de fluxograma (1 página) | 40 cópias | Apoio para atividades de fluxograma |
+| Caso do Troco + enunciado de pseudocódigo com bugs | 20 cópias | Opção C — Estudo de Caso |
+
+---
+
 <p align="center">
   <strong>🧠 Lembre-se: Lógica é como um músculo — quanto mais pratica, mais forte fica!</strong><br/>
   <em>Material elaborado para Lógica e Pensamento Computacional — ETE Pernambuco — 2026.2</em>

@@ -1111,13 +1111,358 @@ CREATE TABLE item_venda (venda_id, produto_id, quantidade, subtotal);
 
 ---
 
+## 🚨 Plano de Contingência Pedagógica (Aulas Práticas sem Laboratório)
+
+> ⚠️ **Quando usar este plano?** Quando não houver acesso ao laboratório de informática (manutenção, falta de energia, reserva indisponível, equipamentos com defeito, etc.)
+
+> 💡 **Princípio:** Nenhuma aula é desperdiçada. Atividades práticas e avaliativas podem acontecer sem computador.
+
+---
+
+### 🅰️ Opção A: BYOD (Bring Your Own Device) — Smartphone
+
+> 🎯 **Ideal quando:** Alunos possuem smartphone com acesso à internet (Wi-Fi da escola ou dados móveis)
+
+#### Ferramentas Mobile Gratuitas
+
+| Ferramenta | Plataforma | Uso na Disciplina |
+|-----------|-----------|-------------------|
+| **Firebase Console** | Navegador mobile | Gerenciar projeto, visualizar dados, editar documentos, testar regras |
+| **Postman Mobile** | Android/iOS | Testar endpoints de Cloud Functions, enviar requisições REST |
+| **JSON Editor Online** | Navegador mobile | Editar/validar estruturas JSON para modelagem de dados |
+
+#### Atividades Adaptadas para Smartphone
+
+| Semana/Bloco | Atividade Original (PC) | Adaptação Mobile |
+|-------------|------------------------|-----------------|
+| Bloco 1 | Criar conta e projeto Firebase | Firebase Console no celular: criar projeto + explorar interface |
+| Bloco 2 | CRUD no Realtime Database | Firebase Console: adicionar/editar/deletar dados manualmente |
+| Bloco 2 | Modelagem Firestore | JSON Editor Online: modelar estrutura de coleções/documentos |
+| Bloco 3 | Testar Cloud Functions | Postman mobile: enviar requests para endpoints HTTP |
+| Bloco 4 | Configurar Security Rules | Firebase Console: editar e publicar regras pelo celular |
+
+#### 📋 Roteiro do Professor — Opção A
+
+```
+ANTES DA AULA:
+1. Verificar Wi-Fi da escola está funcionando
+2. Garantir que alunos já têm projetos Firebase criados
+3. Preparar dados de exemplo para inserir (JSON no quadro)
+4. Criar endpoint HTTP de Cloud Function para teste
+
+DURANTE A AULA:
+1. (5 min) Compartilhar link do Firebase Console / endpoint para teste
+2. (10 min) Explicar a atividade: manipular dados reais no Console
+3. (25 min) Alunos executam operações no Firebase pelo celular
+4. (10 min) Validar: professor verifica os dados no Console (projetor)
+
+AVALIAÇÃO:
+• Dados criados corretamente no Firebase (professora verifica no Console)
+• Screenshot das operações realizadas
+• Documento JSON de modelagem (se aplicável)
+```
+
+#### 📱 Guia do Aluno — Opção A
+
+```
+MATERIAIS NECESSÁRIOS:
+✅ Smartphone carregado (mínimo 40% de bateria)
+✅ Conta Google logada no navegador
+✅ Acesso ao projeto Firebase da turma
+
+PASSO A PASSO FIREBASE CONSOLE:
+1. Acessar console.firebase.google.com no navegador
+2. Selecionar o projeto da turma
+3. Menu lateral → Firestore Database ou Realtime Database
+4. Clicar em "Iniciar coleção" ou "+" para adicionar dados
+5. Preencher campos conforme atividade proposta
+6. Verificar na aba "Rules" se as regras permitem escrita
+
+ENTREGA:
+• Screenshot mostrando dados inseridos no Console
+• Ou print do Postman mostrando resposta 200 da Cloud Function
+```
+
+---
+
+### 🅱️ Opção B: Atividades Desplugadas (Unplugged)
+
+> 🎯 **Ideal quando:** Não há internet disponível OU alunos não têm smartphone
+
+#### Atividade B1: "SQL vs NoSQL — Debate Estruturado"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Comparação entre paradigmas de banco de dados |
+| **Duração** | 40 minutos |
+| **Materiais** | Cartões com argumentos, quadro dividido ao meio |
+| **Objetivo** | Metade da turma defende relacional, metade defende documento |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Apresentar o cenário: "A ETE precisa de um novo sistema de notas. Qual banco usar?"
+2. (5 min) Dividir turma: lado esquerdo = "Time SQL" (PostgreSQL), lado direito = "Time NoSQL" (Firestore)
+3. (20 min) Debate estruturado: cada time tem 3 minutos para apresentar argumento, depois o outro time rebate em 2 minutos. 3 rodadas.
+4. (5 min) Veredito: professor apresenta quando usar cada um (não existe "melhor", existe "mais adequado")
+
+**📱 Guia do Aluno:**
+- Time SQL — argumentos possíveis: ACID, JOINs, integridade referencial, consultas complexas, padrão há 40 anos
+- Time NoSQL — argumentos possíveis: escalabilidade horizontal, flexibilidade de schema, performance em leitura, dados aninhados, sync em tempo real
+- Prepare: 3 argumentos fortes + 1 contra-argumento para o outro time
+- Anote no caderno: tabela com "Quando usar SQL" vs "Quando usar NoSQL"
+
+---
+
+#### Atividade B2: "Modelagem de Documento JSON no Papel"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Estrutura de coleções e documentos para Firestore |
+| **Duração** | 40 minutos |
+| **Materiais** | Folha A4, lápis, canetas coloridas, borracha |
+| **Objetivo** | Desenhar estrutura de coleções/documentos para o app AgendaPro |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Revisar: coleção = pasta, documento = arquivo, subcoleção = pasta dentro do arquivo. Regras de modelagem NoSQL.
+2. (5 min) Apresentar requisitos: AgendaPro precisa armazenar — Usuários, Agendamentos, Profissionais, Horários disponíveis
+3. (20 min) Alunos desenham a estrutura completa usando notação visual: 📁 = coleção, 📄 = documento, campos com tipos
+4. (5 min) Apresentação rápida: 2-3 alunos mostram suas modelagens e turma compara decisões
+
+**📱 Guia do Aluno:**
+```
+Exemplo de notação para desenhar no papel:
+
+📁 usuarios (coleção)
+  └── 📄 user001 (documento)
+        ├── nome: "Maria" (string)
+        ├── email: "maria@email.com" (string)
+        ├── tipo: "paciente" (string)
+        └── 📁 agendamentos (subcoleção)
+              └── 📄 ag001
+                    ├── data: "2026-03-15" (timestamp)
+                    ├── profissionalId: "prof001" (referência)
+                    └── status: "confirmado" (string)
+```
+- Desenhe TODA a estrutura do AgendaPro
+- Para cada campo, indique o TIPO (string, number, boolean, timestamp, reference, array, map)
+- Justifique: por que subcoleção vs campo aninhado?
+
+---
+
+#### Atividade B3: "Regras de Segurança como Pseudocódigo"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Firebase Security Rules em linguagem natural |
+| **Duração** | 40 minutos |
+| **Materiais** | Folha A4, caneta, cenários impressos |
+| **Objetivo** | Escrever Firestore Rules em pseudocódigo/linguagem natural |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Revisar sintaxe de Security Rules: match, allow, request.auth, resource.data
+2. (5 min) Distribuir cenários com requisitos de segurança
+3. (20 min) Alunos escrevem regras em PSEUDOCÓDIGO primeiro, depois tentam a sintaxe real
+4. (5 min) Correção coletiva: professor mostra a regra correta no quadro
+
+**📱 Guia do Aluno — Cenários para escrever regras:**
+```
+CENÁRIO 1: "Aluno só vê suas próprias notas"
+Pseudocódigo: SE usuário logado E id_do_documento == id_do_usuário ENTÃO permitir leitura
+Regra real: allow read: if request.auth != null && request.auth.uid == resource.data.alunoId;
+
+CENÁRIO 2: "Professor pode inserir nota entre 0 e 10"
+Seu pseudocódigo: ???
+Sua regra real: ???
+
+CENÁRIO 3: "Ninguém pode deletar dados de matrícula"
+Seu pseudocódigo: ???
+Sua regra real: ???
+```
+- Escreva primeiro em português (o que a regra deve fazer)
+- Depois traduza para a sintaxe Firestore Rules
+- Dica: request.auth = quem está pedindo, resource.data = dados do documento
+
+---
+
+#### Atividade B4: "Simulação de Realtime"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Como funciona sincronização em tempo real (WebSocket) |
+| **Duração** | 30 minutos |
+| **Materiais** | Quadro branco, fichas/post-its, 2 voluntários |
+| **Objetivo** | Aluno A escreve dado no quadro, aluno B "recebe" instantaneamente — WebSocket humano |
+
+**📋 Roteiro do Professor:**
+1. (5 min) Explicar: Realtime Database usa WebSocket — conexão persistente, servidor "empurra" dados
+2. (5 min) Setup da simulação: Aluno A = "Cliente que escreve", Aluno B = "Cliente que ouve", Professor = "Servidor Firebase"
+3. (15 min) Simulação:
+   - Aluno A escreve dado em post-it e entrega ao "Servidor" (professor)
+   - Professor cola no quadro (banco de dados) E SIMULTANEAMENTE entrega cópia ao Aluno B
+   - Aluno B recebe instantaneamente! (onValue listener)
+   - Repetir com múltiplos "clientes ouvintes" (mais alunos)
+4. (5 min) Discussão: "O que acontece se a internet cair?" → explicar cache offline do Firebase
+
+**📱 Guia do Aluno:**
+- Observe o fluxo: ESCRITA → SERVIDOR → TODOS OS OUVINTES (em paralelo)
+- Compare com HTTP tradicional: cliente precisa PERGUNTAR (polling) vs WebSocket RECEBE automaticamente
+- Anote: diagrama de sequência mostrando o fluxo do dado
+- Pergunta para responder: "Por que chat apps usam WebSocket em vez de HTTP polling?"
+
+---
+
+#### Atividade B5: "Custo da Cloud"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Cálculo de custos de infraestrutura cloud |
+| **Duração** | 40 minutos |
+| **Materiais** | Tabela de preços Firebase impressa, calculadora, cenários |
+| **Objetivo** | Calcular quanto custaria o app no Firebase com X usuários |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Apresentar modelo de precificação Firebase: Spark (grátis) vs Blaze (pay-as-you-go). Mostrar tabela de limites gratuitos.
+2. (5 min) Distribuir cenários + tabela de preços impressa
+3. (20 min) Alunos calculam custos para cada cenário
+4. (5 min) Discussão: "Quando o plano gratuito deixa de ser suficiente?"
+
+**📱 Guia do Aluno — Tabela de referência:**
+```
+LIMITES GRATUITOS (Spark):
+• Firestore: 50K leituras/dia, 20K escritas/dia, 1GB storage
+• Authentication: 10K verificações/mês
+• Storage: 5GB total, 1GB/dia download
+• Hosting: 10GB storage, 360MB/dia
+
+PREÇOS BLAZE (acima do gratuito):
+• Firestore: $0.06/100K leituras, $0.18/100K escritas
+• Storage: $0.026/GB/mês
+• Cloud Functions: $0.40/milhão invocações
+
+CENÁRIO: App AgendaPro com 1.000 usuários ativos/dia
+Cada usuário faz: 20 leituras + 5 escritas por sessão
+Cálculo: 1.000 × 20 = 20.000 leituras/dia ← dentro do grátis!
+         1.000 × 5 = 5.000 escritas/dia ← dentro do grátis!
+
+AGORA CALCULE: E se forem 10.000 usuários? E 100.000?
+```
+
+---
+
+### 🅲 Opção C: Estudo de Caso / PBL (Problem-Based Learning)
+
+> 🎯 **Ideal quando:** Aula geminada (2 horários seguidos) para debate aprofundado
+
+#### Caso 1: "Como o WhatsApp escala para 2 bilhões de usuários"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Infraestrutura cloud em escala massiva |
+| **Formato** | Pesquisa + análise + apresentação (40-50 min) |
+| **Conexão** | Bloco 1 (cloud computing, escalabilidade) |
+
+**Dinâmica:**
+1. Dados apresentados: "WhatsApp: 2B usuários, 100B mensagens/dia, apenas ~50 engenheiros de infra"
+2. Perguntas geradoras: "Como é possível?", "Que tipo de banco de dados suporta isso?", "Quanto custa?"
+3. Grupos pesquisam/debatem: Erlang, BEAM VM, sharding, mensageria assíncrona, edge computing
+4. Cada grupo apresenta: diagrama simplificado de como acham que funciona a infraestrutura
+
+---
+
+#### Caso 2: "Incêndio no Datacenter OVH — importância do backup"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Disaster Recovery e estratégias de backup |
+| **Formato** | Timeline do desastre + plano de ação (40-50 min) |
+| **Conexão** | Bloco 4 (backup e recuperação) |
+
+**Dinâmica:**
+1. Professor apresenta: "10 de março de 2021 — datacenter OVH em Estrasburgo pega fogo. 3,6 milhões de sites ficam offline. Dados de clientes que NÃO tinham backup foram PERDIDOS PERMANENTEMENTE."
+2. Perguntas: "Se nosso Firebase estivesse lá, perderíamos tudo?", "O que o Google faz para evitar isso?"
+3. Grupos criam: Plano de Disaster Recovery para o app da turma (RTO, RPO, procedimentos)
+4. Debate: "Backup é responsabilidade do provedor ou do cliente?" (responsabilidade compartilhada)
+
+---
+
+#### Caso 3: "Firebase vs Supabase — código aberto vs vendor lock-in"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Decisão arquitetural e dependência de fornecedor |
+| **Formato** | Debate estruturado (40-50 min) |
+| **Conexão** | Bloco 1 (escolha de tecnologia, análise de trade-offs) |
+
+**Dinâmica:**
+1. Apresentar: Firebase (Google, proprietário, serverless) vs Supabase (open source, PostgreSQL, self-host possível)
+2. Tabela no quadro: preço, flexibilidade, comunidade, suporte, portabilidade de dados
+3. Debate: metade defende Firebase ("mais maduro, melhor integração Android"), metade defende Supabase ("open source, sem lock-in, SQL")
+4. Veredito individual: "Para MEU próximo projeto, qual eu escolheria e por quê?" (escrito, 1 parágrafo)
+
+---
+
+### 📊 Rubrica de Avaliação Adaptada (Atividades sem Laboratório)
+
+| Critério | Excelente (10-9) | Bom (8-7) | Regular (6-5) | Insuficiente (<5) |
+|----------|-----------------|-----------|---------------|-------------------|
+| **Compreensão conceitual** | Demonstra domínio de cloud/NoSQL/segurança | Boa compreensão com pequenas lacunas | Compreensão superficial | Não demonstra compreensão |
+| **Modelagem de dados** | Estrutura coerente, tipos corretos, justificativas | Boa estrutura com pequenos erros | Estrutura básica/incompleta | Modelagem incorreta |
+| **Raciocínio de custos** | Cálculos corretos e conclusões fundamentadas | Cálculos corretos, conclusão básica | Erros de cálculo mas raciocínio ok | Não consegue calcular |
+| **Argumentação/Debate** | Argumentos técnicos sólidos e contra-argumentos | Bons argumentos | Argumentos genéricos | Não argumenta |
+| **Entrega/Documentação** | Completa, organizada, dentro do prazo | Completa com pequenos ajustes | Incompleta mas entregue | Não entregou |
+
+> 💡 **Nota:** Atividades de contingência têm o **mesmo peso** das atividades regulares. Modelar dados no papel é prática real de arquitetos de software!
+
+---
+
+### 🖨️ Kit de Materiais para Impressão
+
+| Material | Quantidade | Uso |
+|----------|-----------|-----|
+| Tabela de preços Firebase (Spark vs Blaze) | 1 por dupla | Atividade B5 |
+| Cenários de cálculo de custo | 1 por aluno | Atividade B5 |
+| Template de modelagem JSON (notação visual) | 1 por aluno | Atividade B2 |
+| Cenários de Security Rules | 1 por aluno | Atividade B3 |
+| Argumentos SQL vs NoSQL (cartões) | 1 set por time | Atividade B1 |
+| Ficha de Disaster Recovery | 1 por grupo | Caso 2 |
+| QR Code com link do Firebase Console | 1 por mesa | Opção A |
+
+---
+
+### 🔀 Fluxograma de Decisão Rápida
+
+```
+┌─────────────────────────────────────────┐
+│   🚨 LABORATÓRIO INDISPONÍVEL!          │
+│   O que fazer em 2 minutos:             │
+└─────────────────┬───────────────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────┐
+│ Alunos têm smartphone + internet?       │
+└──────┬──────────────────────┬───────────┘
+       │ SIM                  │ NÃO
+       ▼                      ▼
+┌──────────────┐    ┌─────────────────────┐
+│ OPÇÃO A:     │    │ Tem material        │
+│ BYOD         │    │ impresso pronto?    │
+│ Firebase     │    └──────┬────────┬─────┘
+│ Console no   │           │ SIM    │ NÃO
+│ celular      │           ▼        ▼
+└──────────────┘    ┌────────┐ ┌─────────┐
+                    │OPÇÃO B:│ │OPÇÃO C: │
+                    │Unplug- │ │Estudo de│
+                    │ged     │ │Caso/PBL │
+                    │(B1-B5) │ │(debate) │
+                    └────────┘ └─────────┘
+```
+
+> ⚠️ **Dica da Profª Luana:** Mantenha sempre 5 cópias da tabela de preços (B5) e do template de modelagem JSON (B2) na sua pasta. São as atividades mais rápidas de aplicar sem preparação prévia!
+
+---
+
 ## 📚 Referências
 
 ### Documentação Oficial
-- [Firebase Documentation](https://firebase.google.com/docs) — Documentação completa oficial
-- [Firebase Firestore Guide](https://firebase.google.com/docs/firestore) — Guia do Firestore
-- [Firebase Auth Guide](https://firebase.google.com/docs/auth) — Guia de Authentication
-- [Cloud Functions Guide](https://firebase.google.com/docs/functions) — Guia Cloud Functions
 - [Firebase Security Rules](https://firebase.google.com/docs/rules) — Regras de segurança
 
 ### Cursos e Tutoriais

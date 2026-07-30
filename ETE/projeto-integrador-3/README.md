@@ -456,6 +456,520 @@ _________________________________________________
 
 ---
 
+## 🚨 Plano de Contingência Pedagógica (Aulas Práticas sem Laboratório)
+
+> ⚠️ **Quando usar este plano?** Quando não houver acesso ao laboratório de informática (manutenção, falta de energia, reserva indisponível, equipamentos com defeito, etc.)
+
+> 💡 **Princípio:** Projeto não para! O Scrum funciona com ou sem computador — cerimônias, planejamento e revisão de código podem acontecer sem máquina.
+
+---
+
+### 📱 Opção A: Abordagem com Smartphone (BYOD)
+
+> 🎯 **Ideal quando:** Alunos possuem smartphone com acesso à internet (Wi-Fi da escola ou dados móveis)
+
+#### Ferramentas Mobile Recomendadas
+
+| Ferramenta | Plataforma | Uso no Projeto Integrador |
+|-----------|-----------|---------------------------|
+| **GitHub Mobile** | Android/iOS | Criar issues, revisar PRs, gerenciar Kanban do projeto |
+| **Trello / Notion** | Android/iOS | Sprint Planning, Kanban, backlog, atas de reunião |
+| **Vercel** | Navegador mobile | Verificar deploys, logs, status da aplicação |
+| **Figma Mobile** | Android/iOS | Revisar protótipos, comentar design, inspecionar specs |
+| **Firebase Console** | Navegador mobile | Monitorar banco, verificar auth, checar regras |
+| **Google Meet/Docs** | Android/iOS | Documentação colaborativa em tempo real |
+
+#### Atividades Adaptadas para Smartphone
+
+| Fase/Sprint | Atividade Original (PC) | Adaptação Mobile |
+|-------------|------------------------|-----------------|
+| Setup | Criar repo GitHub | GitHub Mobile: criar repo, README, issues iniciais |
+| Sprint 1 | Wireframes no Figma | Figma Mobile: revisar/comentar wireframes da equipe |
+| Sprint 2 | Firebase setup | Firebase Console no celular: criar coleções, testar Auth |
+| Sprint 3 | Desenvolvimento | GitHub Mobile: code review de PRs, criar issues de bugs |
+| Sprint 4 | Testes e polish | Vercel: verificar deploy + Firebase Console: monitorar |
+| Final | Documentação | Google Docs Mobile: redigir README e manual colaborativo |
+
+#### 🎯 Roteiro do Professor — BYOD
+
+```
+ANTES DA AULA:
+1. Verificar Wi-Fi da escola está funcionando
+2. Garantir que equipes têm repos GitHub criados
+3. Preparar lista de issues/tarefas para Sprint Planning
+4. Ter link do board (Trello/GitHub Projects) acessível
+
+DURANTE A AULA (50 min):
+┌─────────────────────────────────────────────────────┐
+│ 00-05 min │ Daily Standup: cada membro reporta      │
+│           │ pelo celular o que fez e impedimentos    │
+├───────────┼─────────────────────────────────────────┤
+│ 05-15 min │ Sprint Planning/Review no Trello/GitHub │
+│           │ Mover cards, criar novas issues          │
+├───────────┼─────────────────────────────────────────┤
+│ 15-40 min │ Atividade principal:                    │
+│           │ • Code Review via GitHub Mobile          │
+│           │ • Documentação via Google Docs           │
+│           │ • Monitoramento via Firebase Console     │
+├───────────┼─────────────────────────────────────────┤
+│ 40-50 min │ Sync da equipe: atualizar board,        │
+│           │ definir próximos passos                  │
+└───────────┴─────────────────────────────────────────┘
+
+AVALIAÇÃO:
+• Board atualizado (Kanban com cards movidos)
+• Issues criadas/fechadas no GitHub
+• Ata da reunião (Google Docs)
+• Evidência de code review (comentários no PR)
+```
+
+#### 📋 Guia do Aluno — BYOD
+
+```
+╔══════════════════════════════════════════════════════╗
+║  📋 GUIA DO ALUNO — Projeto Integrador (BYOD)      ║
+╠══════════════════════════════════════════════════════╣
+║                                                      ║
+║  MATERIAIS NECESSÁRIOS:                              ║
+║  ✅ Smartphone carregado (mínimo 40%)                ║
+║  ✅ GitHub Mobile instalado e logado                 ║
+║  ✅ Trello ou Notion instalado                       ║
+║  ✅ Acesso ao Firebase Console (navegador)           ║
+║                                                      ║
+║  ATIVIDADE — SPRINT PLANNING MOBILE:                 ║
+║  1. Abrir o board da equipe (Trello/GitHub Projects) ║
+║  2. Revisar o que está em "Done" da sprint anterior  ║
+║  3. Mover cards do Backlog → To Do (priorizar)       ║
+║  4. Atribuir responsáveis para cada card             ║
+║  5. Estimar esforço (P/M/G) com a equipe             ║
+║  6. Criar issues no GitHub para cada tarefa          ║
+║                                                      ║
+║  ATIVIDADE — CODE REVIEW MOBILE:                     ║
+║  1. Abrir GitHub Mobile → Pull Requests              ║
+║  2. Ler o diff do código do colega                   ║
+║  3. Comentar pelo menos 2 pontos:                    ║
+║     • 1 elogio (algo bem feito)                      ║
+║     • 1 sugestão de melhoria                         ║
+║  4. Aprovar ou solicitar mudanças                    ║
+║                                                      ║
+║  ENTREGA: Screenshot do board + link do PR revisado  ║
+╚══════════════════════════════════════════════════════╝
+```
+
+---
+
+### 📝 Opção B: Abordagem Desplugada (Unplugged)
+
+> 🎯 **Ideal quando:** Não há internet disponível OU alunos não têm smartphone
+
+#### Atividade B1: Sprint Planning Presencial — Kanban no Quadro
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Planejamento de sprint usando Kanban físico |
+| **Duração** | 50 minutos |
+| **Materiais** | Quadro branco, post-its (3 cores), caneta, fita adesiva |
+| **Objetivo** | Planejar a próxima sprint com Kanban físico + Planning Poker manual |
+
+**📋 Roteiro do Professor:**
+```
+1. (10 min) SETUP DO KANBAN NO QUADRO:
+   • Dividir quadro em 4 colunas: Backlog | To Do | In Progress | Done
+   • Cada equipe recebe post-its de 3 cores:
+     - 🟡 Amarelo = Funcionalidade nova
+     - 🔵 Azul = Bug/correção
+     - 🟢 Verde = Documentação/design
+
+2. (15 min) PLANNING POKER MANUAL:
+   • Cada membro tem "cartas" (folhas com 1, 2, 3, 5, 8, 13)
+   • PO apresenta cada item do backlog
+   • Todos revelam estimativa ao mesmo tempo
+   • Se divergência > 3 pontos → discutir e re-estimar
+
+3. (20 min) SPRINT PLANNING:
+   • Equipes selecionam itens do Backlog → To Do
+   • Definir responsável (iniciais no post-it)
+   • Definir critério de "Done" para cada item
+   • Meta da sprint escrita no quadro
+
+4. (5 min) SPRINT GOAL:
+   • Cada equipe declara em 1 frase o objetivo da sprint
+   • Fotografar o quadro (evidência)
+```
+
+**📋 Guia do Aluno — Sprint Planning:**
+```
+╔══════════════════════════════════════════════════════╗
+║  SPRINT PLANNING — KANBAN NO QUADRO                  ║
+╠══════════════════════════════════════════════════════╣
+║                                                      ║
+║  1. Escrever TODAS as tarefas pendentes em post-its  ║
+║     (1 tarefa por post-it, letra legível!)           ║
+║                                                      ║
+║  2. PLANNING POKER:                                  ║
+║     • Ouvir a descrição da tarefa                    ║
+║     • Escolher sua carta (1=fácil, 13=muito difícil) ║
+║     • Revelar ao mesmo tempo que os colegas          ║
+║     • Quem deu maior e menor: explicar por quê      ║
+║                                                      ║
+║  3. Selecionar tarefas para esta sprint              ║
+║     (não pegar mais do que consegue entregar!)       ║
+║                                                      ║
+║  4. Colocar suas iniciais nos post-its que assumiu   ║
+║                                                      ║
+║  5. Fotografar o quadro final                        ║
+╚══════════════════════════════════════════════════════╝
+```
+
+---
+
+#### Atividade B2: Code Review em Papel
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Revisão de código impresso entre duplas |
+| **Duração** | 50 minutos |
+| **Materiais** | Código impresso (2 páginas por aluno), caneta vermelha, checklist impresso |
+| **Objetivo** | Praticar code review como processo de qualidade |
+
+**📋 Roteiro do Professor:**
+```
+1. (5 min) EXPLICAR CODE REVIEW:
+   • Por que fazemos? (bugs, aprendizado, padrões)
+   • Regras: ser construtivo, focar no código não na pessoa
+   • Checklist: nomes claros? sem repetição? tratou erros?
+
+2. (5 min) DISTRIBUIR MATERIAL:
+   • Cada aluno recebe código DIFERENTE do seu colega
+   • Caneta vermelha + checklist de review
+
+3. (30 min) REVIEW EM DUPLAS:
+   • Ler o código linha por linha
+   • Marcar com caneta vermelha:
+     ✓ = Bom! Bem feito
+     ? = Não entendi, precisa explicação
+     ✗ = Problema (bug, nome ruim, falta tratamento de erro)
+   • Escrever comentários na margem
+
+4. (10 min) FEEDBACK PRESENCIAL:
+   • Duplas conversam sobre os achados
+   • Autor explica decisões, revisor sugere melhorias
+   • Anotar 3 ações de melhoria (to-do list)
+```
+
+**📋 Guia do Aluno — Code Review:**
+```
+╔══════════════════════════════════════════════════════╗
+║  CODE REVIEW EM PAPEL — CHECKLIST                    ║
+╠══════════════════════════════════════════════════════╣
+║                                                      ║
+║  Para cada trecho de código, verificar:              ║
+║  □ Nomes de variáveis são descritivos?              ║
+║  □ Funções fazem uma coisa só?                      ║
+║  □ Tem tratamento de erro (try/catch)?              ║
+║  □ Código é legível sem comentários?                ║
+║  □ Há código duplicado que poderia ser função?      ║
+║  □ Segue padrão do projeto (indentação, estilo)?    ║
+║  □ Dados do usuário são validados?                  ║
+║  □ Não tem console.log/print esquecido?             ║
+║                                                      ║
+║  MARCAR COM CANETA VERMELHA:                         ║
+║  ✓ = Aprovado (bom código!)                         ║
+║  ? = Dúvida (perguntar ao autor)                    ║
+║  ✗ = Problema (precisa corrigir)                    ║
+║  💡 = Sugestão (melhoria opcional)                   ║
+║                                                      ║
+║  Ao final: escrever 3 elogios + 3 melhorias         ║
+╚══════════════════════════════════════════════════════╝
+```
+
+---
+
+#### Atividade B3: Arquitetura de Sistema no Quadro
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Desenhar diagrama de infraestrutura do projeto |
+| **Duração** | 50 minutos |
+| **Materiais** | Quadro branco, canetas coloridas, papel A3 por equipe |
+| **Objetivo** | Visualizar toda a arquitetura: Frontend → API → BD → Deploy |
+
+**📋 Roteiro do Professor:**
+```
+1. (10 min) EXPLICAR DIAGRAMA DE ARQUITETURA:
+   • Mostrar exemplo: App Mobile → Firebase Auth → Firestore → Cloud Functions
+   • Explicar: cada caixa = serviço/componente, seta = comunicação
+
+2. (5 min) DISTRIBUIR PAPEL A3 + canetas coloridas
+
+3. (25 min) EQUIPES DESENHAM ARQUITETURA DO PROJETO:
+   • Frontend (app mobile): telas, navegação
+   • Backend (Firebase): Auth, Firestore, Storage, Functions
+   • Integrações: quais telas acessam quais dados?
+   • Deploy: como o app chega ao celular do usuário?
+
+4. (10 min) APRESENTAÇÃO:
+   • Cada equipe apresenta (2 min) seu diagrama
+   • Colegas fazem 1 pergunta sobre a arquitetura
+
+RESULTADO ESPERADO (exemplo):
+┌──────────┐     ┌──────────┐     ┌──────────┐
+│  App     │────→│ Firebase │────→│Firestore │
+│ Android  │     │   Auth   │     │  (dados) │
+│(Kotlin)  │     └──────────┘     └──────────┘
+└──────────┘           │                │
+      │                ▼                ▼
+      │          ┌──────────┐     ┌──────────┐
+      └─────────→│ Storage  │     │  Cloud   │
+                 │(imagens) │     │Functions │
+                 └──────────┘     └──────────┘
+```
+
+---
+
+#### Atividade B4: Pitch Rehearsal (Ensaio de Apresentação)
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Ensaiar apresentação do Demo Day sem slides |
+| **Duração** | 50 minutos |
+| **Materiais** | Cronômetro, ficha de feedback impressa |
+| **Objetivo** | Treinar oratória e estrutura do pitch (5+5+5 min) |
+
+**📋 Roteiro do Professor:**
+```
+1. (5 min) RELEMBRAR ESTRUTURA DO PITCH:
+   • 5 min: Problema + Solução (falar, não ler)
+   • 5 min: Demo (simular sem app — descrever o fluxo)
+   • 5 min: Perguntas da banca
+
+2. (35 min) ENSAIO — 3 equipes x 10 min cada:
+   • Equipe apresenta (sem slides, sem celular!)
+   • Turma faz perguntas como "banca"
+   • Professor cronometra rigorosamente
+
+3. (10 min) FEEDBACK COLETIVO:
+   • O que funcionou? O que precisa melhorar?
+   • Dicas: contato visual, postura, não dizer "tipo/né"
+   • Cada equipe recebe ficha de feedback dos colegas
+
+FICHA DE FEEDBACK (cada espectador preenche):
+┌──────────────────────────────────────────┐
+│ Equipe: ____________  Avaliador: _______ │
+├──────────────────────────────────────────┤
+│ Clareza do problema:        ⭐⭐⭐⭐⭐  │
+│ Solução convincente:        ⭐⭐⭐⭐⭐  │
+│ Domínio técnico:            ⭐⭐⭐⭐⭐  │
+│ Comunicação/postura:        ⭐⭐⭐⭐⭐  │
+│ Respondeu bem as perguntas: ⭐⭐⭐⭐⭐  │
+├──────────────────────────────────────────┤
+│ 1 elogio: ______________________________ │
+│ 1 melhoria: ____________________________ │
+└──────────────────────────────────────────┘
+```
+
+---
+
+#### Atividade B5: Retrospectiva Ágil com Post-its
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Sprint Retrospective presencial |
+| **Duração** | 40 minutos |
+| **Materiais** | Post-its (3 cores), quadro dividido em 3 colunas |
+| **Objetivo** | Refletir sobre o processo e definir ações de melhoria |
+
+**📋 Roteiro do Professor:**
+```
+1. (5 min) SETUP DO QUADRO:
+   Dividir em 3 colunas:
+   😊 O que foi bem | 😐 O que melhorar | 🎯 Ações
+
+2. (10 min) ESCRITA INDIVIDUAL:
+   • Cada membro escreve em silêncio (1 item por post-it)
+   • Verde = O que foi bem (mínimo 2)
+   • Amarelo = O que melhorar (mínimo 2)
+   • Não escrever nome (anônimo!)
+
+3. (10 min) COLAGEM + AGRUPAMENTO:
+   • Colar post-its no quadro (coluna correta)
+   • Agrupar similares (temas que se repetem)
+   • Ler em voz alta os agrupamentos
+
+4. (10 min) VOTAÇÃO + AÇÕES:
+   • Cada membro vota (com caneta) nos 2 mais importantes
+   • Top 3 mais votados → definir AÇÃO concreta
+   • Ação: quem faz? até quando?
+
+5. (5 min) REGISTRO:
+   • Fotografar quadro (evidência)
+   • 1 aluno registra ata com as 3 ações definidas
+```
+
+---
+
+### 📊 Opção C: Estudo de Caso e PBL (Problem-Based Learning)
+
+> 🎯 **Ideal quando:** Turma precisa refletir sobre gestão de projetos e decisões técnicas
+
+#### Caso 1: Post-Mortem de Projeto que Falhou
+
+```
+╔══════════════════════════════════════════════════════╗
+║  📋 CASO: "App EcoRecife" — Por que falhou?         ║
+╠══════════════════════════════════════════════════════╣
+║                                                      ║
+║  CONTEXTO:                                           ║
+║  Equipe de 5 alunos, projeto integrador 2025.       ║
+║  App para reportar problemas ambientais em Recife.  ║
+║  Tinham 20 semanas. Resultado: app não funcionou    ║
+║  no Demo Day. Nota: 3.5                             ║
+║                                                      ║
+║  O QUE ACONTECEU (timeline):                        ║
+║  • Semanas 1-6: debateram o tema, sem código        ║
+║  • Semana 7: começaram Firebase, PO saiu do grupo   ║
+║  • Semanas 8-12: 2 devs fizeram tudo, 2 sumiram    ║
+║  • Semana 14: descobriram bug crítico no Auth       ║
+║  • Semana 18: tentaram integrar tudo → conflitos    ║
+║  • Semana 20: Demo Day → app crashou ao vivo       ║
+║                                                      ║
+║  EVIDÊNCIAS:                                        ║
+║  • GitHub: 80% dos commits de 1 pessoa              ║
+║  • Kanban: cards nunca movidos após semana 3        ║
+║  • Nenhuma Sprint Retrospective registrada          ║
+║  • Design no Figma: apenas 2 telas (low-fi)        ║
+║                                                      ║
+╠══════════════════════════════════════════════════════╣
+║  DISCUSSÃO (em grupo):                              ║
+║  1. Quais foram as 3 CAUSAS RAIZ do fracasso?       ║
+║  2. Em qual semana o projeto "morreu"? Por quê?     ║
+║  3. O que o Scrum Master deveria ter feito?         ║
+║  4. Como a professora poderia ter intervido antes?  ║
+║  5. Reescreva o cronograma: o que fariam diferente? ║
+╚══════════════════════════════════════════════════════╝
+```
+
+**📋 Roteiro do Professor — Caso 1:**
+```
+1. (10 min) Apresentar o caso (ler juntos ou projetar)
+2. (20 min) Discussão em grupos de 4-5 alunos
+3. (15 min) Cada grupo apresenta suas conclusões (3 min cada)
+4. (5 min) Síntese: "Lições que aplicaremos no NOSSO projeto"
+
+PERGUNTAS PROVOCATIVAS:
+• "Se vocês estivessem nessa equipe, em qual semana teriam
+   percebido o problema?"
+• "O que é pior: app feio que funciona ou app bonito que crasha?"
+• "Como evitar que 1 pessoa faça 80% do trabalho?"
+```
+
+#### Caso 2: Análise de Projetos Open-Source no GitHub
+
+```
+╔══════════════════════════════════════════════════════╗
+║  📋 CASO: Anatomia de um Projeto Open-Source        ║
+╠══════════════════════════════════════════════════════╣
+║                                                      ║
+║  PROJETO: (impresso pela professora)                 ║
+║  Um repositório GitHub de app mobile open-source     ║
+║  com: README, issues, PRs, wiki, releases.          ║
+║                                                      ║
+║  MATERIAL IMPRESSO (1 por equipe):                   ║
+║  • README.md do projeto (2 páginas)                  ║
+║  • Lista de issues (10 mais recentes)                ║
+║  • 2 Pull Requests (com comentários do review)       ║
+║  • Gráfico de contribuidores                         ║
+║  • Estrutura de pastas do projeto                    ║
+║                                                      ║
+║  ANÁLISE (responder por escrito):                   ║
+║  1. O README é claro? O que está faltando?          ║
+║  2. As issues seguem um padrão? Têm labels?         ║
+║  3. Os PRs têm boa descrição? Code review existe?   ║
+║  4. A distribuição de contribuição é equilibrada?   ║
+║  5. O que podemos COPIAR para o nosso projeto?      ║
+║  6. O que NÃO devemos fazer como eles?              ║
+╚══════════════════════════════════════════════════════╝
+```
+
+---
+
+### 📊 Rubrica de Avaliação Adaptada
+
+> Mesmos critérios de avaliação, independente da modalidade utilizada.
+
+| Critério | BYOD (Smartphone) | Desplugada (Papel) | Estudo de Caso |
+|----------|-------------------|-------------------|----------------|
+| **Gestão de Projeto** (30%) | Board atualizado + issues criadas no GitHub Mobile | Kanban no quadro fotografado + ata escrita | Análise de falhas + plano de mitigação |
+| **Colaboração** (25%) | Code review no GitHub + comentários no PR | Code review em papel + feedback presencial | Discussão em grupo + apresentação |
+| **Comunicação** (25%) | Documentação no Google Docs Mobile | Pitch rehearsal + diagrama de arquitetura | Argumentação sobre decisões técnicas |
+| **Pensamento Crítico** (20%) | Monitoramento de deploy + decisões técnicas | Retrospectiva com ações definidas | Identificação de causas raiz |
+
+**Escala de Notas:**
+
+| Nota | Descrição |
+|------|-----------|
+| **9-10** | Participação ativa, liderança, entregas completas com qualidade |
+| **7-8** | Boa participação, entregas no prazo, colaboração efetiva |
+| **5-6** | Participação parcial, entregas mínimas, pouca colaboração |
+| **< 5** | Não participou ou não entregou atividade |
+
+---
+
+### 🗂️ Kit de Materiais para Impressão
+
+| Material | Quantidade | Uso |
+|----------|-----------|-----|
+| Fichas de Planning Poker (1,2,3,5,8,13) | 1 set por aluno | Sprint Planning (B1) |
+| Código-fonte impresso (trechos do projeto) | 2 páginas por dupla | Code Review em Papel (B2) |
+| Ficha de feedback de apresentação | 1 por aluno por equipe | Pitch Rehearsal (B4) |
+| Post-its (3 cores: verde, amarelo, rosa) | 5 de cada por aluno | Retrospectiva (B5) |
+| Papel A3 | 1 por equipe | Diagrama de Arquitetura (B3) |
+| Template de ata de reunião | 1 por equipe | Todas as atividades |
+| Caso impresso "App EcoRecife" | 1 por grupo | Estudo de Caso (C1) |
+| Material de projeto open-source | 1 por equipe | Estudo de Caso (C2) |
+
+---
+
+### ⚡ Decisão Rápida: Qual Opção Usar?
+
+```
+┌─────────────────────────────────────────────────────────────┐
+│           FLUXOGRAMA DE DECISÃO RÁPIDA                      │
+└─────────────────────────────────────────────────────────────┘
+
+                LABORATÓRIO INDISPONÍVEL
+                         │
+                         ▼
+              ┌─────────────────────┐
+              │ Alunos têm celular  │
+              │ + internet?         │
+              └──────────┬──────────┘
+                    │         │
+                   SIM       NÃO
+                    │         │
+                    ▼         ▼
+              ┌──────────┐   ┌─────────────────────┐
+              │ OPÇÃO A: │   │ É semana de Sprint  │
+              │ GitHub   │   │ Planning/Review/    │
+              │ Mobile + │   │ Retro?              │
+              │ Trello + │   └──────────┬──────────┘
+              │ Firebase │        │         │
+              │ Console  │       SIM       NÃO
+              └──────────┘        │         │
+                                  ▼         ▼
+                            ┌────────┐ ┌─────────┐
+                            │OPÇÃO B:│ │OPÇÃO C: │
+                            │Sprint  │ │Estudo de│
+                            │Planning│ │Caso/PBL │
+                            │Retro   │ │Post-    │
+                            │Code Rev│ │Mortem   │
+                            └────────┘ └─────────┘
+```
+
+> ⚠️ **Dica da Profª Luana:** Mantenha sempre 5 cópias das fichas de Planning Poker (B1) e do caso "App EcoRecife" (C1) na sua pasta. São as atividades mais rápidas de aplicar sem preparação prévia!
+
+---
+
 ## 📚 Referências
 
 ### Todas as disciplinas do Módulo 3 (integradas)

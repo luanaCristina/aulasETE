@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ética e Segurança da Informação — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+
+  <nav class="sidebar">
+    <h3>📚 Ética e Segurança da Informação</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🔒 Ética e Segurança da <span class="accent">Informação</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — Módulo 3 — 40h</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Segurança não é um recurso — é um requisito não-funcional que permeia TODO o código."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: POR QUE SEGURANÇA IMPORTA -->
+    <section class="slide slide--content" data-title="Por que Segurança Importa">
+      <h2>🚨 Por que Segurança Importa?</h2>
+      <p>Incidentes de segurança custam dinheiro, reputação e podem ter consequências legais.</p>
+
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>📊 Dados Reais (2024-2025)</h3>
+          <ul>
+            <li>🇧🇷 Brasil: 2° país com mais ataques cibernéticos</li>
+            <li>💰 Custo médio de vazamento: R$ 6,75 milhões</li>
+            <li>⏱️ Tempo médio para detectar breach: 197 dias</li>
+            <li>👤 83% dos vazamentos envolvem fator humano</li>
+            <li>📱 Apps mobile: 75% falham em testes de segurança</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>⚖️ Consequências</h3>
+          <ul>
+            <li><strong>Legais:</strong> Multa LGPD até 2% do faturamento</li>
+            <li><strong>Financeiras:</strong> Prejuízo direto + indenizações</li>
+            <li><strong>Reputação:</strong> Perda de clientes e confiança</li>
+            <li><strong>Operacionais:</strong> Sistema fora do ar</li>
+            <li><strong>Pessoais:</strong> Responsabilização do dev</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Mensagem:</strong> Segurança não é trabalho só do "time de segurança" — é responsabilidade de TODO desenvolvedor.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Fundamentos de Segurança da Informação</td><td>Mapa mental CIA Triad</td></tr>
+          <tr><td>3-4</td><td>LGPD na Prática</td><td>Análise de privacidade de app</td></tr>
+          <tr><td>5-6</td><td>OWASP Top 10</td><td>Identificar 3 vulnerabilidades</td></tr>
+          <tr><td>7-8</td><td>Criptografia (simétrica/assimétrica)</td><td>Exercício de hash + JWT</td></tr>
+          <tr><td>9</td><td>Autenticação e Autorização</td><td>Fluxo OAuth 2.0 documentado</td></tr>
+          <tr><td>10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Quiz + análise de vulnerabilidade</td></tr>
+          <tr><td>11-12</td><td>Auditoria de Código</td><td>Code review focado em segurança</td></tr>
+          <tr><td>13-14</td><td>Segurança em APIs</td><td>Checklist de segurança para API</td></tr>
+          <tr><td>15-16</td><td>Segurança Mobile (React Native)</td><td>Hardening do app</td></tr>
+          <tr><td>17-18</td><td>Projeto: Auditoria do AgendaPro</td><td>Relatório de auditoria completo</td></tr>
+          <tr><td>19</td><td>Ética Digital e Responsabilidade</td><td>Debate + ensaio ético</td></tr>
+          <tr><td>20</td><td><strong>PROVA REGIMENTAL</strong></td><td>Relatório + Prova</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: LGPD NA PRÁTICA -->
+    <section class="slide slide--content" data-title="LGPD na Prática">
+      <h2>⚖️ LGPD na Prática — Para Desenvolvedores</h2>
+      <p>Lei Geral de Proteção de Dados (Lei 13.709/2018) — o que muda no seu código.</p>
+
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>📋 Princípios da LGPD</h3>
+          <ul>
+            <li><strong>Finalidade:</strong> Coletar só o necessário</li>
+            <li><strong>Consentimento:</strong> Usuário deve autorizar</li>
+            <li><strong>Transparência:</strong> Informar o que coleta</li>
+            <li><strong>Segurança:</strong> Proteger dados armazenados</li>
+            <li><strong>Eliminação:</strong> Deletar quando solicitado</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>💻 Na Prática (AgendaPro)</h3>
+          <ul>
+            <li>✅ Tela de consentimento no cadastro</li>
+            <li>✅ Endpoint "deletar minha conta"</li>
+            <li>✅ Criptografar dados sensíveis (CPF, saúde)</li>
+            <li>✅ Log de acesso a dados pessoais</li>
+            <li>✅ Política de privacidade acessível</li>
+            <li>❌ Não compartilhar dados sem consentimento</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Multa:</strong> Até 2% do faturamento (máximo R$ 50 milhões por infração). Dados de saúde são considerados "sensíveis" pela LGPD.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: OWASP TOP 10 -->
+    <section class="slide slide--dark" data-title="OWASP Top 10">
+      <h2>🛡️ OWASP Top 10 — Vulnerabilidades Mais Comuns</h2>
+      <p style="color:#94A3B8;">As 10 falhas de segurança mais exploradas em aplicações web e mobile.</p>
+
+      <table style="margin-top:16px;">
+        <thead><tr><th>#</th><th>Vulnerabilidade</th><th>Exemplo Prático</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td><strong>Broken Access Control</strong></td><td>Acessar dados de outro usuário</td></tr>
+          <tr><td>2</td><td><strong>Cryptographic Failures</strong></td><td>Senha em texto plano no banco</td></tr>
+          <tr><td>3</td><td><strong>Injection</strong></td><td>SQL Injection via formulário</td></tr>
+          <tr><td>4</td><td><strong>Insecure Design</strong></td><td>Sem rate limiting no login</td></tr>
+          <tr><td>5</td><td><strong>Security Misconfiguration</strong></td><td>Firebase rules abertas</td></tr>
+          <tr><td>6</td><td><strong>Vulnerable Components</strong></td><td>npm package com exploit conhecido</td></tr>
+          <tr><td>7</td><td><strong>Auth Failures</strong></td><td>Token JWT sem expiração</td></tr>
+          <tr><td>8</td><td><strong>Data Integrity Failures</strong></td><td>Aceitar qualquer input sem validação</td></tr>
+          <tr><td>9</td><td><strong>Logging Failures</strong></td><td>Não registrar tentativas de invasão</td></tr>
+          <tr><td>10</td><td><strong>SSRF</strong></td><td>Servidor acessa URLs internas</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 6: CRIPTOGRAFIA -->
+    <section class="slide slide--content" data-title="Criptografia">
+      <h2>🔐 Criptografia — Simétrica vs. Assimétrica</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🔑 Simétrica (AES)</h3>
+          <ul>
+            <li>Mesma chave para criptografar e descriptografar</li>
+            <li>Rápida e eficiente</li>
+            <li>Problema: como compartilhar a chave?</li>
+            <li>Uso: dados em repouso (banco de dados)</li>
+          </ul>
+          <p style="margin-top:8px; font-style:italic; color:var(--text-light);">Analogia: cadeado com cópia da chave</p>
+        </div>
+        <div class="card">
+          <h3>🔑🔑 Assimétrica (RSA)</h3>
+          <ul>
+            <li>Par de chaves: pública + privada</li>
+            <li>Pública encripta, privada decripta</li>
+            <li>Mais lenta, mas resolve compartilhamento</li>
+            <li>Uso: HTTPS, JWT, assinaturas digitais</li>
+          </ul>
+          <p style="margin-top:8px; font-style:italic; color:var(--text-light);">Analogia: caixa de correio (todos colocam, só dono abre)</p>
+        </div>
+      </div>
+
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Na prática:</strong> HTTPS = assimétrica (handshake) + simétrica (dados). Senhas = hash (bcrypt) — NÃO é criptografia, é irreversível!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: AUTENTICAÇÃO E JWT -->
+    <section class="slide slide--dark" data-title="Autenticação e JWT">
+      <h2>🎫 Autenticação e JWT</h2>
+      <p style="color:#94A3B8;">JSON Web Tokens — o padrão para autenticação stateless em APIs.</p>
+
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">Estrutura JWT</span>
+        <code>// JWT = Header.Payload.Signature
+
+// HEADER (algoritmo)
+{ "alg": "HS256", "typ": "JWT" }
+
+// PAYLOAD (dados do usuário)
+{
+  "sub": "uid123",
+  "name": "Maria Silva",
+  "role": "patient",
+  "iat": 1719849600,   // emitido em
+  "exp": 1719936000    // expira em (24h depois)
+}
+
+// SIGNATURE (verificação)
+HMACSHA256(base64(header) + "." + base64(payload), SECRET_KEY)
+
+// Token final: eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1aWQxMjMi...
+// ⚠️ Payload é apenas codificado (base64), NÃO criptografado!</code>
+      </div>
+
+      <div class="callout callout--warning" style="margin-top:12px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Regras:</strong> Sempre definir expiração (exp). Nunca colocar dados sensíveis no payload. Armazenar token de forma segura (httpOnly cookie ou SecureStore no mobile).</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: AUDITORIA DE CÓDIGO -->
+    <section class="slide slide--dark" data-title="Auditoria de Código">
+      <h2>🔍 Auditoria de Código — Vulnerável vs. Seguro</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Compare: código com falhas de segurança vs. código corrigido</p>
+      <div class="code-tabs">
+        <button class="code-tab active">❌ Python Vulnerável</button>
+        <button class="code-tab">✅ Python Seguro</button>
+        <button class="code-tab">❌ TypeScript Vulnerável</button>
+        <button class="code-tab">✅ TypeScript Seguro</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">Python — VULNERÁVEL</span>
+          <code># ❌ SQL INJECTION — NUNCA faça isso!
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
+
+    # String concatenation = SQL Injection!
+    query = f"SELECT * FROM users WHERE username='{username}' AND password='{password}'"
+    user = db.execute(query).fetchone()
+
+    # Input: username = ' OR '1'='1' --
+    # Resultado: acesso sem senha! 💀</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">Python — SEGURO</span>
+          <code># ✅ PARAMETERIZED QUERY + HASH
+from werkzeug.security import check_password_hash
+
+@app.route('/login', methods=['POST'])
+def login():
+    username = request.form['username']
+    password = request.form['password']
+
+    # Query parametrizada (imune a injection)
+    user = db.execute(
+        "SELECT * FROM users WHERE username = ?",
+        (username,)
+    ).fetchone()
+
+    # Verificar hash da senha (bcrypt)
+    if user and check_password_hash(user['password_hash'], password):
+        token = create_jwt(user['id'])
+        return jsonify({'token': token})
+    return jsonify({'error': 'Credenciais inválidas'}), 401</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript — VULNERÁVEL</span>
+          <code>// ❌ BROKEN ACCESS CONTROL
+app.get('/api/appointments/:id', async (req, res) => {
+  const { id } = req.params;
+
+  // Qualquer usuário acessa qualquer agendamento!
+  const appointment = await db.query(
+    'SELECT * FROM appointments WHERE id = $1', [id]
+  );
+
+  // Sem verificar se pertence ao usuário logado 💀
+  res.json(appointment.rows[0]);
+});
+
+// Atacante: GET /api/appointments/999 → vê dados de outro paciente!</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript — SEGURO</span>
+          <code>// ✅ ACCESS CONTROL + OWNERSHIP CHECK
+app.get('/api/appointments/:id', authMiddleware, async (req, res) => {
+  const { id } = req.params;
+  const userId = req.user.uid; // do JWT verificado
+
+  const appointment = await db.query(
+    'SELECT * FROM appointments WHERE id = $1 AND patient_id = $2',
+    [id, userId] // Filtra pelo dono!
+  );
+
+  if (!appointment.rows[0]) {
+    return res.status(404).json({ error: 'Não encontrado' });
+  }
+
+  res.json(appointment.rows[0]);
+});
+
+// Atacante: GET /api/appointments/999 → 404 (não é dele)</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: CHECKLIST DE SEGURANÇA -->
+    <section class="slide slide--content" data-title="Checklist de Segurança">
+      <h2>✅ Checklist de Segurança — Para Todo Projeto</h2>
+      <div class="columns">
+        <div>
+          <h3>🔐 Autenticação</h3>
+          <ul>
+            <li>☐ Senhas com hash (bcrypt, 12+ rounds)</li>
+            <li>☐ JWT com expiração (max 24h)</li>
+            <li>☐ Rate limiting no login (5 tentativas)</li>
+            <li>☐ 2FA disponível (opcional para usuário)</li>
+          </ul>
+          <h3 style="margin-top:16px;">🛡️ Dados</h3>
+          <ul>
+            <li>☐ HTTPS em toda comunicação</li>
+            <li>☐ Dados sensíveis criptografados</li>
+            <li>☐ Backup automático + teste de restore</li>
+            <li>☐ Logs de acesso a dados pessoais</li>
+          </ul>
+        </div>
+        <div>
+          <h3>💻 Código</h3>
+          <ul>
+            <li>☐ Input validation (Zod, Yup)</li>
+            <li>☐ Queries parametrizadas (nunca concatenar)</li>
+            <li>☐ Dependências atualizadas (npm audit)</li>
+            <li>☐ Variáveis de ambiente (.env, não hardcoded)</li>
+          </ul>
+          <h3 style="margin-top:16px;">📱 Mobile</h3>
+          <ul>
+            <li>☐ Token em SecureStore (não AsyncStorage)</li>
+            <li>☐ Certificate pinning (APIs críticas)</li>
+            <li>☐ Ofuscação de código (produção)</li>
+            <li>☐ Sem dados sensíveis em logs</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Identificar 3 falhas OWASP em código</td><td>Relatório anotado</td></tr>
+          <tr><td>🟢 Fácil</td><td>Análise LGPD de um app real</td><td>Checklist preenchido</td></tr>
+          <tr><td>🟡 Médio</td><td>Implementar hash + JWT</td><td>API com auth segura</td></tr>
+          <tr><td>🟡 Médio</td><td>Corrigir código vulnerável (5 falhas)</td><td>Pull request com fixes</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Auditoria completa de segurança</td><td>Relatório + recomendações</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Quiz OWASP + LGPD (30%) + Auditoria AgendaPro (40%) + Prova (30%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: PROJETO AUDITORIA -->
+    <section class="slide slide--accent" data-title="Projeto: Auditoria AgendaPro">
+      <h2>🚀 Projeto Final — Auditoria de Segurança do AgendaPro</h2>
+      <p>Auditar o código do AgendaPro e produzir relatório profissional.</p>
+      <div class="columns" style="margin-top:20px;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📋 Áreas de Auditoria</h3>
+          <ul>
+            <li>Autenticação e sessões</li>
+            <li>Firestore Security Rules</li>
+            <li>Validação de inputs</li>
+            <li>Armazenamento de dados sensíveis</li>
+            <li>Dependências vulneráveis (npm audit)</li>
+            <li>Conformidade LGPD</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Entregáveis</h3>
+          <ul>
+            <li>Relatório de vulnerabilidades encontradas</li>
+            <li>Classificação de risco (Alto/Médio/Baixo)</li>
+            <li>Recomendações de correção (com código)</li>
+            <li>Checklist LGPD preenchido</li>
+            <li>Pull request com pelo menos 3 fixes</li>
+            <li>Apresentação dos achados (10 min)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo da Disciplina</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Quiz OWASP + LGPD (parcial)</td><td>30%</td><td>10</td></tr>
+            <tr><td>Auditoria do AgendaPro (final)</td><td>40%</td><td>18-20</td></tr>
+            <tr><td>Prova Regimental</td><td>30%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Código inseguro é dívida técnica que cobra juros em dados vazados e multas milionárias."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 12</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

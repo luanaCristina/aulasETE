@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lógica e Pensamento Computacional — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>🧠 Lógica e Pensamento Computacional</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🧠 Lógica e Pensamento<br><span class="accent">Computacional</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — 120h — Módulo 1</p>
+      <p style="color:#94A3B8; margin-top: 16px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div style="margin-top:24px; display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+        <span style="background:#3B82F6; padding:6px 16px; border-radius:20px; font-size:0.9rem;">📝 Portugol</span>
+        <span style="background:#306998; padding:6px 16px; border-radius:20px; font-size:0.9rem;">🐍 Python</span>
+        <span style="background:#F7DF1E; color:#000; padding:6px 16px; border-radius:20px; font-size:0.9rem;">⚡ JavaScript</span>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:24px;">
+        <span class="icon">💡</span>
+        <span>"A lógica é o fundamento soberano — linguagens e frameworks são apenas sintaxe."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: EMENTA E COMPETÊNCIAS -->
+    <section class="slide slide--content" data-title="Ementa e Competências">
+      <h2>📋 Ementa e Competências</h2>
+      <div class="columns">
+        <div>
+          <h3>📄 Conteúdo Programático</h3>
+          <ul>
+            <li><strong>Bloco 1:</strong> Algoritmos, variáveis, tipos de dados</li>
+            <li><strong>Bloco 2:</strong> Condicionais (se/senão, escolha-caso)</li>
+            <li><strong>Bloco 3:</strong> Repetição (enquanto, para, faca-enquanto)</li>
+            <li><strong>Bloco 4:</strong> Vetores e matrizes</li>
+            <li><strong>Bloco 5:</strong> Funções e modularização</li>
+            <li><strong>Bloco 6:</strong> Ordenação e busca</li>
+          </ul>
+          <div class="callout callout--info" style="margin-top:12px;">
+            <span class="icon">⏱️</span>
+            <span><strong>120h</strong> = 4h/semana × 30 semanas (disciplina anual)</span>
+          </div>
+        </div>
+        <div>
+          <h3>🎯 Competências</h3>
+          <ul>
+            <li>Decompor problemas em passos lógicos</li>
+            <li>Identificar padrões e abstrações</li>
+            <li>Escrever algoritmos em pseudocódigo</li>
+            <li>Implementar soluções em Portugol, Python e JS</li>
+            <li>Testar algoritmos com teste de mesa</li>
+            <li>Modularizar código com funções</li>
+            <li>Aplicar estruturas de dados (vetores)</li>
+            <li>Resolver problemas com eficiência</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 30 Semanas</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Bloco</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td rowspan="3">1</td><td>O que é algoritmo + fluxogramas</td><td>3 algoritmos do cotidiano</td></tr>
+          <tr><td>3-4</td><td>Variáveis, tipos, entrada/saída</td><td>5 programas com leia/escreva</td></tr>
+          <tr><td>5-6</td><td>Operadores aritméticos e lógicos</td><td>Calculadora básica</td></tr>
+          <tr><td>7-9</td><td>2</td><td>Condicionais: se, senao, escolha</td><td>Sistema de notas + menu</td></tr>
+          <tr><td>10</td><td></td><td><strong>AVALIAÇÃO PARCIAL 1</strong></td><td>Prova prática (Portugol)</td></tr>
+          <tr><td>11-14</td><td>3</td><td>Repetição: enquanto, para, faca</td><td>Tabuada + contador + validação</td></tr>
+          <tr><td>15-17</td><td>4</td><td>Vetores e matrizes</td><td>Lista de compras + notas da turma</td></tr>
+          <tr><td>18-19</td><td>5</td><td>Funções e modularização</td><td>Biblioteca de funções matemáticas</td></tr>
+          <tr><td>20</td><td></td><td><strong>AVALIAÇÃO PARCIAL 2</strong></td><td>Prova prática (Python/JS)</td></tr>
+          <tr><td>21-24</td><td>6</td><td>Projeto Caixa de Supermercado</td><td>Sistema funcional completo</td></tr>
+          <tr><td>25-27</td><td>7</td><td>Ordenação e busca</td><td>Algoritmos implementados</td></tr>
+          <tr><td>28-29</td><td></td><td>Revisão + projeto extra</td><td>Portfólio de algoritmos</td></tr>
+          <tr><td>30</td><td></td><td><strong>PROVA REGIMENTAL</strong></td><td>Prova final + portfólio</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: VARIÁVEIS E TIPOS -->
+    <section class="slide slide--dark" data-title="Variáveis e Tipos">
+      <h2>📦 Variáveis e Tipos de Dados</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📦 Analogia: Caixas Etiquetadas</h3>
+          <p>Uma variável é como uma <strong>caixa com etiqueta</strong>:</p>
+          <ul>
+            <li>A <strong>etiqueta</strong> é o nome (ex: <code>idade</code>)</li>
+            <li>O <strong>tamanho da caixa</strong> é o tipo (inteiro, texto...)</li>
+            <li>O <strong>conteúdo</strong> é o valor (ex: <code>17</code>)</li>
+          </ul>
+          <h3 style="margin-top:16px;">📊 Tipos Primitivos</h3>
+          <table>
+            <thead><tr><th>Tipo</th><th>Exemplo</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><strong>inteiro</strong></td><td>17, -5, 0</td><td>Idades, contadores</td></tr>
+              <tr><td><strong>real</strong></td><td>3.14, 9.99</td><td>Preços, médias</td></tr>
+              <tr><td><strong>caractere</strong></td><td>"Ana", "Olá"</td><td>Nomes, textos</td></tr>
+              <tr><td><strong>logico</strong></td><td>verdadeiro, falso</td><td>Condições</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>💻 Em Portugol</h3>
+          <div class="code-block">
+            <span class="lang-badge">Portugol</span>
+            <code>programa {
+  funcao inicio() {
+    // Declaração de variáveis
+    inteiro idade = 17
+    real nota = 8.5
+    cadeia nome = "Maria"
+    logico aprovado = verdadeiro
+
+    // Entrada de dados
+    escreva("Digite seu nome: ")
+    leia(nome)
+
+    escreva("Digite sua idade: ")
+    leia(idade)
+
+    // Saída de dados
+    escreva("Olá, " + nome + "!\n")
+    escreva("Você tem " + idade + " anos.")
+  }
+}</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: CONDICIONAIS -->
+    <section class="slide slide--content" data-title="Condicionais">
+      <h2>🔀 Estruturas Condicionais</h2>
+      <p>Permitem ao programa <strong>tomar decisões</strong> baseadas em condições.</p>
+      <div class="columns" style="margin-top:16px;">
+        <div>
+          <h3>🔀 Se / Senão</h3>
+          <div class="code-block">
+            <span class="lang-badge">Portugol</span>
+            <code>se (nota >= 7.0) {
+  escreva("✅ Aprovado!")
+} senao se (nota >= 5.0) {
+  escreva("📝 Recuperação")
+} senao {
+  escreva("❌ Reprovado")
+}</code>
+          </div>
+          <h3 style="margin-top:16px;">🔄 Escolha-Caso</h3>
+          <div class="code-block">
+            <span class="lang-badge">Portugol</span>
+            <code>escolha (opcao) {
+  caso 1: escreva("Pizza 🍕")  pare
+  caso 2: escreva("Burger 🍔") pare
+  caso 3: escreva("Sushi 🍣")  pare
+  padrao: escreva("Opção inválida")
+}</code>
+          </div>
+        </div>
+        <div>
+          <h3>📊 Fluxograma Visual</h3>
+          <div class="code-block">
+            <span class="lang-badge">Fluxograma</span>
+            <code>        ┌─────────┐
+        │  INÍCIO │
+        └────┬────┘
+             ▼
+     ┌───────────────┐
+     │  Leia: nota   │
+     └───────┬───────┘
+             ▼
+       ╔═══════════╗
+       ║ nota >= 7 ║
+       ╚═════╤═════╝
+        SIM  │  NÃO
+       ┌─────┼─────┐
+       ▼           ▼
+  ┌─────────┐ ╔═══════════╗
+  │Aprovado │ ║ nota >= 5 ║
+  └─────────┘ ╚═════╤═════╝
+              SIM   │  NÃO
+             ┌──────┼──────┐
+             ▼             ▼
+        ┌────────┐   ┌──────────┐
+        │Recuper.│   │Reprovado │
+        └────────┘   └──────────┘</code>
+          </div>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>O losango (◇) sempre representa uma <strong>decisão</strong> (sim/não).</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: REPETIÇÃO -->
+    <section class="slide slide--dark" data-title="Repetição">
+      <h2>🔁 Estruturas de Repetição</h2>
+      <p style="color:#94A3B8;">Loops permitem executar um bloco de código <strong>várias vezes</strong> sem reescrever.</p>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>🔄 Enquanto (while)</h3>
+          <p style="font-size:0.9rem; color:#94A3B8;">Repete ENQUANTO condição é verdadeira</p>
+          <div class="code-block">
+            <span class="lang-badge">Portugol</span>
+            <code>// Contador de 1 a 10
+inteiro i = 1
+enquanto (i <= 10) {
+  escreva(i + " ")
+  i = i + 1
+}
+// Saída: 1 2 3 4 5 6 7 8 9 10</code>
+          </div>
+          <h3 style="margin-top:16px;">🔢 Para (for)</h3>
+          <p style="font-size:0.9rem; color:#94A3B8;">Quando você SABE quantas vezes repetir</p>
+          <div class="code-block">
+            <span class="lang-badge">Portugol</span>
+            <code>// Tabuada do 7
+para (inteiro i = 1; i <= 10; i++) {
+  escreva("7 x " + i + " = " + (7*i) + "\n")
+}</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🔁 Faca-Enquanto (do-while)</h3>
+          <p style="font-size:0.9rem; color:#94A3B8;">Executa PELO MENOS 1 vez, depois verifica</p>
+          <div class="code-block">
+            <span class="lang-badge">Portugol</span>
+            <code>// Menu com validação
+inteiro opcao
+faca {
+  escreva("\n--- MENU ---\n")
+  escreva("1. Jogar\n")
+  escreva("2. Pontuação\n")
+  escreva("0. Sair\n")
+  escreva("Opção: ")
+  leia(opcao)
+
+  escolha (opcao) {
+    caso 1: escreva("🎮 Jogando...")  pare
+    caso 2: escreva("🏆 Pontos: 42") pare
+    caso 0: escreva("👋 Tchau!")     pare
+    padrao: escreva("❌ Inválido!")
+  }
+} enquanto (opcao != 0)</code>
+          </div>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span><strong>Loop infinito:</strong> Se esquecer de atualizar a condição, o programa trava!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: VETORES E MATRIZES -->
+    <section class="slide slide--content" data-title="Vetores e Matrizes">
+      <h2>📊 Vetores e Matrizes</h2>
+      <div class="columns">
+        <div>
+          <h3>🗄️ Analogia: Armário com Gavetas</h3>
+          <p>Um vetor é como um <strong>armário com gavetas numeradas</strong>:</p>
+          <ul>
+            <li>Cada gaveta tem um <strong>índice</strong> (0, 1, 2...)</li>
+            <li>Todas as gavetas guardam o <strong>mesmo tipo</strong></li>
+            <li>Você acessa pelo número: <code>gaveta[3]</code></li>
+          </ul>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Portugol</span>
+            <code>// Vetor de notas da turma
+real notas[5] = {8.5, 7.0, 9.2, 6.5, 8.0}
+
+// Percorrer e calcular média
+real soma = 0.0
+para (inteiro i = 0; i < 5; i++) {
+  soma = soma + notas[i]
+}
+real media = soma / 5
+escreva("Média da turma: " + media)</code>
+          </div>
+        </div>
+        <div>
+          <h3>📐 Operações com Vetores</h3>
+          <table>
+            <thead><tr><th>Operação</th><th>Exemplo</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Acessar</strong></td><td><code>notas[2]</code> → 9.2</td></tr>
+              <tr><td><strong>Alterar</strong></td><td><code>notas[0] = 9.0</code></td></tr>
+              <tr><td><strong>Percorrer</strong></td><td>Loop <code>para</code> do 0 ao tamanho-1</td></tr>
+              <tr><td><strong>Buscar</strong></td><td>Comparar cada elemento</td></tr>
+              <tr><td><strong>Maior/Menor</strong></td><td>Guardar candidato e comparar</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--info" style="margin-top:16px;">
+            <span class="icon">📌</span>
+            <span><strong>Índice começa em 0!</strong> Um vetor de 5 posições vai de [0] a [4].</span>
+          </div>
+          <div class="callout callout--tip" style="margin-top:8px;">
+            <span class="icon">💡</span>
+            <span><strong>Matriz</strong> = vetor de vetores (tabela). Ex: <code>notas[3][4]</code> = 3 alunos × 4 provas.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: FUNÇÕES -->
+    <section class="slide slide--dark" data-title="Funções">
+      <h2>🧩 Funções e Modularização</h2>
+      <p style="color:#94A3B8;">Dividir o programa em <strong>blocos reutilizáveis</strong> — cada função faz UMA coisa bem feita.</p>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>🧩 Por que usar funções?</h3>
+          <ul>
+            <li><strong>Reutilização</strong> — escreva 1 vez, use várias</li>
+            <li><strong>Organização</strong> — código mais legível</li>
+            <li><strong>Manutenção</strong> — corrija em 1 lugar só</li>
+            <li><strong>Teste</strong> — teste cada parte isolada</li>
+          </ul>
+          <h3 style="margin-top:16px;">📐 Anatomia de uma Função</h3>
+          <table>
+            <tbody>
+              <tr><td><strong>Nome</strong></td><td>O que ela faz (verbo)</td></tr>
+              <tr><td><strong>Parâmetros</strong></td><td>Dados de entrada</td></tr>
+              <tr><td><strong>Corpo</strong></td><td>Lógica/processamento</td></tr>
+              <tr><td><strong>Retorno</strong></td><td>Resultado de saída</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>💻 Exemplo Prático</h3>
+          <div class="code-block">
+            <span class="lang-badge">Portugol</span>
+            <code>// Função que calcula média de vetor
+funcao real calcularMedia(real valores[], inteiro tam) {
+  real soma = 0.0
+  para (inteiro i = 0; i < tam; i++) {
+    soma = soma + valores[i]
+  }
+  retorne soma / tam
+}
+
+// Função que verifica aprovação
+funcao cadeia verificarSituacao(real nota) {
+  se (nota >= 7.0) {
+    retorne "Aprovado ✅"
+  } senao se (nota >= 5.0) {
+    retorne "Recuperação 📝"
+  } senao {
+    retorne "Reprovado ❌"
+  }
+}
+
+// Uso no programa principal
+funcao inicio() {
+  real notas[4] = {8.0, 6.5, 9.0, 7.5}
+  real media = calcularMedia(notas, 4)
+  escreva(verificarSituacao(media))
+}</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: MULTI-STACK -->
+    <section class="slide slide--section" data-title="Multi-Stack">
+      <h1>🔗 Mesmo Algoritmo,<br><span class="accent">4 Linguagens</span></h1>
+      <p class="subtitle">Portugol → Python → JavaScript → TypeScript</p>
+      <p style="margin-top: 24px; font-size: 1.2rem; opacity: 0.9;">A lógica é o fundamento soberano; linguagens e frameworks são apenas sintaxe.</p>
+    </section>
+
+    <section class="slide slide--dark" data-title="Code: Caixa de Supermercado">
+      <h2>💻 Caixa de Supermercado — Multi-Stack</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Mesmo algoritmo (registrar compra + calcular total) em 4 linguagens</p>
+      <div class="code-tabs">
+        <button class="code-tab active">Portugol</button>
+        <button class="code-tab">Python</button>
+        <button class="code-tab">JavaScript</button>
+        <button class="code-tab">TypeScript</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">Portugol</span>
+          <code>programa {
+  funcao inicio() {
+    real precos[100]
+    inteiro qtd = 0
+    real preco = -1
+
+    escreva("🛒 CAIXA DE SUPERMERCADO\n")
+    escreva("Digite preços (0 para fechar):\n")
+
+    faca {
+      escreva("Item " + (qtd+1) + ": R$ ")
+      leia(preco)
+      se (preco > 0) {
+        precos[qtd] = preco
+        qtd++
+      }
+    } enquanto (preco != 0)
+
+    real total = 0
+    para (inteiro i = 0; i < qtd; i++) {
+      total = total + precos[i]
+    }
+
+    escreva("\n--- CUPOM FISCAL ---\n")
+    escreva("Itens: " + qtd + "\n")
+    escreva("TOTAL: R$ " + total + "\n")
+  }
+}</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">Python</span>
+          <code># caixa.py — Caixa de Supermercado
+precos = []
+
+print("🛒 CAIXA DE SUPERMERCADO")
+print("Digite preços (0 para fechar):")
+
+while True:
+    preco = float(input(f"Item {len(precos)+1}: R$ "))
+    if preco == 0:
+        break
+    precos.append(preco)
+
+total = sum(precos)
+
+print("\n--- CUPOM FISCAL ---")
+print(f"Itens: {len(precos)}")
+print(f"TOTAL: R$ {total:.2f}")</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">JavaScript</span>
+          <code>// caixa.js — Caixa de Supermercado (Node.js)
+const readline = require('readline');
+const rl = readline.createInterface({ input: process.stdin, output: process.stdout });
+
+const precos = [];
+console.log("🛒 CAIXA DE SUPERMERCADO");
+
+function perguntarPreco() {
+  rl.question(`Item ${precos.length + 1}: R$ `, (resp) => {
+    const preco = parseFloat(resp);
+    if (preco === 0) {
+      const total = precos.reduce((s, p) => s + p, 0);
+      console.log("\n--- CUPOM FISCAL ---");
+      console.log(`Itens: ${precos.length}`);
+      console.log(`TOTAL: R$ ${total.toFixed(2)}`);
+      rl.close();
+    } else {
+      precos.push(preco);
+      perguntarPreco();
+    }
+  });
+}
+perguntarPreco();</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript</span>
+          <code>// caixa.ts — Caixa de Supermercado (tipado)
+interface CupomFiscal {
+  itens: number;
+  precos: number[];
+  total: number;
+}
+
+function calcularCupom(precos: number[]): CupomFiscal {
+  return {
+    itens: precos.length,
+    precos,
+    total: precos.reduce((soma, p) => soma + p, 0),
+  };
+}
+
+function imprimirCupom(cupom: CupomFiscal): void {
+  console.log("\n--- CUPOM FISCAL ---");
+  console.log(`Itens: ${cupom.itens}`);
+  cupom.precos.forEach((p, i) =>
+    console.log(`  ${i+1}. R$ ${p.toFixed(2)}`)
+  );
+  console.log(`TOTAL: R$ ${cupom.total.toFixed(2)}`);
+}
+
+// Uso
+const vendas: number[] = [5.99, 12.50, 3.75, 8.90];
+const cupom = calcularCupom(vendas);
+imprimirCupom(cupom);</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Calculadora de IMC</td><td>Programa com entrada, cálculo e classificação</td></tr>
+          <tr><td>🟢 Fácil</td><td>Par ou Ímpar + Positivo/Negativo</td><td>Programa com condicionais encadeadas</td></tr>
+          <tr><td>🟡 Médio</td><td>Jogo de Adivinhação</td><td>Loop + contador de tentativas + dicas</td></tr>
+          <tr><td>🟡 Médio</td><td>Maior e Menor de N números</td><td>Vetor + loop + funções auxiliares</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Sistema de Notas da Turma</td><td>Vetor + média + situação + relatório</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Regra:</strong> Primeiro resolva em Portugol. Depois traduza para Python OU JavaScript. A lógica é a mesma!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: PROJETO CAIXA DE SUPERMERCADO -->
+    <section class="slide slide--accent" data-title="Projeto: Caixa de Supermercado">
+      <h2>🛒 Projeto: Caixa de Supermercado</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📋 Requisitos</h3>
+          <ul>
+            <li>Registrar produtos (nome + preço)</li>
+            <li>Calcular subtotal e total</li>
+            <li>Aplicar desconto (> R$100 = 5% OFF)</li>
+            <li>Gerar cupom fiscal formatado</li>
+            <li>Aceitar múltiplas formas de pagamento</li>
+            <li>Calcular troco (se dinheiro)</li>
+            <li>Guardar histórico de vendas do dia</li>
+          </ul>
+          <p style="margin-top:12px; font-size:0.9rem; color:#94A3B8;"><strong>Valor:</strong> 40% da nota | Semanas 21-24</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📊 Rubrica de Avaliação</h3>
+          <table>
+            <thead><tr><th>Critério</th><th>Peso</th></tr></thead>
+            <tbody>
+              <tr><td>Funciona sem erros</td><td>30%</td></tr>
+              <tr><td>Usa funções (modularizado)</td><td>25%</td></tr>
+              <tr><td>Vetores para armazenar dados</td><td>20%</td></tr>
+              <tr><td>Validação de entrada</td><td>15%</td></tr>
+              <tr><td>Código legível + comentários</td><td>10%</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Bônus (+10%):</strong> Implementar em 2 linguagens (Portugol + Python/JS)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ORDENAÇÃO E BUSCA -->
+    <section class="slide slide--content" data-title="Ordenação e Busca">
+      <h2>🔍 Ordenação e Busca</h2>
+      <div class="columns">
+        <div>
+          <h3>🫧 Bubble Sort (Ordenação por Bolha)</h3>
+          <p>Compara pares vizinhos e troca se necessário. Repete até ordenar.</p>
+          <div class="code-block">
+            <span class="lang-badge">Portugol</span>
+            <code>// Bubble Sort
+para (inteiro i = 0; i < tam-1; i++) {
+  para (inteiro j = 0; j < tam-i-1; j++) {
+    se (vetor[j] > vetor[j+1]) {
+      // Troca
+      inteiro temp = vetor[j]
+      vetor[j] = vetor[j+1]
+      vetor[j+1] = temp
+    }
+  }
+}</code>
+          </div>
+          <p style="margin-top:8px; font-size:0.9rem; color:var(--text-light);">Complexidade: O(n²) — simples mas lento para listas grandes.</p>
+        </div>
+        <div>
+          <h3>🔍 Busca Linear vs Binária</h3>
+          <table>
+            <thead><tr><th>Tipo</th><th>Como funciona</th><th>Velocidade</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Linear</strong></td><td>Verifica 1 por 1 do início</td><td>O(n) — lenta</td></tr>
+              <tr><td><strong>Binária</strong></td><td>Divide ao meio (requer ordenação)</td><td>O(log n) — rápida</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Analogia:</strong> Busca linear = ler dicionário página por página. Busca binária = abrir no meio e decidir se vai para frente ou para trás.</span>
+          </div>
+          <div class="callout callout--info" style="margin-top:8px;">
+            <span class="icon">📌</span>
+            <span>Em 1.000.000 de itens: linear = até 1M comparações. Binária = apenas 20 comparações!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: PLANO DE CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Plano de Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <p style="color:#94A3B8;">Se o lab estiver indisponível, a aula NÃO para. Escolha uma opção:</p>
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>📝 Teste de Mesa</h3>
+          <p><strong>Rastrear algoritmo no papel:</strong></p>
+          <ul>
+            <li>Tabela de variáveis por linha</li>
+            <li>Simular IF/ELSE com setas</li>
+            <li>Contar iterações de loops</li>
+            <li>Preencher vetores manualmente</li>
+            <li>Encontrar bugs sem computador</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🥪 Algoritmo do Sanduíche</h3>
+          <p><strong>Exercício clássico:</strong></p>
+          <ul>
+            <li>Escrever instruções para fazer um sanduíche</li>
+            <li>Outro aluno executa LITERALMENTE</li>
+            <li>Descobre ambiguidades</li>
+            <li>Refina até funcionar</li>
+            <li>Introduz conceito de precisão lógica</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🃏 Cartas de Baralho</h3>
+          <p><strong>Algoritmos físicos:</strong></p>
+          <ul>
+            <li>Bubble Sort com cartas na mesa</li>
+            <li>Busca binária em cartas ordenadas</li>
+            <li>Vetor = fila de cartas</li>
+            <li>Troca = virar 2 cartas</li>
+            <li>Contar comparações (eficiência)</li>
+          </ul>
+          <p style="margin-top:8px; font-size:0.9rem; color:#94A3B8;">Mesmos critérios de avaliação!</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: RECURSOS -->
+    <section class="slide slide--content" data-title="Recursos">
+      <h2>📚 Referências e Recursos Gratuitos</h2>
+      <div class="columns">
+        <div>
+          <h3>🛠️ Ferramentas</h3>
+          <ul>
+            <li><strong>Portugol Studio</strong> — IDE para pseudocódigo (portugol.dev)</li>
+            <li><strong>Flowgorithm</strong> — Fluxogramas executáveis</li>
+            <li><strong>Python Tutor</strong> — Visualizar execução passo a passo</li>
+            <li><strong>Replit</strong> — IDE online (Python/JS)</li>
+            <li><strong>VS Code</strong> — Editor principal do curso</li>
+          </ul>
+          <h3 style="margin-top:16px;">📱 Apps para celular</h3>
+          <ul>
+            <li><strong>Grasshopper</strong> — Lógica com JavaScript (Google)</li>
+            <li><strong>SoloLearn</strong> — Cursos interativos</li>
+            <li><strong>Mimo</strong> — Exercícios gamificados</li>
+          </ul>
+        </div>
+        <div>
+          <h3>🎓 Cursos Gratuitos</h3>
+          <ul>
+            <li><strong>Curso em Vídeo</strong> — Python + Algoritmos (Guanabara)</li>
+            <li><strong>freeCodeCamp</strong> — JavaScript (exercícios)</li>
+            <li><strong>Khan Academy</strong> — Pensamento Computacional</li>
+            <li><strong>CS50 (Harvard)</strong> — Introdução à Computação</li>
+          </ul>
+          <h3 style="margin-top:16px;">📖 Livros</h3>
+          <ul>
+            <li><strong>"Lógica de Programação"</strong> — Forbellone & Eberspächer</li>
+            <li><strong>"Automate the Boring Stuff"</strong> — Al Sweigart (grátis)</li>
+            <li><strong>"Eloquent JavaScript"</strong> — Marijn Haverbeke (grátis)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Avaliação Parcial 1 (Portugol)</td><td>15%</td><td>10</td></tr>
+            <tr><td>Avaliação Parcial 2 (Python/JS)</td><td>15%</td><td>20</td></tr>
+            <tr><td>Projeto Caixa de Supermercado</td><td>40%</td><td>21-24</td></tr>
+            <tr><td>Prova Regimental + Portfólio</td><td>30%</td><td>30</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">🧠</span>
+        <span>"A lógica é o fundamento soberano — linguagens nascem e morrem, mas o raciocínio lógico é para sempre."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 16</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

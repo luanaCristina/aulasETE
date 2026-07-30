@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Design de Interfaces Mobile — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+
+  <nav class="sidebar">
+    <h3>📚 Design de Interfaces Mobile</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>📲 Design de Interfaces <span class="accent">Mobile</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — Módulo 3 — 40h</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Interface mobile não é desktop menor — é uma experiência completamente diferente, pensada para o toque."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: MATERIAL DESIGN 3 -->
+    <section class="slide slide--content" data-title="Material Design 3">
+      <h2>🎨 Material Design 3 — O Padrão do Android</h2>
+      <p>Sistema de design do Google, base para apps Android modernos.</p>
+
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>🧱 Pilares do MD3</h3>
+          <ul>
+            <li><strong>Material You:</strong> Cores dinâmicas (wallpaper)</li>
+            <li><strong>Tipografia:</strong> Escala tipográfica (5 níveis)</li>
+            <li><strong>Elevation:</strong> Sombras e camadas</li>
+            <li><strong>Motion:</strong> Transições significativas</li>
+            <li><strong>Shape:</strong> Cantos arredondados (tokens)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎨 Color Scheme</h3>
+          <ul>
+            <li><strong>Primary:</strong> Ação principal (botões CTA)</li>
+            <li><strong>Secondary:</strong> Ações secundárias</li>
+            <li><strong>Tertiary:</strong> Acentos decorativos</li>
+            <li><strong>Surface:</strong> Fundos de cards/modals</li>
+            <li><strong>Error:</strong> Feedback de erro</li>
+            <li><strong>On[Color]:</strong> Texto sobre cada cor</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Ferramenta:</strong> Use o Material Theme Builder (m3.material.io) para gerar paletas completas a partir de uma cor.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1-2</td><td>Material Design 3 — Fundamentos</td><td>Análise de 3 apps MD3</td></tr>
+          <tr><td>3-4</td><td>Componentes Nativos (Bottom Nav, FAB)</td><td>Tela com 5 componentes MD3</td></tr>
+          <tr><td>5-6</td><td>Padrões de Navegação Mobile</td><td>Fluxograma de navegação</td></tr>
+          <tr><td>7-8</td><td>Gestos e Animações</td><td>Protótipo com transições</td></tr>
+          <tr><td>9</td><td>Acessibilidade Mobile</td><td>Checklist WCAG mobile</td></tr>
+          <tr><td>10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Redesign de tela existente</td></tr>
+          <tr><td>11-12</td><td>Design Tokens para Mobile</td><td>Arquivo de tokens (cores, tipografia)</td></tr>
+          <tr><td>13-14</td><td>Prototipagem em Figma (mobile)</td><td>5 telas alta fidelidade</td></tr>
+          <tr><td>15-16</td><td>Handoff: Design → Desenvolvimento</td><td>Specs exportadas + guide</td></tr>
+          <tr><td>17-18</td><td>Projeto: UI Kit AgendaPro</td><td>Kit completo no Figma</td></tr>
+          <tr><td>19</td><td>Apresentação e Revisão</td><td>Pitch do UI Kit</td></tr>
+          <tr><td>20</td><td><strong>PROVA REGIMENTAL</strong></td><td>UI Kit + Design-to-Code doc</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: COMPONENTES NATIVOS -->
+    <section class="slide slide--dark" data-title="Componentes Nativos">
+      <h2>🧩 Componentes Nativos Android</h2>
+      <p style="color:#94A3B8;">Os building blocks essenciais de qualquer app mobile.</p>
+
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>🔽 Bottom Navigation</h3>
+          <ul>
+            <li>3-5 destinos principais</li>
+            <li>Ícone + label</li>
+            <li>Badge para notificações</li>
+            <li>Sempre visível no app</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>⊕ FAB (Floating Action Button)</h3>
+          <ul>
+            <li>Ação principal da tela</li>
+            <li>Canto inferior direito</li>
+            <li>Uma por tela (máximo)</li>
+            <li>Variantes: small, regular, large</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🃏 Cards</h3>
+          <ul>
+            <li>Container de conteúdo</li>
+            <li>Elevated, Filled, Outlined</li>
+            <li>Ações no rodapé do card</li>
+            <li>Cantos arredondados (12dp)</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>No AgendaPro:</strong> Bottom Nav (Home, Buscar, Agenda, Perfil) + FAB (Novo Agendamento) + Cards (Médicos e Consultas)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: PADRÕES DE NAVEGAÇÃO -->
+    <section class="slide slide--content" data-title="Padrões de Navegação">
+      <h2>🗺️ Padrões de Navegação Mobile</h2>
+      <div class="columns">
+        <div>
+          <h3>📱 Padrões Comuns</h3>
+          <table>
+            <thead><tr><th>Padrão</th><th>Quando Usar</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Tab Bar</strong></td><td>3-5 seções principais</td></tr>
+              <tr><td><strong>Navigation Drawer</strong></td><td>6+ seções ou perfil complexo</td></tr>
+              <tr><td><strong>Stack (push/pop)</strong></td><td>Fluxos lineares (lista → detalhe)</td></tr>
+              <tr><td><strong>Modal</strong></td><td>Ações rápidas, confirmações</td></tr>
+              <tr><td><strong>Bottom Sheet</strong></td><td>Opções contextuais</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <h3>⚠️ Anti-padrões</h3>
+          <ul>
+            <li>❌ Hamburger menu esconde funcionalidades</li>
+            <li>❌ Mais de 5 tabs no bottom bar</li>
+            <li>❌ Navegação profunda demais (4+ níveis)</li>
+            <li>❌ Back button que não volta</li>
+            <li>❌ Gestos sem alternativa visual</li>
+          </ul>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span>Se o usuário se perde, a navegação falhou.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: GESTOS E ANIMAÇÕES -->
+    <section class="slide slide--dark" data-title="Gestos e Animações">
+      <h2>👆 Gestos e Animações</h2>
+      <p style="color:#94A3B8;">Interações táteis que tornam o app mais natural e intuitivo.</p>
+
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>👆 Gestos Comuns</h3>
+          <ul>
+            <li><strong>Tap:</strong> Ação principal (clique)</li>
+            <li><strong>Long press:</strong> Menu contextual</li>
+            <li><strong>Swipe horizontal:</strong> Deletar, arquivar</li>
+            <li><strong>Swipe vertical:</strong> Scroll, pull-to-refresh</li>
+            <li><strong>Pinch:</strong> Zoom (mapas, fotos)</li>
+            <li><strong>Double tap:</strong> Curtir, zoom rápido</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>✨ Princípios de Animação</h3>
+          <ul>
+            <li><strong>Duração:</strong> 200-300ms (transições)</li>
+            <li><strong>Easing:</strong> ease-in-out (natural)</li>
+            <li><strong>Hierarquia:</strong> Elementos maiores primeiro</li>
+            <li><strong>Feedback:</strong> Confirmar ação do usuário</li>
+            <li><strong>Continuidade:</strong> Manter contexto espacial</li>
+          </ul>
+          <p style="margin-top:12px; font-style:italic; color:#93C5FD;">"Animação boa é aquela que ninguém percebe — mas sentiria falta."</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: ACESSIBILIDADE MOBILE -->
+    <section class="slide slide--content" data-title="Acessibilidade Mobile">
+      <h2>♿ Acessibilidade Mobile</h2>
+      <p>Design inclusivo não é opcional — é requisito profissional e legal.</p>
+
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>✅ Checklist Essencial</h3>
+          <ul>
+            <li>Tamanho mínimo de toque: <strong>48x48dp</strong></li>
+            <li>Contraste de cores: <strong>4.5:1</strong> (texto normal)</li>
+            <li>Labels em todos os ícones (TalkBack)</li>
+            <li>Fonte escalável (respeitar configuração do sistema)</li>
+            <li>Navegação por foco (acessibilidade por teclado)</li>
+            <li>Não depender só de cor para informar</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🛠️ Ferramentas de Teste</h3>
+          <ul>
+            <li><strong>TalkBack:</strong> Leitor de tela Android</li>
+            <li><strong>Accessibility Scanner:</strong> App do Google</li>
+            <li><strong>Figma A11y plugins:</strong> Contrast checker</li>
+            <li><strong>Stark:</strong> Plugin Figma para acessibilidade</li>
+          </ul>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Ative o TalkBack e tente usar SEU app de olhos fechados.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Análise de 3 apps (componentes MD3)</td><td>Screenshots anotados</td></tr>
+          <tr><td>🟢 Fácil</td><td>Criar paleta no Material Theme Builder</td><td>Tema exportado (JSON)</td></tr>
+          <tr><td>🟡 Médio</td><td>Redesign de tela com anti-padrões</td><td>Antes/Depois no Figma</td></tr>
+          <tr><td>🟡 Médio</td><td>Fluxo de navegação completo (Figma)</td><td>Protótipo navegável (8 telas)</td></tr>
+          <tr><td>🔴 Desafiador</td><td>UI Kit com tokens + componentes</td><td>Figma library publicável</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Avaliação:</strong> Redesign (30%) + UI Kit AgendaPro (40%) + Prova (30%)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: PROJETO UI KIT -->
+    <section class="slide slide--accent" data-title="Projeto: UI Kit AgendaPro">
+      <h2>🚀 Projeto Final — UI Kit AgendaPro</h2>
+      <p>Criar um kit de interface completo para o app AgendaPro no Figma.</p>
+      <div class="columns" style="margin-top:20px;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📋 Componentes Obrigatórios</h3>
+          <ul>
+            <li>Botões (Primary, Secondary, Text, FAB)</li>
+            <li>Inputs (Text, Password, Date, Select)</li>
+            <li>Cards (Doctor, Appointment, Info)</li>
+            <li>Navigation (Bottom Tab, Header, Back)</li>
+            <li>Feedback (Toast, Alert, Empty State)</li>
+            <li>Tokens (Colors, Typography, Spacing)</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Entregáveis</h3>
+          <ul>
+            <li>Figma com componentes + variantes</li>
+            <li>Tela de showcase (todos os componentes)</li>
+            <li>5 telas do app usando o kit</li>
+            <li>Light + Dark mode</li>
+            <li>Checklist de acessibilidade</li>
+            <li>design-to-code.md (specs para devs)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo da Disciplina</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Redesign + Análise (parcial)</td><td>30%</td><td>10</td></tr>
+            <tr><td>UI Kit AgendaPro (final)</td><td>40%</td><td>18-20</td></tr>
+            <tr><td>Prova Regimental</td><td>30%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Design system bom é aquele que o desenvolvedor consegue implementar sem perguntar — porque está claro e documentado."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 10</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

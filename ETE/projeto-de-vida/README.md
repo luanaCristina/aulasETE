@@ -607,6 +607,447 @@ projeto-vida-seunome/
 
 ---
 
+## 🚨 Plano de Contingência Pedagógica (Aulas Práticas sem Laboratório)
+
+> ⚠️ **Quando usar este plano:** Laboratório indisponível (manutenção, queda de energia, falta de internet, máquinas com defeito). O objetivo é manter o aprendizado ativo e produtivo mesmo sem computadores.
+
+> 💡 **Princípio:** Nenhuma aula é desperdiçada. Atividades de desenvolvimento pessoal e profissional podem acontecer sem computador — e muitas vezes são MAIS eficazes presencialmente.
+
+---
+
+### 🔀 Fluxograma de Decisão Rápida
+
+```
+┌─────────────────────────────────────────────┐
+│  🚨 LABORATÓRIO INDISPONÍVEL — E AGORA?     │
+└─────────────────────┬───────────────────────┘
+                      │
+                      ▼
+        ┌─────────────────────────────┐
+        │ Alunos têm smartphones com  │
+        │ internet disponível?        │
+        └──────────────┬──────────────┘
+               ┌───────┴───────┐
+               │               │
+            SIM ▼           NÃO ▼
+  ┌──────────────────┐  ┌──────────────────────────┐
+  │ ▶ OPÇÃO A: BYOD  │  │ Professora tem materiais │
+  │ (Smartphone)     │  │ impressos / quadro?      │
+  └──────────────────┘  └────────────┬─────────────┘
+                              ┌──────┴──────┐
+                              │             │
+                           SIM ▼          NÃO ▼
+                 ┌───────────────────┐  ┌──────────────────┐
+                 │ ▶ OPÇÃO B:        │  │ ▶ OPÇÃO C:       │
+                 │ DESPLUGADA        │  │ ESTUDO DE CASO   │
+                 │ (Unplugged)       │  │ / PBL            │
+                 └───────────────────┘  └──────────────────┘
+```
+
+---
+
+### 📱 Opção A: BYOD (Bring Your Own Device — Smartphone)
+
+> 💡 **Conceito:** Alunos usam seus celulares para construir presença profissional, planejar carreira e praticar networking digital em tempo real.
+
+#### Ferramentas Mobile para Projeto de Vida
+
+| Ferramenta | Sistema | Link | Melhor Para |
+|-----------|---------|------|-------------|
+| **LinkedIn** (app) | Android/iOS | App nativo | Criar/otimizar perfil profissional, networking |
+| **GitHub Mobile** | Android/iOS | App nativo | Explorar perfis, criar README, verificar commits |
+| **Notion** (app) | Android/iOS | App nativo | Organizar metas SMART, plano de carreira, kanban pessoal |
+| **Google Docs/Slides** | Android/iOS | App nativo | Criar currículo, apresentação do projeto de vida |
+
+#### Atividades Adaptadas para Smartphone
+
+| Semana/Bloco | Atividade Original (PC) | Adaptação Mobile |
+|-------------|------------------------|-----------------|
+| Bloco 2 | Pesquisa salarial em TI | LinkedIn + Glassdoor mobile: pesquisar vagas reais em PE |
+| Bloco 4 | Criar perfil LinkedIn | LinkedIn app: completar perfil ao vivo, publicar 1 post |
+| Bloco 5 | README do GitHub | GitHub mobile: criar/editar README de perfil pessoal |
+| Bloco 5 | Currículo tech | Google Docs mobile: redigir currículo 1 página |
+| Bloco 3 | Plano de metas | Notion mobile: criar quadro Kanban com metas SMART |
+
+#### 📋 Roteiro do Professor — Opção A
+
+```
+ANTES DA AULA:
+1. Verificar Wi-Fi da escola está funcionando
+2. Preparar passo a passo visual no quadro (prints ampliados)
+3. Ter QR Code pronto para link de recurso do dia
+
+DURANTE A AULA (50 min):
+┌────────────────────────────────────────────────┐
+│ 00-05 min │ Explicar atividade e app do dia    │
+│ 05-15 min │ Demonstrar no projetor (celular    │
+│           │ espelhado ou prints no quadro)      │
+│ 15-40 min │ Alunos executam no smartphone      │
+│ 40-50 min │ Compartilham resultado em duplas    │
+│           │ + feedback da turma                 │
+└────────────────────────────────────────────────┘
+
+AVALIAÇÃO:
+• Screenshot/link do resultado (LinkedIn, GitHub, Notion)
+• Upload no Google Classroom ou envio via grupo da turma
+```
+
+#### 📱 Guia do Aluno — Opção A
+
+```
+MATERIAIS NECESSÁRIOS:
+✅ Smartphone carregado (mínimo 40% de bateria)
+✅ App do dia instalado (LinkedIn, GitHub, Notion ou Google Docs)
+✅ Conta criada previamente no serviço
+
+EXEMPLO — OTIMIZAR LINKEDIN (30 min):
+1. Abrir app LinkedIn → Ir em "Eu" → "Ver perfil"
+2. Adicionar/atualizar foto profissional
+3. Editar Headline: "Estudante de Dev. Sistemas | [sua área] | [tecnologia]"
+4. Preencher seção "Sobre" (mín. 3 parágrafos)
+5. Adicionar experiência: projetos da escola, voluntariado
+6. Publicar 1 post sobre algo que aprendeu no curso
+7. Conectar-se com 5 colegas da turma
+
+ENTREGA:
+• Print do perfil ANTES e DEPOIS
+• Link do post publicado
+• Enviar para professora via [canal definido]
+```
+
+---
+
+### 🅱️ Opção B: Atividades Desplugadas (Unplugged)
+
+> 🎯 **Ideal quando:** Não há internet disponível OU alunos não têm smartphone
+
+#### Atividade B1: "Elevator Pitch" Presencial
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Comunicação profissional e apresentação pessoal |
+| **Duração** | 50 minutos |
+| **Materiais** | Cronômetro (relógio da professora), quadro para feedback |
+| **Objetivo** | Cada aluno tem 60 segundos para se apresentar profissionalmente |
+
+**📋 Roteiro do Professor:**
+```
+1. (10 min) Explicar estrutura do elevator pitch:
+   - Quem sou (nome + formação)
+   - O que faço (área de interesse em TI)
+   - O que me diferencia (habilidade ou projeto)
+   - O que busco (estágio, parceria, aprendizado)
+
+2. (10 min) Demonstrar um pitch bom vs ruim (professora faz os dois)
+
+3. (25 min) Rodada de pitches:
+   - Cada aluno vai à frente (60 segundos cronometrados)
+   - Turma avalia: clareza, postura, conteúdo (polegar ↑ ou ↓)
+   - Feedback rápido da professora (1 ponto forte + 1 melhoria)
+
+4. (5 min) Reflexão: "O que aprendi sobre minha comunicação?"
+```
+
+**📱 Guia do Aluno (escrever no quadro):**
+```
+SEU ELEVATOR PITCH (60 segundos):
+
+1. ABERTURA: "Olá, meu nome é _____, estudo Desenvolvimento
+   de Sistemas na ETE Pernambuco."
+
+2. ÁREA: "Minha área de interesse é _____ porque _____."
+
+3. DIFERENCIAL: "Tenho experiência/projeto em _____."
+
+4. OBJETIVO: "Estou buscando _____ (estágio/aprendizado/parceria)."
+
+5. FECHAMENTO: "Podemos conversar mais sobre _____?"
+
+DICAS:
+• Olhe nos olhos da plateia
+• Fale devagar e com clareza
+• Sorria — transmita confiança
+• NÃO leia — fale naturalmente
+```
+
+---
+
+#### Atividade B2: Mapa de Competências em Cartolina
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Autoconhecimento — hard skills vs soft skills |
+| **Duração** | 50 minutos |
+| **Materiais** | Cartolina ou folha A3, canetas coloridas, régua, lápis |
+| **Objetivo** | Mapear visualmente competências atuais e desejadas |
+
+**📋 Roteiro do Professor:**
+```
+1. (10 min) Explicar no quadro:
+   - Hard Skills = habilidades técnicas (HTML, Python, SQL...)
+   - Soft Skills = habilidades interpessoais (comunicação, liderança...)
+   - Dividir em: "Já tenho" vs "Quero desenvolver"
+
+2. (5 min) Distribuir materiais e modelo visual
+
+3. (30 min) Alunos criam o mapa:
+   - Dividir cartolina em 4 quadrantes
+   - Quadrante 1: Hard Skills que JÁ TENHO
+   - Quadrante 2: Hard Skills que QUERO
+   - Quadrante 3: Soft Skills que JÁ TENHO
+   - Quadrante 4: Soft Skills que QUERO
+   - Para cada item: nível (básico/intermediário/avançado)
+
+4. (5 min) Exposição na parede + gallery walk
+```
+
+**📱 Guia do Aluno (escrever no quadro):**
+```
+MAPA DE COMPETÊNCIAS — [Seu Nome]
+
+┌──────────────────────────┬──────────────────────────┐
+│   HARD SKILLS QUE TENHO  │  HARD SKILLS QUE QUERO   │
+│                          │                          │
+│ • HTML/CSS (intermediário)│ • React (básico → inter.)│
+│ • Python (básico)        │ • SQL (quero aprender)   │
+│ • Git (básico)           │ • TypeScript             │
+│                          │                          │
+├──────────────────────────┼──────────────────────────┤
+│   SOFT SKILLS QUE TENHO  │  SOFT SKILLS QUE QUERO   │
+│                          │                          │
+│ • Trabalho em equipe     │ • Oratória/apresentação  │
+│ • Criatividade           │ • Liderança              │
+│ • Organização            │ • Networking             │
+│                          │                          │
+└──────────────────────────┴──────────────────────────┘
+
+Para cada skill "QUE QUERO": escreva 1 AÇÃO CONCRETA
+para começar a desenvolver nas próximas 4 semanas.
+```
+
+---
+
+#### Atividade B3: Plano de Carreira Visual (Linha do Tempo 5 Anos)
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Planejamento estratégico de carreira |
+| **Duração** | 50 minutos |
+| **Materiais** | Folha A3 ou 2 folhas A4 coladas, canetas coloridas, régua |
+| **Objetivo** | Criar linha do tempo visual de 5 anos com metas por fase |
+
+**📋 Roteiro do Professor:**
+```
+1. (10 min) Explicar conceito de roadmap pessoal:
+   - Ano 1: Formação + primeiro estágio
+   - Ano 2: Conclusão do técnico + especialização
+   - Ano 3: Primeiro emprego CLT / Freelance
+   - Ano 4: Crescimento + certificações
+   - Ano 5: Posição pleno / Empreendedorismo
+
+2. (5 min) Distribuir materiais + mostrar exemplo no quadro
+
+3. (30 min) Alunos criam sua timeline pessoal:
+   - Linha central horizontal dividida em 5 marcos
+   - Para cada ano: 1 meta profissional + 1 meta de estudo
+   - Incluir: cursos, certificações, empresas-alvo, salário esperado
+
+4. (5 min) Compartilhar com colega ao lado — dar feedback mútuo
+```
+
+---
+
+#### Atividade B4: Simulação de Entrevista de Emprego em Duplas
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Preparação para o mercado de trabalho |
+| **Duração** | 50 minutos |
+| **Materiais** | Lista de perguntas impressa ou no quadro |
+| **Objetivo** | Praticar respostas para entrevistas reais de TI |
+
+**📋 Roteiro do Professor:**
+```
+1. (10 min) Apresentar as 10 perguntas mais comuns em
+   entrevistas de TI (escrever no quadro):
+   • "Me fale sobre você"
+   • "Por que escolheu TI?"
+   • "Qual seu maior defeito?"
+   • "Onde se vê em 5 anos?"
+   • "Conte sobre um projeto que te orgulha"
+   • "Como lida com prazos apertados?"
+   • "Por que devemos te contratar?"
+   • "Como aprende tecnologia nova?"
+   • "Conte sobre um conflito em equipe"
+   • "Tem perguntas para nós?"
+
+2. (5 min) Demonstrar: resposta RUIM vs resposta BOA para
+   "Me fale sobre você" (professora atua os dois papéis)
+
+3. (25 min) Dinâmica em duplas:
+   - Rodada 1 (12 min): Aluno A entrevista, Aluno B é candidato
+   - Rodada 2 (12 min): Invertem papéis
+   - Cada rodada: 5 perguntas, 2 min por resposta
+
+4. (10 min) Feedback coletivo:
+   - "Qual pergunta foi mais difícil?"
+   - "Que resposta de um colega te impressionou?"
+   - 3 dicas finais da professora
+```
+
+**📱 Guia do Aluno (escrever no quadro):**
+```
+REGRAS DA SIMULAÇÃO:
+
+ENTREVISTADOR:
+• Faça as perguntas com seriedade (simule um RH real)
+• Anote pontos fortes e pontos a melhorar do colega
+• Dê feedback honesto e construtivo ao final
+
+CANDIDATO:
+• Responda como se fosse uma entrevista REAL
+• Mantenha postura profissional (sentado direito, olho no olho)
+• Use a técnica STAR: Situação → Tarefa → Ação → Resultado
+• Se travar: respire, organize o pensamento, recomece
+
+AVALIAÇÃO ENTRE PARES (1-5):
+□ Clareza na comunicação
+□ Postura profissional
+□ Uso de exemplos concretos
+□ Confiança (sem arrogância)
+□ Respostas relevantes para TI
+```
+
+---
+
+### 🅲 Opção C: Estudo de Caso / PBL (Problem-Based Learning)
+
+> 🎯 **Ideal quando:** Aula geminada (2 horários seguidos) para análise aprofundada
+
+#### Caso 1: "Do Técnico ao Sênior — Trajetórias Reais em TI"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Análise de carreiras reais de profissionais de TI |
+| **Formato** | Pesquisa + análise + apresentação (50 min) |
+| **Conexão** | Bloco 2 (Carreiras em TI) e Bloco 3 (Metas SMART) |
+
+**Dinâmica:**
+```
+1. (10 min) Professora apresenta 3 perfis impressos de LinkedIn
+   de profissionais de TI pernambucanos:
+   - Perfil A: Dev Júnior → Sênior em 4 anos (carreira acelerada)
+   - Perfil B: Mudança de área (administração → TI aos 30 anos)
+   - Perfil C: Empreendedor tech (saiu de empresa → startup)
+
+2. (15 min) Grupos de 4 analisam 1 perfil cada:
+   - Qual foi a trajetória? (timeline)
+   - Quais decisões-chave foram tomadas?
+   - Quais habilidades foram mais importantes?
+   - O que eu posso aprender com esse exemplo?
+
+3. (15 min) Cada grupo apresenta suas conclusões (5 min/grupo)
+
+4. (10 min) Reflexão individual escrita:
+   "Qual desses caminhos mais se parece com o MEU plano?
+   O que preciso fazer nos próximos 6 meses para começar?"
+```
+
+---
+
+#### Caso 2: "LinkedIn que Funciona vs LinkedIn Abandonado"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Análise comparativa de perfis profissionais |
+| **Formato** | Análise crítica + reescrita (50 min) |
+| **Conexão** | Bloco 5 (Ferramentas Profissionais — LinkedIn) |
+
+**Dinâmica:**
+```
+1. (10 min) Professora apresenta 2 perfis LinkedIn impressos
+   (anonimizados):
+   - Perfil FRACO: sem foto, headline genérica "Estudante",
+     About vazio, sem experiência, 12 conexões
+   - Perfil FORTE: foto profissional, headline otimizada,
+     About completo, projetos linkados, 500+ conexões
+
+2. (15 min) Turma em duplas preenche quadro comparativo:
+   | Elemento | Perfil Fraco | Perfil Forte | Meu Perfil |
+   (cada dupla avalia os dois e se autoavalia)
+
+3. (15 min) Reescrita: cada aluno reescreve SUA headline
+   e SEU About ideal em folha de papel (rascunho para
+   implementar depois no app)
+
+4. (10 min) Voluntários leem suas headlines — turma vota
+   nas melhores com justificativa
+```
+
+---
+
+#### Caso 3: "A Entrevista que Deu Errado — Análise de Erros Comuns"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Preparação para processos seletivos em TI |
+| **Formato** | Role-play + análise + correção (50 min) |
+| **Conexão** | Bloco 4 (Soft Skills) e preparação para mercado |
+
+**Dinâmica:**
+```
+1. (10 min) Professora encena uma "entrevista desastrosa"
+   (com um aluno voluntário como entrevistador):
+   - Chega atrasada, sem currículo
+   - Fala mal da escola anterior
+   - Responde "não sei" para tudo
+   - Olha para o chão, fala baixo
+   - Não faz nenhuma pergunta ao final
+
+2. (10 min) Turma lista TODOS os erros identificados
+   (professora anota no quadro — deve chegar a 10+)
+
+3. (15 min) Em grupos de 3: reescrever a entrevista
+   "corrigindo" cada erro com a atitude correta
+
+4. (15 min) 2 grupos voluntários encenam a versão
+   CORRIGIDA — turma avalia se os erros foram superados
+```
+
+---
+
+### 📦 Kit de Materiais para Impressão (Acervo da Professora)
+
+> 📌 Manter na pasta da disciplina para uso imediato quando necessário:
+
+| Material | Qtd. Sugerida | Uso |
+|----------|:-------------:|-----|
+| Fichas de Elevator Pitch (template) | 40 cópias | Atividade B1 |
+| Modelo de Mapa de Competências (A3) | 40 cópias | Atividade B2 |
+| Template Timeline 5 Anos (A3) | 40 cópias | Atividade B3 |
+| Lista de 10 perguntas de entrevista | 40 cópias | Atividade B4 |
+| Perfis LinkedIn impressos (anonimizados) | 10 cópias | Opção C — Caso 2 |
+| Perfis de carreira (trajetórias) impressos | 10 cópias | Opção C — Caso 1 |
+| Roteiro de entrevista com erros comuns | 20 cópias | Opção C — Caso 3 |
+| Checklist LinkedIn completo | 40 cópias | Opção A e B |
+| Template de Currículo (modelo em branco) | 40 cópias | Apoio geral |
+
+---
+
+### 📊 Rubrica de Avaliação Adaptada (Atividades sem Laboratório)
+
+| Critério | Excelente (10-9) | Bom (8-7) | Regular (6-5) | Insuficiente (<5) |
+|----------|-----------------|-----------|---------------|-------------------|
+| **Participação ativa** | Engajado, contribui com ideias originais, ajuda colegas | Participa quando solicitado, contribui adequadamente | Participação mínima, respostas superficiais | Não participa ou atrapalha |
+| **Qualidade do conteúdo** | Reflexão profunda, autoconhecimento demonstrado, pesquisa | Conteúdo adequado com alguma profundidade | Conteúdo superficial, sem reflexão | Conteúdo ausente ou copiado |
+| **Comunicação** | Clara, assertiva, profissional, postura adequada | Boa comunicação com pequenas falhas | Comunicação confusa ou tímida demais | Não se comunica ou é inadequado |
+| **Criatividade e esforço** | Vai além do pedido, personaliza, demonstra dedicação | Cumpre requisitos com qualidade | Cumpre o mínimo sem diferencial | Não cumpre requisitos |
+| **Aplicabilidade** | Produto/reflexão realmente útil para sua carreira | Parcialmente útil, precisa refinamento | Pouco aplicável na vida real | Sem aplicação prática |
+
+> 💡 **Nota:** Em Projeto de Vida, avalia-se mais o PROCESSO (reflexão, maturidade, esforço) do que produtos técnicos. Honestidade e profundidade valem mais que "respostas certas".
+
+---
+
 ## 📚 Referências
 
 ### Cursos Gratuitos e Plataformas

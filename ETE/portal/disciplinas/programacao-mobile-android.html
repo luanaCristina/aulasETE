@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Programação Mobile Android — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+
+  <nav class="sidebar">
+    <h3>📚 Programação Mobile Android</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>📱 Programação Mobile <span class="accent">Android</span></h1>
+      <p class="subtitle">Curso Técnico em Desenvolvimento de Sistemas — Módulo 3 — 160h</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Um app mobile bem feito é código limpo + UX pensada + performance otimizada."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: REACT NATIVE + EXPO -->
+    <section class="slide slide--content" data-title="React Native + Expo">
+      <h2>⚛️ React Native + Expo — Por quê?</h2>
+      <p>Desenvolva apps nativos para Android e iOS usando <strong>JavaScript/TypeScript</strong>.</p>
+
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>✅ Vantagens do Expo</h3>
+          <ul>
+            <li>Setup em 2 minutos (sem Android Studio)</li>
+            <li>Hot reload instantâneo</li>
+            <li>70+ APIs nativas prontas</li>
+            <li>Build na nuvem (EAS Build)</li>
+            <li>Mesma base: Android + iOS + Web</li>
+            <li>TypeScript nativo</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏗️ Arquitetura</h3>
+          <ul>
+            <li><strong>Expo SDK 52+</strong> — Framework</li>
+            <li><strong>React Navigation</strong> — Navegação</li>
+            <li><strong>Firebase</strong> — Backend</li>
+            <li><strong>AsyncStorage</strong> — Dados locais</li>
+            <li><strong>Expo Router</strong> — File-based routing</li>
+            <li><strong>EAS Build</strong> — Deploy</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Pré-requisito:</strong> Node.js 18+ instalado + conta Expo (expo.dev) + celular com Expo Go.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: CRONOGRAMA -->
+    <section class="slide slide--content" data-title="Cronograma">
+      <h2>📅 Cronograma — 20 Semanas (160h)</h2>
+      <table>
+        <thead><tr><th>Sem</th><th>Tema</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>Setup: Expo + TypeScript</td><td>App "Hello World" no celular</td></tr>
+          <tr><td>2-3</td><td>Componentes e JSX</td><td>Tela de perfil com componentes</td></tr>
+          <tr><td>4-5</td><td>State e Props</td><td>Contador + Lista dinâmica</td></tr>
+          <tr><td>6-7</td><td>Navegação (Stack + Tabs)</td><td>App com 3 telas navegáveis</td></tr>
+          <tr><td>8-9</td><td>Listas e FlatList</td><td>Lista de médicos com busca</td></tr>
+          <tr><td>10</td><td><strong>AVALIAÇÃO PARCIAL</strong></td><td>Mini-app funcional (5 telas)</td></tr>
+          <tr><td>11-12</td><td>Firebase: Auth + Firestore</td><td>Login + CRUD básico</td></tr>
+          <tr><td>13-14</td><td>Hooks e Context API</td><td>AuthContext + ThemeContext</td></tr>
+          <tr><td>15-16</td><td>Formulários e Validação</td><td>Tela de agendamento completa</td></tr>
+          <tr><td>17-18</td><td>Projeto AgendaPro Mobile</td><td>App completo (MVP)</td></tr>
+          <tr><td>19</td><td>Publicação (EAS Build)</td><td>APK gerado + QR code</td></tr>
+          <tr><td>20</td><td><strong>PROVA REGIMENTAL</strong></td><td>App publicado + código no GitHub</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 4: COMPONENTES E JSX -->
+    <section class="slide slide--dark" data-title="Componentes e JSX">
+      <h2>🧩 Componentes e JSX</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Tudo no React Native é um componente — peças reutilizáveis de interface.</p>
+
+      <div class="code-block">
+        <span class="lang-badge">TSX</span>
+        <code>// src/components/DoctorCard.tsx
+import { View, Text, Image, TouchableOpacity, StyleSheet } from 'react-native';
+
+type Props = {
+  nome: string;
+  especialidade: string;
+  foto: string;
+  onPress: () => void;
+};
+
+export function DoctorCard({ nome, especialidade, foto, onPress }: Props) {
+  return (
+    &lt;TouchableOpacity style={styles.card} onPress={onPress}&gt;
+      &lt;Image source={{ uri: foto }} style={styles.avatar} /&gt;
+      &lt;View&gt;
+        &lt;Text style={styles.nome}&gt;{nome}&lt;/Text&gt;
+        &lt;Text style={styles.especialidade}&gt;{especialidade}&lt;/Text&gt;
+      &lt;/View&gt;
+    &lt;/TouchableOpacity&gt;
+  );
+}
+
+const styles = StyleSheet.create({
+  card: { flexDirection: 'row', padding: 16, gap: 12, backgroundColor: '#1E293B', borderRadius: 8 },
+  avatar: { width: 48, height: 48, borderRadius: 24 },
+  nome: { color: '#F8FAFC', fontSize: 16, fontWeight: '600' },
+  especialidade: { color: '#94A3B8', fontSize: 14 },
+});</code>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: STATE E PROPS -->
+    <section class="slide slide--content" data-title="State e Props">
+      <h2>🔄 State e Props — Dados no React</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📥 Props (de fora para dentro)</h3>
+          <ul>
+            <li>Dados passados pelo <strong>pai</strong></li>
+            <li>Somente leitura (imutáveis)</li>
+            <li>Configuram o componente</li>
+            <li>Exemplo: <code>&lt;Card nome="Dr. João" /&gt;</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🔄 State (interno do componente)</h3>
+          <ul>
+            <li>Dados que <strong>mudam</strong> ao longo do tempo</li>
+            <li>Controlados pelo próprio componente</li>
+            <li>Mudança causa re-render</li>
+            <li>Exemplo: <code>const [count, setCount] = useState(0)</code></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--tip" style="margin-top:20px;">
+        <span class="icon">💡</span>
+        <span><strong>Regra de ouro:</strong> Se o dado vem de fora → Props. Se o dado muda internamente → State. Se vários componentes precisam → Context.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: NAVEGAÇÃO -->
+    <section class="slide slide--content" data-title="Navegação">
+      <h2>🗺️ Navegação — React Navigation</h2>
+      <p>Gerenciamento de telas e transições no app mobile.</p>
+
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>📚 Stack Navigator</h3>
+          <p>Telas empilhadas (push/pop)</p>
+          <ul>
+            <li>Login → Home → Detalhes</li>
+            <li>Botão voltar automático</li>
+            <li>Header configurável</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📑 Tab Navigator</h3>
+          <p>Abas na parte inferior</p>
+          <ul>
+            <li>Home | Buscar | Perfil</li>
+            <li>Ícones + Labels</li>
+            <li>Badge de notificações</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">TSX</span>
+        <code>// App.tsx — Estrutura de navegação
+const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
+
+function HomeTabs() {
+  return (
+    &lt;Tab.Navigator&gt;
+      &lt;Tab.Screen name="Início" component={HomeScreen} /&gt;
+      &lt;Tab.Screen name="Buscar" component={SearchScreen} /&gt;
+      &lt;Tab.Screen name="Perfil" component={ProfileScreen} /&gt;
+    &lt;/Tab.Navigator&gt;
+  );
+}
+
+export default function App() {
+  return (
+    &lt;NavigationContainer&gt;
+      &lt;Stack.Navigator&gt;
+        &lt;Stack.Screen name="Main" component={HomeTabs} /&gt;
+        &lt;Stack.Screen name="DoctorDetail" component={DoctorDetailScreen} /&gt;
+      &lt;/Stack.Navigator&gt;
+    &lt;/NavigationContainer&gt;
+  );
+}</code>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: LISTAS E FLATLIST -->
+    <section class="slide slide--dark" data-title="Listas e FlatList">
+      <h2>📋 Listas e FlatList</h2>
+      <p style="color:#94A3B8;">FlatList é o componente padrão para listas performáticas no React Native.</p>
+
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">TSX</span>
+        <code>// screens/DoctorList.tsx
+import { FlatList, TextInput, View } from 'react-native';
+import { useState } from 'react';
+
+export function DoctorListScreen() {
+  const [busca, setBusca] = useState('');
+  const [medicos, setMedicos] = useState(MOCK_DOCTORS);
+
+  const filtrados = medicos.filter(m =>
+    m.nome.toLowerCase().includes(busca.toLowerCase())
+  );
+
+  return (
+    &lt;View style={{ flex: 1, padding: 16 }}&gt;
+      &lt;TextInput
+        placeholder="Buscar médico..."
+        value={busca}
+        onChangeText={setBusca}
+        style={styles.input}
+      /&gt;
+      &lt;FlatList
+        data={filtrados}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item }) => (
+          &lt;DoctorCard {...item} onPress={() => nav.navigate('Detail', { id: item.id })} /&gt;
+        )}
+        ListEmptyComponent={&lt;Text&gt;Nenhum médico encontrado&lt;/Text&gt;}
+      /&gt;
+    &lt;/View&gt;
+  );
+}</code>
+      </div>
+
+      <div class="callout callout--tip" style="margin-top:12px;">
+        <span class="icon">💡</span>
+        <span><strong>Performance:</strong> FlatList renderiza apenas itens visíveis. Use <code>keyExtractor</code> sempre!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: INTEGRAÇÃO FIREBASE -->
+    <section class="slide slide--content" data-title="Firebase">
+      <h2>🔥 Integração Firebase</h2>
+      <p>Backend completo sem servidor: Auth, Firestore, Storage, Push Notifications.</p>
+
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>🔐 Firebase Auth</h3>
+          <ul>
+            <li>Login com email/senha</li>
+            <li>Google Sign-In</li>
+            <li>Persistência automática</li>
+            <li>onAuthStateChanged listener</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📦 Firestore</h3>
+          <ul>
+            <li>Banco NoSQL (documentos)</li>
+            <li>Realtime listeners</li>
+            <li>CRUD completo</li>
+            <li>Queries com filtros</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Segurança:</strong> NUNCA deixe as Firestore Rules em modo aberto (allow read, write: if true). Configure regras de acesso!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: MULTI-STACK -->
+    <section class="slide slide--dark" data-title="Multi-Stack">
+      <h2>🔀 Multi-Stack — Mesma Feature, 3 Plataformas</h2>
+      <p style="color:#94A3B8; margin-bottom:12px;">Listar agendamentos — implementação em Expo, Web e Backend</p>
+      <div class="code-tabs">
+        <button class="code-tab active">Expo (React Native)</button>
+        <button class="code-tab">Web (HTML/JS)</button>
+        <button class="code-tab">Backend (Express/TS)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block">
+          <span class="lang-badge">TSX</span>
+          <code>// screens/Appointments.tsx — Expo/React Native
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
+
+export function AppointmentsScreen() {
+  const [appointments, setAppointments] = useState([]);
+  const { user } = useAuth();
+
+  useEffect(() => {
+    const q = query(
+      collection(db, 'appointments'),
+      where('patientId', '==', user.uid)
+    );
+    return onSnapshot(q, (snap) => {
+      setAppointments(snap.docs.map(d => ({ id: d.id, ...d.data() })));
+    });
+  }, []);
+
+  return (
+    &lt;FlatList data={appointments} renderItem={({ item }) => (
+      &lt;AppointmentCard {...item} /&gt;
+    )} /&gt;
+  );
+}</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">HTML + JS</span>
+          <code>&lt;!-- index.html — Versão Web pura --&gt;
+&lt;div id="appointments-list"&gt;&lt;/div&gt;
+
+&lt;script type="module"&gt;
+import { collection, query, where, onSnapshot } from 'firebase/firestore';
+import { db, auth } from './firebase-config.js';
+
+const q = query(
+  collection(db, 'appointments'),
+  where('patientId', '==', auth.currentUser.uid)
+);
+
+onSnapshot(q, (snapshot) => {
+  const list = document.getElementById('appointments-list');
+  list.innerHTML = snapshot.docs.map(doc => {
+    const d = doc.data();
+    return `&lt;div class="card"&gt;
+      &lt;h3&gt;${d.doctorName}&lt;/h3&gt;
+      &lt;p&gt;${d.date} às ${d.time}&lt;/p&gt;
+    &lt;/div&gt;`;
+  }).join('');
+});
+&lt;/script&gt;</code>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block">
+          <span class="lang-badge">TypeScript</span>
+          <code>// routes/appointments.ts — Express Backend
+import { Router } from 'express';
+import { db } from '../config/firebase-admin';
+import { authMiddleware } from '../middleware/auth';
+
+const router = Router();
+
+router.get('/appointments', authMiddleware, async (req, res) => {
+  const { uid } = req.user;
+  const snapshot = await db
+    .collection('appointments')
+    .where('patientId', '==', uid)
+    .orderBy('date', 'desc')
+    .get();
+
+  const appointments = snapshot.docs.map(doc => ({
+    id: doc.id,
+    ...doc.data()
+  }));
+
+  res.json({ data: appointments, total: appointments.length });
+});
+
+export default router;</code>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: HOOKS E CONTEXT -->
+    <section class="slide slide--content" data-title="Hooks e Context">
+      <h2>🪝 Hooks e Context API</h2>
+      <p>Gerenciamento de estado global sem bibliotecas externas.</p>
+
+      <div class="code-block">
+        <span class="lang-badge">TSX</span>
+        <code>// contexts/AuthContext.tsx
+import { createContext, useContext, useEffect, useState } from 'react';
+import { onAuthStateChanged, User } from 'firebase/auth';
+import { auth } from '../config/firebase';
+
+type AuthContextData = { user: User | null; loading: boolean; };
+
+const AuthContext = createContext&lt;AuthContextData&gt;({} as AuthContextData);
+
+export function AuthProvider({ children }: { children: React.ReactNode }) {
+  const [user, setUser] = useState&lt;User | null&gt;(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    return onAuthStateChanged(auth, (u) => {
+      setUser(u);
+      setLoading(false);
+    });
+  }, []);
+
+  return (
+    &lt;AuthContext.Provider value={{ user, loading }}&gt;
+      {children}
+    &lt;/AuthContext.Provider&gt;
+  );
+}
+
+export const useAuth = () => useContext(AuthContext);</code>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Tela de Perfil (componentes)</td><td>Screenshot + código</td></tr>
+          <tr><td>🟢 Fácil</td><td>Contador com useState</td><td>App funcional no Expo Go</td></tr>
+          <tr><td>🟡 Médio</td><td>Lista com busca (FlatList)</td><td>Lista filtrada em tempo real</td></tr>
+          <tr><td>🟡 Médio</td><td>Navegação Stack + Tabs</td><td>App com 5 telas</td></tr>
+          <tr><td>🔴 Desafiador</td><td>CRUD Firebase completo</td><td>App com Auth + Firestore</td></tr>
+          <tr><td>🔴 Desafiador</td><td>Context API (Auth + Theme)</td><td>Dark mode + persistência</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 12: PROJETO AGENDAPRO -->
+    <section class="slide slide--accent" data-title="Projeto AgendaPro Mobile">
+      <h2>🚀 Projeto — AgendaPro Mobile</h2>
+      <p>App completo de agendamento médico usando React Native + Expo + Firebase.</p>
+      <div class="columns" style="margin-top:20px;">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📋 Funcionalidades (MVP)</h3>
+          <ul>
+            <li>Login/Registro (Firebase Auth)</li>
+            <li>Lista de médicos com busca</li>
+            <li>Agendar consulta (data + hora)</li>
+            <li>Meus agendamentos (histórico)</li>
+            <li>Cancelar agendamento</li>
+            <li>Perfil do usuário</li>
+          </ul>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Requisitos Técnicos</h3>
+          <ul>
+            <li>TypeScript (strict mode)</li>
+            <li>React Navigation (Stack + Tabs)</li>
+            <li>Firebase (Auth + Firestore)</li>
+            <li>Context API (AuthContext)</li>
+            <li>Validação de formulários</li>
+            <li>README.md completo no GitHub</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: PUBLICAÇÃO -->
+    <section class="slide slide--dark" data-title="Publicação (EAS Build)">
+      <h2>📦 Publicação — EAS Build</h2>
+      <p style="color:#94A3B8;">Gere o APK/AAB sem precisar do Android Studio instalado.</p>
+
+      <div class="code-block" style="margin-top:16px;">
+        <span class="lang-badge">Bash</span>
+        <code># 1. Instalar EAS CLI
+npm install -g eas-cli
+
+# 2. Login na conta Expo
+eas login
+
+# 3. Configurar projeto
+eas build:configure
+
+# 4. Gerar APK (preview — direto no celular)
+eas build --platform android --profile preview
+
+# 5. Gerar AAB (produção — Google Play)
+eas build --platform android --profile production
+
+# 6. Baixar APK gerado
+# → Link aparece no terminal após build</code>
+      </div>
+
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">💡</span>
+        <span><strong>Dica:</strong> Use o perfil "preview" para gerar APK instalável diretamente. O "production" gera AAB para a Play Store.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <p style="color:#94A3B8;">Alternativas quando não há computador disponível.</p>
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>📱 Opção A: BYOD</h3>
+          <ul>
+            <li>Expo Snack (navegador)</li>
+            <li>Replit Mobile</li>
+            <li>Expo Go no celular</li>
+            <li>VS Code Web (vscode.dev)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Opção B: Desplugada</h3>
+          <ul>
+            <li>Pseudocódigo no papel</li>
+            <li>Wireframes de telas</li>
+            <li>Fluxo de navegação (post-it)</li>
+            <li>Code review impresso</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Opção C: Teórica</h3>
+          <ul>
+            <li>Quiz de React Native</li>
+            <li>Análise de código projetado</li>
+            <li>Debate: Native vs Cross-platform</li>
+            <li>Planejamento de sprint</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento">
+      <h1>🎯 Resumo da Disciplina</h1>
+      <div style="text-align:left; max-width:700px; margin-top:24px;">
+        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
+          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
+          <tbody>
+            <tr><td>Mini-app (avaliação parcial)</td><td>30%</td><td>10</td></tr>
+            <tr><td>AgendaPro Mobile + Publicação</td><td>40%</td><td>19-20</td></tr>
+            <tr><td>Prova Regimental</td><td>30%</td><td>20</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"O app que está na mão do usuário vale mais que o app perfeito que nunca saiu do editor."</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div>
+
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 15</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

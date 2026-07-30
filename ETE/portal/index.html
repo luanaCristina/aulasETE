@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ETE Pernambuco — Desenvolvimento de Sistemas</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    body { overflow-y: auto; background: var(--bg-dark); }
+    .portal { max-width: 1200px; margin: 0 auto; padding: 40px 24px; }
+    .portal-header { text-align: center; margin-bottom: 48px; }
+    .portal-header h1 { color: #FFFFFF; font-size: 2.8rem; font-weight: 800; }
+    .portal-header p { color: #94A3B8; font-size: 1.2rem; margin-top: 8px; }
+    .portal-header .tagline {
+      display: inline-block; margin-top: 16px; padding: 10px 24px;
+      background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.4);
+      border-radius: 8px; color: #93C5FD; font-weight: 600; font-size: 1rem;
+    }
+    .semester { margin-bottom: 40px; }
+    .semester h2 { color: #FFFFFF; font-size: 1.6rem; margin-bottom: 16px;
+      padding-bottom: 8px; border-bottom: 2px solid #1E293B; }
+    .semester h2 .badge { background: var(--primary); color: #FFF; padding: 2px 10px;
+      border-radius: 4px; font-size: 0.75rem; margin-left: 12px; vertical-align: middle; }
+    .disciplines { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 16px; }
+    .disc-card {
+      background: #1E293B; border-radius: 12px; padding: 24px;
+      border: 1px solid #334155; cursor: pointer;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+      text-decoration: none; display: block;
+    }
+    .disc-card:hover { border-color: var(--primary); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,99,235,0.2); }
+    .disc-card h3 { color: #FFFFFF; font-size: 1.1rem; margin-bottom: 6px; }
+    .disc-card .hours { color: var(--primary); font-weight: 600; font-size: 0.85rem; }
+    .disc-card .desc { color: #94A3B8; font-size: 0.9rem; margin-top: 8px; line-height: 1.4; }
+    .disc-card .tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px; }
+    .disc-card .tag { background: #334155; color: #CBD5E1; padding: 3px 10px;
+      border-radius: 4px; font-size: 0.7rem; font-weight: 500; }
+    .footer { text-align: center; padding: 40px 0; color: #64748B; font-size: 0.9rem; }
+    .footer strong { color: #CBD5E1; }
+  </style>
+</head>
+<body>
+  <div class="portal">
+    <header class="portal-header">
+      <h1>🎓 Desenvolvimento de Sistemas</h1>
+      <p>Curso Técnico Subsequente — ETE Pernambuco — 2026.2</p>
+      <p>Profª Luana Cristina</p>
+      <div class="tagline">💡 A lógica é o fundamento soberano; linguagens e frameworks são apenas sintaxe.</div>
+    </header>
+
+    <!-- MÓDULO 1 -->
+    <section class="semester">
+      <h2>📘 Módulo 1 — Fundação <span class="badge">Python + PostgreSQL + UX</span></h2>
+      <div class="disciplines">
+        <a class="disc-card" href="disciplinas/design-centrado-no-usuario.html">
+          <h3>🎨 Design Centrado no Usuário</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">Pesquisa de usuário, personas, jornada, prototipação no Figma e testes de usabilidade.</p>
+          <div class="tags"><span class="tag">UX</span><span class="tag">Figma</span><span class="tag">Pesquisa</span><span class="tag">Protótipo</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/design-thinking.html">
+          <h3>💡 Design Thinking</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">Empatia, definição, ideação, prototipação rápida e validação com usuários.</p>
+          <div class="tags"><span class="tag">Ideação</span><span class="tag">HMW</span><span class="tag">MVP</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/administracao-bancos-dados.html">
+          <h3>📊 Administração de Bancos de Dados</h3>
+          <span class="hours">80h — 4 aulas/semana</span>
+          <p class="desc">PostgreSQL, modelagem DER, normalização, DDL, DML e consultas SQL.</p>
+          <div class="tags"><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">DER</span><span class="tag">Normalização</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/logica-pensamento-computacional.html">
+          <h3>🧠 Lógica e Pensamento Computacional</h3>
+          <span class="hours">120h — 6 aulas/semana</span>
+          <p class="desc">Algoritmos, Portugol, variáveis, condicionais, loops, vetores e funções.</p>
+          <div class="tags"><span class="tag">Algoritmos</span><span class="tag">Portugol</span><span class="tag">Lógica</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/programacao-python-desktop.html">
+          <h3>🐍 Programação Python Desktop</h3>
+          <span class="hours">80h — 4 aulas/semana</span>
+          <p class="desc">Python 3, Tkinter, conexão PostgreSQL, CRUD completo e GUI.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">PostgreSQL</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/engenharia-de-software.html">
+          <h3>⚙️ Engenharia de Software</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">Metodologias ágeis, Scrum, UML, requisitos e qualidade de software.</p>
+          <div class="tags"><span class="tag">Scrum</span><span class="tag">UML</span><span class="tag">Git</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- MÓDULO 2 -->
+    <section class="semester">
+      <h2>📗 Módulo 2 — Evolução Web <span class="badge">HTML/CSS/JS + Node.js</span></h2>
+      <div class="disciplines">
+        <a class="disc-card" href="disciplinas/programacao-web-html-css.html">
+          <h3>🌐 Programação Web HTML/CSS/JS</h3>
+          <span class="hours">160h — 8 aulas/semana</span>
+          <p class="desc">HTML5 semântico, CSS3, Flexbox, Grid, JavaScript, DOM e responsividade.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Responsivo</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/cultura-mundo-digital.html">
+          <h3>🌍 Cultura do Mundo Digital</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">Transformação digital, IA, ética tecnológica e impacto social.</p>
+          <div class="tags"><span class="tag">IA</span><span class="tag">Sociedade</span><span class="tag">Ética</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/edicao-de-imagens.html">
+          <h3>🖼️ Edição de Imagens</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">Tratamento fotográfico, composição, exportação de assets para apps.</p>
+          <div class="tags"><span class="tag">GIMP</span><span class="tag">Assets</span><span class="tag">Composição</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/ilustracao-vetorial.html">
+          <h3>✏️ Ilustração Vetorial</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">SVG, ícones, logotipos e integração de vetores em código.</p>
+          <div class="tags"><span class="tag">SVG</span><span class="tag">Inkscape</span><span class="tag">Ícones</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/projeto-de-vida.html">
+          <h3>🎯 Projeto de Vida</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">Portfólio GitHub/LinkedIn, carreira em TI e soft skills.</p>
+          <div class="tags"><span class="tag">LinkedIn</span><span class="tag">GitHub</span><span class="tag">Portfólio</span></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- MÓDULO 3 -->
+    <section class="semester">
+      <h2>📕 Módulo 3 — Consolidação <span class="badge">TypeScript + Mobile + Cloud</span></h2>
+      <div class="disciplines">
+        <a class="disc-card" href="disciplinas/programacao-mobile-android.html">
+          <h3>📱 Programação Mobile Android</h3>
+          <span class="hours">160h — 8 aulas/semana</span>
+          <p class="desc">React Native, Expo, navegação, estado, Firebase e publicação.</p>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">TypeScript</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/banco-dados-cloud.html">
+          <h3>☁️ Banco de Dados Cloud</h3>
+          <span class="hours">80h — 4 aulas/semana</span>
+          <p class="desc">Firebase, Firestore, NoSQL, regras de segurança e realtime.</p>
+          <div class="tags"><span class="tag">Firebase</span><span class="tag">NoSQL</span><span class="tag">Cloud</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/design-interfaces-mobile.html">
+          <h3>📐 Design de Interfaces Mobile</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">Material Design 3, componentes nativos, padrões de navegação.</p>
+          <div class="tags"><span class="tag">Material Design</span><span class="tag">UI</span><span class="tag">Mobile</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/etica-seguranca-informacao.html">
+          <h3>🔒 Ética e Segurança da Informação</h3>
+          <span class="hours">40h — 2 aulas/semana</span>
+          <p class="desc">LGPD, OWASP Top 10, criptografia, auditoria e boas práticas.</p>
+          <div class="tags"><span class="tag">LGPD</span><span class="tag">OWASP</span><span class="tag">Segurança</span></div>
+        </a>
+        <a class="disc-card" href="disciplinas/projeto-integrador-3.html">
+          <h3>🏆 Projeto Integrador III</h3>
+          <span class="hours">80h — 4 aulas/semana</span>
+          <p class="desc">Integração full-stack, deploy, Demo Day e apresentação final.</p>
+          <div class="tags"><span class="tag">Full-stack</span><span class="tag">Deploy</span><span class="tag">Scrum</span></div>
+        </a>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <p><strong>ETE Pernambuco</strong> — Curso Técnico em Desenvolvimento de Sistemas</p>
+      <p>Profª Luana Cristina — 2026.2</p>
+      <p style="margin-top: 8px; font-size: 0.8rem;">Abra qualquer disciplina para iniciar a apresentação em modo slides. Pressione <kbd>F</kbd> para tela cheia.</p>
+    </footer>
+  </div>
+</body>
+</html>

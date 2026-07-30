@@ -746,6 +746,348 @@ Telas obrigatórias:
 
 ---
 
+## 🚨 Plano de Contingência Pedagógica (Aulas Práticas sem Laboratório)
+
+> ⚠️ **Quando usar este plano?** Quando não houver acesso ao laboratório de informática (manutenção, falta de energia, reserva indisponível, equipamentos com defeito, etc.)
+
+> 💡 **Princípio:** Nenhuma aula é desperdiçada. Atividades práticas e avaliativas podem acontecer sem computador.
+
+---
+
+### 🅰️ Opção A: BYOD (Bring Your Own Device) — Smartphone
+
+> 🎯 **Ideal quando:** Alunos possuem smartphone com acesso à internet (Wi-Fi da escola ou dados móveis)
+
+#### Ferramentas Mobile Gratuitas
+
+| Ferramenta | Plataforma | Uso na Disciplina |
+|-----------|-----------|-------------------|
+| **Figma Mobile** | Android/iOS | Visualizar protótipos, inspecionar componentes, comentar designs |
+| **Material Design Catalog** (Google) | Android | Explorar todos os componentes MD3 ao vivo, testar interações |
+| **iOS UI Examples** (Human Interface) | iOS/Web | Ver exemplos nativos de componentes HIG |
+
+#### Atividades Adaptadas para Smartphone
+
+| Semana/Bloco | Atividade Original (PC) | Adaptação Mobile |
+|-------------|------------------------|-----------------|
+| Semanas 1-5 | Análise de apps | Figma Mobile: inspecionar designs compartilhados pela professora |
+| Semanas 6-10 | Design no Figma desktop | Material Design Catalog: explorar componentes e documentar |
+| Semanas 11-15 | Prototipar no Figma | Figma Mirror: testar protótipos criados previamente |
+| Semanas 16-18 | Auditoria de acessibilidade | Testar VoiceOver/TalkBack no próprio celular |
+
+#### 📋 Roteiro do Professor — Opção A
+
+```
+ANTES DA AULA:
+1. Verificar Wi-Fi da escola está funcionando
+2. Compartilhar link do Figma com protótipos para inspeção
+3. Instalar Material Design Catalog no celular de demonstração
+4. Preparar checklist de análise de componentes
+
+DURANTE A AULA:
+1. (5 min) Compartilhar link do Figma ou atividade via QR Code
+2. (10 min) Demonstrar no projetor usando espelhamento de tela
+3. (25 min) Alunos executam análise/teste no smartphone
+4. (10 min) Discussão coletiva dos achados
+
+AVALIAÇÃO:
+• Relatório com screenshots anotados
+• Checklist de componentes preenchido
+• Upload no Google Classroom ou envio via grupo
+```
+
+#### 📱 Guia do Aluno — Opção A
+
+```
+MATERIAIS NECESSÁRIOS:
+✅ Smartphone carregado (mínimo 40% de bateria)
+✅ App Figma Mobile instalado (para visualizar protótipos)
+✅ App Material Design Catalog (Android) OU Safari para HIG (iOS)
+
+ATIVIDADE — EXPLORAR MATERIAL DESIGN CATALOG:
+1. Abrir o app Material Design Catalog
+2. Navegar pelos componentes: Buttons, Cards, Navigation, FAB
+3. Para CADA componente, anotar:
+   - Tamanho mínimo (em dp)
+   - Estados disponíveis (default, pressed, disabled)
+   - Variações (outlined, filled, elevated)
+4. Comparar com o mesmo componente em um app real (WhatsApp, Instagram)
+
+ENTREGA:
+• Tabela comparativa: componente MD3 vs implementação real
+• Screenshot do componente no Catalog + no app real
+```
+
+---
+
+### 🅱️ Opção B: Atividades Desplugadas (Unplugged)
+
+> 🎯 **Ideal quando:** Não há internet disponível OU alunos não têm smartphone
+
+#### Atividade B1: "Audit de Interface no Celular"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Análise de UX de apps reais usando critérios de design |
+| **Duração** | 40 minutos |
+| **Materiais** | Celular do aluno (sem internet necessária — apps já instalados), checklist impresso |
+| **Objetivo** | Analisar UX de 3 apps instalados usando checklist de heurísticas |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Revisar: 10 heurísticas de Nielsen adaptadas para mobile (thumb zone, feedback, consistência)
+2. (5 min) Distribuir checklist impresso (1 por app a analisar)
+3. (20 min) Alunos escolhem 3 apps JÁ instalados e preenchem checklist para cada um
+4. (5 min) Ranking coletivo: qual app da turma tem melhor UX? Por quê?
+
+**📱 Guia do Aluno — Checklist de Audit:**
+- [ ] **Feedback:** O app responde visualmente a cada toque? (animação, cor, loading)
+- [ ] **Consistência:** Botões do mesmo tipo têm o mesmo visual em todas as telas?
+- [ ] **Thumb Zone:** Ações principais estão na parte inferior (alcançáveis com polegar)?
+- [ ] **Touch Targets:** Botões têm pelo menos ~48dp? (não precisa medir, avaliar se é fácil acertar)
+- [ ] **Hierarquia:** Fica claro o que é mais importante em cada tela?
+- [ ] **Navegação:** É fácil voltar? Sabe sempre onde está?
+- [ ] **Empty States:** O que aparece quando não tem conteúdo? (lista vazia, sem conexão)
+- [ ] **Acessibilidade:** Contraste é suficiente? Fontes são legíveis?
+- Nota final (1-10) para cada app + justificativa em 1 frase
+
+---
+
+#### Atividade B2: "Wireframe Mobile no Papel Quadriculado"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Prototipagem de baixa fidelidade (wireframing) |
+| **Duração** | 40 minutos |
+| **Materiais** | Papel quadriculado, moldura 375×812 impressa (iPhone), lápis, borracha |
+| **Objetivo** | Criar wireframes de 3 telas mobile respeitando proporções reais |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Explicar: wireframe = esqueleto da interface. Sem cor, sem imagens reais, só estrutura. Mostrar exemplos.
+2. (5 min) Distribuir molduras impressas (proporção iPhone 15: 393×852pt)
+3. (20 min) Alunos desenham 3 telas do app AgendaPro: Login, Home (lista de agendamentos), Detalhes do agendamento
+4. (5 min) Trocar com colega: "Consegue entender a tela sem explicação?" Se não, precisa simplificar.
+
+**📱 Guia do Aluno:**
+- Use a moldura impressa como sua "tela" (não desenhe fora dela!)
+- Status bar no topo (horário, bateria) — NÃO redesenhe, apenas indique com linha
+- Retângulos = imagens placeholder (X no centro)
+- Linhas = texto (mais grossa = título, mais fina = corpo)
+- Botão = retângulo arredondado com texto dentro
+- Bottom Nav = barra inferior com 3-5 ícones simplificados
+- NÃO se preocupe com beleza — foco é ESTRUTURA e FLUXO
+
+---
+
+#### Atividade B3: "Gesture Map"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Mapeamento de gestos mobile e quando usar cada um |
+| **Duração** | 40 minutos |
+| **Materiais** | Folha A4, canetas coloridas, celular para referência |
+| **Objetivo** | Mapear todos os gestos possíveis em mobile e definir quando usar cada um |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Apresentar os gestos: tap, double-tap, long-press, swipe (4 direções), pinch, spread, rotate, drag
+2. (5 min) Distribuir template com mão desenhada e áreas de gesto
+3. (20 min) Para cada gesto, alunos documentam: nome, desenho do gesto, 2 exemplos de uso em apps reais, quando NÃO usar
+4. (5 min) Quiz rápido: "Qual gesto para deletar item no Gmail?", "E para zoom no Maps?"
+
+**📱 Guia do Aluno — Tabela de Gestos:**
+
+| Gesto | Símbolo | Uso Comum | NÃO usar quando... |
+|-------|---------|-----------|-------------------|
+| Tap | 👆 | Selecionar, confirmar | — |
+| Double-tap | 👆👆 | Zoom, like (Instagram) | Ação destrutiva |
+| Long-press | 👆⏱️ | Menu contextual, selecionar múltiplos | Ação primária (é "escondido") |
+| Swipe → | 👉 | Voltar (iOS), revelar ação | Navegação principal |
+| Swipe ← | 👈 | Deletar (email), próximo | Ações sem confirmação |
+| Pinch | 🤏 | Zoom out | — |
+| Spread | 🖐️ | Zoom in | — |
+
+---
+
+#### Atividade B4: "Design System Cards"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Criar componentes reutilizáveis documentados |
+| **Duração** | 50 minutos (aula geminada recomendada) |
+| **Materiais** | Fichas de cartão (tipo ficha de RPG), canetas, régua |
+| **Objetivo** | Criar componentes reusáveis em cartões — como cartas de RPG |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Explicar: Design System = biblioteca de componentes documentados. Cada componente tem: nome, variantes, medidas, quando usar, quando NÃO usar.
+2. (5 min) Mostrar exemplo de "Component Card" preenchida (projetor ou impressa)
+3. (30 min) Alunos criam 5 Component Cards para o Design System do AgendaPro
+4. (5 min) Organizá-las como "baralho" e apresentar ao colega
+
+**📱 Guia do Aluno — Template do Component Card:**
+```
+┌─────────────────────────────────────────┐
+│ COMPONENTE: [Nome]                      │
+│ Ex: "Primary Button"                    │
+├─────────────────────────────────────────┤
+│ DESENHO:                                │
+│ [Desenhar o componente aqui]            │
+│                                         │
+├─────────────────────────────────────────┤
+│ VARIANTES: □ Small  □ Medium  □ Large   │
+│            □ Filled □ Outlined □ Text   │
+├─────────────────────────────────────────┤
+│ MEDIDAS:                                │
+│ Altura: 48dp | Padding: 16dp horiz.    │
+│ Radius: 12dp | Font: 14sp medium       │
+├─────────────────────────────────────────┤
+│ ✅ USAR QUANDO: ação primária da tela   │
+│ ❌ NÃO USAR: ações destrutivas          │
+└─────────────────────────────────────────┘
+```
+- Crie 5 cards: Button, Input, Card, Bottom Nav, FAB
+- Cada card deve ter TODAS as seções preenchidas
+- Variantes reais (baseie-se no Material Design 3)
+
+---
+
+#### Atividade B5: "Micro-interações com Stop-motion"
+
+| Item | Descrição |
+|------|-----------|
+| **Tema** | Animação de interface e feedback visual |
+| **Duração** | 40 minutos |
+| **Materiais** | Folha A4 cortada em 4 pedaços, lápis, celular para fotografar |
+| **Objetivo** | Desenhar 4 frames de uma animação de botão e fotografar em sequência |
+
+**📋 Roteiro do Professor:**
+1. (10 min) Explicar micro-interactions (Dan Saffer): Trigger → Rules → Feedback → Loops. Mostrar exemplos: botão de like, pull-to-refresh, loading
+2. (5 min) Distribuir 4 pedaços de papel por aluno (= 4 frames de animação)
+3. (20 min) Alunos desenham 4 frames de UMA micro-interação:
+   - Frame 1: Estado default (botão normal)
+   - Frame 2: Estado pressed (botão diminui levemente)
+   - Frame 3: Estado de transição (animação/loading)
+   - Frame 4: Estado final (sucesso — check aparece)
+4. (5 min) Fotografar os 4 frames em sequência rápida no celular → ver como "animação"
+
+**📱 Guia do Aluno:**
+- Escolha UMA micro-interação: Like, Save, Add to Cart, Send, ou Loading
+- Desenhe cada frame com PEQUENA diferença do anterior (princípio de animação)
+- Dica: mantenha o mesmo enquadramento em todos os frames (use a moldura como guia)
+- Fotografe os 4 frames e veja em sequência rápida no celular (modo galeria rápido)
+- Bônus: criar GIF com app Stop Motion Studio (gratuito)
+
+---
+
+### 🅲 Opção C: Estudo de Caso / PBL (Problem-Based Learning)
+
+> 🎯 **Ideal quando:** Aula geminada (2 horários seguidos) para debate aprofundado
+
+#### Caso 1: "iOS vs Android — diferenças de padrão de interface"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Platform conventions e decisões de design |
+| **Formato** | Análise comparativa + debate (40-50 min) |
+| **Conexão** | Semanas 1-5 (MD3 vs HIG) |
+
+**Dinâmica:**
+1. Professor apresenta: mesma app (Spotify, Instagram, ou WhatsApp) em Android e iOS — 5 capturas de cada
+2. Perguntas: "O que muda?", "O que permanece?", "Por que o botão de voltar é diferente?"
+3. Grupos de 4 preenchem tabela: Navegação, Tipografia, Ícones, Gestos, Feedback — como cada plataforma resolve
+4. Debate: "Um designer deve criar UI diferente para cada plataforma ou manter igual?"
+
+---
+
+#### Caso 2: "Por que o Instagram mudou a barra de navegação"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | UX decisions baseadas em dados e negócio |
+| **Formato** | Timeline + análise de motivações (40-50 min) |
+| **Conexão** | Semanas 6-10 (navegação mobile, thumb zone) |
+
+**Dinâmica:**
+1. Professor mostra timeline: barra do Instagram 2016 (camera, home, search, like, profile) → 2020 (home, search, reels, shop, profile) → atual
+2. Perguntas: "Por que Reels ganhou espaço? Por que Shop apareceu e sumiu? Thumb zone influenciou?"
+3. Grupos analisam: decisões de negócio vs decisões de UX — quem ganha?
+4. Exercício final: "Se você fosse redesenhar a barra HOJE, quais 5 itens colocaria? Justifique com dados de uso."
+
+---
+
+#### Caso 3: "App de banco para idosos — Caixa Tem"
+
+| Item | Descrição |
+|------|-----------|
+| **Foco** | Acessibilidade mobile e design inclusivo |
+| **Formato** | Análise de acessibilidade + redesign proposto (40-50 min) |
+| **Conexão** | Semanas 16-18 (acessibilidade mobile) |
+
+**Dinâmica:**
+1. Professor apresenta: Caixa Tem — app usado por 100M+ brasileiros, muitos idosos e pessoas com baixa alfabetização digital
+2. Análise: tamanho de fontes, contraste, complexidade de fluxos, quantidade de texto, feedback tátil
+3. Grupos propõem: 5 melhorias de acessibilidade para o Caixa Tem (wireframe no papel)
+4. Discussão: "Acessibilidade beneficia TODOS os usuários, não apenas pessoas com deficiência" — exemplos
+
+---
+
+### 📊 Rubrica de Avaliação Adaptada (Atividades sem Laboratório)
+
+| Critério | Excelente (10-9) | Bom (8-7) | Regular (6-5) | Insuficiente (<5) |
+|----------|-----------------|-----------|---------------|-------------------|
+| **Compreensão de UI/UX** | Demonstra domínio de guidelines e princípios | Boa compreensão com pequenas lacunas | Compreensão superficial | Não demonstra compreensão |
+| **Qualidade do wireframe** | Proporcional, hierarquia clara, componentes corretos | Bom wireframe com pequenos erros | Wireframe básico/desorganizado | Ilegível ou incorreto |
+| **Análise crítica** | Identifica problemas E propõe soluções fundamentadas | Identifica problemas corretamente | Análise superficial | Não identifica problemas |
+| **Criatividade/Originalidade** | Solução inovadora respeitando guidelines | Solução boa e coerente | Solução genérica | Não apresenta solução |
+| **Entrega/Documentação** | Completa, organizada, dentro do prazo | Completa com pequenos ajustes | Incompleta mas entregue | Não entregou |
+
+> 💡 **Nota:** Atividades de contingência têm o **mesmo peso** das atividades regulares. Designers profissionais fazem sketches no papel antes de abrir o Figma!
+
+---
+
+### 🖨️ Kit de Materiais para Impressão
+
+| Material | Quantidade | Uso |
+|----------|-----------|-----|
+| Moldura iPhone (393×852pt, escala) | 3 por aluno | Atividade B2 (wireframe) |
+| Checklist de Audit de Interface | 3 por aluno | Atividade B1 |
+| Template de Gesture Map | 1 por aluno | Atividade B3 |
+| Template de Component Card (ficha) | 5 por aluno | Atividade B4 |
+| Capturas de tela iOS vs Android | 10 impressões | Caso 1 |
+| QR Code com links Figma | 1 por mesa | Opção A |
+
+---
+
+### 🔀 Fluxograma de Decisão Rápida
+
+```
+┌─────────────────────────────────────────┐
+│   🚨 LABORATÓRIO INDISPONÍVEL!          │
+│   O que fazer em 2 minutos:             │
+└─────────────────┬───────────────────────┘
+                  │
+                  ▼
+┌─────────────────────────────────────────┐
+│ Alunos têm smartphone + internet?       │
+└──────┬──────────────────────┬───────────┘
+       │ SIM                  │ NÃO
+       ▼                      ▼
+┌──────────────┐    ┌─────────────────────┐
+│ OPÇÃO A:     │    │ Tem material        │
+│ BYOD         │    │ impresso pronto?    │
+│ Figma Mobile │    └──────┬────────┬─────┘
+│ + Material   │           │ SIM    │ NÃO
+│ Catalog      │           ▼        ▼
+└──────────────┘    ┌────────┐ ┌─────────┐
+                    │OPÇÃO B:│ │OPÇÃO C: │
+                    │Unplug- │ │Estudo de│
+                    │ged     │ │Caso/PBL │
+                    │(B1-B5) │ │(debate) │
+                    └────────┘ └─────────┘
+```
+
+> ⚠️ **Dica da Profª Luana:** Mantenha sempre 5 cópias do checklist de audit (B1) e molduras de wireframe (B2) na sua pasta. São as atividades mais rápidas de aplicar sem preparação prévia!
+
+---
+
 ## 📚 Referências
 
 ### Guidelines Oficiais
