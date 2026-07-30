@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ETE Pernambuco — Desenvolvimento de Sistemas</title>
+  <meta name="description" content="Portal do Curso Técnico em Desenvolvimento de Sistemas — ETE Pernambuco — Profª Luana Cristina">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #2563EB;
+      --primary-dark: #1D4ED8;
+      --primary-light: #EFF6FF;
+      --bg: #0F172A;
+      --card-bg: #1E293B;
+      --border: #334155;
+      --text: #F8FAFC;
+      --text-muted: #94A3B8;
+      --success: #10B981;
+      --warning: #F59E0B;
+      --radius: 12px;
+      --font: 'Inter', 'Segoe UI', system-ui, -apple-system, sans-serif;
+    }
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+    a { text-decoration: none; color: inherit; }
+
+    /* HEADER */
+    .header {
+      text-align: center;
+      padding: 60px 24px 40px;
+      background: linear-gradient(180deg, #1E293B 0%, var(--bg) 100%);
+      border-bottom: 1px solid var(--border);
+    }
+    .header h1 { font-size: 2.5rem; font-weight: 800; letter-spacing: -0.03em; }
+    .header h1 .accent { color: var(--primary); }
+    .header .subtitle { color: var(--text-muted); font-size: 1.1rem; margin-top: 8px; }
+    .header .professor { color: #CBD5E1; margin-top: 4px; font-size: 0.95rem; }
+    .tagline {
+      display: inline-block; margin-top: 20px; padding: 12px 24px;
+      background: rgba(37,99,235,0.12); border: 1px solid rgba(37,99,235,0.35);
+      border-radius: 8px; color: #93C5FD; font-weight: 500; font-size: 0.95rem;
+      max-width: 600px;
+    }
+
+    /* MAIN */
+    .container { max-width: 1100px; margin: 0 auto; padding: 40px 24px 60px; }
+
+    /* MODULES */
+    .module { margin-bottom: 48px; }
+    .module-header {
+      display: flex; align-items: center; gap: 12px;
+      margin-bottom: 20px; padding-bottom: 10px;
+      border-bottom: 2px solid var(--border);
+    }
+    .module-header h2 { font-size: 1.4rem; font-weight: 700; }
+    .module-badge {
+      background: var(--primary); color: #fff; padding: 3px 12px;
+      border-radius: 4px; font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.05em;
+    }
+
+    /* GRID */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 16px;
+    }
+
+    /* CARDS */
+    .card {
+      display: flex; flex-direction: column;
+      background: var(--card-bg); border: 1px solid var(--border);
+      border-radius: var(--radius); padding: 20px 24px;
+      transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-3px);
+      border-color: var(--primary);
+      box-shadow: 0 8px 30px rgba(37,99,235,0.15);
+    }
+    .card-icon { font-size: 1.6rem; margin-bottom: 8px; }
+    .card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
+    .card .hours { color: var(--primary); font-size: 0.8rem; font-weight: 600; }
+    .card .desc { color: var(--text-muted); font-size: 0.85rem; margin-top: 8px; flex: 1; }
+    .card .tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 12px; }
+    .card .tag {
+      background: #334155; color: #CBD5E1; padding: 2px 8px;
+      border-radius: 4px; font-size: 0.68rem; font-weight: 500;
+    }
+    .card .btn-slides {
+      display: inline-flex; align-items: center; gap: 6px;
+      margin-top: 14px; padding: 8px 14px;
+      background: var(--primary); color: #fff;
+      border-radius: 6px; font-size: 0.8rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .card .btn-slides:hover { background: var(--primary-dark); }
+
+    /* FOOTER */
+    .footer {
+      text-align: center; padding: 32px 24px;
+      border-top: 1px solid var(--border); color: var(--text-muted);
+      font-size: 0.85rem;
+    }
+    .footer strong { color: #CBD5E1; }
+    .footer kbd {
+      background: #334155; padding: 2px 6px; border-radius: 3px;
+      font-family: monospace; font-size: 0.8rem;
+    }
+
+    @media (max-width: 640px) {
+      .header h1 { font-size: 1.8rem; }
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header class="header">
+    <h1>🎓 Desenvolvimento de <span class="accent">Sistemas</span></h1>
+    <p class="subtitle">Curso Técnico Subsequente — ETE Pernambuco — 2026.2</p>
+    <p class="professor">Profª Luana Cristina</p>
+    <p class="tagline">💡 A lógica é o fundamento soberano; linguagens e frameworks são apenas sintaxe.</p>
+  </header>
+
+  <main class="container">
+
+    <!-- MÓDULO 1 -->
+    <section class="module">
+      <div class="module-header">
+        <h2>📘 Módulo 1 — Fundação</h2>
+        <span class="module-badge">Python + PostgreSQL + UX</span>
+      </div>
+      <div class="grid">
+        <a href="ETE/portal/disciplinas/design-centrado-no-usuario.html" class="card">
+          <span class="card-icon">🎨</span>
+          <h3>Design Centrado no Usuário</h3>
+          <span class="hours">40h — 15 slides</span>
+          <p class="desc">Pesquisa de usuário, personas, jornada, prototipação no Figma e testes de usabilidade.</p>
+          <div class="tags"><span class="tag">UX</span><span class="tag">Figma</span><span class="tag">Pesquisa</span><span class="tag">Protótipo</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/design-thinking.html" class="card">
+          <span class="card-icon">💡</span>
+          <h3>Design Thinking</h3>
+          <span class="hours">40h — 13 slides</span>
+          <p class="desc">Empatia, definição, ideação, prototipação rápida e validação com usuários.</p>
+          <div class="tags"><span class="tag">Ideação</span><span class="tag">HMW</span><span class="tag">MVP</span><span class="tag">Prototype</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/administracao-bancos-dados.html" class="card">
+          <span class="card-icon">📊</span>
+          <h3>Administração de Bancos de Dados</h3>
+          <span class="hours">80h — 15 slides</span>
+          <p class="desc">PostgreSQL, modelagem DER, normalização, DDL, DML e consultas SQL avançadas.</p>
+          <div class="tags"><span class="tag">SQL</span><span class="tag">PostgreSQL</span><span class="tag">DER</span><span class="tag">Normalização</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/logica-pensamento-computacional.html" class="card">
+          <span class="card-icon">🧠</span>
+          <h3>Lógica e Pensamento Computacional</h3>
+          <span class="hours">120h — 16 slides</span>
+          <p class="desc">Algoritmos, Portugol, variáveis, condicionais, loops, vetores, funções e ordenação.</p>
+          <div class="tags"><span class="tag">Algoritmos</span><span class="tag">Portugol</span><span class="tag">Python</span><span class="tag">JS</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/programacao-python-desktop.html" class="card">
+          <span class="card-icon">🐍</span>
+          <h3>Programação Python Desktop</h3>
+          <span class="hours">80h — 12 slides</span>
+          <p class="desc">Python 3, Tkinter, conexão PostgreSQL, CRUD completo e interface gráfica.</p>
+          <div class="tags"><span class="tag">Python</span><span class="tag">Tkinter</span><span class="tag">PostgreSQL</span><span class="tag">GUI</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/engenharia-de-software.html" class="card">
+          <span class="card-icon">⚙️</span>
+          <h3>Engenharia de Software</h3>
+          <span class="hours">40h — 12 slides</span>
+          <p class="desc">Scrum, UML, requisitos, User Stories, Git, qualidade e testes.</p>
+          <div class="tags"><span class="tag">Scrum</span><span class="tag">UML</span><span class="tag">Git</span><span class="tag">Testes</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- MÓDULO 2 -->
+    <section class="module">
+      <div class="module-header">
+        <h2>📗 Módulo 2 — Evolução Web</h2>
+        <span class="module-badge">HTML/CSS/JS + Node.js</span>
+      </div>
+      <div class="grid">
+        <a href="ETE/portal/disciplinas/programacao-web-html-css.html" class="card">
+          <span class="card-icon">🌐</span>
+          <h3>Programação Web HTML/CSS/JS</h3>
+          <span class="hours">160h — 15 slides</span>
+          <p class="desc">HTML5 semântico, CSS3, Flexbox, Grid, JavaScript, DOM e responsividade.</p>
+          <div class="tags"><span class="tag">HTML5</span><span class="tag">CSS3</span><span class="tag">JavaScript</span><span class="tag">Responsivo</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/cultura-mundo-digital.html" class="card">
+          <span class="card-icon">🌍</span>
+          <h3>Cultura do Mundo Digital</h3>
+          <span class="hours">40h — 10 slides</span>
+          <p class="desc">Transformação digital, IA, ética tecnológica, fake news e portfólio profissional.</p>
+          <div class="tags"><span class="tag">IA</span><span class="tag">Sociedade</span><span class="tag">Portfólio</span><span class="tag">LinkedIn</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/edicao-de-imagens.html" class="card">
+          <span class="card-icon">🖼️</span>
+          <h3>Edição de Imagens</h3>
+          <span class="hours">40h — 10 slides</span>
+          <p class="desc">Tratamento fotográfico, composição, exportação de assets para apps.</p>
+          <div class="tags"><span class="tag">GIMP</span><span class="tag">Assets</span><span class="tag">Composição</span><span class="tag">WebP</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/ilustracao-vetorial.html" class="card">
+          <span class="card-icon">✏️</span>
+          <h3>Ilustração Vetorial</h3>
+          <span class="hours">40h — 10 slides</span>
+          <p class="desc">SVG, ícones, logotipos e integração de vetores em código.</p>
+          <div class="tags"><span class="tag">SVG</span><span class="tag">Inkscape</span><span class="tag">Ícones</span><span class="tag">Figma</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/projeto-de-vida.html" class="card">
+          <span class="card-icon">🎯</span>
+          <h3>Projeto de Vida</h3>
+          <span class="hours">40h — 10 slides</span>
+          <p class="desc">Portfólio GitHub/LinkedIn, carreira em TI, soft skills e elevator pitch.</p>
+          <div class="tags"><span class="tag">LinkedIn</span><span class="tag">GitHub</span><span class="tag">Carreira</span><span class="tag">Soft Skills</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- MÓDULO 3 -->
+    <section class="module">
+      <div class="module-header">
+        <h2>📕 Módulo 3 — Consolidação</h2>
+        <span class="module-badge">TypeScript + Mobile + Cloud</span>
+      </div>
+      <div class="grid">
+        <a href="ETE/portal/disciplinas/programacao-mobile-android.html" class="card">
+          <span class="card-icon">📱</span>
+          <h3>Programação Mobile Android</h3>
+          <span class="hours">160h — 15 slides</span>
+          <p class="desc">React Native, Expo, navegação, estado, Firebase e publicação.</p>
+          <div class="tags"><span class="tag">React Native</span><span class="tag">Expo</span><span class="tag">TypeScript</span><span class="tag">Firebase</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/banco-dados-cloud.html" class="card">
+          <span class="card-icon">☁️</span>
+          <h3>Banco de Dados Cloud</h3>
+          <span class="hours">80h — 12 slides</span>
+          <p class="desc">Firebase, Firestore, NoSQL, regras de segurança e realtime.</p>
+          <div class="tags"><span class="tag">Firebase</span><span class="tag">NoSQL</span><span class="tag">Cloud</span><span class="tag">Realtime</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/design-interfaces-mobile.html" class="card">
+          <span class="card-icon">📐</span>
+          <h3>Design de Interfaces Mobile</h3>
+          <span class="hours">40h — 10 slides</span>
+          <p class="desc">Material Design 3, componentes nativos, padrões de navegação.</p>
+          <div class="tags"><span class="tag">Material Design</span><span class="tag">UI</span><span class="tag">Mobile</span><span class="tag">A11y</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/etica-seguranca-informacao.html" class="card">
+          <span class="card-icon">🔒</span>
+          <h3>Ética e Segurança da Informação</h3>
+          <span class="hours">40h — 12 slides</span>
+          <p class="desc">LGPD, OWASP Top 10, criptografia, JWT, auditoria de código.</p>
+          <div class="tags"><span class="tag">LGPD</span><span class="tag">OWASP</span><span class="tag">JWT</span><span class="tag">Segurança</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+        <a href="ETE/portal/disciplinas/projeto-integrador-3.html" class="card">
+          <span class="card-icon">🏆</span>
+          <h3>Projeto Integrador III</h3>
+          <span class="hours">80h — 12 slides</span>
+          <p class="desc">Integração full-stack, Scrum, deploy, Demo Day e apresentação final.</p>
+          <div class="tags"><span class="tag">Full-stack</span><span class="tag">Deploy</span><span class="tag">Scrum</span><span class="tag">Demo Day</span></div>
+          <span class="btn-slides">▶ Abrir Slides</span>
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>ETE Pernambuco</strong> — Curso Técnico em Desenvolvimento de Sistemas</p>
+    <p>Profª Luana Cristina — 2026.2</p>
+    <p style="margin-top: 12px;">Navegação nos slides: <kbd>←</kbd> <kbd>→</kbd> navegar &nbsp;|&nbsp; <kbd>F</kbd> tela cheia &nbsp;|&nbsp; <kbd>M</kbd> menu &nbsp;|&nbsp; Swipe no celular</p>
+  </footer>
+</body>
+</html>
