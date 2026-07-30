@@ -72,6 +72,15 @@ html, body {
   text-align: center;
   justify-content: center;
   align-items: center;
+  color: #FFFFFF;
+}
+
+.slide--cover h1, .slide--cover h2, .slide--cover h3 {
+  color: #FFFFFF;
+}
+
+.slide--cover p, .slide--cover li, .slide--cover span {
+  color: #E2E8F0;
 }
 
 .slide--content {
@@ -83,9 +92,17 @@ html, body {
   color: var(--white);
 }
 
+.slide--dark h1, .slide--dark h2, .slide--dark h3 {
+  color: #FFFFFF;
+}
+
 .slide--accent {
   background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
   color: var(--white);
+}
+
+.slide--accent h1, .slide--accent h2, .slide--accent h3 {
+  color: #FFFFFF;
 }
 
 .slide--section {
@@ -93,6 +110,10 @@ html, body {
   color: var(--white);
   text-align: center;
   align-items: center;
+}
+
+.slide--section h1, .slide--section h2, .slide--section h3 {
+  color: #FFFFFF;
 }
 
 /* ===== TYPOGRAPHY ===== */
@@ -240,10 +261,32 @@ html, body {
   gap: 12px;
 }
 
-.callout--tip { background: #ECFDF5; border-left: 4px solid var(--success); }
-.callout--warning { background: #FFFBEB; border-left: 4px solid var(--warning); }
-.callout--danger { background: #FEF2F2; border-left: 4px solid var(--error); }
-.callout--info { background: var(--primary-light); border-left: 4px solid var(--primary); }
+.callout--tip { background: #ECFDF5; border-left: 4px solid var(--success); color: #065F46; }
+.callout--warning { background: #FFFBEB; border-left: 4px solid var(--warning); color: #78350F; }
+.callout--danger { background: #FEF2F2; border-left: 4px solid var(--error); color: #7F1D1D; }
+.callout--info { background: var(--primary-light); border-left: 4px solid var(--primary); color: #1E3A5F; }
+
+/* Callouts inside dark/cover/accent/section slides — force dark text on light background */
+.slide--dark .callout,
+.slide--cover .callout,
+.slide--accent .callout,
+.slide--section .callout {
+  color: #1F2937;
+}
+
+.slide--dark .callout span,
+.slide--cover .callout span,
+.slide--accent .callout span,
+.slide--section .callout span {
+  color: #1F2937;
+}
+
+.slide--dark .callout strong,
+.slide--cover .callout strong,
+.slide--accent .callout strong,
+.slide--section .callout strong {
+  color: #111827;
+}
 
 .callout .icon { font-size: 1.4rem; flex-shrink: 0; }
 
