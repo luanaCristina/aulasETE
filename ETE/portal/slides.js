@@ -203,7 +203,18 @@
     prev: prevSlide,
     goTo: goToSlide,
     toggleFullscreen: toggleFullscreen,
-    toggleSidebar: toggleSidebar
+    toggleSidebar: toggleSidebar,
+    goHome: function() {
+      // Navigate to the portal index (2 levels up from disciplinas/)
+      const currentPath = window.location.pathname;
+      if (currentPath.includes('/disciplinas/')) {
+        window.location.href = '../../../index.html';
+      } else if (currentPath.includes('/portal/')) {
+        window.location.href = '../../index.html';
+      } else {
+        window.location.href = './index.html';
+      }
+    }
   };
 
   // ===== AUTO-INIT =====
