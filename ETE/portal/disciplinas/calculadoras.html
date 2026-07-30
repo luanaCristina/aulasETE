@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Calculadoras — Estudo Prático Comparativo</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>🧮 Calculadoras Multi-Stack</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🧮 Calculadoras — <span class="accent">Multi-Stack</span></h1>
+      <p class="subtitle">O mesmo projeto em 4 tecnologias diferentes</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">
+        JavaScript · TypeScript · Python Flask · Expo Mobile
+      </p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"A lógica é universal — a sintaxe é só o sotaque."</span>
+      </div>
+      <p style="color:#64748B; margin-top:20px;">Profª Luana Cristina — 2026.2</p>
+    </section>
+
+    <!-- SLIDE 2: VISÃO GERAL -->
+    <section class="slide slide--content" data-title="Visão Geral">
+      <h2>📊 Visão Geral — 4 Implementações</h2>
+      <p>A mesma calculadora com as 4 operações básicas, implementada em tecnologias distintas:</p>
+      <table>
+        <thead>
+          <tr><th>Stack</th><th>Linguagem</th><th>Ambiente</th><th>Execução</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>🟡 JS Puro</td><td>JavaScript</td><td>Browser</td><td>Abrir index.html</td></tr>
+          <tr><td>🔵 TypeScript</td><td>TypeScript</td><td>Browser (compilado)</td><td>tsc + abrir html</td></tr>
+          <tr><td>🟢 Flask</td><td>Python</td><td>Servidor local</td><td>python app.py</td></tr>
+          <tr><td>📱 Expo</td><td>React Native</td><td>Mobile/Emulador</td><td>npx expo start</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Objetivo:</strong> Entender que a LÓGICA é a mesma — variáveis, condições, funções — só a forma de escrever muda.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: JAVASCRIPT -->
+    <section class="slide slide--dark" data-title="JavaScript Puro">
+      <h2>🟡 Calculadora — JavaScript Puro</h2>
+      <div class="code-block">
+        <span class="lang-badge">index.html + script.js</span>
+        <code>&lt;!-- HTML --&gt;
+&lt;input id="num1" type="number" placeholder="Número 1"&gt;
+&lt;input id="num2" type="number" placeholder="Número 2"&gt;
+&lt;select id="operacao"&gt;
+  &lt;option value="+"&gt;+&lt;/option&gt;
+  &lt;option value="-"&gt;-&lt;/option&gt;
+  &lt;option value="*"&gt;×&lt;/option&gt;
+  &lt;option value="/"&gt;÷&lt;/option&gt;
+&lt;/select&gt;
+&lt;button onclick="calcular()"&gt;Calcular&lt;/button&gt;
+&lt;p id="resultado"&gt;&lt;/p&gt;
+
+&lt;script&gt;
+function calcular() {
+  const a = parseFloat(document.getElementById('num1').value);
+  const b = parseFloat(document.getElementById('num2').value);
+  const op = document.getElementById('operacao').value;
+  let resultado;
+
+  if (op === '+') resultado = a + b;
+  else if (op === '-') resultado = a - b;
+  else if (op === '*') resultado = a * b;
+  else if (op === '/') resultado = b !== 0 ? a / b : 'Erro: divisão por zero';
+
+  document.getElementById('resultado').textContent = `Resultado: ${resultado}`;
+}
+&lt;/script&gt;</code>
+      </div>
+      <div class="callout callout--tip" style="margin-top:12px;">
+        <span class="icon">▶️</span>
+        <span><strong>Como rodar:</strong> Basta abrir o <code>index.html</code> no navegador. Zero dependências!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: TYPESCRIPT -->
+    <section class="slide slide--dark" data-title="TypeScript">
+      <h2>🔵 Calculadora — TypeScript</h2>
+      <div class="code-block">
+        <span class="lang-badge">calculadora.ts</span>
+        <code>type Operacao = '+' | '-' | '*' | '/';
+
+function calcular(a: number, b: number, op: Operacao): number | string {
+  switch (op) {
+    case '+': return a + b;
+    case '-': return a - b;
+    case '*': return a * b;
+    case '/':
+      if (b === 0) return 'Erro: divisão por zero';
+      return a / b;
+  }
+}
+
+// Uso com tipagem segura
+const resultado: number | string = calcular(10, 5, '+');
+console.log(resultado); // 15
+
+// Erro em tempo de compilação:
+// calcular(10, 5, '%'); ← TypeScript não permite!</code>
+      </div>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>⚙️ Compilação</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code>npm install -g typescript
+tsc calculadora.ts
+# Gera calculadora.js</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>✅ Vantagens da Tipagem</h3>
+          <ul>
+            <li>Erros detectados ANTES de rodar</li>
+            <li><code>type Operacao</code> limita valores válidos</li>
+            <li>Autocompletar inteligente no VS Code</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: PYTHON FLASK -->
+    <section class="slide slide--content" data-title="Python Flask">
+      <h2>🟢 Calculadora — Python Flask</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🐍 app.py (Servidor)</h3>
+          <div class="code-block">
+            <span class="lang-badge">Python</span>
+            <code>from flask import Flask, request, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('calc.html')
+
+@app.route('/calcular', methods=['POST'])
+def calcular():
+    a = float(request.form['num1'])
+    b = float(request.form['num2'])
+    op = request.form['operacao']
+
+    if op == '+': resultado = a + b
+    elif op == '-': resultado = a - b
+    elif op == '*': resultado = a * b
+    elif op == '/':
+        resultado = a / b if b != 0 else 'Erro'
+    else:
+        resultado = 'Operação inválida'
+
+    return render_template('calc.html',
+                           resultado=resultado)
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>▶️ Como Executar</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code># Instalar Flask
+pip install flask
+
+# Estrutura de pastas
+projeto/
+├── app.py
+└── templates/
+    └── calc.html
+
+# Rodar
+python app.py
+# Acesse: http://localhost:5000</code>
+          </div>
+          <div class="callout callout--info" style="margin-top:12px;">
+            <span class="icon">🌐</span>
+            <span>Flask é um <strong>micro-framework</strong> web. O cálculo acontece no SERVIDOR, não no navegador.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: EXPO / REACT NATIVE -->
+    <section class="slide slide--dark" data-title="Expo / React Native">
+      <h2>📱 Calculadora — Expo (React Native)</h2>
+      <div class="code-block">
+        <span class="lang-badge">App.js (React Native)</span>
+        <code>import { useState } from 'react';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { Picker } from '@react-native-picker/picker';
+
+export default function App() {
+  const [num1, setNum1] = useState('');
+  const [num2, setNum2] = useState('');
+  const [op, setOp] = useState('+');
+  const [resultado, setResultado] = useState('');
+
+  function calcular() {
+    const a = parseFloat(num1);
+    const b = parseFloat(num2);
+    let res;
+    if (op === '+') res = a + b;
+    else if (op === '-') res = a - b;
+    else if (op === '*') res = a * b;
+    else if (op === '/') res = b !== 0 ? a / b : 'Erro';
+    setResultado(`Resultado: ${res}`);
+  }
+
+  return (
+    &lt;View style={styles.container}&gt;
+      &lt;Text style={styles.titulo}&gt;🧮 Calculadora&lt;/Text&gt;
+      &lt;TextInput style={styles.input} keyboardType="numeric"
+        placeholder="Número 1" onChangeText={setNum1} /&gt;
+      &lt;TextInput style={styles.input} keyboardType="numeric"
+        placeholder="Número 2" onChangeText={setNum2} /&gt;
+      &lt;Picker selectedValue={op} onValueChange={setOp}&gt;
+        &lt;Picker.Item label="+" value="+" /&gt;
+        &lt;Picker.Item label="-" value="-" /&gt;
+        &lt;Picker.Item label="×" value="*" /&gt;
+        &lt;Picker.Item label="÷" value="/" /&gt;
+      &lt;/Picker&gt;
+      &lt;Button title="Calcular" onPress={calcular} /&gt;
+      &lt;Text style={styles.resultado}&gt;{resultado}&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}</code>
+      </div>
+      <div class="callout callout--tip" style="margin-top:12px;">
+        <span class="icon">📲</span>
+        <span><strong>Rodar:</strong> <code>npx create-expo-app calculadora && cd calculadora && npx expo start</code> — Escaneie o QR no celular.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: COMPARATIVO DE SINTAXE -->
+    <section class="slide slide--content" data-title="Comparativo de Sintaxe">
+      <h2>🔄 Comparativo de Sintaxe — Mesma Lógica, 4 Formas</h2>
+      <table>
+        <thead>
+          <tr><th>Conceito</th><th>JavaScript</th><th>TypeScript</th><th>Python</th><th>React Native</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Variável</strong></td>
+            <td><code>let x = 10;</code></td>
+            <td><code>let x: number = 10;</code></td>
+            <td><code>x = 10</code></td>
+            <td><code>const [x, setX] = useState(10);</code></td>
+          </tr>
+          <tr>
+            <td><strong>Função</strong></td>
+            <td><code>function soma(a,b) { return a+b; }</code></td>
+            <td><code>function soma(a:number, b:number): number { return a+b; }</code></td>
+            <td><code>def soma(a, b): return a + b</code></td>
+            <td><code>function soma(a,b) { return a+b; }</code></td>
+          </tr>
+          <tr>
+            <td><strong>Condicional</strong></td>
+            <td><code>if (x &gt; 0) {...}</code></td>
+            <td><code>if (x &gt; 0) {...}</code></td>
+            <td><code>if x &gt; 0:</code></td>
+            <td><code>if (x &gt; 0) {...}</code></td>
+          </tr>
+          <tr>
+            <td><strong>Loop</strong></td>
+            <td><code>for (let i=0; i&lt;5; i++)</code></td>
+            <td><code>for (let i=0; i&lt;5; i++)</code></td>
+            <td><code>for i in range(5):</code></td>
+            <td><code>array.map(item =&gt; ...)</code></td>
+          </tr>
+          <tr>
+            <td><strong>Print</strong></td>
+            <td><code>console.log(x)</code></td>
+            <td><code>console.log(x)</code></td>
+            <td><code>print(x)</code></td>
+            <td><code>&lt;Text&gt;{x}&lt;/Text&gt;</code></td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🧠</span>
+        <span>Perceba: <strong>if/else, loops, funções, variáveis</strong> existem em TODAS. O pensamento computacional é transferível!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: DIFERENÇAS E SEMELHANÇAS -->
+    <section class="slide slide--content" data-title="Diferenças e Semelhanças">
+      <h2>⚖️ Diferenças e Semelhanças</h2>
+      <table>
+        <thead>
+          <tr><th>Aspecto</th><th>JS Puro</th><th>TypeScript</th><th>Python Flask</th><th>Expo/RN</th></tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Tipagem</strong></td><td>Dinâmica</td><td>Estática</td><td>Dinâmica</td><td>Dinâmica (ou TS)</td></tr>
+          <tr><td><strong>Paradigma</strong></td><td>Multi (funcional/OO)</td><td>Multi (funcional/OO)</td><td>Multi (funcional/OO)</td><td>Funcional (hooks)</td></tr>
+          <tr><td><strong>Execução</strong></td><td>Browser (client)</td><td>Browser (compilado)</td><td>Servidor (back)</td><td>Mobile (nativo)</td></tr>
+          <tr><td><strong>Tooling</strong></td><td>Nenhum</td><td>tsc + tsconfig</td><td>pip + venv</td><td>Node + Expo CLI</td></tr>
+          <tr><td><strong>Deploy</strong></td><td>Qualquer hospedagem</td><td>Build → hospedagem</td><td>Heroku/Render</td><td>App Store / APK</td></tr>
+          <tr><td><strong>Complexidade</strong></td><td>⭐</td><td>⭐⭐</td><td>⭐⭐</td><td>⭐⭐⭐</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--tip" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Semelhanças:</strong> Todas usam variáveis, condicionais, funções e lógica de operações. O CORE é idêntico — muda o ecossistema.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: COMO EXECUTAR -->
+    <section class="slide slide--dark" data-title="Como Executar">
+      <h2>▶️ Como Executar Cada Versão</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🟡 JS Puro</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code># Sem dependências!
+# Apenas abra no navegador:
+open index.html
+# ou clique duas vezes no arquivo</code>
+          </div>
+          <h3 style="margin-top:16px;">🔵 TypeScript</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code>npm install -g typescript
+tsc calculadora.ts
+# Gera calculadora.js
+# Inclua no HTML e abra</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🟢 Python Flask</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code>pip install flask
+python app.py
+# Acesse http://localhost:5000</code>
+          </div>
+          <h3 style="margin-top:16px;">📱 Expo</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code>npx create-expo-app calculadora
+cd calculadora
+npx expo start
+# Escaneie o QR com Expo Go</code>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Pré-requisitos:</strong> Node.js 20+ (para TS e Expo), Python 3.12+ (para Flask). Veja o Guia de Configuração de Ambiente.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: ENCERRAMENTO -->
+    <section class="slide slide--dark" data-title="Encerramento">
+      <h2 style="text-align:center;">🧠 A lógica é a mesma —<br>só muda a <span class="accent">sintaxe</span></h2>
+      <div style="max-width:700px; margin:24px auto 0; text-align:center;">
+        <p style="font-size:1.2rem; color:#CBD5E1;">
+          Dominar uma linguagem facilita aprender qualquer outra.<br>
+          O pensamento computacional é a base de TUDO.
+        </p>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin:32px auto 0;">
+        <span class="icon">📂</span>
+        <span>Código-fonte completo de todas as versões no repositório da disciplina no GitHub.</span>
+      </div>
+      <p style="color:#64748B; margin-top:24px; text-align:center;">Profª Luana Cristina — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 10</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+    <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

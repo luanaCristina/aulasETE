@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Revisões e Simulados — Módulo 1</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>📝 Revisões & Simulados</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>📝 Revisões &amp; <span class="accent">Simulados</span><br>Módulo 1</h1>
+      <p class="subtitle">Preparação completa para as avaliações — AV1, AV2 e AV3</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">
+        Lógica · HTML/CSS · Redes & SO · UI/UX
+      </p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">🎯</span>
+        <span>"Revisão não é decorar — é conectar conceitos e praticar."</span>
+      </div>
+      <p style="color:#64748B; margin-top:20px;">Profª Luana Cristina — 2026.2</p>
+    </section>
+
+    <!-- SLIDE 2: CHECKLIST DE COMPETÊNCIAS -->
+    <section class="slide slide--content" data-title="Checklist de Competências">
+      <h2>✅ Checklist de Competências — Módulo 1</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🧠 Lógica e Pensamento Computacional</h3>
+          <ul>
+            <li>☐ <code>let</code>, <code>const</code>, <code>var</code> — diferenças</li>
+            <li>☐ Tipos: string, number, boolean, array, object</li>
+            <li>☐ <code>if/else</code>, <code>switch</code>, operador ternário</li>
+            <li>☐ <code>for</code>, <code>while</code>, <code>for...of</code></li>
+            <li>☐ Arrays: push, pop, map, filter, find</li>
+            <li>☐ Funções: declaração, arrow, parâmetros, return</li>
+            <li>☐ Objetos: chaves, valores, desestruturação</li>
+            <li>☐ DOM: querySelector, addEventListener</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🌐 HTML/CSS</h3>
+          <ul>
+            <li>☐ Tags semânticas: header, main, section, article</li>
+            <li>☐ Flexbox: justify-content, align-items, gap</li>
+            <li>☐ Grid: template-columns, fr, span</li>
+            <li>☐ Responsividade: media queries, mobile-first</li>
+            <li>☐ Formulários: input types, required, pattern</li>
+          </ul>
+          <h3 style="margin-top:12px;">🔌 Redes & SO</h3>
+          <ul>
+            <li>☐ Modelo OSI (7 camadas) e TCP/IP (4)</li>
+            <li>☐ IP, máscara, gateway, DNS</li>
+            <li>☐ Portas comuns: 80, 443, 3000, 5432</li>
+          </ul>
+          <h3 style="margin-top:12px;">🎨 UI/UX</h3>
+          <ul>
+            <li>☐ Personas e jornada do usuário</li>
+            <li>☐ Wireframe vs protótipo de alta fidelidade</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: LÓGICA AV1 -->
+    <section class="slide slide--dark" data-title="Lógica — Revisão AV1">
+      <h2>🧠 Lógica — Revisão AV1</h2>
+      <p style="color:#94A3B8;">Variáveis, tipos, condicionais e loops</p>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>📌 Tópicos-Chave</h3>
+          <ul>
+            <li>Diferença entre <code>let</code>, <code>const</code> e <code>var</code></li>
+            <li>Conversão de tipos: <code>parseInt</code>, <code>parseFloat</code>, <code>String()</code></li>
+            <li>Operadores: <code>===</code> vs <code>==</code>, <code>&&</code>, <code>||</code>, <code>!</code></li>
+            <li>Estruturas: <code>if/else if/else</code>, <code>switch</code></li>
+            <li>Loops: <code>for</code>, <code>while</code>, <code>do...while</code></li>
+          </ul>
+          <h3 style="margin-top:12px;">⚠️ Pegadinhas Comuns</h3>
+          <ul>
+            <li><code>"5" + 3</code> → <code>"53"</code> (concatenação!)</li>
+            <li><code>"5" - 3</code> → <code>2</code> (coerção numérica)</li>
+            <li><code>const</code> em array: pode alterar itens, não reatribuir</li>
+            <li><code>for</code> com <code><=</code> vs <code><</code> (off-by-one)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Exercício-Modelo</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>// Classifique a idade:
+// menor: &lt; 18, adulto: 18-64, idoso: 65+
+function classificar(idade) {
+  if (idade &lt; 18) return 'menor';
+  else if (idade &lt;= 64) return 'adulto';
+  else return 'idoso';
+}
+
+// Soma de 1 até N
+function somaAteN(n) {
+  let soma = 0;
+  for (let i = 1; i &lt;= n; i++) {
+    soma += i;
+  }
+  return soma;
+}</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: LÓGICA AV2 -->
+    <section class="slide slide--dark" data-title="Lógica — Revisão AV2">
+      <h2>🧠 Lógica — Revisão AV2</h2>
+      <p style="color:#94A3B8;">Funções, arrays, objetos e manipulação DOM</p>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>📌 Tópicos-Chave</h3>
+          <ul>
+            <li>Funções: declaração, expressão, arrow</li>
+            <li>Parâmetros default, rest (<code>...args</code>)</li>
+            <li>Arrays: <code>map</code>, <code>filter</code>, <code>reduce</code>, <code>find</code></li>
+            <li>Objetos: acesso por ponto e colchetes</li>
+            <li>Desestruturação: <code>const { nome, idade } = pessoa</code></li>
+            <li>DOM: <code>querySelector</code>, <code>innerHTML</code>, <code>addEventListener</code></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Exercício-Modelo</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>// Filtrar maiores de idade
+const alunos = [
+  { nome: 'Ana', idade: 17 },
+  { nome: 'Carlos', idade: 19 },
+  { nome: 'Bia', idade: 16 },
+  { nome: 'Pedro', idade: 21 }
+];
+
+const maiores = alunos.filter(a =&gt; a.idade &gt;= 18);
+const nomes = maiores.map(a =&gt; a.nome);
+console.log(nomes); // ['Carlos', 'Pedro']
+
+// DOM: mostrar nomes na tela
+const lista = document.querySelector('#lista');
+nomes.forEach(n =&gt; {
+  lista.innerHTML += `&lt;li&gt;${n}&lt;/li&gt;`;
+});</code>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout--warning" style="margin-top:12px;">
+        <span class="icon">⚠️</span>
+        <span><strong>Pegadinha:</strong> <code>filter</code> retorna NOVO array (não modifica o original). <code>map</code> também. Sempre use <code>const resultado = ...</code></span>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: LÓGICA AV3 -->
+    <section class="slide slide--content" data-title="Lógica — Revisão AV3">
+      <h2>🧠 Lógica — Revisão AV3</h2>
+      <p>Fetch API, async/await e integração com APIs</p>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>📌 Tópicos-Chave</h3>
+          <ul>
+            <li>Promises: <code>.then()</code>, <code>.catch()</code></li>
+            <li><code>async/await</code> — sintaxe moderna</li>
+            <li><code>fetch()</code> — GET e POST</li>
+            <li><code>JSON.parse()</code> e <code>JSON.stringify()</code></li>
+            <li>Try/catch para tratamento de erros</li>
+            <li>Integração: buscar dados de API e exibir no DOM</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Exercício-Modelo</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>// Buscar CEP e mostrar endereço
+async function buscarCEP(cep) {
+  try {
+    const resp = await fetch(
+      `https://viacep.com.br/ws/${cep}/json/`
+    );
+    const dados = await resp.json();
+
+    if (dados.erro) {
+      alert('CEP não encontrado');
+      return;
+    }
+
+    document.querySelector('#endereco')
+      .textContent = `${dados.logradouro},
+        ${dados.bairro} - ${dados.localidade}`;
+  } catch (error) {
+    alert('Erro de conexão');
+  }
+}</code>
+          </div>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:12px;">
+        <span class="icon">💡</span>
+        <span><strong>Dica:</strong> Sempre use <code>try/catch</code> com <code>async/await</code>. Erros de rede são comuns e precisam de tratamento.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: HTML/CSS REVISÃO -->
+    <section class="slide slide--content" data-title="HTML/CSS — Revisão">
+      <h2>🌐 HTML/CSS — Revisão Completa</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📄 Semântica HTML5</h3>
+          <div class="code-block">
+            <span class="lang-badge">HTML</span>
+            <code>&lt;header&gt; — Cabeçalho da página
+&lt;nav&gt; — Menu de navegação
+&lt;main&gt; — Conteúdo principal (1 por página)
+&lt;section&gt; — Seção temática
+&lt;article&gt; — Conteúdo independente
+&lt;aside&gt; — Conteúdo lateral
+&lt;footer&gt; — Rodapé</code>
+          </div>
+          <h3 style="margin-top:12px;">📱 Responsividade</h3>
+          <div class="code-block">
+            <span class="lang-badge">CSS</span>
+            <code>/* Mobile-first! */
+.container { padding: 16px; }
+
+@media (min-width: 768px) {
+  .container { max-width: 720px; margin: 0 auto; }
+}
+@media (min-width: 1024px) {
+  .container { max-width: 960px; }
+}</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>📐 Flexbox vs Grid</h3>
+          <table>
+            <thead><tr><th>Flexbox</th><th>Grid</th></tr></thead>
+            <tbody>
+              <tr><td>1 dimensão (linha OU coluna)</td><td>2 dimensões (linhas E colunas)</td></tr>
+              <tr><td>Alinhar itens em fila</td><td>Layouts complexos</td></tr>
+              <tr><td><code>display: flex</code></td><td><code>display: grid</code></td></tr>
+              <tr><td>justify-content, align-items</td><td>grid-template-columns/rows</td></tr>
+            </tbody>
+          </table>
+          <h3 style="margin-top:12px;">📝 Formulários</h3>
+          <ul>
+            <li><code>type="email"</code> → validação automática</li>
+            <li><code>required</code> → campo obrigatório</li>
+            <li><code>pattern="[0-9]{5}"</code> → regex</li>
+            <li><code>placeholder</code> → dica visual</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: REDES & SO -->
+    <section class="slide slide--dark" data-title="Redes & SO — Revisão">
+      <h2>🔌 Redes &amp; SO — Revisão</h2>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>🌐 Modelo OSI vs TCP/IP</h3>
+          <table>
+            <thead><tr><th>Camada OSI</th><th>Equivalente TCP/IP</th><th>Exemplo</th></tr></thead>
+            <tbody>
+              <tr><td>7 — Aplicação</td><td rowspan="3">Aplicação</td><td>HTTP, DNS, FTP</td></tr>
+              <tr><td>6 — Apresentação</td><td>SSL/TLS, JPEG</td></tr>
+              <tr><td>5 — Sessão</td><td>Sockets</td></tr>
+              <tr><td>4 — Transporte</td><td>Transporte</td><td>TCP, UDP</td></tr>
+              <tr><td>3 — Rede</td><td>Internet</td><td>IP, ICMP</td></tr>
+              <tr><td>2 — Enlace</td><td rowspan="2">Acesso à Rede</td><td>Ethernet, Wi-Fi</td></tr>
+              <tr><td>1 — Física</td><td>Cabos, sinais</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>🔢 Endereçamento IP</h3>
+          <ul>
+            <li><strong>IPv4:</strong> 192.168.1.100 (32 bits)</li>
+            <li><strong>Máscara:</strong> 255.255.255.0 (/24)</li>
+            <li><strong>Gateway:</strong> porta de saída da rede</li>
+            <li><strong>DNS:</strong> traduz nomes → IPs</li>
+          </ul>
+          <h3 style="margin-top:12px;">🔌 Portas Importantes</h3>
+          <table>
+            <tbody>
+              <tr><td>80</td><td>HTTP</td></tr>
+              <tr><td>443</td><td>HTTPS</td></tr>
+              <tr><td>22</td><td>SSH</td></tr>
+              <tr><td>3000</td><td>Node.js (dev)</td></tr>
+              <tr><td>5432</td><td>PostgreSQL</td></tr>
+              <tr><td>3306</td><td>MySQL</td></tr>
+            </tbody>
+          </table>
+          <h3 style="margin-top:12px;">💻 Comandos Básicos</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code>ipconfig / ifconfig  — ver IP
+ping google.com      — testar conexão
+nslookup site.com   — consultar DNS</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: UI/UX REVISÃO -->
+    <section class="slide slide--content" data-title="UI/UX — Revisão">
+      <h2>🎨 UI/UX — Revisão</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🔄 Ciclo DCU (Design Centrado no Usuário)</h3>
+          <ol>
+            <li><strong>Pesquisa:</strong> entender quem é o usuário</li>
+            <li><strong>Definição:</strong> personas + jornada</li>
+            <li><strong>Ideação:</strong> brainstorm de soluções</li>
+            <li><strong>Prototipação:</strong> wireframe → alta fidelidade</li>
+            <li><strong>Teste:</strong> validar com usuários reais</li>
+            <li><strong>Iteração:</strong> ajustar e repetir</li>
+          </ol>
+          <h3 style="margin-top:12px;">👤 Personas</h3>
+          <ul>
+            <li>Personagem fictício baseado em dados reais</li>
+            <li>Nome, idade, profissão, dores, objetivos</li>
+            <li>Guia decisões de design (para QUEM estou fazendo?)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📋 10 Heurísticas de Nielsen</h3>
+          <ol>
+            <li>Visibilidade do status do sistema</li>
+            <li>Compatibilidade com o mundo real</li>
+            <li>Controle e liberdade do usuário</li>
+            <li>Consistência e padrões</li>
+            <li>Prevenção de erros</li>
+            <li>Reconhecimento em vez de memorização</li>
+            <li>Flexibilidade e eficiência</li>
+            <li>Design estético e minimalista</li>
+            <li>Ajuda a reconhecer e recuperar erros</li>
+            <li>Ajuda e documentação</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:12px;">
+        <span class="icon">🎯</span>
+        <span><strong>Na prova:</strong> Saber identificar QUAL heurística está sendo violada em um exemplo de interface.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: SIMULADO INTEGRADO -->
+    <section class="slide slide--accent" data-title="Simulado Integrado">
+      <h2>🎯 Simulado Integrado — 5 Questões Modelo</h2>
+      <div class="card" style="margin-top:16px;">
+        <p><strong>Q1 (Lógica):</strong> Escreva uma função <code>maiorDeIdade(pessoas)</code> que recebe um array de objetos <code>{nome, idade}</code> e retorna apenas os nomes dos maiores de 18 anos.</p>
+      </div>
+      <div class="card" style="margin-top:12px;">
+        <p><strong>Q2 (HTML/CSS):</strong> Crie um card responsivo com imagem, título e botão. Use Flexbox para alinhar. Em mobile, o card deve ocupar 100% da largura; em desktop, 3 cards por linha.</p>
+      </div>
+      <div class="card" style="margin-top:12px;">
+        <p><strong>Q3 (Redes):</strong> Um servidor web roda na porta 3000 de um computador com IP 192.168.1.50. Qual URL um colega da mesma rede deve digitar para acessar? O que acontece se usar a porta 80?</p>
+      </div>
+      <div class="card" style="margin-top:12px;">
+        <p><strong>Q4 (UI/UX):</strong> Um formulário de cadastro não mostra mensagem de erro quando o e-mail é inválido. Qual heurística de Nielsen está sendo violada? Proponha uma solução.</p>
+      </div>
+      <div class="card" style="margin-top:12px;">
+        <p><strong>Q5 (Integração):</strong> Usando <code>fetch</code>, busque dados de <code>https://api.exemplo.com/alunos</code> e exiba os nomes em uma lista <code>&lt;ul&gt;</code>. Trate possíveis erros de rede.</p>
+      </div>
+      <div class="callout callout--warning" style="margin-top:16px;">
+        <span class="icon">⏱️</span>
+        <span><strong>Tempo sugerido:</strong> 15 min por questão = 1h15 total. Na prova real: 2h para 10 questões.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: DICAS DE PROVA -->
+    <section class="slide slide--content" data-title="Dicas de Prova">
+      <h2>💡 Dicas de Prova — Estratégias para ir Bem</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>⏱️ Gestão de Tempo</h3>
+          <ul>
+            <li>Leia TODAS as questões antes de começar</li>
+            <li>Comece pelas que você tem certeza</li>
+            <li>Reserve 10 min finais para revisar</li>
+            <li>Não gaste mais de 15 min numa questão — pule e volte</li>
+            <li>Questões de código: escreva pseudocódigo primeiro</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📖 Como Ler Enunciados</h3>
+          <ul>
+            <li>Sublinhe as <strong>palavras-chave</strong></li>
+            <li>"Retorne" ≠ "Imprima" ≠ "Exiba"</li>
+            <li>"Array de objetos" → saiba a estrutura</li>
+            <li>Identifique: entrada, processamento, saída</li>
+            <li>Se pede "explique" → não basta código</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card" style="margin-top:16px;">
+        <h3>❌ Erros Comuns a Evitar</h3>
+        <table>
+          <thead><tr><th>Erro</th><th>Como Evitar</th></tr></thead>
+          <tbody>
+            <tr><td>Esquecer <code>return</code> na função</td><td>Sempre releia: "a função deve RETORNAR"</td></tr>
+            <tr><td>Usar <code>=</code> em vez de <code>===</code></td><td>Atribuição (=) ≠ Comparação (===)</td></tr>
+            <tr><td>HTML sem fechar tags</td><td>Indente corretamente, conte aberturas/fechamentos</td></tr>
+            <tr><td>CSS sem unidade (<code>16</code> em vez de <code>16px</code>)</td><td>Sempre coloque px, rem, %, vh</td></tr>
+            <tr><td>Confundir TCP com UDP</td><td>TCP = confiável/lento, UDP = rápido/sem garantia</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: GABARITO COMENTADO -->
+    <section class="slide slide--dark" data-title="Gabarito Comentado">
+      <h2>📋 Gabarito Comentado — Simulado</h2>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>✅ Q1 — Lógica</h3>
+          <div class="code-block">
+            <span class="lang-badge">JavaScript</span>
+            <code>function maiorDeIdade(pessoas) {
+  return pessoas
+    .filter(p =&gt; p.idade &gt;= 18)
+    .map(p =&gt; p.nome);
+}
+// POR QUE: filter seleciona, map extrai
+// ERRADO: usar forEach + push (funciona
+//   mas não é idiomático)</code>
+          </div>
+          <h3 style="margin-top:12px;">✅ Q3 — Redes</h3>
+          <p><strong>R:</strong> <code>http://192.168.1.50:3000</code></p>
+          <p>Se usar porta 80: erro de conexão, pois o servidor está na 3000, não na 80.</p>
+          <p style="color:#94A3B8; font-size:0.9rem;">POR QUE: a porta faz parte do endereço. Porta errada = ninguém atende.</p>
+        </div>
+        <div class="card">
+          <h3>✅ Q4 — UI/UX</h3>
+          <p><strong>Heurística violada:</strong> #9 — "Ajuda a reconhecer e recuperar erros"</p>
+          <p><strong>Solução:</strong> Mostrar mensagem vermelha abaixo do campo: "E-mail inválido. Use o formato nome@dominio.com"</p>
+          <p style="color:#94A3B8; font-size:0.9rem;">POR QUE: O usuário precisa saber O QUE errou e COMO corrigir.</p>
+          <h3 style="margin-top:12px;">✅ Q2 — HTML/CSS (resumo)</h3>
+          <p>Usar <code>display: flex; flex-wrap: wrap; gap: 16px</code> no container. Cada card com <code>flex: 1 1 300px</code> (cresce, encolhe, base 300px).</p>
+          <p style="color:#94A3B8; font-size:0.9rem;">POR QUE: flex-wrap permite que os cards pulem de linha quando não cabem. A base de 300px garante 3 por linha em telas largas.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ENCERRAMENTO -->
+    <section class="slide slide--dark" data-title="Encerramento">
+      <h2 style="text-align:center;">🧠 Revisão não é decorar —<br>é <span class="accent">conectar conceitos</span></h2>
+      <div style="max-width:700px; margin:24px auto 0; text-align:center;">
+        <p style="font-size:1.2rem; color:#CBD5E1;">
+          Quem entende o PORQUÊ não precisa decorar o COMO.<br>
+          Pratique, erre, corrija e pratique de novo.
+        </p>
+      </div>
+      <div class="columns" style="margin-top:24px;">
+        <div class="card">
+          <h3>📚 Recursos para Estudo</h3>
+          <ul>
+            <li>MDN Web Docs (referência JS/HTML/CSS)</li>
+            <li>Exercícios no repositório da disciplina</li>
+            <li>Slides anteriores de cada aula</li>
+            <li>Prática no VS Code — mão na massa!</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎯 Checklist Pré-Prova</h3>
+          <ul>
+            <li>☐ Resolvi pelo menos 5 exercícios de cada tema</li>
+            <li>☐ Sei explicar cada conceito sem olhar</li>
+            <li>☐ Fiz o simulado inteiro com tempo</li>
+            <li>☐ Entendi os ERROS que cometi</li>
+          </ul>
+        </div>
+      </div>
+      <p style="color:#64748B; margin-top:24px; text-align:center;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 12</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+    <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

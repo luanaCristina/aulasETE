@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guias Full-Stack &amp; DevTools — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>🚀 Full-Stack &amp; DevTools</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🚀 Guias <span class="accent">Full-Stack</span><br>&amp; DevTools</h1>
+      <p class="subtitle">Do mobile ao deploy — ferramentas e workflows modernos</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Full-stack não é saber tudo. É entender como as camadas se conectam e escolher a ferramenta certa para cada problema."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: FULLSTACK MOBILE EXPO+FIREBASE -->
+    <section class="slide slide--content" data-title="Full-Stack Mobile Expo+Firebase">
+      <h2>📱 Full-Stack Mobile — Expo + Firebase</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🏗️ Arquitetura</h3>
+          <ul>
+            <li><strong>Frontend:</strong> React Native + Expo SDK 51</li>
+            <li><strong>Backend:</strong> Firebase (Auth, Firestore, Storage)</li>
+            <li><strong>Navegação:</strong> Expo Router (file-based)</li>
+            <li><strong>Estado:</strong> Context API ou Zustand</li>
+          </ul>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Terminal</span>
+            <code># Criar projeto
+npx create-expo-app@latest meu-app
+cd meu-app
+
+# Instalar Firebase
+npx expo install firebase
+npm install @react-navigation/native</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🔥 Setup Firebase</h3>
+          <ol>
+            <li>Acesse <strong>console.firebase.google.com</strong></li>
+            <li>Crie projeto → Adicione app Web</li>
+            <li>Copie as credenciais para <code>firebaseConfig.ts</code></li>
+            <li>Ative Authentication (Email/Google)</li>
+            <li>Ative Firestore Database</li>
+          </ol>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">firebaseConfig.ts</span>
+            <code>import { initializeApp } from 'firebase/app';
+
+const firebaseConfig = {
+  apiKey: "sua-key",
+  authDomain: "projeto.firebaseapp.com",
+  projectId: "projeto-id",
+};
+
+export const app = initializeApp(firebaseConfig);</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: PUBLICAÇÃO MOBILE EAS BUILD -->
+    <section class="slide slide--dark" data-title="Publicação Mobile EAS Build">
+      <h2>🚢 Publicação Mobile — EAS Build</h2>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>⚙️ Setup EAS</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code># Instalar EAS CLI
+npm install -g eas-cli
+
+# Login
+eas login
+
+# Configurar projeto
+eas build:configure
+
+# Gerar APK de preview
+eas build --platform android --profile preview
+
+# Build de produção
+eas build --platform android --profile production</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>📋 Perfis (eas.json)</h3>
+          <div class="code-block">
+            <span class="lang-badge">eas.json</span>
+            <code>{
+  "build": {
+    "preview": {
+      "distribution": "internal",
+      "android": {
+        "buildType": "apk"
+      }
+    },
+    "production": {
+      "android": {
+        "buildType": "app-bundle"
+      }
+    }
+  }
+}</code>
+          </div>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Preview:</strong> APK para testar. <strong>Production:</strong> AAB para Google Play.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: BOOTSTRAP WEB -->
+    <section class="slide slide--content" data-title="Bootstrap Web">
+      <h2>🎨 Bootstrap 5 — Framework CSS</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📥 Setup via CDN</h3>
+          <div class="code-block">
+            <span class="lang-badge">HTML</span>
+            <code>&lt;!-- No &lt;head&gt; --&gt;
+&lt;link href="https://cdn.jsdelivr.net/npm/
+  bootstrap@5.3/dist/css/bootstrap.min.css"
+  rel="stylesheet"&gt;
+
+&lt;!-- Antes de &lt;/body&gt; --&gt;
+&lt;script src="https://cdn.jsdelivr.net/npm/
+  bootstrap@5.3/dist/js/bootstrap.bundle.min.js"&gt;
+&lt;/script&gt;</code>
+          </div>
+          <h3 style="margin-top:16px;">📐 Grid 12 Colunas</h3>
+          <div class="code-block">
+            <span class="lang-badge">HTML</span>
+            <code>&lt;div class="container"&gt;
+  &lt;div class="row"&gt;
+    &lt;div class="col-md-6"&gt;Metade&lt;/div&gt;
+    &lt;div class="col-md-6"&gt;Metade&lt;/div&gt;
+  &lt;/div&gt;
+&lt;/div&gt;</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🧱 Componentes Essenciais</h3>
+          <table>
+            <thead><tr><th>Componente</th><th>Classe</th></tr></thead>
+            <tbody>
+              <tr><td>Botão</td><td><code>btn btn-primary</code></td></tr>
+              <tr><td>Card</td><td><code>card card-body</code></td></tr>
+              <tr><td>Navbar</td><td><code>navbar navbar-expand-lg</code></td></tr>
+              <tr><td>Modal</td><td><code>modal modal-dialog</code></td></tr>
+              <tr><td>Formulário</td><td><code>form-control form-label</code></td></tr>
+              <tr><td>Tabela</td><td><code>table table-striped</code></td></tr>
+              <tr><td>Alerta</td><td><code>alert alert-success</code></td></tr>
+              <tr><td>Badge</td><td><code>badge bg-info</code></td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Breakpoints: sm(576) md(768) lg(992) xl(1200) xxl(1400)</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: EMMET SNIPPETS -->
+    <section class="slide slide--dark" data-title="Emmet Snippets">
+      <h2>⚡ Emmet Snippets — Atalhos de Produtividade</h2>
+      <div style="max-width:900px; margin:20px auto 0;">
+        <table>
+          <thead><tr><th>Atalho Emmet</th><th>Resultado</th><th>Uso</th></tr></thead>
+          <tbody>
+            <tr><td><code>! + Tab</code></td><td>HTML5 boilerplate completo</td><td>Início de qualquer página</td></tr>
+            <tr><td><code>div.container</code></td><td><code>&lt;div class="container"&gt;&lt;/div&gt;</code></td><td>Classes CSS</td></tr>
+            <tr><td><code>ul>li*5</code></td><td>Lista com 5 itens</td><td>Listas rápidas</td></tr>
+            <tr><td><code>div#app>header+main+footer</code></td><td>Estrutura com id e filhos</td><td>Layout</td></tr>
+            <tr><td><code>.row>.col-md-4*3</code></td><td>Grid Bootstrap 3 colunas</td><td>Layouts responsivos</td></tr>
+            <tr><td><code>input:email</code></td><td><code>&lt;input type="email"&gt;</code></td><td>Formulários</td></tr>
+            <tr><td><code>a[href="#"]{Clique}</code></td><td><code>&lt;a href="#"&gt;Clique&lt;/a&gt;</code></td><td>Links com texto</td></tr>
+            <tr><td><code>table>thead>tr>th*4^^tbody>tr*3>td*4</code></td><td>Tabela completa</td><td>Dados tabulares</td></tr>
+            <tr><td><code>p{Lorem ipsum}*3</code></td><td>3 parágrafos com texto</td><td>Placeholder</td></tr>
+            <tr><td><code>img[src alt]*3</code></td><td>3 imagens com atributos</td><td>Galeria</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout--info" style="margin-top:16px;">
+          <span class="icon">⌨️</span>
+          <span><strong>No VS Code:</strong> Emmet já vem ativado! Digite o atalho e pressione <strong>Tab</strong> para expandir.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: KIRO + MCP -->
+    <section class="slide slide--content" data-title="Kiro + MCP">
+      <h2>🤖 Kiro + MCP — IA no Desenvolvimento</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🛸 O que é Kiro?</h3>
+          <ul>
+            <li><strong>IDE com IA integrada</strong> — assistente de código</li>
+            <li><strong>Specs:</strong> Requirements → Design → Tasks</li>
+            <li><strong>Steering:</strong> Regras do projeto que guiam a IA</li>
+            <li><strong>Hooks:</strong> Automação de tarefas repetitivas</li>
+          </ul>
+          <h3 style="margin-top:16px;">🔌 MCP — Model Context Protocol</h3>
+          <ul>
+            <li>Conecta a IA com ferramentas externas</li>
+            <li>GitHub, Jira, bancos de dados, APIs</li>
+            <li>Executa ações reais no seu ambiente</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎯 Uso em Aula</h3>
+          <table>
+            <thead><tr><th>Tarefa</th><th>Como a IA Ajuda</th></tr></thead>
+            <tbody>
+              <tr><td>Criar componente</td><td>Gera código base com props</td></tr>
+              <tr><td>Escrever testes</td><td>Sugere cenários + assertions</td></tr>
+              <tr><td>Debug</td><td>Analisa erro e propõe fix</td></tr>
+              <tr><td>Refatorar</td><td>Melhora código existente</td></tr>
+              <tr><td>Documentar</td><td>Gera JSDoc e README</td></tr>
+              <tr><td>SQL</td><td>Gera queries complexas</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span><strong>Regra:</strong> Sempre revise o código gerado. IA erra!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: SEO AUDIT TOOL -->
+    <section class="slide slide--content" data-title="SEO Audit Tool">
+      <h2>🔍 SEO Audit — Otimização para Buscadores</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🏗️ Ferramentas</h3>
+          <ul>
+            <li><strong>Lighthouse</strong> (Chrome DevTools → Audits)</li>
+            <li><strong>PageSpeed Insights</strong> (web.dev/measure)</li>
+            <li><strong>Meta Tag Inspector</strong> (extensão Chrome)</li>
+            <li><strong>Screaming Frog</strong> (crawl de site)</li>
+          </ul>
+          <h3 style="margin-top:16px;">📋 Checklist SEO Básico</h3>
+          <ul>
+            <li>✅ <code>&lt;title&gt;</code> único por página (50-60 chars)</li>
+            <li>✅ <code>&lt;meta name="description"&gt;</code> (150-160 chars)</li>
+            <li>✅ Headings hierárquicos (h1 > h2 > h3)</li>
+            <li>✅ Imagens com <code>alt</code> descritivo</li>
+            <li>✅ URLs amigáveis (slugs)</li>
+            <li>✅ Mobile-first responsive</li>
+            <li>✅ HTTPS ativo</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏷️ Meta Tags Essenciais</h3>
+          <div class="code-block">
+            <span class="lang-badge">HTML</span>
+            <code>&lt;head&gt;
+  &lt;title&gt;Minha Página | Site&lt;/title&gt;
+  &lt;meta name="description"
+    content="Descrição da página..."&gt;
+  &lt;meta name="viewport"
+    content="width=device-width,
+    initial-scale=1.0"&gt;
+
+  &lt;!-- Open Graph (redes sociais) --&gt;
+  &lt;meta property="og:title"
+    content="Título"&gt;
+  &lt;meta property="og:description"
+    content="Descrição"&gt;
+  &lt;meta property="og:image"
+    content="url-da-imagem.jpg"&gt;
+
+  &lt;!-- Robots --&gt;
+  &lt;meta name="robots"
+    content="index, follow"&gt;
+&lt;/head&gt;</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: EXPO MAPS APP -->
+    <section class="slide slide--dark" data-title="Expo Maps App">
+      <h2>🗺️ Expo Maps — App com Mapas</h2>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>📥 Setup</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code># Instalar dependências
+npx expo install react-native-maps
+npx expo install expo-location
+
+# Para Google Maps (Android)
+# Adicionar API key no app.json</code>
+          </div>
+          <h3 style="margin-top:16px;">📍 Permissões</h3>
+          <div class="code-block">
+            <span class="lang-badge">TypeScript</span>
+            <code>import * as Location from 'expo-location';
+
+const { status } = await
+  Location.requestForegroundPermissionsAsync();
+
+if (status !== 'granted') {
+  alert('Permissão negada!');
+  return;
+}
+
+const loc = await Location.getCurrentPositionAsync();
+console.log(loc.coords.latitude);</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🗺️ MapView + Markers</h3>
+          <div class="code-block">
+            <span class="lang-badge">TSX</span>
+            <code>import MapView, { Marker } from
+  'react-native-maps';
+
+export default function Mapa() {
+  return (
+    &lt;MapView
+      style={{ flex: 1 }}
+      initialRegion={{
+        latitude: -8.0476,
+        longitude: -34.8770,
+        latitudeDelta: 0.05,
+        longitudeDelta: 0.05,
+      }}
+    &gt;
+      &lt;Marker
+        coordinate={{
+          latitude: -8.0476,
+          longitude: -34.8770
+        }}
+        title="Recife"
+        description="ETE Pernambuco"
+      /&gt;
+    &lt;/MapView&gt;
+  );
+}</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: QA FRAMEWORK -->
+    <section class="slide slide--content" data-title="QA Framework">
+      <h2>🧪 QA Framework — Estratégia de Testes</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🔺 Pirâmide de Testes</h3>
+          <div style="text-align:center; font-size:1.1rem; margin:16px 0;">
+            <p>🔺 <strong>E2E</strong> (poucos, lentos, caros)</p>
+            <p>🔷 <strong>Integração</strong> (médio)</p>
+            <p>🟩 <strong>Unitários</strong> (muitos, rápidos, baratos)</p>
+          </div>
+          <table style="margin-top:12px;">
+            <thead><tr><th>Tipo</th><th>O que testa</th><th>Ferramenta</th></tr></thead>
+            <tbody>
+              <tr><td>Unitário</td><td>Função isolada</td><td>Jest</td></tr>
+              <tr><td>Integração</td><td>Módulos juntos</td><td>Supertest</td></tr>
+              <tr><td>E2E</td><td>Fluxo completo</td><td>Cypress</td></tr>
+              <tr><td>Visual</td><td>UI/screenshots</td><td>Chromatic</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>🎯 BDD / TDD</h3>
+          <p><strong>TDD:</strong> Red → Green → Refactor</p>
+          <p><strong>BDD:</strong> Comportamento em linguagem natural</p>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Gherkin (BDD)</span>
+            <code>Funcionalidade: Login
+  Cenário: Login com sucesso
+    Dado que estou na página de login
+    Quando preencho email e senha válidos
+    E clico em "Entrar"
+    Então sou redirecionado ao dashboard
+    E vejo a mensagem "Bem-vindo!"</code>
+          </div>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Given-When-Then</strong> = Dado-Quando-Então</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: TESTES UNITÁRIOS + MUTATION -->
+    <section class="slide slide--dark" data-title="Testes Unitários + Mutation">
+      <h2>🧬 Testes Unitários + Mutation Testing</h2>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>🃏 Jest — Testes Unitários</h3>
+          <div class="code-block">
+            <span class="lang-badge">soma.test.ts</span>
+            <code>import { soma } from './soma';
+
+describe('soma()', () => {
+  it('deve somar dois positivos', () => {
+    expect(soma(2, 3)).toBe(5);
+  });
+
+  it('deve lidar com negativos', () => {
+    expect(soma(-1, 1)).toBe(0);
+  });
+
+  it('deve retornar 0 para inputs zero', () => {
+    expect(soma(0, 0)).toBe(0);
+  });
+});
+
+// Rodar: npx jest --coverage</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🧬 Mutation Testing (Stryker)</h3>
+          <p>Mutation testing verifica se seus testes <strong>realmente detectam bugs</strong>.</p>
+          <ul>
+            <li>Modifica o código-fonte (mutantes)</li>
+            <li>Roda seus testes contra cada mutante</li>
+            <li>Se teste passa com mutante → teste fraco!</li>
+          </ul>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Terminal</span>
+            <code># Instalar Stryker
+npm install -D @stryker-mutator/core
+npm install -D @stryker-mutator/jest-runner
+
+# Configurar
+npx stryker init
+
+# Rodar
+npx stryker run</code>
+          </div>
+          <div class="callout callout--info" style="margin-top:12px;">
+            <span class="icon">📊</span>
+            <span><strong>Meta:</strong> Mutation Score > 80%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: AUTOMAÇÃO DE TESTES -->
+    <section class="slide slide--content" data-title="Automação de Testes">
+      <h2>🤖 Automação de Testes — E2E</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🎭 Cypress / Playwright</h3>
+          <div class="code-block">
+            <span class="lang-badge">Terminal</span>
+            <code># Cypress
+npm install -D cypress
+npx cypress open
+
+# Playwright
+npm init playwright@latest
+npx playwright test</code>
+          </div>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Cypress (login.cy.ts)</span>
+            <code>describe('Login', () => {
+  it('deve fazer login com sucesso', () => {
+    cy.visit('/login');
+    cy.get('[data-testid="email"]')
+      .type('user@test.com');
+    cy.get('[data-testid="password"]')
+      .type('123456');
+    cy.get('[data-testid="submit"]').click();
+    cy.url().should('include', '/dashboard');
+  });
+});</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🎯 Boas Práticas</h3>
+          <table>
+            <thead><tr><th>Prática</th><th>Por quê</th></tr></thead>
+            <tbody>
+              <tr><td><code>data-testid</code></td><td>Seletores estáveis</td></tr>
+              <tr><td>Page Objects</td><td>Reutilização de código</td></tr>
+              <tr><td>Fixtures</td><td>Dados de teste isolados</td></tr>
+              <tr><td>Retry logic</td><td>Testes menos flaky</td></tr>
+              <tr><td>CI pipeline</td><td>Rodar em cada PR</td></tr>
+            </tbody>
+          </table>
+          <h3 style="margin-top:16px;">🔄 CI Integration</h3>
+          <div class="code-block">
+            <span class="lang-badge">GitHub Actions</span>
+            <code>- name: Run E2E tests
+  run: npx cypress run --headless
+  env:
+    CYPRESS_BASE_URL: http://localhost:3000</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ANÁLISE DE NEGÓCIOS -->
+    <section class="slide slide--content" data-title="Análise de Negócios">
+      <h2>📋 Análise de Negócios (BA)</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🎯 Técnicas Essenciais</h3>
+          <table>
+            <thead><tr><th>Técnica</th><th>Quando Usar</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Entrevistas</strong></td><td>Descoberta de requisitos</td></tr>
+              <tr><td><strong>Workshop</strong></td><td>Alinhamento de stakeholders</td></tr>
+              <tr><td><strong>Benchmarking</strong></td><td>Comparar com concorrentes</td></tr>
+              <tr><td><strong>Prototipação</strong></td><td>Validar interface antes de dev</td></tr>
+              <tr><td><strong>User Story Mapping</strong></td><td>Visualizar jornada do usuário</td></tr>
+              <tr><td><strong>MoSCoW</strong></td><td>Priorizar features (Must/Should/Could/Won't)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="card">
+          <h3>📝 Documentação de Requisitos</h3>
+          <ul>
+            <li><strong>Funcionais:</strong> O que o sistema faz</li>
+            <li><strong>Não-funcionais:</strong> Como ele faz (performance, segurança)</li>
+            <li><strong>Regras de negócio:</strong> Restrições e validações</li>
+          </ul>
+          <div class="code-block" style="margin-top:12px;">
+            <span class="lang-badge">Template Requisito</span>
+            <code>[RF001] Cadastro de Aluno
+- Ator: Secretaria
+- Pré-condição: Estar logado
+- Fluxo: Preencher nome, CPF, turma
+- Validações: CPF único, nome obrigatório
+- Pós-condição: Aluno ativo no sistema
+- Prioridade: Must Have</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 13: GESTÃO DE PRODUTO/PROJETO -->
+    <section class="slide slide--dark" data-title="Gestão de Produto/Projeto">
+      <h2>🎯 Gestão de Produto &amp; Projeto</h2>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>🔍 Product Discovery</h3>
+          <ul>
+            <li><strong>Opportunity Tree:</strong> Mapear oportunidades</li>
+            <li><strong>Dual Track:</strong> Discovery + Delivery em paralelo</li>
+            <li><strong>Jobs to be Done:</strong> O que o usuário quer resolver?</li>
+            <li><strong>Hypothesis Canvas:</strong> Acredito que... Para validar...</li>
+          </ul>
+          <h3 style="margin-top:16px;">🗺️ Roadmap</h3>
+          <ul>
+            <li><strong>Now:</strong> O que estamos fazendo agora</li>
+            <li><strong>Next:</strong> Próximas 2-4 semanas</li>
+            <li><strong>Later:</strong> Ideias futuras (sem data)</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📊 Métricas de Produto</h3>
+          <table>
+            <thead><tr><th>Métrica</th><th>O que mede</th></tr></thead>
+            <tbody>
+              <tr><td><strong>DAU/MAU</strong></td><td>Engajamento diário/mensal</td></tr>
+              <tr><td><strong>Retention</strong></td><td>Usuários que voltam</td></tr>
+              <tr><td><strong>NPS</strong></td><td>Satisfação (0-10)</td></tr>
+              <tr><td><strong>Churn</strong></td><td>Taxa de cancelamento</td></tr>
+              <tr><td><strong>Lead Time</strong></td><td>Tempo ideia → produção</td></tr>
+              <tr><td><strong>Cycle Time</strong></td><td>Tempo início → conclusão</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>DORA Metrics:</strong> Deploy freq, Lead time, MTTR, Change failure rate</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 14: BOOTSTRAP + EMMET + SEO INTEGRADO -->
+    <section class="slide slide--content" data-title="Bootstrap + Emmet + SEO">
+      <h2>🔗 Workflow Integrado — Bootstrap + Emmet + SEO</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>⚡ Workflow Rápido</h3>
+          <ol>
+            <li><strong>Emmet:</strong> <code>!</code> + Tab → HTML boilerplate</li>
+            <li><strong>SEO:</strong> Adicione meta tags essenciais</li>
+            <li><strong>Bootstrap:</strong> Inclua CDN no head</li>
+            <li><strong>Emmet:</strong> <code>.container>.row>.col-md-4*3</code> → grid</li>
+            <li><strong>Componentes:</strong> Cards, navbar, forms</li>
+            <li><strong>Lighthouse:</strong> Audite performance + SEO</li>
+          </ol>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Meta: Lighthouse score > 90 em todas as categorias!</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>📄 Template Completo</h3>
+          <div class="code-block">
+            <span class="lang-badge">HTML (Emmet expandido)</span>
+            <code>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="..."&gt;
+  &lt;meta name="description" content="..."&gt;
+  &lt;meta property="og:title" content="..."&gt;
+  &lt;title&gt;Meu Site | Projeto&lt;/title&gt;
+  &lt;link href="bootstrap.min.css" rel="..."&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;nav class="navbar navbar-expand-lg"&gt;
+    ...
+  &lt;/nav&gt;
+  &lt;main class="container mt-4"&gt;
+    &lt;div class="row"&gt;
+      &lt;div class="col-md-8"&gt;Conteúdo&lt;/div&gt;
+      &lt;div class="col-md-4"&gt;Sidebar&lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/main&gt;
+  &lt;script src="bootstrap.bundle.min.js"&gt;
+  &lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 15: ENCERRAMENTO -->
+    <section class="slide slide--dark" data-title="Encerramento">
+      <h2 style="text-align:center;">🎯 Resumo — Todas as Ferramentas</h2>
+      <div style="max-width:800px; margin:20px auto 0;">
+        <table>
+          <thead><tr><th>Categoria</th><th>Ferramentas</th><th>Propósito</th></tr></thead>
+          <tbody>
+            <tr><td>📱 Mobile</td><td>Expo + Firebase + EAS</td><td>App completo + deploy</td></tr>
+            <tr><td>🎨 Frontend</td><td>Bootstrap + Emmet</td><td>UI rápida e responsiva</td></tr>
+            <tr><td>🤖 IA</td><td>Kiro + MCP</td><td>Assistente de código</td></tr>
+            <tr><td>🔍 SEO</td><td>Lighthouse + Meta Tags</td><td>Visibilidade online</td></tr>
+            <tr><td>🗺️ Mapas</td><td>react-native-maps + expo-location</td><td>Geolocalização</td></tr>
+            <tr><td>🧪 Testes</td><td>Jest + Cypress + Stryker</td><td>Qualidade de código</td></tr>
+            <tr><td>📋 BA</td><td>User Stories + MoSCoW</td><td>Requisitos claros</td></tr>
+            <tr><td>🎯 Produto</td><td>Discovery + Roadmap + Métricas</td><td>Decisões baseadas em dados</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin:24px auto 0;">
+        <span class="icon">🚀</span>
+        <span>Domine essas ferramentas e você terá o toolkit de um desenvolvedor full-stack profissional!</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:24px; text-align:center;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 15</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+    <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>

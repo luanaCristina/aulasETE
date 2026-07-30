@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gestão Ágil &amp; Qualidade de Software — ETE Pernambuco</title>
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <!-- Progress Bar -->
+  <div class="progress-bar"></div>
+
+  <!-- Sidebar de navegação -->
+  <nav class="sidebar">
+    <h3>🏃 Gestão Ágil &amp; QA</h3>
+    <div class="sidebar-nav"></div>
+  </nav>
+
+  <!-- Slides -->
+  <div class="slides-wrapper">
+
+    <!-- SLIDE 1: CAPA -->
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🏃 Gestão <span class="accent">Ágil</span><br>&amp; Qualidade de Software</h1>
+      <p class="subtitle">Scrum, Kanban, Testes e Métricas para o profissional moderno</p>
+      <p style="color:#94A3B8; margin-top: 24px; font-size: 1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
+        <span class="icon">💡</span>
+        <span>"Ágil não é fazer rápido. É aprender rápido, adaptar e entregar valor continuamente."</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: POR QUE ÁGIL? -->
+    <section class="slide slide--content" data-title="Por que Ágil?">
+      <h2>🌍 Por que Ágil? — O Cenário do Mercado</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📊 Dados do Mercado (2025)</h3>
+          <ul>
+            <li><strong>71%</strong> das empresas de TI usam Scrum ou Kanban</li>
+            <li><strong>89%</strong> das vagas de dev pedem conhecimento ágil</li>
+            <li><strong>3x mais</strong> chances de entrega no prazo vs cascata</li>
+            <li><strong>Salário +25%</strong> para profissionais com certificação ágil</li>
+          </ul>
+          <h3 style="margin-top:16px;">❌ Problemas do Modelo Cascata</h3>
+          <ul>
+            <li>Requisitos mudam — plano fixo falha</li>
+            <li>Feedback só no final — retrabalho caro</li>
+            <li>Equipe desconectada do cliente</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>✅ Diferencial do Profissional Ágil</h3>
+          <table>
+            <thead><tr><th>Habilidade</th><th>Impacto</th></tr></thead>
+            <tbody>
+              <tr><td>Autogestão</td><td>Menos microgerenciamento</td></tr>
+              <tr><td>Comunicação</td><td>Alinhamento constante</td></tr>
+              <tr><td>Adaptação</td><td>Resiliência a mudanças</td></tr>
+              <tr><td>Entrega contínua</td><td>Valor desde a sprint 1</td></tr>
+              <tr><td>Retrospectiva</td><td>Melhoria contínua</td></tr>
+              <tr><td>Colaboração</td><td>Resultado em equipe</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Ágil é <strong>mindset</strong>, não apenas ferramenta ou framework.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: SCRUM FRAMEWORK -->
+    <section class="slide slide--dark" data-title="Scrum Framework">
+      <h2>🔄 Scrum Framework — Papéis, Cerimônias, Artefatos</h2>
+      <div style="max-width:900px; margin:20px auto 0;">
+        <table>
+          <thead><tr><th>Categoria</th><th>Elemento</th><th>Responsabilidade / Descrição</th></tr></thead>
+          <tbody>
+            <tr><td rowspan="3"><strong>👥 Papéis</strong></td><td>Product Owner (PO)</td><td>Define o QUÊ (prioriza backlog, visão do produto)</td></tr>
+            <tr><td>Scrum Master (SM)</td><td>Facilita o COMO (remove impedimentos, guarda o processo)</td></tr>
+            <tr><td>Dev Team (3-9)</td><td>Executa o trabalho (auto-organizado, cross-functional)</td></tr>
+            <tr><td rowspan="5"><strong>📅 Cerimônias</strong></td><td>Sprint Planning</td><td>Definir meta e itens da sprint (2-4h)</td></tr>
+            <tr><td>Daily Standup</td><td>Sincronização diária — 15 min (O que fiz? O que farei? Bloqueios?)</td></tr>
+            <tr><td>Sprint Review</td><td>Demo do incremento para stakeholders (1-2h)</td></tr>
+            <tr><td>Retrospectiva</td><td>O que melhorar no processo? (1-1.5h)</td></tr>
+            <tr><td>Refinement</td><td>Detalhar itens futuros do backlog (contínuo)</td></tr>
+            <tr><td rowspan="3"><strong>📋 Artefatos</strong></td><td>Product Backlog</td><td>Lista ordenada de tudo que o produto precisa</td></tr>
+            <tr><td>Sprint Backlog</td><td>Itens selecionados para a sprint atual</td></tr>
+            <tr><td>Incremento</td><td>Software funcionando ao final da sprint (Done)</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout--info" style="margin-top:16px;">
+          <span class="icon">⏱️</span>
+          <span><strong>Sprint:</strong> Ciclo fixo de 1-4 semanas. Mais comum: <strong>2 semanas</strong>.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: KANBAN -->
+    <section class="slide slide--content" data-title="Kanban">
+      <h2>📋 Kanban — Fluxo Contínuo</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🗂️ Quadro Kanban</h3>
+          <table>
+            <thead><tr><th>Backlog</th><th>To Do</th><th>Doing (WIP:3)</th><th>Review</th><th>Done ✅</th></tr></thead>
+            <tbody>
+              <tr><td>Feature D</td><td>Feature C</td><td>Feature A</td><td>Bug Fix #2</td><td>Feature X</td></tr>
+              <tr><td>Feature E</td><td>Bug #3</td><td>Feature B</td><td></td><td>Bug Fix #1</td></tr>
+              <tr><td>Feature F</td><td></td><td>Docs</td><td></td><td>Feature Y</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span><strong>WIP Limit:</strong> Limite de trabalho simultâneo. Menos multitask = mais foco = mais qualidade!</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>📊 Métricas Kanban</h3>
+          <table>
+            <thead><tr><th>Métrica</th><th>O que mede</th><th>Meta</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Lead Time</strong></td><td>Pedido → Entrega</td><td>Reduzir</td></tr>
+              <tr><td><strong>Cycle Time</strong></td><td>Início → Conclusão</td><td>Reduzir</td></tr>
+              <tr><td><strong>Throughput</strong></td><td>Itens entregues/semana</td><td>Estabilizar</td></tr>
+              <tr><td><strong>WIP</strong></td><td>Itens em andamento</td><td>Limitar</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Kanban vs Scrum:</strong> Kanban é fluxo contínuo (sem sprints). Ideal para suporte e manutenção.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: USER STORIES + CRITÉRIOS DE ACEITE -->
+    <section class="slide slide--content" data-title="User Stories + Critérios">
+      <h2>📝 User Stories + Critérios de Aceite</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📖 Template de User Story</h3>
+          <div class="code-block">
+            <span class="lang-badge">Formato</span>
+            <code>COMO [persona/papel]
+EU QUERO [ação/funcionalidade]
+PARA QUE [benefício/valor]
+
+Exemplo:
+COMO aluno
+EU QUERO visualizar minhas notas online
+PARA QUE eu acompanhe meu desempenho
+  sem depender da secretaria</code>
+          </div>
+          <h3 style="margin-top:16px;">✅ INVEST (Boa User Story)</h3>
+          <ul>
+            <li><strong>I</strong>ndependente — não depende de outra</li>
+            <li><strong>N</strong>egociável — permite discussão</li>
+            <li><strong>V</strong>aliosa — entrega valor ao usuário</li>
+            <li><strong>E</strong>stimável — equipe consegue estimar</li>
+            <li><strong>S</strong>mall — cabe em 1 sprint</li>
+            <li><strong>T</strong>estável — tem critérios claros</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🎯 Critérios de Aceite (Given-When-Then)</h3>
+          <div class="code-block">
+            <span class="lang-badge">Gherkin</span>
+            <code>Critério 1: Login com sucesso
+  DADO QUE estou na tela de login
+  QUANDO informo email e senha válidos
+  E clico em "Entrar"
+  ENTÃO sou direcionado ao painel
+  E vejo "Bem-vindo, [nome]!"
+
+Critério 2: Senha incorreta
+  DADO QUE estou na tela de login
+  QUANDO informo email válido e senha errada
+  E clico em "Entrar"
+  ENTÃO vejo mensagem "Credenciais inválidas"
+  E o campo senha é limpo</code>
+          </div>
+          <div class="callout callout--info" style="margin-top:12px;">
+            <span class="icon">📌</span>
+            <span>Cada critério de aceite vira um <strong>cenário de teste</strong>!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: DOD vs DOR -->
+    <section class="slide slide--dark" data-title="DoD vs DoR">
+      <h2>📋 Definition of Done vs Definition of Ready</h2>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>✅ Definition of Ready (DoR)</h3>
+          <p><em>"A história está pronta para ENTRAR na sprint?"</em></p>
+          <ul>
+            <li>☑️ User story escrita no formato padrão</li>
+            <li>☑️ Critérios de aceite definidos</li>
+            <li>☑️ Estimativa de pontos feita</li>
+            <li>☑️ Dependências identificadas</li>
+            <li>☑️ Design/mockup aprovado (se UI)</li>
+            <li>☑️ PO disponível para dúvidas</li>
+            <li>☑️ Cabe em 1 sprint</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>🏁 Definition of Done (DoD)</h3>
+          <p><em>"O item está PRONTO para ir para produção?"</em></p>
+          <ul>
+            <li>☑️ Código implementado e revisado (code review)</li>
+            <li>☑️ Testes unitários passando (coverage > 80%)</li>
+            <li>☑️ Testes de integração passando</li>
+            <li>☑️ Sem bugs críticos abertos</li>
+            <li>☑️ Documentação atualizada</li>
+            <li>☑️ Deploy em ambiente de staging OK</li>
+            <li>☑️ PO validou os critérios de aceite</li>
+            <li>☑️ Performance aceitável (< 3s response)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--warning" style="margin-top:16px; max-width:700px; margin-left:auto; margin-right:auto;">
+        <span class="icon">⚠️</span>
+        <span><strong>Sem DoD claro:</strong> "Pronto" significa coisas diferentes para cada pessoa = bugs em produção!</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: QUALIDADE DE SOFTWARE -->
+    <section class="slide slide--content" data-title="Qualidade de Software">
+      <h2>🧪 Qualidade de Software — Pirâmide de Testes</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🔺 Pirâmide</h3>
+          <div style="text-align:center; font-size:1.1rem; margin:12px 0;">
+            <p style="background:#ef4444; padding:4px; border-radius:4px; color:white;">🔺 E2E (poucos, caros, lentos)</p>
+            <p style="background:#f59e0b; padding:4px; border-radius:4px; color:white;">🔷 Integração (médio)</p>
+            <p style="background:#22c55e; padding:8px; border-radius:4px; color:white;">🟩 Unitários (muitos, baratos, rápidos)</p>
+          </div>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span><strong>Regra 70/20/10:</strong> 70% unitários, 20% integração, 10% E2E</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>📋 Tipos de Teste</h3>
+          <table>
+            <thead><tr><th>Tipo</th><th>O que valida</th><th>Quando</th></tr></thead>
+            <tbody>
+              <tr><td><strong>Unitário</strong></td><td>Função isolada</td><td>A cada commit</td></tr>
+              <tr><td><strong>Integração</strong></td><td>Módulos juntos</td><td>A cada PR</td></tr>
+              <tr><td><strong>E2E</strong></td><td>Fluxo do usuário</td><td>Antes de release</td></tr>
+              <tr><td><strong>Regressão</strong></td><td>Nada quebrou</td><td>Toda sprint</td></tr>
+              <tr><td><strong>Performance</strong></td><td>Tempo de resposta</td><td>Mensal</td></tr>
+              <tr><td><strong>Segurança</strong></td><td>Vulnerabilidades</td><td>Trimestral</td></tr>
+              <tr><td><strong>Usabilidade</strong></td><td>Experiência UX</td><td>Com protótipos</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: CENÁRIOS DE TESTE -->
+    <section class="slide slide--dark" data-title="Cenários de Teste">
+      <h2>📝 Cenários de Teste — Template BDD</h2>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>📄 Template Completo</h3>
+          <div class="code-block">
+            <span class="lang-badge">Cenário de Teste</span>
+            <code>ID: CT-001
+Funcionalidade: Cadastro de Aluno
+Cenário: Cadastro com dados válidos
+
+PRÉ-CONDIÇÃO:
+  - Usuário logado como Secretaria
+  - Módulo "Alunos" acessível
+
+DADO QUE estou na tela de cadastro
+QUANDO preencho:
+  | Campo    | Valor             |
+  | Nome     | Maria Silva       |
+  | CPF      | 123.456.789-00    |
+  | Turma    | DS-2026-M         |
+E clico em "Salvar"
+ENTÃO vejo mensagem "Aluno cadastrado!"
+E o aluno aparece na lista
+E o status é "Ativo"
+
+PÓS-CONDIÇÃO:
+  - Registro salvo no banco
+  - Log de auditoria gerado</code>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🎯 Exemplos Práticos</h3>
+          <div class="code-block">
+            <span class="lang-badge">Cenários negativos</span>
+            <code>Cenário: CPF duplicado
+  DADO QUE CPF 123... já existe
+  QUANDO tento cadastrar com mesmo CPF
+  ENTÃO vejo erro "CPF já cadastrado"
+  E o formulário mantém os dados
+
+Cenário: Campo obrigatório vazio
+  DADO QUE estou no formulário
+  QUANDO deixo o campo Nome vazio
+  E clico em "Salvar"
+  ENTÃO vejo "Nome é obrigatório"
+  E o campo é destacado em vermelho
+
+Cenário: CPF inválido
+  DADO QUE informo CPF "000.000.000-00"
+  QUANDO clico em "Salvar"
+  ENTÃO vejo "CPF inválido"</code>
+          </div>
+          <div class="callout callout--info" style="margin-top:12px;">
+            <span class="icon">📌</span>
+            <span><strong>Dica:</strong> Sempre teste o caminho feliz E os caminhos de erro!</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: AUTOMAÇÃO vs MANUAL -->
+    <section class="slide slide--content" data-title="Automação vs Manual">
+      <h2>🤖 Automação vs Teste Manual — Quando Usar Cada</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🖐️ Teste Manual</h3>
+          <table>
+            <thead><tr><th>Quando usar</th><th>Exemplo</th></tr></thead>
+            <tbody>
+              <tr><td>Testes exploratórios</td><td>Navegar sem roteiro</td></tr>
+              <tr><td>Validação de UX/UI</td><td>"Está bonito e usável?"</td></tr>
+              <tr><td>Cenários únicos</td><td>Rodar só uma vez</td></tr>
+              <tr><td>Teste de acessibilidade</td><td>Screen reader, contraste</td></tr>
+              <tr><td>Requisito novo (sem spec)</td><td>Ainda em descoberta</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--tip" style="margin-top:12px;">
+            <span class="icon">💡</span>
+            <span>Manual é INVESTIGAÇÃO, não execução repetitiva.</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>🤖 Teste Automatizado</h3>
+          <table>
+            <thead><tr><th>Quando usar</th><th>Ferramenta</th></tr></thead>
+            <tbody>
+              <tr><td>Regressão (toda sprint)</td><td>Jest, Cypress</td></tr>
+              <tr><td>Validação contínua (CI/CD)</td><td>GitHub Actions</td></tr>
+              <tr><td>Dados em massa</td><td>fast-check (PBT)</td></tr>
+              <tr><td>Performance/carga</td><td>k6, Artillery</td></tr>
+              <tr><td>API contracts</td><td>Pact, Supertest</td></tr>
+              <tr><td>Visual regression</td><td>Percy, Chromatic</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--warning" style="margin-top:12px;">
+            <span class="icon">⚠️</span>
+            <span><strong>Regra:</strong> Automatize o que é REPETITIVO. Explore manualmente o que é NOVO.</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: MÉTRICAS DE QUALIDADE -->
+    <section class="slide slide--dark" data-title="Métricas de Qualidade">
+      <h2>📊 Métricas de Qualidade de Software</h2>
+      <div style="max-width:900px; margin:20px auto 0;">
+        <table>
+          <thead><tr><th>Métrica</th><th>Fórmula / Descrição</th><th>Meta Ideal</th></tr></thead>
+          <tbody>
+            <tr><td><strong>Bugs/Sprint</strong></td><td>Quantidade de bugs encontrados por sprint</td><td>Tendência de queda</td></tr>
+            <tr><td><strong>Test Coverage</strong></td><td>% do código coberto por testes</td><td>> 80%</td></tr>
+            <tr><td><strong>MTTR</strong></td><td>Mean Time To Recovery (tempo para corrigir)</td><td>&lt; 4 horas</td></tr>
+            <tr><td><strong>Escaped Defects</strong></td><td>Bugs que chegaram a produção</td><td>&lt; 2/sprint</td></tr>
+            <tr><td><strong>Defect Density</strong></td><td>Bugs / 1000 linhas de código</td><td>&lt; 5</td></tr>
+            <tr><td><strong>Flaky Tests</strong></td><td>Testes que falham intermitentemente</td><td>0</td></tr>
+            <tr><td><strong>Build Success Rate</strong></td><td>% de builds que passam no CI</td><td>> 95%</td></tr>
+            <tr><td><strong>Mutation Score</strong></td><td>% de mutantes detectados pelos testes</td><td>> 80%</td></tr>
+          </tbody>
+        </table>
+        <div class="callout callout--info" style="margin-top:20px;">
+          <span class="icon">📈</span>
+          <span><strong>Dashboard sugerido:</strong> Mostrar essas métricas em uma Retrospectiva — foco em TENDÊNCIA, não valor absoluto.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: SPRINT SIMULATION -->
+    <section class="slide slide--accent" data-title="Sprint Simulation">
+      <h2>🎮 Sprint Simulation — Atividade Prática</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>📋 Passo a Passo (2 aulas)</h3>
+          <ol>
+            <li><strong>Formar equipes</strong> (4-5 alunos) — definir PO, SM, Devs</li>
+            <li><strong>Product Backlog</strong> — PO cria 8-10 user stories</li>
+            <li><strong>Sprint Planning</strong> (20 min) — selecionar 3-4 itens para a sprint</li>
+            <li><strong>Sprint</strong> (40 min) — executar as tarefas (código/protótipo)</li>
+            <li><strong>Daily</strong> (5 min no meio) — "O que fiz? O que farei? Bloqueios?"</li>
+            <li><strong>Sprint Review</strong> (10 min) — demo para a turma</li>
+            <li><strong>Retrospectiva</strong> (10 min) — O que foi bom? O que melhorar?</li>
+          </ol>
+        </div>
+        <div class="card">
+          <h3>🎯 Projeto Sugerido</h3>
+          <p><strong>App "Lista de Tarefas da Turma"</strong></p>
+          <ul>
+            <li>US1: COMO aluno, QUERO adicionar tarefa</li>
+            <li>US2: COMO aluno, QUERO marcar como concluída</li>
+            <li>US3: COMO aluno, QUERO filtrar por status</li>
+            <li>US4: COMO professor, QUERO ver todas as tarefas</li>
+          </ul>
+          <h3 style="margin-top:16px;">📊 Avaliação</h3>
+          <ul>
+            <li>Participação nas cerimônias (30%)</li>
+            <li>Entrega funcionando (40%)</li>
+            <li>Qualidade do código/teste (20%)</li>
+            <li>Retrospectiva (10%)</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: ENCERRAMENTO -->
+    <section class="slide slide--dark" data-title="Encerramento">
+      <h2 style="text-align:center;">✅ Checklist do Profissional Ágil</h2>
+      <div style="max-width:800px; margin:20px auto 0;">
+        <table>
+          <thead><tr><th>Competência</th><th>Indicador</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>Scrum</td><td>Conhece papéis, cerimônias e artefatos</td><td>☐</td></tr>
+            <tr><td>Kanban</td><td>Sabe montar board e aplicar WIP limits</td><td>☐</td></tr>
+            <tr><td>User Stories</td><td>Escreve no formato correto com critérios</td><td>☐</td></tr>
+            <tr><td>DoD / DoR</td><td>Define checklists de qualidade</td><td>☐</td></tr>
+            <tr><td>Testes</td><td>Conhece pirâmide e tipos de teste</td><td>☐</td></tr>
+            <tr><td>BDD</td><td>Escreve cenários Given-When-Then</td><td>☐</td></tr>
+            <tr><td>Automação</td><td>Sabe quando automatizar vs testar manual</td><td>☐</td></tr>
+            <tr><td>Métricas</td><td>Acompanha coverage, bugs/sprint, MTTR</td><td>☐</td></tr>
+            <tr><td>Sprint Sim</td><td>Participou de simulação prática</td><td>☐</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout callout--info" style="max-width:600px; margin:24px auto 0;">
+        <span class="icon">🏆</span>
+        <span>Marque todos os itens e você terá o perfil de um profissional de tecnologia preparado para o mercado!</span>
+      </div>
+      <p style="color:#94A3B8; margin-top:24px; text-align:center;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
+  </div><!-- /slides-wrapper -->
+
+  <!-- Controles -->
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
+    <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
+    <span class="progress-text">1 / 12</span>
+    <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
+    <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
+  </div>
+
+  <script src="../slides.js"></script>
+</body>
+</html>
