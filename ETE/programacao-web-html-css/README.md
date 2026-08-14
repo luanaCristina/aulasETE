@@ -1702,3 +1702,7 @@ PE = Participação e Exercícios
 📧 **Contato da Professora:** Profª Luana Cristina  
 🏫 **Instituição:** ETE Pernambuco — Curso Técnico em Desenvolvimento de Sistemas  
 📅 **Período:** Módulo 2 | Semestre 2 | 160 horas
+
+
+O python é esse:
+https://www.jdoodle.com/python3-programming-online

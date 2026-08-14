@@ -2168,3 +2168,10 @@ ROTEIRO DA PROFESSORA:
   <strong>📚 Bons estudos! Qualquer dúvida, procure a professora no horário de atendimento.</strong><br/>
   <em>Material elaborado para a disciplina de Administração de Bancos de Dados — ETE Pernambuco — 2026.2</em>
 </p>
+
+site para diagrama: https://mermaid.ai/app/projects/15148759-7f3f-4d95-8dd9-fdb185a8ac49/diagrams/1beba850-7de1-46ea-baf9-a9194f4984b9/version/v0.1/edit 
+
+O python é esse:
+https://www.jdoodle.com/python3-programming-online
+
+mysql https://onecompiler.com/mysql/44xypwjrq 
