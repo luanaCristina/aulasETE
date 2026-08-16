@@ -2175,3 +2175,9 @@ O python é esse:
 https://www.jdoodle.com/python3-programming-online
 
 mysql https://onecompiler.com/mysql/44xypwjrq 
+https://onecompiler.com/mysql/44yee4f3a 
+
+aiven
+https://console.aiven.io/account/a5d341643373/project/luanacroft/services/mysql-projetoete/overview 
+
+doc: https://docs.google.com/document/d/1LBZqGQWhtyEj8_DOP1Mfpx65DI4TrXCBCXOK-KT8dhE/edit?usp=sharing
