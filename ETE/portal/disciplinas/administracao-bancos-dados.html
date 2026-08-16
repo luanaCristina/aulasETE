@@ -218,17 +218,45 @@
     </section>
 
 
-    <!-- SLIDE 6.1: SQL Pet Shop - CREATE TABLE -->
+    <!-- SLIDE 6.1: SQL Pet Shop - CREATE TABLE (Multi-Stack) -->
     <section class="slide slide--content" data-title="SQL Pet Shop: CREATE TABLE">
       <h2>🐾 SQL do Pet Shop — CREATE TABLE</h2>
-      <p>Transformando o DER em tabelas MySQL:</p>
-      <div class="code-block" style="margin-top:12px;">
-        <span class="lang-badge">MySQL</span>
-        <pre><code>-- Criação do banco
-CREATE DATABASE petshop;
+      <p>Transformando o DER em tabelas — veja em cada stack:</p>
+      <div class="code-tabs">
+        <button class="code-tab active">SQL Puro</button>
+        <button class="code-tab">MySQL</button>
+        <button class="code-tab">PostgreSQL</button>
+        <button class="code-tab">MongoDB</button>
+        <button class="code-tab">Python</button>
+        <button class="code-tab">JavaScript</button>
+        <button class="code-tab">Mobile (Expo)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block"><span class="lang-badge">SQL</span>
+          <pre><code>CREATE DATABASE petshop;
+
+CREATE TABLE cliente (
+  id INT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  telefone VARCHAR(20),
+  email VARCHAR(100)
+);
+
+CREATE TABLE pet (
+  id INT PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  especie VARCHAR(30),
+  raca VARCHAR(50),
+  cliente_id INT NOT NULL,
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">MySQL</span>
+          <pre><code>CREATE DATABASE petshop;
 USE petshop;
 
--- Tabela CLIENTE
 CREATE TABLE cliente (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(100) NOT NULL,
@@ -236,14 +264,6 @@ CREATE TABLE cliente (
   email VARCHAR(100)
 );
 
--- Tabela VETERINARIO
-CREATE TABLE veterinario (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  nome VARCHAR(100) NOT NULL,
-  crmv VARCHAR(20) NOT NULL
-);
-
--- Tabela PET (FK para cliente)
 CREATE TABLE pet (
   id INT AUTO_INCREMENT PRIMARY KEY,
   nome VARCHAR(50) NOT NULL,
@@ -251,135 +271,590 @@ CREATE TABLE pet (
   raca VARCHAR(50),
   cliente_id INT NOT NULL,
   FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">PostgreSQL</span>
+          <pre><code>CREATE DATABASE petshop;
+
+CREATE TABLE IF NOT EXISTS cliente (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  telefone VARCHAR(20),
+  email VARCHAR(100)
 );
 
--- Tabela CONSULTA (FK para cliente, pet e veterinario)
-CREATE TABLE consulta (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  data DATE NOT NULL,
-  diagnostico TEXT,
-  cliente_id INT NOT NULL,
-  pet_id INT NOT NULL,
-  vet_id INT NOT NULL,
-  FOREIGN KEY (cliente_id) REFERENCES cliente(id),
-  FOREIGN KEY (pet_id) REFERENCES pet(id),
-  FOREIGN KEY (vet_id) REFERENCES veterinario(id)
+CREATE TABLE IF NOT EXISTS pet (
+  id SERIAL PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  especie VARCHAR(30),
+  raca VARCHAR(50),
+  cliente_id INT NOT NULL REFERENCES cliente(id)
 );</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">MongoDB</span>
+          <pre><code>// MongoDB é schema-less (sem estrutura fixa)
+// Mas podemos usar validação:
+use petshop;
+
+db.createCollection("clientes", {
+  validator: {
+    $jsonSchema: {
+      required: ["nome"],
+      properties: {
+        nome: { bsonType: "string" },
+        telefone: { bsonType: "string" },
+        email: { bsonType: "string" }
+      }
+    }
+  }
+});
+
+db.createCollection("pets");
+// Pets referenciam cliente via cliente_id</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">Python</span>
+          <pre><code>import psycopg2
+
+conn = psycopg2.connect(
+    host="localhost", database="petshop",
+    user="postgres", password="postgres"
+)
+cur = conn.cursor()
+
+cur.execute("""
+  CREATE TABLE IF NOT EXISTS cliente (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    email VARCHAR(100)
+  )
+""")
+
+cur.execute("""
+  CREATE TABLE IF NOT EXISTS pet (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    especie VARCHAR(30),
+    cliente_id INT REFERENCES cliente(id)
+  )
+""")
+conn.commit()</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">JavaScript</span>
+          <pre><code>import { Pool } from 'pg';
+
+const pool = new Pool({
+  host: 'localhost', database: 'petshop',
+  user: 'postgres', password: 'postgres'
+});
+
+await pool.query(`
+  CREATE TABLE IF NOT EXISTS cliente (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    telefone VARCHAR(20),
+    email VARCHAR(100)
+  )
+`);
+
+await pool.query(`
+  CREATE TABLE IF NOT EXISTS pet (
+    id SERIAL PRIMARY KEY,
+    nome VARCHAR(50) NOT NULL,
+    especie VARCHAR(30),
+    cliente_id INT REFERENCES cliente(id)
+  )
+`);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">TypeScript (Expo)</span>
+          <pre><code>// Mobile não cria tabelas diretamente
+// Chama a API que gerencia o banco
+
+const response = await fetch(
+  'http://192.168.1.100:3000/api/setup',
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ action: 'create_tables' })
+  }
+);
+
+const result = await response.json();
+console.log(result.message);
+// "Tabelas criadas com sucesso!"</code></pre>
+        </div>
       </div>
     </section>
 
-    <!-- SLIDE 6.2: SQL Pet Shop - INSERT -->
+    <!-- SLIDE 6.2: SQL Pet Shop - INSERT (Multi-Stack) -->
     <section class="slide slide--dark" data-title="SQL Pet Shop: INSERT">
-      <h2>🐾 SQL do Pet Shop — INSERT (5 registros cada)</h2>
-      <div class="code-block" style="margin-top:12px;">
-        <span class="lang-badge">MySQL</span>
-        <pre><code>-- Inserindo CLIENTES
-INSERT INTO cliente (nome, telefone, email) VALUES
+      <h2>🐾 SQL do Pet Shop — INSERT</h2>
+      <p style="color:#94A3B8;">Inserindo dados no Pet Shop — veja em cada stack:</p>
+      <div class="code-tabs">
+        <button class="code-tab active">SQL Puro</button>
+        <button class="code-tab">MySQL</button>
+        <button class="code-tab">PostgreSQL</button>
+        <button class="code-tab">MongoDB</button>
+        <button class="code-tab">Python</button>
+        <button class="code-tab">JavaScript</button>
+        <button class="code-tab">Mobile (Expo)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block"><span class="lang-badge">SQL</span>
+          <pre><code>INSERT INTO cliente (nome, telefone, email) VALUES
   ('Maria Silva', '81999001122', 'maria@email.com'),
   ('João Santos', '81988773344', 'joao@email.com'),
-  ('Ana Oliveira', '81977665544', 'ana@email.com'),
-  ('Carlos Lima', '81966554433', 'carlos@email.com'),
-  ('Fernanda Costa', '81955443322', 'fernanda@email.com');
+  ('Ana Oliveira', '81977665544', 'ana@email.com');
 
--- Inserindo VETERINÁRIOS
-INSERT INTO veterinario (nome, crmv) VALUES
-  ('Dr. Pedro Alves', 'CRMV-PE 1234'),
-  ('Dra. Lucia Ramos', 'CRMV-PE 5678'),
-  ('Dr. Roberto Dias', 'CRMV-PE 9012'),
-  ('Dra. Carla Mendes', 'CRMV-PE 3456'),
-  ('Dr. Marcos Vieira', 'CRMV-PE 7890');
-
--- Inserindo PETS
 INSERT INTO pet (nome, especie, raca, cliente_id) VALUES
   ('Rex', 'Cachorro', 'Labrador', 1),
   ('Mimi', 'Gato', 'Siamês', 2),
-  ('Thor', 'Cachorro', 'Bulldog', 3),
-  ('Luna', 'Gato', 'Persa', 4),
-  ('Bob', 'Cachorro', 'Poodle', 5);
+  ('Thor', 'Cachorro', 'Bulldog', 3);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">MySQL</span>
+          <pre><code>INSERT INTO cliente (nome, telefone, email) VALUES
+  ('Maria Silva', '81999001122', 'maria@email.com'),
+  ('João Santos', '81988773344', 'joao@email.com'),
+  ('Ana Oliveira', '81977665544', 'ana@email.com');
 
--- Inserindo CONSULTAS
-INSERT INTO consulta (data, diagnostico, cliente_id, pet_id, vet_id) VALUES
-  ('2026-08-01', 'Vacinação anual', 1, 1, 1),
-  ('2026-08-05', 'Infecção urinária', 2, 2, 2),
-  ('2026-08-10', 'Fratura na pata', 3, 3, 3),
-  ('2026-08-12', 'Check-up geral', 4, 4, 4),
-  ('2026-08-15', 'Alergia de pele', 5, 5, 5);</code></pre>
+INSERT INTO pet (nome, especie, raca, cliente_id) VALUES
+  ('Rex', 'Cachorro', 'Labrador', 1),
+  ('Mimi', 'Gato', 'Siamês', 2),
+  ('Thor', 'Cachorro', 'Bulldog', 3);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">PostgreSQL</span>
+          <pre><code>INSERT INTO cliente (nome, telefone, email) VALUES
+  ('Maria Silva', '81999001122', 'maria@email.com'),
+  ('João Santos', '81988773344', 'joao@email.com')
+RETURNING id, nome;  -- Retorna os IDs gerados!
+
+INSERT INTO pet (nome, especie, raca, cliente_id) VALUES
+  ('Rex', 'Cachorro', 'Labrador', 1),
+  ('Mimi', 'Gato', 'Siamês', 2)
+RETURNING id;</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">MongoDB</span>
+          <pre><code>db.clientes.insertMany([
+  { nome: "Maria Silva", telefone: "81999001122",
+    email: "maria@email.com" },
+  { nome: "João Santos", telefone: "81988773344",
+    email: "joao@email.com" },
+  { nome: "Ana Oliveira", telefone: "81977665544",
+    email: "ana@email.com" }
+]);
+
+db.pets.insertMany([
+  { nome: "Rex", especie: "Cachorro",
+    raca: "Labrador", cliente_id: ObjectId("...") },
+  { nome: "Mimi", especie: "Gato",
+    raca: "Siamês", cliente_id: ObjectId("...") }
+]);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">Python</span>
+          <pre><code>import psycopg2
+
+conn = psycopg2.connect(database="petshop",
+    user="postgres", password="postgres")
+cur = conn.cursor()
+
+clientes = [
+  ('Maria Silva', '81999001122', 'maria@email.com'),
+  ('João Santos', '81988773344', 'joao@email.com'),
+  ('Ana Oliveira', '81977665544', 'ana@email.com'),
+]
+
+cur.executemany(
+  "INSERT INTO cliente (nome, telefone, email) VALUES (%s, %s, %s)",
+  clientes
+)
+conn.commit()</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">JavaScript</span>
+          <pre><code>import { Pool } from 'pg';
+const pool = new Pool({ database: 'petshop' });
+
+const clientes = [
+  ['Maria Silva', '81999001122', 'maria@email.com'],
+  ['João Santos', '81988773344', 'joao@email.com'],
+];
+
+for (const [nome, tel, email] of clientes) {
+  await pool.query(
+    'INSERT INTO cliente (nome, telefone, email) VALUES ($1, $2, $3) RETURNING id',
+    [nome, tel, email]
+  );
+}</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">TypeScript (Expo)</span>
+          <pre><code>const novoCliente = {
+  nome: 'Maria Silva',
+  telefone: '81999001122',
+  email: 'maria@email.com'
+};
+
+const response = await fetch(
+  'http://192.168.1.100:3000/api/clientes',
+  {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(novoCliente)
+  }
+);
+
+const criado = await response.json();
+console.log('ID:', criado.id);</code></pre>
+        </div>
       </div>
     </section>
 
-    <!-- SLIDE 6.3: SQL Pet Shop - SELECT -->
+    <!-- SLIDE 6.3: SQL Pet Shop - SELECT (Multi-Stack) -->
     <section class="slide slide--content" data-title="SQL Pet Shop: SELECT">
-      <h2>🐾 SQL do Pet Shop — SELECT (consultas simples)</h2>
-      <div class="code-block" style="margin-top:12px;">
-        <span class="lang-badge">MySQL</span>
-        <pre><code>-- Selecionar todos os clientes
+      <h2>🐾 SQL do Pet Shop — SELECT</h2>
+      <p>Consultando dados — veja em cada stack:</p>
+      <div class="code-tabs">
+        <button class="code-tab active">SQL Puro</button>
+        <button class="code-tab">MySQL</button>
+        <button class="code-tab">PostgreSQL</button>
+        <button class="code-tab">MongoDB</button>
+        <button class="code-tab">Python</button>
+        <button class="code-tab">JavaScript</button>
+        <button class="code-tab">Mobile (Expo)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block"><span class="lang-badge">SQL</span>
+          <pre><code>-- Todos os clientes
 SELECT * FROM cliente;
 
--- Selecionar todos os pets
-SELECT * FROM pet;
+-- Pets que são cachorros
+SELECT nome, raca FROM pet
+WHERE especie = 'Cachorro';
 
--- Selecionar todos os veterinários
-SELECT * FROM veterinario;
+-- Contar pets por espécie
+SELECT especie, COUNT(*) AS qtd
+FROM pet GROUP BY especie;
 
--- Selecionar todas as consultas
-SELECT * FROM consulta;
+-- Clientes cujo nome contém "Silva"
+SELECT * FROM cliente
+WHERE nome LIKE '%Silva%';</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">MySQL</span>
+          <pre><code>-- Todos os clientes
+SELECT * FROM cliente;
 
--- Selecionar apenas nomes e emails dos clientes
-SELECT nome, email FROM cliente;
+-- Pets que são cachorros
+SELECT nome, raca FROM pet
+WHERE especie = 'Cachorro';
 
--- Selecionar pets que são cachorros
-SELECT nome, raca FROM pet WHERE especie = 'Cachorro';
+-- Contar pets por espécie
+SELECT especie, COUNT(*) AS qtd
+FROM pet GROUP BY especie;
 
--- Selecionar consultas de agosto/2026
-SELECT * FROM consulta WHERE data BETWEEN '2026-08-01' AND '2026-08-31';
+-- Busca case-sensitive no MySQL
+SELECT * FROM cliente
+WHERE nome LIKE '%Silva%';</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">PostgreSQL</span>
+          <pre><code>-- Todos os clientes
+SELECT * FROM cliente;
 
--- Contar quantos pets cada espécie tem
-SELECT especie, COUNT(*) AS quantidade FROM pet GROUP BY especie;</code></pre>
+-- Pets que são cachorros
+SELECT nome, raca FROM pet
+WHERE especie = 'Cachorro';
+
+-- Contar pets por espécie
+SELECT especie, COUNT(*) AS qtd
+FROM pet GROUP BY especie;
+
+-- ILIKE = busca case-INsensitive (PG exclusivo)
+SELECT * FROM cliente
+WHERE nome ILIKE '%silva%';</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">MongoDB</span>
+          <pre><code>// Todos os clientes
+db.clientes.find();
+
+// Pets que são cachorros
+db.pets.find(
+  { especie: "Cachorro" },
+  { nome: 1, raca: 1 }
+);
+
+// Contar pets por espécie
+db.pets.aggregate([
+  { $group: { _id: "$especie", qtd: { $sum: 1 } } }
+]);
+
+// Busca com regex (case-insensitive)
+db.clientes.find(
+  { nome: { $regex: /silva/i } }
+);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">Python</span>
+          <pre><code>import psycopg2
+
+conn = psycopg2.connect(database="petshop",
+    user="postgres", password="postgres")
+cur = conn.cursor()
+
+# Buscar cachorros
+cur.execute("""
+  SELECT nome, raca FROM pet
+  WHERE especie = %s
+""", ('Cachorro',))
+
+cachorros = cur.fetchall()
+for nome, raca in cachorros:
+    print(f"🐕 {nome} ({raca})")</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">JavaScript</span>
+          <pre><code>import { Pool } from 'pg';
+const pool = new Pool({ database: 'petshop' });
+
+// Buscar cachorros
+const { rows } = await pool.query(
+  'SELECT nome, raca FROM pet WHERE especie = $1',
+  ['Cachorro']
+);
+
+rows.forEach(pet => {
+  console.log(`🐕 ${pet.nome} (${pet.raca})`);
+});
+
+// Busca case-insensitive
+const clientes = await pool.query(
+  'SELECT * FROM cliente WHERE nome ILIKE $1',
+  ['%silva%']
+);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">TypeScript (Expo)</span>
+          <pre><code>import { useState, useEffect } from 'react';
+import { FlatList, Text, View } from 'react-native';
+
+export function PetsList() {
+  const [pets, setPets] = useState([]);
+
+  useEffect(() => {
+    fetch('http://192.168.1.100:3000/api/pets?especie=Cachorro')
+      .then(res => res.json())
+      .then(data => setPets(data));
+  }, []);
+
+  return (
+    &lt;FlatList data={pets}
+      keyExtractor={item => String(item.id)}
+      renderItem={({ item }) => (
+        &lt;Text&gt;🐕 {item.nome} ({item.raca})&lt;/Text&gt;
+      )} /&gt;
+  );
+}</code></pre>
+        </div>
       </div>
     </section>
 
-    <!-- SLIDE 6.4: SQL Pet Shop - JOIN -->
+    <!-- SLIDE 6.4: SQL Pet Shop - JOIN (Multi-Stack) -->
     <section class="slide slide--dark" data-title="SQL Pet Shop: JOIN">
-      <h2>🐾 SQL do Pet Shop — JOIN (consultas avançadas)</h2>
-      <div class="code-block" style="margin-top:12px;">
-        <span class="lang-badge">MySQL</span>
-        <pre><code>-- Nome do pet com nome do dono
+      <h2>🐾 SQL do Pet Shop — JOIN</h2>
+      <p style="color:#94A3B8;">Combinando tabelas — veja em cada stack:</p>
+      <div class="code-tabs">
+        <button class="code-tab active">SQL Puro</button>
+        <button class="code-tab">MySQL</button>
+        <button class="code-tab">PostgreSQL</button>
+        <button class="code-tab">MongoDB</button>
+        <button class="code-tab">Python</button>
+        <button class="code-tab">JavaScript</button>
+        <button class="code-tab">Mobile (Expo)</button>
+      </div>
+      <div class="code-panel active">
+        <div class="code-block"><span class="lang-badge">SQL</span>
+          <pre><code>-- Pet com nome do dono
 SELECT p.nome AS pet, c.nome AS dono
 FROM pet p
 INNER JOIN cliente c ON p.cliente_id = c.id;
 
--- Consultas com nome do pet, dono e veterinário
-SELECT 
-  con.data,
-  con.diagnostico,
-  c.nome AS cliente,
-  p.nome AS pet,
-  v.nome AS veterinario
+-- Consultas com pet, dono e veterinário
+SELECT con.data, c.nome AS cliente,
+  p.nome AS pet, v.nome AS vet
 FROM consulta con
 INNER JOIN cliente c ON con.cliente_id = c.id
 INNER JOIN pet p ON con.pet_id = p.id
 INNER JOIN veterinario v ON con.vet_id = v.id;
 
--- Quantas consultas cada veterinário realizou
-SELECT v.nome, COUNT(*) AS total_consultas
-FROM consulta con
-INNER JOIN veterinario v ON con.vet_id = v.id
-GROUP BY v.nome
-ORDER BY total_consultas DESC;
-
--- Clientes que têm gatos
-SELECT DISTINCT c.nome, c.telefone
-FROM cliente c
-INNER JOIN pet p ON p.cliente_id = c.id
-WHERE p.especie = 'Gato';
-
--- Pets que nunca tiveram consulta (LEFT JOIN)
-SELECT p.nome AS pet, p.especie
-FROM pet p
+-- Pets sem consulta (LEFT JOIN)
+SELECT p.nome FROM pet p
 LEFT JOIN consulta con ON p.id = con.pet_id
 WHERE con.id IS NULL;</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">MySQL</span>
+          <pre><code>-- Pet com nome do dono
+SELECT p.nome AS pet, c.nome AS dono
+FROM pet p
+INNER JOIN cliente c ON p.cliente_id = c.id;
+
+-- Consultas completas
+SELECT con.data, c.nome AS cliente,
+  p.nome AS pet, v.nome AS vet
+FROM consulta con
+INNER JOIN cliente c ON con.cliente_id = c.id
+INNER JOIN pet p ON con.pet_id = p.id
+INNER JOIN veterinario v ON con.vet_id = v.id;
+
+-- Pets sem consulta
+SELECT p.nome FROM pet p
+LEFT JOIN consulta con ON p.id = con.pet_id
+WHERE con.id IS NULL;</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">PostgreSQL</span>
+          <pre><code>-- Pet com nome do dono
+SELECT p.nome AS pet, c.nome AS dono
+FROM pet p
+INNER JOIN cliente c ON p.cliente_id = c.id;
+
+-- Consultas completas
+SELECT con.data, c.nome AS cliente,
+  p.nome AS pet, v.nome AS vet
+FROM consulta con
+INNER JOIN cliente c ON con.cliente_id = c.id
+INNER JOIN pet p ON con.pet_id = p.id
+INNER JOIN veterinario v ON con.vet_id = v.id;
+
+-- Pets sem consulta
+SELECT p.nome FROM pet p
+LEFT JOIN consulta con ON p.id = con.pet_id
+WHERE con.id IS NULL;</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">MongoDB</span>
+          <pre><code>// $lookup = equivalente ao JOIN
+db.pets.aggregate([
+  {
+    $lookup: {
+      from: "clientes",
+      localField: "cliente_id",
+      foreignField: "_id",
+      as: "dono"
+    }
+  },
+  { $unwind: "$dono" },
+  {
+    $project: {
+      pet: "$nome",
+      dono: "$dono.nome"
+    }
+  }
+]);</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">Python</span>
+          <pre><code>import psycopg2
+
+conn = psycopg2.connect(database="petshop",
+    user="postgres", password="postgres")
+cur = conn.cursor()
+
+cur.execute("""
+  SELECT p.nome AS pet, c.nome AS dono
+  FROM pet p
+  INNER JOIN cliente c ON p.cliente_id = c.id
+""")
+
+for pet, dono in cur.fetchall():
+    print(f"🐾 {pet} → Dono: {dono}")</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">JavaScript</span>
+          <pre><code>import { Pool } from 'pg';
+const pool = new Pool({ database: 'petshop' });
+
+const { rows } = await pool.query(`
+  SELECT p.nome AS pet, c.nome AS dono
+  FROM pet p
+  INNER JOIN cliente c ON p.cliente_id = c.id
+`);
+
+rows.forEach(r => {
+  console.log(`🐾 ${r.pet} → Dono: ${r.dono}`);
+});
+
+// Express route com JOIN
+app.get('/api/pets-com-dono', async (req, res) => {
+  const { rows } = await pool.query(`
+    SELECT p.nome AS pet, c.nome AS dono
+    FROM pet p INNER JOIN cliente c
+    ON p.cliente_id = c.id`);
+  res.json(rows);
+});</code></pre>
+        </div>
+      </div>
+      <div class="code-panel">
+        <div class="code-block"><span class="lang-badge">TypeScript (Expo)</span>
+          <pre><code>import { useState, useEffect } from 'react';
+import { FlatList, Text, View } from 'react-native';
+
+export function PetsComDono() {
+  const [dados, setDados] = useState([]);
+
+  useEffect(() => {
+    fetch('http://192.168.1.100:3000/api/pets-com-dono')
+      .then(res => res.json())
+      .then(data => setDados(data));
+  }, []);
+
+  return (
+    &lt;FlatList data={dados}
+      keyExtractor={(_, i) => String(i)}
+      renderItem={({ item }) => (
+        &lt;View style={{ padding: 12 }}&gt;
+          &lt;Text&gt;🐾 {item.pet}&lt;/Text&gt;
+          &lt;Text&gt;👤 Dono: {item.dono}&lt;/Text&gt;
+        &lt;/View&gt;
+      )} /&gt;
+  );
+}</code></pre>
+        </div>
       </div>
     </section>
+
     <!-- SLIDE 7: DDL -->
     <section class="slide slide--dark" data-title="DDL: CREATE, ALTER, DROP">
       <h2>🏗️ DDL — Linguagem de Definição de Dados</h2>
@@ -567,24 +1042,9 @@ export function ClientesList() {
       </div>
     </section>
 
-    <!-- SLIDE 10: EXERCÍCIOS -->
-    <section class="slide slide--content" data-title="Exercícios">
-      <h2>📝 Exercícios Práticos</h2>
-      <table>
-        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
-        <tbody>
-          <tr><td>🟢 Fácil</td><td>Modelar DER de uma biblioteca</td><td>DER com 3 entidades + cardinalidades</td></tr>
-          <tr><td>🟢 Fácil</td><td>Normalizar tabela de vendas</td><td>Tabelas em 3FN + justificativa</td></tr>
-          <tr><td>🟡 Médio</td><td>Criar banco com DDL completo</td><td>Script SQL (CREATE + constraints)</td></tr>
-          <tr><td>🟡 Médio</td><td>10 consultas SELECT progressivas</td><td>Queries com JOIN, GROUP BY, HAVING</td></tr>
-          <tr><td>🔴 Desafiador</td><td>CRUD completo em Python ou TS</td><td>App funcional conectando ao PostgreSQL</td></tr>
-        </tbody>
-      </table>
-      <div class="callout callout--info" style="margin-top:16px;">
-        <span class="icon">🎯</span>
-        <span><strong>Progressão:</strong> DER (papel) → SQL (pgAdmin) → Código (VS Code) → App (Expo)</span>
-      </div>
-    </section>
+    <!-- ============================================================== -->
+    <!-- SLIDES MOVIDOS: 10.1-10.5 (ALTER, UPDATE, DELETE, DROP) -->
+    <!-- ============================================================== -->
 
     <!-- SLIDE 10.1: ALTER TABLE - Adicionando Colunas -->
     <section class="slide slide--dark" data-title="ALTER TABLE: Adicionando Colunas">
@@ -713,80 +1173,9 @@ DROP TABLE produto;
       </div>
     </section>
 
-    <!-- SLIDE 11: PROJETOS -->
-    <section class="slide slide--accent" data-title="Projetos">
-      <h2>🚀 Projetos Hands-on</h2>
-      <div class="columns">
-        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
-          <h3>📦 Projeto Intermediário (Sem 1-10)</h3>
-          <p><strong>Valor:</strong> 30% da nota</p>
-          <p style="margin-top:8px;"><strong>🐾 Pet Shop Database</strong></p>
-          <ul>
-            <li>DER com 5+ entidades</li>
-            <li>Normalização documentada</li>
-            <li>Script DDL completo</li>
-            <li>Seed com 20+ registros</li>
-            <li>10 consultas SELECT úteis</li>
-          </ul>
-          <p style="margin-top:12px; font-size:0.9rem;"><strong>Rubrica:</strong> DER correto (30%) + SQL funcional (40%) + Documentação (30%)</p>
-        </div>
-        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
-          <h3>📦 Projeto Final (Sem 11-20)</h3>
-          <p><strong>Valor:</strong> 40% da nota</p>
-          <p style="margin-top:8px;"><strong>🏥 Sistema Completo (tema livre)</strong></p>
-          <ul>
-            <li>DER avançado (8+ entidades)</li>
-            <li>DDL + DML + Views + Índices</li>
-            <li>API funcional (Python ou TypeScript)</li>
-            <li>Conexão front-end (Web ou Mobile)</li>
-            <li>Documentação técnica</li>
-            <li><strong>Backup e restore demonstrados</strong></li>
-          </ul>
-          <p style="margin-top:12px; font-size:0.9rem;"><strong>Rubrica:</strong> Modelagem (25%) + SQL (25%) + Integração (25%) + Docs (25%)</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- SLIDE 12: PLANO DE CONTINGÊNCIA -->
-    <section class="slide slide--dark" data-title="Plano de Contingência">
-      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
-      <p style="color:#94A3B8;">Se o lab estiver indisponível, a aula NÃO para. Escolha uma opção:</p>
-      <div class="columns columns--3" style="margin-top:20px;">
-        <div class="card">
-          <h3>🧠 SQL Humano</h3>
-          <p><strong>Atividade em grupo:</strong></p>
-          <ul>
-            <li>Tabelas desenhadas no quadro</li>
-            <li>Alunos executam SELECT "na mão"</li>
-            <li>JOINs com cartões coloridos</li>
-            <li>WHERE como filtro físico</li>
-            <li>Votação: qual query retorna mais?</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>📐 DER em Cartolina</h3>
-          <p><strong>Com material físico:</strong></p>
-          <ul>
-            <li>Entidades em post-its</li>
-            <li>Linhas com barbante (relações)</li>
-            <li>Cardinalidade com números</li>
-            <li>Normalização: reorganizar post-its</li>
-            <li>Apresentação para a turma</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>📝 Teste de Mesa</h3>
-          <p><strong>Rastrear queries no papel:</strong></p>
-          <ul>
-            <li>Tabelas impressas</li>
-            <li>Circular resultados de SELECT</li>
-            <li>Riscar linhas de DELETE</li>
-            <li>Anotar efeitos de UPDATE</li>
-            <li>Validar constraints manualmente</li>
-          </ul>
-        </div>
-      </div>
-    </section>
+    <!-- ============================================================== -->
+    <!-- SLIDES MOVIDOS: 12.1-12.4 (Referência SQL) -->
+    <!-- ============================================================== -->
 
     <!-- SLIDE 12.1: Referência de Comandos SQL - Parte 1 -->
     <section class="slide slide--content" data-title="Referência SQL: DDL">
@@ -938,6 +1327,104 @@ SELECT nome,
     ELSE '🐾'
   END AS emoji
 FROM pet;</code></pre>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- SLIDES ORIGINAIS (ordem mantida) -->
+    <!-- ============================================================== -->
+
+    <!-- SLIDE 10: EXERCÍCIOS -->
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios Práticos</h2>
+      <table>
+        <thead><tr><th>Nível</th><th>Exercício</th><th>Entregável</th></tr></thead>
+        <tbody>
+          <tr><td>🟢 Fácil</td><td>Modelar DER de uma biblioteca</td><td>DER com 3 entidades + cardinalidades</td></tr>
+          <tr><td>🟢 Fácil</td><td>Normalizar tabela de vendas</td><td>Tabelas em 3FN + justificativa</td></tr>
+          <tr><td>🟡 Médio</td><td>Criar banco com DDL completo</td><td>Script SQL (CREATE + constraints)</td></tr>
+          <tr><td>🟡 Médio</td><td>10 consultas SELECT progressivas</td><td>Queries com JOIN, GROUP BY, HAVING</td></tr>
+          <tr><td>🔴 Desafiador</td><td>CRUD completo em Python ou TS</td><td>App funcional conectando ao PostgreSQL</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info" style="margin-top:16px;">
+        <span class="icon">🎯</span>
+        <span><strong>Progressão:</strong> DER (papel) → SQL (pgAdmin) → Código (VS Code) → App (Expo)</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: PROJETOS -->
+    <section class="slide slide--accent" data-title="Projetos">
+      <h2>🚀 Projetos Hands-on</h2>
+      <div class="columns">
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Projeto Intermediário (Sem 1-10)</h3>
+          <p><strong>Valor:</strong> 30% da nota</p>
+          <p style="margin-top:8px;"><strong>🐾 Pet Shop Database</strong></p>
+          <ul>
+            <li>DER com 5+ entidades</li>
+            <li>Normalização documentada</li>
+            <li>Script DDL completo</li>
+            <li>Seed com 20+ registros</li>
+            <li>10 consultas SELECT úteis</li>
+          </ul>
+          <p style="margin-top:12px; font-size:0.9rem;"><strong>Rubrica:</strong> DER correto (30%) + SQL funcional (40%) + Documentação (30%)</p>
+        </div>
+        <div style="background:rgba(255,255,255,0.1); border-radius:12px; padding:24px;">
+          <h3>📦 Projeto Final (Sem 11-20)</h3>
+          <p><strong>Valor:</strong> 40% da nota</p>
+          <p style="margin-top:8px;"><strong>🏥 Sistema Completo (tema livre)</strong></p>
+          <ul>
+            <li>DER avançado (8+ entidades)</li>
+            <li>DDL + DML + Views + Índices</li>
+            <li>API funcional (Python ou TypeScript)</li>
+            <li>Conexão front-end (Web ou Mobile)</li>
+            <li>Documentação técnica</li>
+            <li><strong>Backup e restore demonstrados</strong></li>
+          </ul>
+          <p style="margin-top:12px; font-size:0.9rem;"><strong>Rubrica:</strong> Modelagem (25%) + SQL (25%) + Integração (25%) + Docs (25%)</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12: PLANO DE CONTINGÊNCIA -->
+    <section class="slide slide--dark" data-title="Plano de Contingência">
+      <h2>🚨 Plano de Contingência — Sem Laboratório</h2>
+      <p style="color:#94A3B8;">Se o lab estiver indisponível, a aula NÃO para. Escolha uma opção:</p>
+      <div class="columns columns--3" style="margin-top:20px;">
+        <div class="card">
+          <h3>🧠 SQL Humano</h3>
+          <p><strong>Atividade em grupo:</strong></p>
+          <ul>
+            <li>Tabelas desenhadas no quadro</li>
+            <li>Alunos executam SELECT "na mão"</li>
+            <li>JOINs com cartões coloridos</li>
+            <li>WHERE como filtro físico</li>
+            <li>Votação: qual query retorna mais?</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📐 DER em Cartolina</h3>
+          <p><strong>Com material físico:</strong></p>
+          <ul>
+            <li>Entidades em post-its</li>
+            <li>Linhas com barbante (relações)</li>
+            <li>Cardinalidade com números</li>
+            <li>Normalização: reorganizar post-its</li>
+            <li>Apresentação para a turma</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>📝 Teste de Mesa</h3>
+          <p><strong>Rastrear queries no papel:</strong></p>
+          <ul>
+            <li>Tabelas impressas</li>
+            <li>Circular resultados de SELECT</li>
+            <li>Riscar linhas de DELETE</li>
+            <li>Anotar efeitos de UPDATE</li>
+            <li>Validar constraints manualmente</li>
+          </ul>
+        </div>
       </div>
     </section>
 
