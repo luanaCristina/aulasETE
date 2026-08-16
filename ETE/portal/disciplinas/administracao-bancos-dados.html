@@ -586,6 +586,133 @@ export function ClientesList() {
       </div>
     </section>
 
+    <!-- SLIDE 10.1: ALTER TABLE - Adicionando Colunas -->
+    <section class="slide slide--dark" data-title="ALTER TABLE: Adicionando Colunas">
+      <h2>➕ ALTER TABLE — Adicionando Colunas</h2>
+      <p style="color:#94A3B8;">Adicionando 2 novas colunas em cada tabela do Pet Shop:</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Adicionando colunas na tabela CLIENTE
+ALTER TABLE cliente ADD COLUMN cpf VARCHAR(14);
+ALTER TABLE cliente ADD COLUMN endereco VARCHAR(200);
+
+-- Adicionando colunas na tabela VETERINARIO
+ALTER TABLE veterinario ADD COLUMN especialidade VARCHAR(50);
+ALTER TABLE veterinario ADD COLUMN telefone VARCHAR(20);
+
+-- Adicionando colunas na tabela PET
+ALTER TABLE pet ADD COLUMN data_nascimento DATE;
+ALTER TABLE pet ADD COLUMN peso DECIMAL(5,2);
+
+-- Adicionando colunas na tabela CONSULTA
+ALTER TABLE consulta ADD COLUMN valor DECIMAL(10,2);
+ALTER TABLE consulta ADD COLUMN observacao TEXT;</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 10.2: ALTER TABLE - Removendo Colunas -->
+    <section class="slide slide--content" data-title="ALTER TABLE: Removendo Colunas">
+      <h2>➖ ALTER TABLE — Removendo Colunas</h2>
+      <p>Removendo 1 coluna de cada tabela (exemplo de limpeza de estrutura):</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Removendo coluna 'endereco' de CLIENTE
+ALTER TABLE cliente DROP COLUMN endereco;
+
+-- Removendo coluna 'telefone' de VETERINARIO
+ALTER TABLE veterinario DROP COLUMN telefone;
+
+-- Removendo coluna 'peso' de PET
+ALTER TABLE pet DROP COLUMN peso;
+
+-- Removendo coluna 'observacao' de CONSULTA
+ALTER TABLE consulta DROP COLUMN observacao;</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 10.3: UPDATE - Atualizando Dados -->
+    <section class="slide slide--dark" data-title="UPDATE: Atualizando Dados">
+      <h2>✏️ UPDATE — Atualizando Registros</h2>
+      <p style="color:#94A3B8;">Modificando dados existentes nas tabelas:</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Atualizar o CPF de um cliente
+UPDATE cliente SET cpf = '123.456.789-00' WHERE id = 1;
+
+-- Atualizar telefone e email de um cliente
+UPDATE cliente SET telefone = '81911112222', email = 'maria.nova@email.com' WHERE id = 1;
+
+-- Atualizar especialidade do veterinário
+UPDATE veterinario SET especialidade = 'Ortopedia' WHERE id = 3;
+
+-- Atualizar data de nascimento do pet
+UPDATE pet SET data_nascimento = '2020-03-15' WHERE id = 1;
+
+-- Atualizar valor da consulta
+UPDATE consulta SET valor = 150.00 WHERE id = 1;
+
+-- Atualizar todos os clientes sem CPF (UPDATE em massa)
+UPDATE cliente SET cpf = 'Pendente' WHERE cpf IS NULL;</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 10.4: DELETE - Excluindo Dados -->
+    <section class="slide slide--content" data-title="DELETE: Excluindo Dados">
+      <h2>🗑️ DELETE — Excluindo Registros</h2>
+      <p>Removendo registros das tabelas (cuidado com FKs!):</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Deletar uma consulta específica
+DELETE FROM consulta WHERE id = 5;
+
+-- Deletar consultas antigas (antes de agosto)
+DELETE FROM consulta WHERE data < '2026-08-01';
+
+-- Deletar um pet (precisa deletar consultas dele antes!)
+DELETE FROM consulta WHERE pet_id = 4;
+DELETE FROM pet WHERE id = 4;
+
+-- ⚠️ CUIDADO: Deletar TODOS os registros de uma tabela
+-- DELETE FROM consulta; (apaga tudo, mas mantém a tabela)</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 10.5: CREATE nova tabela + DROP -->
+    <section class="slide slide--dark" data-title="CREATE + DROP: Nova Tabela">
+      <h2>🆕 CREATE + DROP — Nova Tabela e Exclusão</h2>
+      <p style="color:#94A3B8;">Criando uma tabela nova e depois removendo com DROP:</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Criar tabela de PRODUTOS (ração, brinquedos, etc.)
+CREATE TABLE produto (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  categoria VARCHAR(50),
+  preco DECIMAL(10,2) NOT NULL,
+  estoque INT DEFAULT 0,
+  fornecedor VARCHAR(100)
+);
+
+-- Inserir dados na nova tabela
+INSERT INTO produto (nome, categoria, preco, estoque, fornecedor) VALUES
+  ('Ração Premium Dog', 'Alimentação', 89.90, 50, 'PetFood Brasil'),
+  ('Bola de Borracha', 'Brinquedo', 15.00, 100, 'PlayPet'),
+  ('Coleira Nylon M', 'Acessório', 35.00, 30, 'ColeiraMaster'),
+  ('Shampoo Neutro', 'Higiene', 22.50, 45, 'CleanPet'),
+  ('Antipulgas Comprimido', 'Medicamento', 65.00, 20, 'VetFarma');
+
+-- Verificar os dados
+SELECT * FROM produto;
+
+-- ⚠️ DROP TABLE: Remove a tabela COMPLETAMENTE (estrutura + dados)
+-- Use com MUITO cuidado! Não tem CTRL+Z!
+DROP TABLE produto;
+
+-- Verificar que a tabela não existe mais
+-- SHOW TABLES; (produto não aparece mais)</code></pre>
+      </div>
+    </section>
+
     <!-- SLIDE 11: PROJETOS -->
     <section class="slide slide--accent" data-title="Projetos">
       <h2>🚀 Projetos Hands-on</h2>
@@ -658,6 +785,159 @@ export function ClientesList() {
             <li>Validar constraints manualmente</li>
           </ul>
         </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 12.1: Referência de Comandos SQL - Parte 1 -->
+    <section class="slide slide--content" data-title="Referência SQL: DDL">
+      <h2>📖 Referência de Comandos — DDL (Estrutura)</h2>
+      <p>Comandos que alteram a <strong>estrutura</strong> do banco (tabelas, colunas, índices):</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- ═══ CREATE ═══ (Criar)
+CREATE DATABASE minha_loja;          -- Criar banco
+CREATE TABLE categoria (             -- Criar tabela
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  descricao TEXT
+);
+CREATE INDEX idx_nome ON categoria(nome);  -- Criar índice
+
+-- ═══ ALTER ═══ (Alterar estrutura)
+ALTER TABLE categoria ADD COLUMN ativa BOOLEAN DEFAULT TRUE;
+ALTER TABLE categoria MODIFY COLUMN nome VARCHAR(100);
+ALTER TABLE categoria RENAME COLUMN descricao TO detalhes;
+ALTER TABLE categoria RENAME TO categorias;
+
+-- ═══ DROP ═══ (Destruir)
+DROP INDEX idx_nome ON categorias;    -- Remove índice
+DROP TABLE categorias;               -- Remove tabela inteira
+DROP DATABASE minha_loja;            -- Remove banco inteiro
+
+-- ═══ TRUNCATE ═══ (Limpar dados, manter estrutura)
+TRUNCATE TABLE consulta;  -- Apaga TODOS os dados (mais rápido que DELETE)</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 12.2: Referência de Comandos SQL - Parte 2 -->
+    <section class="slide slide--dark" data-title="Referência SQL: DML">
+      <h2>📖 Referência de Comandos — DML (Dados)</h2>
+      <p style="color:#94A3B8;">Comandos que manipulam os <strong>dados</strong> dentro das tabelas:</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- ═══ INSERT ═══ (Inserir)
+INSERT INTO cliente (nome, telefone) VALUES ('Paula', '81900001111');
+INSERT INTO cliente (nome, telefone) VALUES 
+  ('Rafa', '81900002222'),
+  ('Leo', '81900003333');  -- Múltiplos de uma vez
+
+-- ═══ SELECT ═══ (Consultar)
+SELECT * FROM cliente;                    -- Todos os campos
+SELECT nome, email FROM cliente;          -- Campos específicos
+SELECT * FROM cliente WHERE id = 3;       -- Filtro por condição
+SELECT * FROM cliente ORDER BY nome ASC;  -- Ordenação
+SELECT * FROM cliente LIMIT 3;            -- Limitar resultados
+SELECT DISTINCT especie FROM pet;         -- Valores únicos
+SELECT COUNT(*) FROM pet;                 -- Contar registros
+SELECT especie, COUNT(*) AS qtd FROM pet GROUP BY especie;  -- Agrupar
+SELECT especie, COUNT(*) AS qtd FROM pet 
+  GROUP BY especie HAVING qtd > 1;        -- Filtro após GROUP BY
+
+-- ═══ UPDATE ═══ (Atualizar)
+UPDATE cliente SET email = 'novo@email.com' WHERE id = 2;
+UPDATE pet SET especie = 'Canino' WHERE especie = 'Cachorro';  -- Em massa
+
+-- ═══ DELETE ═══ (Excluir)
+DELETE FROM consulta WHERE id = 3;
+DELETE FROM pet WHERE especie = 'Canino' AND raca = 'Poodle';</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 12.3: Referência de Comandos SQL - Parte 3 -->
+    <section class="slide slide--content" data-title="Referência SQL: JOIN e Subconsultas">
+      <h2>📖 Referência de Comandos — JOIN e Subconsultas</h2>
+      <p>Combinando dados de múltiplas tabelas:</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- ═══ INNER JOIN ═══ (só retorna onde há correspondência nas duas tabelas)
+SELECT c.nome AS cliente, p.nome AS pet
+FROM cliente c
+INNER JOIN pet p ON c.id = p.cliente_id;
+
+-- ═══ LEFT JOIN ═══ (retorna todos da esquerda, mesmo sem correspondência)
+SELECT c.nome, p.nome AS pet
+FROM cliente c
+LEFT JOIN pet p ON c.id = p.cliente_id;
+-- Clientes sem pet aparecem com NULL no campo 'pet'
+
+-- ═══ RIGHT JOIN ═══ (retorna todos da direita)
+SELECT c.nome, p.nome AS pet
+FROM cliente c
+RIGHT JOIN pet p ON c.id = p.cliente_id;
+
+-- ═══ Subconsulta (SELECT dentro de SELECT) ═══
+-- Clientes que têm pelo menos uma consulta:
+SELECT nome FROM cliente 
+WHERE id IN (SELECT DISTINCT cliente_id FROM consulta);
+
+-- Pet mais recente consultado:
+SELECT p.nome FROM pet p
+WHERE p.id = (SELECT pet_id FROM consulta ORDER BY data DESC LIMIT 1);
+
+-- ═══ ALIAS (apelidos) ═══
+SELECT c.nome AS "Nome do Cliente", p.nome AS "Nome do Pet"
+FROM cliente c
+INNER JOIN pet p ON c.id = p.cliente_id;</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 12.4: Referência de Comandos SQL - Parte 4 -->
+    <section class="slide slide--dark" data-title="Referência SQL: Comandos Extras">
+      <h2>📖 Comandos Extras Úteis</h2>
+      <p style="color:#94A3B8;">Outros comandos importantes que não usamos ainda:</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- ═══ SHOW ═══ (Ver estrutura)
+SHOW DATABASES;               -- Lista todos os bancos
+SHOW TABLES;                  -- Lista tabelas do banco atual
+SHOW COLUMNS FROM cliente;    -- Mostra colunas de uma tabela
+DESCRIBE cliente;             -- Igual ao SHOW COLUMNS (atalho)
+
+-- ═══ USE ═══ (Selecionar banco)
+USE petshop;
+
+-- ═══ LIKE ═══ (Busca parcial)
+SELECT * FROM cliente WHERE nome LIKE 'Ma%';    -- Começa com "Ma"
+SELECT * FROM cliente WHERE email LIKE '%@gmail%';  -- Contém "@gmail"
+SELECT * FROM pet WHERE nome LIKE '___';        -- Exatamente 3 letras
+
+-- ═══ BETWEEN ═══ (Intervalo)
+SELECT * FROM consulta WHERE data BETWEEN '2026-08-01' AND '2026-08-15';
+SELECT * FROM produto WHERE preco BETWEEN 20 AND 50;
+
+-- ═══ IN ═══ (Lista de valores)
+SELECT * FROM pet WHERE especie IN ('Cachorro', 'Gato', 'Pássaro');
+
+-- ═══ IS NULL / IS NOT NULL ═══
+SELECT * FROM cliente WHERE cpf IS NULL;
+SELECT * FROM cliente WHERE email IS NOT NULL;
+
+-- ═══ ORDER BY + LIMIT ═══ (Top N)
+SELECT * FROM consulta ORDER BY data DESC LIMIT 3;  -- 3 mais recentes
+
+-- ═══ UNION ═══ (Combinar resultados de 2 SELECTs)
+SELECT nome, 'Cliente' AS tipo FROM cliente
+UNION
+SELECT nome, 'Veterinário' AS tipo FROM veterinario;
+
+-- ═══ IF / CASE ═══ (Condicionais)
+SELECT nome, 
+  CASE 
+    WHEN especie = 'Cachorro' THEN '🐕'
+    WHEN especie = 'Gato' THEN '🐈'
+    ELSE '🐾'
+  END AS emoji
+FROM pet;</code></pre>
       </div>
     </section>
 
