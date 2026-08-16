@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🐬 Guia: Instalação e Uso do MySQL + Workbench</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 100 100%27%3E%3Ctext y=%27.9em%27 font-size=%2760%27%3E🐬%3C/text%3E%3C/svg%3E">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    html { scroll-behavior: smooth; }
+    .step-number {
+      counter-increment: step;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #10b981, #059669);
+      color: white;
+      font-weight: 700;
+      font-size: 0.85rem;
+      flex-shrink: 0;
+    }
+    pre code {
+      font-size: 0.85rem;
+      line-height: 1.6;
+    }
+    .nav-link {
+      transition: all 0.2s;
+    }
+    .nav-link:hover {
+      color: #34d399;
+      transform: translateX(2px);
+    }
+  </style>
+</head>
+<body class="bg-slate-900 text-slate-100 font-sans min-h-screen">
+
+  <!-- Sticky Navigation -->
+  <nav class="sticky top-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-700/50">
+    <div class="max-w-5xl mx-auto px-6 py-3 flex items-center justify-between">
+      <a href="../ETE/portal/disciplinas/administracao-bancos-dados.html" class="text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors">
+        ← Voltar para Aula de BD
+      </a>
+      <div class="hidden md:flex items-center gap-4 text-xs text-slate-400">
+        <a href="#windows" class="nav-link hover:text-emerald-400">Windows</a>
+        <a href="#macos" class="nav-link hover:text-emerald-400">macOS</a>
+        <a href="#conexao" class="nav-link hover:text-emerald-400">Conexão</a>
+        <a href="#visual" class="nav-link hover:text-emerald-400">Visual</a>
+        <a href="#inserir" class="nav-link hover:text-emerald-400">Dados</a>
+        <a href="#visualizar" class="nav-link hover:text-emerald-400">Consultas</a>
+        <a href="#sql" class="nav-link hover:text-emerald-400">SQL</a>
+        <a href="#problemas" class="nav-link hover:text-emerald-400">Problemas</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="max-w-5xl mx-auto px-6 py-12">
+
+    <!-- Header -->
+    <header class="text-center mb-16">
+      <div class="text-6xl mb-4">🐬</div>
+      <h1 class="text-4xl md:text-5xl font-extrabold bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent mb-4">
+        Guia: Instalação e Uso do MySQL + Workbench
+      </h1>
+      <p class="text-lg text-slate-400 mb-2">Guia completo para Windows e macOS</p>
+      <p class="text-sm text-slate-500">ETE Pernambuco — Profª Luana Cristina</p>
+    </header>
+
+    <!-- Índice -->
+    <section class="mb-16 bg-slate-800/50 rounded-2xl p-8 border border-slate-700/50">
+      <h2 class="text-xl font-bold text-emerald-400 mb-6 flex items-center gap-2">
+        📑 Índice
+      </h2>
+      <div class="grid md:grid-cols-2 gap-3">
+        <a href="#windows" class="nav-link flex items-center gap-3 text-slate-300 hover:text-emerald-400 p-2 rounded-lg hover:bg-slate-700/30">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">1</span>
+          Instalação no Windows
+        </a>
+        <a href="#macos" class="nav-link flex items-center gap-3 text-slate-300 hover:text-emerald-400 p-2 rounded-lg hover:bg-slate-700/30">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">2</span>
+          Instalação no macOS
+        </a>
+        <a href="#conexao" class="nav-link flex items-center gap-3 text-slate-300 hover:text-emerald-400 p-2 rounded-lg hover:bg-slate-700/30">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">3</span>
+          Configurando a Conexão no Workbench
+        </a>
+        <a href="#visual" class="nav-link flex items-center gap-3 text-slate-300 hover:text-emerald-400 p-2 rounded-lg hover:bg-slate-700/30">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">4</span>
+          Criando o Banco via Interface Visual
+        </a>
+        <a href="#inserir" class="nav-link flex items-center gap-3 text-slate-300 hover:text-emerald-400 p-2 rounded-lg hover:bg-slate-700/30">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">5</span>
+          Inserindo Dados via Workbench
+        </a>
+        <a href="#visualizar" class="nav-link flex items-center gap-3 text-slate-300 hover:text-emerald-400 p-2 rounded-lg hover:bg-slate-700/30">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">6</span>
+          Visualizando os Dados
+        </a>
+        <a href="#sql" class="nav-link flex items-center gap-3 text-slate-300 hover:text-emerald-400 p-2 rounded-lg hover:bg-slate-700/30">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">7</span>
+          Criando com Comandos SQL
+        </a>
+        <a href="#problemas" class="nav-link flex items-center gap-3 text-slate-300 hover:text-emerald-400 p-2 rounded-lg hover:bg-slate-700/30">
+          <span class="w-7 h-7 rounded-full bg-emerald-500/20 text-emerald-400 text-xs font-bold flex items-center justify-center">8</span>
+          Dicas e Resolução de Problemas
+        </a>
+      </div>
+    </section>
+
+    <!-- Section 1: Windows -->
+    <section id="windows" class="mb-20">
+      <h2 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+        <span class="text-4xl">🪟</span> 1. Instalação no Windows
+      </h2>
+
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="step-number">1</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Acesse o site oficial do MySQL</p>
+            <p class="text-slate-400 text-sm mt-1">Abra o navegador e vá para: <a href="https://dev.mysql.com/downloads/installer/" class="text-cyan-400 hover:underline" target="_blank">https://dev.mysql.com/downloads/installer/</a></p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">2</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Baixe o MySQL Installer for Windows</p>
+            <p class="text-slate-400 text-sm mt-1">Escolha o arquivo <code class="bg-slate-700 px-2 py-0.5 rounded text-emerald-300 font-mono text-xs">mysql-installer-community</code> (o maior, offline).</p>
+            <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+              📸 Screenshot: Página de download do MySQL Installer
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">3</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Execute o instalador</p>
+            <p class="text-slate-400 text-sm mt-1">Dê duplo clique no arquivo baixado e permita a execução como administrador.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">4</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Escolha "Custom" para selecionar os componentes</p>
+            <p class="text-slate-400 text-sm mt-1">Marque apenas:</p>
+            <ul class="mt-2 space-y-1">
+              <li class="flex items-center gap-2 text-sm text-slate-300">
+                <span class="text-emerald-400">✓</span> MySQL Server 8.x
+              </li>
+              <li class="flex items-center gap-2 text-sm text-slate-300">
+                <span class="text-emerald-400">✓</span> MySQL Workbench
+              </li>
+            </ul>
+            <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+              📸 Screenshot: Tela de seleção "Custom" no instalador
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">5</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Configure a senha do root</p>
+            <p class="text-slate-400 text-sm mt-1">Defina uma senha segura. Exemplo: <code class="bg-slate-700 px-2 py-0.5 rounded text-amber-300 font-mono text-xs">root123</code></p>
+          </div>
+        </div>
+
+        <!-- Warning Callout -->
+        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-5 ml-12">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">⚠️</span>
+            <div>
+              <p class="text-amber-300 font-semibold">ANOTE A SENHA!</p>
+              <p class="text-amber-200/80 text-sm mt-1">Se esquecer a senha do root, terá que reinstalar o MySQL completamente. Anote em um lugar seguro!</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">6</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Porta padrão: 3306</p>
+            <p class="text-slate-400 text-sm mt-1">Mantenha a porta padrão <code class="bg-slate-700 px-2 py-0.5 rounded text-emerald-300 font-mono text-xs">3306</code>. Não altere a menos que necessário.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">7</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Finalize a instalação</p>
+            <p class="text-slate-400 text-sm mt-1">Clique "Next" até concluir. O instalador configurará o serviço automaticamente.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">8</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Abra o MySQL Workbench</p>
+            <p class="text-slate-400 text-sm mt-1">Procure "MySQL Workbench" no Menu Iniciar e abra o programa.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">9</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Teste a conexão</p>
+            <p class="text-slate-400 text-sm mt-1">Clique em <strong>"Local instance MySQL"</strong> → digite a senha do root → se conectar, está funcionando!</p>
+            <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+              📸 Screenshot: Tela inicial do MySQL Workbench com conexão local
+            </div>
+          </div>
+        </div>
+
+        <!-- Success Callout -->
+        <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-5 ml-12">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">✅</span>
+            <div>
+              <p class="text-emerald-300 font-semibold">Pronto!</p>
+              <p class="text-emerald-200/80 text-sm mt-1">Se conseguiu conectar, o MySQL está instalado e funcionando corretamente no Windows!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: macOS -->
+    <section id="macos" class="mb-20">
+      <h2 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+        <span class="text-4xl">🍎</span> 2. Instalação no macOS
+      </h2>
+
+      <!-- Opção A: Homebrew -->
+      <div class="mb-10">
+        <h3 class="text-xl font-semibold text-cyan-400 mb-4">Opção A: Via Homebrew (Recomendado)</h3>
+
+        <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-5 mb-6">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">💡</span>
+            <div>
+              <p class="text-emerald-300 font-semibold">Homebrew é o jeito mais fácil!</p>
+              <p class="text-emerald-200/80 text-sm mt-1">Se você ainda não tem o Homebrew, instale antes: <a href="https://brew.sh" class="text-cyan-400 hover:underline" target="_blank">brew.sh</a></p>
+            </div>
+          </div>
+        </div>
+
+        <div class="space-y-4">
+          <div class="flex gap-4">
+            <div class="step-number">1</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Instale o MySQL via Terminal</p>
+              <pre class="bg-slate-800 rounded-xl p-4 mt-2 overflow-x-auto border border-slate-700"><code class="text-sm font-mono text-slate-300">brew install mysql</code></pre>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">2</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Inicie o serviço</p>
+              <pre class="bg-slate-800 rounded-xl p-4 mt-2 overflow-x-auto border border-slate-700"><code class="text-sm font-mono text-slate-300">brew services start mysql</code></pre>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">3</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Configure a segurança (definir senha root)</p>
+              <pre class="bg-slate-800 rounded-xl p-4 mt-2 overflow-x-auto border border-slate-700"><code class="text-sm font-mono text-slate-300">mysql_secure_installation</code></pre>
+              <p class="text-slate-400 text-sm mt-2">Siga as instruções para definir a senha do root e configurar opções de segurança.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opção B: DMG -->
+      <div class="mb-10">
+        <h3 class="text-xl font-semibold text-cyan-400 mb-4">Opção B: Via DMG do Site Oficial</h3>
+
+        <div class="space-y-4">
+          <div class="flex gap-4">
+            <div class="step-number">1</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Acesse o site</p>
+              <p class="text-slate-400 text-sm mt-1"><a href="https://dev.mysql.com/downloads/mysql/" class="text-cyan-400 hover:underline" target="_blank">https://dev.mysql.com/downloads/mysql/</a></p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">2</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Baixe o DMG correto para seu Mac</p>
+              <ul class="mt-2 space-y-1 text-sm text-slate-400">
+                <li>• <strong class="text-slate-300">Apple Silicon (M1/M2/M3):</strong> ARM, 64-bit</li>
+                <li>• <strong class="text-slate-300">Intel:</strong> x86, 64-bit</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">3</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Instale o MySQL Server</p>
+              <p class="text-slate-400 text-sm mt-1">Abra o DMG e siga o assistente de instalação. Anote a senha temporária gerada!</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">4</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Inicie o serviço</p>
+              <p class="text-slate-400 text-sm mt-1">Abra <strong>System Preferences (Ajustes do Sistema) → MySQL → Start Server</strong></p>
+              <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+                📸 Screenshot: Painel MySQL nas Preferências do Sistema
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workbench macOS -->
+      <div class="mb-10">
+        <h3 class="text-xl font-semibold text-cyan-400 mb-4">Instalar o Workbench separadamente</h3>
+
+        <div class="space-y-4">
+          <div class="flex gap-4">
+            <div class="step-number">1</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Baixe o Workbench</p>
+              <p class="text-slate-400 text-sm mt-1"><a href="https://dev.mysql.com/downloads/workbench/" class="text-cyan-400 hover:underline" target="_blank">https://dev.mysql.com/downloads/workbench/</a></p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">2</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Instale arrastando para Applications</p>
+              <p class="text-slate-400 text-sm mt-1">Abra o DMG baixado e arraste o ícone do MySQL Workbench para a pasta Applications.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">3</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Teste no terminal</p>
+              <pre class="bg-slate-800 rounded-xl p-4 mt-2 overflow-x-auto border border-slate-700"><code class="text-sm font-mono text-slate-300">mysql -u root -p</code></pre>
+              <p class="text-slate-400 text-sm mt-2">Se pedir a senha e conectar, está tudo certo!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Conexão no Workbench -->
+    <section id="conexao" class="mb-20">
+      <h2 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+        <span class="text-4xl">🔌</span> 3. Configurando a Conexão no Workbench
+      </h2>
+
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="step-number">1</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Abra o MySQL Workbench</p>
+            <p class="text-slate-400 text-sm mt-1">Na tela inicial, você verá a área "MySQL Connections".</p>
+            <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+              📸 Screenshot: Tela inicial do Workbench com área de conexões
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">2</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Clique no "+" ao lado de "MySQL Connections"</p>
+            <p class="text-slate-400 text-sm mt-1">Isso abre a janela de configuração de nova conexão.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">3</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Preencha os dados da conexão</p>
+            <div class="bg-slate-800 rounded-xl p-5 mt-3 border border-slate-700">
+              <table class="w-full text-sm">
+                <tbody>
+                  <tr class="border-b border-slate-700">
+                    <td class="py-2 text-slate-400 font-medium pr-4">Connection Name:</td>
+                    <td class="py-2 text-emerald-300 font-mono">PetShop Local</td>
+                  </tr>
+                  <tr class="border-b border-slate-700">
+                    <td class="py-2 text-slate-400 font-medium pr-4">Hostname:</td>
+                    <td class="py-2 text-emerald-300 font-mono">127.0.0.1</td>
+                  </tr>
+                  <tr class="border-b border-slate-700">
+                    <td class="py-2 text-slate-400 font-medium pr-4">Port:</td>
+                    <td class="py-2 text-emerald-300 font-mono">3306</td>
+                  </tr>
+                  <tr>
+                    <td class="py-2 text-slate-400 font-medium pr-4">Username:</td>
+                    <td class="py-2 text-emerald-300 font-mono">root</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+              📸 Screenshot: Janela "Setup New Connection" preenchida
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">4</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Teste a conexão</p>
+            <p class="text-slate-400 text-sm mt-1">Clique <strong>"Test Connection"</strong> → digite a senha do root → clique "OK".</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">5</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Salve a conexão</p>
+            <p class="text-slate-400 text-sm mt-1">Clique <strong>"OK"</strong> para salvar a conexão.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">6</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Conecte ao banco</p>
+            <p class="text-slate-400 text-sm mt-1">Dê <strong>duplo clique</strong> na conexão "PetShop Local" criada para abrir o editor SQL.</p>
+          </div>
+        </div>
+
+        <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-5 ml-12">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">💡</span>
+            <div>
+              <p class="text-emerald-300 font-semibold">Dica</p>
+              <p class="text-emerald-200/80 text-sm mt-1">Se aparecer "Connection successful", você está pronto para trabalhar!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Criando o Banco Visual -->
+    <section id="visual" class="mb-20">
+      <h2 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+        <span class="text-4xl">🖱️</span> 4. Criando o Banco via Interface Visual (Workbench)
+      </h2>
+
+      <!-- 4.1 Criar o banco -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold text-cyan-400 mb-4">4.1 Criar o Schema (Banco de Dados)</h3>
+
+        <div class="space-y-4">
+          <div class="flex gap-4">
+            <div class="step-number">1</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Na sidebar esquerda, clique com botão direito em "Schemas"</p>
+              <p class="text-slate-400 text-sm mt-1">A área "Schemas" mostra todos os bancos de dados existentes.</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">2</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Selecione "Create Schema..."</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">3</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Digite o nome: <code class="bg-slate-700 px-2 py-0.5 rounded text-emerald-300 font-mono text-xs">petshop</code></p>
+              <p class="text-slate-400 text-sm mt-1">Clique <strong>Apply</strong> → revise o SQL gerado → <strong>Apply</strong> novamente.</p>
+              <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+                📸 Screenshot: Tela "Create Schema" com nome "petshop"
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.2 Criar tabela cliente -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold text-cyan-400 mb-4">4.2 Criar Tabela "cliente"</h3>
+
+        <div class="space-y-4">
+          <div class="flex gap-4">
+            <div class="step-number">1</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Expanda o schema <code class="bg-slate-700 px-2 py-0.5 rounded text-emerald-300 font-mono text-xs">petshop</code></p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">2</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Clique com botão direito em "Tables" → "Create Table..."</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">3</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Nome da tabela: <code class="bg-slate-700 px-2 py-0.5 rounded text-emerald-300 font-mono text-xs">cliente</code></p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">4</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Adicione as colunas:</p>
+              <div class="overflow-x-auto mt-3">
+                <table class="w-full text-sm bg-slate-800 rounded-xl overflow-hidden border border-slate-700">
+                  <thead>
+                    <tr class="bg-slate-700/50">
+                      <th class="py-3 px-4 text-left text-slate-300 font-semibold">Column Name</th>
+                      <th class="py-3 px-4 text-left text-slate-300 font-semibold">Datatype</th>
+                      <th class="py-3 px-4 text-center text-slate-300 font-semibold">PK</th>
+                      <th class="py-3 px-4 text-center text-slate-300 font-semibold">NN</th>
+                      <th class="py-3 px-4 text-center text-slate-300 font-semibold">AI</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-emerald-300">id</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">INT</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                    </tr>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-emerald-300">nome</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">VARCHAR(100)</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                    </tr>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-emerald-300">telefone</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">VARCHAR(20)</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                    </tr>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-emerald-300">email</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">VARCHAR(100)</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <p class="text-slate-400 text-xs mt-2">PK = Primary Key | NN = Not Null | AI = Auto Increment</p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">5</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Clique "Apply" → Revise o SQL → "Apply"</p>
+              <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+                📸 Screenshot: Editor visual de tabela com colunas preenchidas
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4.3 Criar tabela pet com FK -->
+      <div class="mb-12">
+        <h3 class="text-xl font-semibold text-cyan-400 mb-4">4.3 Criar Tabela "pet" com Chave Estrangeira (FK)</h3>
+
+        <div class="space-y-4">
+          <div class="flex gap-4">
+            <div class="step-number">1</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Mesmo processo: botão direito em "Tables" → "Create Table..."</p>
+              <p class="text-slate-400 text-sm mt-1">Nome: <code class="bg-slate-700 px-2 py-0.5 rounded text-emerald-300 font-mono text-xs">pet</code></p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">2</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Adicione as colunas:</p>
+              <div class="overflow-x-auto mt-3">
+                <table class="w-full text-sm bg-slate-800 rounded-xl overflow-hidden border border-slate-700">
+                  <thead>
+                    <tr class="bg-slate-700/50">
+                      <th class="py-3 px-4 text-left text-slate-300 font-semibold">Column Name</th>
+                      <th class="py-3 px-4 text-left text-slate-300 font-semibold">Datatype</th>
+                      <th class="py-3 px-4 text-center text-slate-300 font-semibold">PK</th>
+                      <th class="py-3 px-4 text-center text-slate-300 font-semibold">NN</th>
+                      <th class="py-3 px-4 text-center text-slate-300 font-semibold">AI</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-emerald-300">id</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">INT</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                    </tr>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-emerald-300">nome</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">VARCHAR(50)</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                    </tr>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-emerald-300">especie</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">VARCHAR(30)</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                    </tr>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-emerald-300">raca</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">VARCHAR(50)</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                    </tr>
+                    <tr class="border-t border-slate-700">
+                      <td class="py-2 px-4 font-mono text-amber-300">cliente_id</td>
+                      <td class="py-2 px-4 font-mono text-slate-300">INT</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                      <td class="py-2 px-4 text-center text-emerald-400">✅</td>
+                      <td class="py-2 px-4 text-center text-slate-500">—</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">3</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Configure a Foreign Key</p>
+              <p class="text-slate-400 text-sm mt-1">Vá para a aba <strong>"Foreign Keys"</strong> no editor de tabela:</p>
+              <div class="bg-slate-800 rounded-xl p-5 mt-3 border border-slate-700 space-y-2">
+                <p class="text-sm"><span class="text-slate-400">FK Name:</span> <code class="text-amber-300 font-mono">fk_pet_cliente</code></p>
+                <p class="text-sm"><span class="text-slate-400">Referenced Table:</span> <code class="text-amber-300 font-mono">petshop.cliente</code></p>
+                <p class="text-sm"><span class="text-slate-400">Column:</span> <code class="text-amber-300 font-mono">cliente_id</code> → <span class="text-slate-400">Referenced Column:</span> <code class="text-amber-300 font-mono">id</code></p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="step-number">4</div>
+            <div class="flex-1">
+              <p class="text-slate-200 font-medium">Apply → Apply</p>
+              <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+                📸 Screenshot: Aba Foreign Keys com fk_pet_cliente configurada
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-5 mt-6">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">💡</span>
+            <div>
+              <p class="text-emerald-300 font-semibold">Repita o processo</p>
+              <p class="text-emerald-200/80 text-sm mt-1">Crie também as tabelas <code class="font-mono">veterinario</code> e <code class="font-mono">consulta</code> seguindo o mesmo padrão.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 5: Inserindo Dados -->
+    <section id="inserir" class="mb-20">
+      <h2 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+        <span class="text-4xl">✍️</span> 5. Inserindo Dados via Workbench (Visual)
+      </h2>
+
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="step-number">1</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Clique com botão direito na tabela <code class="bg-slate-700 px-2 py-0.5 rounded text-emerald-300 font-mono text-xs">cliente</code> → "Select Rows"</p>
+            <p class="text-slate-400 text-sm mt-1">Isso abre uma grid editável semelhante a uma planilha.</p>
+            <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+              📸 Screenshot: Grid editável com colunas da tabela cliente
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">2</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Na grid, clique na última linha vazia e preencha:</p>
+            <div class="bg-slate-800 rounded-xl p-5 mt-3 border border-slate-700">
+              <table class="w-full text-sm">
+                <thead>
+                  <tr class="border-b border-slate-700">
+                    <th class="py-2 text-left text-slate-400">nome</th>
+                    <th class="py-2 text-left text-slate-400">telefone</th>
+                    <th class="py-2 text-left text-slate-400">email</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="py-2 text-emerald-300 font-mono">Maria Silva</td>
+                    <td class="py-2 text-emerald-300 font-mono">81999001122</td>
+                    <td class="py-2 text-emerald-300 font-mono">maria@email.com</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">3</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Clique no ícone "Apply" (✓) na barra de ferramentas</p>
+            <p class="text-slate-400 text-sm mt-1">O Workbench vai gerar o INSERT automaticamente. Revise e clique "Apply".</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">4</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Repita para as outras tabelas</p>
+            <p class="text-slate-400 text-sm mt-1">Adicione dados em <code class="font-mono text-xs bg-slate-700 px-1 rounded">veterinario</code>, <code class="font-mono text-xs bg-slate-700 px-1 rounded">pet</code> e <code class="font-mono text-xs bg-slate-700 px-1 rounded">consulta</code>.</p>
+          </div>
+        </div>
+
+        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-5 ml-12">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">⚠️</span>
+            <div>
+              <p class="text-amber-300 font-semibold">Ordem importa!</p>
+              <p class="text-amber-200/80 text-sm mt-1">Insira dados primeiro em <code class="font-mono">cliente</code> e <code class="font-mono">veterinario</code>, depois em <code class="font-mono">pet</code> e <code class="font-mono">consulta</code> (por causa das FKs).</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: Visualizando Dados -->
+    <section id="visualizar" class="mb-20">
+      <h2 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+        <span class="text-4xl">👁️</span> 6. Visualizando os Dados
+      </h2>
+
+      <div class="space-y-6">
+        <div class="flex gap-4">
+          <div class="step-number">1</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Via menu de contexto</p>
+            <p class="text-slate-400 text-sm mt-1">Clique com botão direito na tabela → <strong>"Select Rows - Limit 1000"</strong></p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">2</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Via Query Editor</p>
+            <p class="text-slate-400 text-sm mt-1">Na aba "Query", digite o comando e clique no ícone de raio ⚡ para executar:</p>
+            <pre class="bg-slate-800 rounded-xl p-4 mt-3 overflow-x-auto border border-slate-700"><code class="text-sm font-mono text-slate-300"><span class="text-purple-400">SELECT</span> * <span class="text-purple-400">FROM</span> cliente;</code></pre>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">3</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Resultado na "Result Grid"</p>
+            <p class="text-slate-400 text-sm mt-1">Os dados aparecem em uma tabela na parte inferior da tela.</p>
+            <div class="bg-slate-700 rounded-lg p-6 text-center text-slate-400 border border-dashed border-slate-500 mt-3">
+              📸 Screenshot: Result Grid mostrando dados da tabela cliente
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 7: SQL Completo -->
+    <section id="sql" class="mb-20">
+      <h2 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+        <span class="text-4xl">💻</span> 7. Criando com Comandos SQL (Editor de Query)
+      </h2>
+
+      <div class="space-y-6 mb-8">
+        <div class="flex gap-4">
+          <div class="step-number">1</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Abra um novo Query Tab</p>
+            <p class="text-slate-400 text-sm mt-1">Na conexão aberta, clique em <strong>File → New Query Tab</strong> (ou Ctrl+T / Cmd+T)</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4">
+          <div class="step-number">2</div>
+          <div class="flex-1">
+            <p class="text-slate-200 font-medium">Cole o código abaixo e execute com ⚡</p>
+            <p class="text-slate-400 text-sm mt-1">Selecione todo o texto e clique no raio, ou use Ctrl+Shift+Enter / Cmd+Shift+Enter</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- SQL Code Block -->
+      <div class="bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 mb-8">
+        <div class="flex items-center justify-between px-5 py-3 bg-slate-700/50 border-b border-slate-700">
+          <div class="flex items-center gap-2">
+            <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-amber-500/80"></div>
+            <div class="w-3 h-3 rounded-full bg-emerald-500/80"></div>
+          </div>
+          <span class="text-xs text-slate-400 font-mono">petshop.sql</span>
+        </div>
+        <pre class="p-6 overflow-x-auto"><code class="text-sm font-mono text-slate-300 leading-relaxed"><span class="text-slate-500">-- ============================================</span>
+<span class="text-slate-500">-- 🐬 PETSHOP - Script Completo</span>
+<span class="text-slate-500">-- ============================================</span>
+
+<span class="text-slate-500">-- Criar o banco</span>
+<span class="text-purple-400">CREATE DATABASE IF NOT EXISTS</span> petshop;
+<span class="text-purple-400">USE</span> petshop;
+
+<span class="text-slate-500">-- ============================================</span>
+<span class="text-slate-500">-- CRIAR TABELAS</span>
+<span class="text-slate-500">-- ============================================</span>
+
+<span class="text-purple-400">CREATE TABLE</span> cliente (
+  id <span class="text-cyan-400">INT</span> <span class="text-amber-400">AUTO_INCREMENT</span> <span class="text-amber-400">PRIMARY KEY</span>,
+  nome <span class="text-cyan-400">VARCHAR</span>(<span class="text-emerald-400">100</span>) <span class="text-amber-400">NOT NULL</span>,
+  telefone <span class="text-cyan-400">VARCHAR</span>(<span class="text-emerald-400">20</span>),
+  email <span class="text-cyan-400">VARCHAR</span>(<span class="text-emerald-400">100</span>)
+);
+
+<span class="text-purple-400">CREATE TABLE</span> veterinario (
+  id <span class="text-cyan-400">INT</span> <span class="text-amber-400">AUTO_INCREMENT</span> <span class="text-amber-400">PRIMARY KEY</span>,
+  nome <span class="text-cyan-400">VARCHAR</span>(<span class="text-emerald-400">100</span>) <span class="text-amber-400">NOT NULL</span>,
+  crmv <span class="text-cyan-400">VARCHAR</span>(<span class="text-emerald-400">20</span>) <span class="text-amber-400">NOT NULL</span>
+);
+
+<span class="text-purple-400">CREATE TABLE</span> pet (
+  id <span class="text-cyan-400">INT</span> <span class="text-amber-400">AUTO_INCREMENT</span> <span class="text-amber-400">PRIMARY KEY</span>,
+  nome <span class="text-cyan-400">VARCHAR</span>(<span class="text-emerald-400">50</span>) <span class="text-amber-400">NOT NULL</span>,
+  especie <span class="text-cyan-400">VARCHAR</span>(<span class="text-emerald-400">30</span>),
+  raca <span class="text-cyan-400">VARCHAR</span>(<span class="text-emerald-400">50</span>),
+  cliente_id <span class="text-cyan-400">INT</span> <span class="text-amber-400">NOT NULL</span>,
+  <span class="text-amber-400">FOREIGN KEY</span> (cliente_id) <span class="text-amber-400">REFERENCES</span> cliente(id)
+);
+
+<span class="text-purple-400">CREATE TABLE</span> consulta (
+  id <span class="text-cyan-400">INT</span> <span class="text-amber-400">AUTO_INCREMENT</span> <span class="text-amber-400">PRIMARY KEY</span>,
+  data <span class="text-cyan-400">DATE</span> <span class="text-amber-400">NOT NULL</span>,
+  diagnostico <span class="text-cyan-400">TEXT</span>,
+  cliente_id <span class="text-cyan-400">INT</span> <span class="text-amber-400">NOT NULL</span>,
+  pet_id <span class="text-cyan-400">INT</span> <span class="text-amber-400">NOT NULL</span>,
+  vet_id <span class="text-cyan-400">INT</span> <span class="text-amber-400">NOT NULL</span>,
+  <span class="text-amber-400">FOREIGN KEY</span> (cliente_id) <span class="text-amber-400">REFERENCES</span> cliente(id),
+  <span class="text-amber-400">FOREIGN KEY</span> (pet_id) <span class="text-amber-400">REFERENCES</span> pet(id),
+  <span class="text-amber-400">FOREIGN KEY</span> (vet_id) <span class="text-amber-400">REFERENCES</span> veterinario(id)
+);
+
+<span class="text-slate-500">-- ============================================</span>
+<span class="text-slate-500">-- INSERIR DADOS</span>
+<span class="text-slate-500">-- ============================================</span>
+
+<span class="text-purple-400">INSERT INTO</span> cliente (nome, telefone, email) <span class="text-purple-400">VALUES</span>
+  (<span class="text-emerald-400">'Maria Silva'</span>, <span class="text-emerald-400">'81999001122'</span>, <span class="text-emerald-400">'maria@email.com'</span>),
+  (<span class="text-emerald-400">'João Santos'</span>, <span class="text-emerald-400">'81988773344'</span>, <span class="text-emerald-400">'joao@email.com'</span>),
+  (<span class="text-emerald-400">'Ana Oliveira'</span>, <span class="text-emerald-400">'81977665544'</span>, <span class="text-emerald-400">'ana@email.com'</span>),
+  (<span class="text-emerald-400">'Carlos Lima'</span>, <span class="text-emerald-400">'81966554433'</span>, <span class="text-emerald-400">'carlos@email.com'</span>),
+  (<span class="text-emerald-400">'Fernanda Costa'</span>, <span class="text-emerald-400">'81955443322'</span>, <span class="text-emerald-400">'fernanda@email.com'</span>);
+
+<span class="text-purple-400">INSERT INTO</span> veterinario (nome, crmv) <span class="text-purple-400">VALUES</span>
+  (<span class="text-emerald-400">'Dr. Pedro Alves'</span>, <span class="text-emerald-400">'CRMV-PE 1234'</span>),
+  (<span class="text-emerald-400">'Dra. Lucia Ramos'</span>, <span class="text-emerald-400">'CRMV-PE 5678'</span>),
+  (<span class="text-emerald-400">'Dr. Roberto Dias'</span>, <span class="text-emerald-400">'CRMV-PE 9012'</span>);
+
+<span class="text-purple-400">INSERT INTO</span> pet (nome, especie, raca, cliente_id) <span class="text-purple-400">VALUES</span>
+  (<span class="text-emerald-400">'Rex'</span>, <span class="text-emerald-400">'Cachorro'</span>, <span class="text-emerald-400">'Labrador'</span>, <span class="text-emerald-400">1</span>),
+  (<span class="text-emerald-400">'Mimi'</span>, <span class="text-emerald-400">'Gato'</span>, <span class="text-emerald-400">'Siamês'</span>, <span class="text-emerald-400">2</span>),
+  (<span class="text-emerald-400">'Thor'</span>, <span class="text-emerald-400">'Cachorro'</span>, <span class="text-emerald-400">'Bulldog'</span>, <span class="text-emerald-400">3</span>),
+  (<span class="text-emerald-400">'Luna'</span>, <span class="text-emerald-400">'Gato'</span>, <span class="text-emerald-400">'Persa'</span>, <span class="text-emerald-400">4</span>),
+  (<span class="text-emerald-400">'Bob'</span>, <span class="text-emerald-400">'Cachorro'</span>, <span class="text-emerald-400">'Poodle'</span>, <span class="text-emerald-400">5</span>);
+
+<span class="text-purple-400">INSERT INTO</span> consulta (data, diagnostico, cliente_id, pet_id, vet_id) <span class="text-purple-400">VALUES</span>
+  (<span class="text-emerald-400">'2026-08-01'</span>, <span class="text-emerald-400">'Vacinação anual'</span>, <span class="text-emerald-400">1</span>, <span class="text-emerald-400">1</span>, <span class="text-emerald-400">1</span>),
+  (<span class="text-emerald-400">'2026-08-05'</span>, <span class="text-emerald-400">'Infecção urinária'</span>, <span class="text-emerald-400">2</span>, <span class="text-emerald-400">2</span>, <span class="text-emerald-400">2</span>),
+  (<span class="text-emerald-400">'2026-08-10'</span>, <span class="text-emerald-400">'Fratura na pata'</span>, <span class="text-emerald-400">3</span>, <span class="text-emerald-400">3</span>, <span class="text-emerald-400">3</span>);
+
+<span class="text-slate-500">-- ============================================</span>
+<span class="text-slate-500">-- VERIFICAR DADOS</span>
+<span class="text-slate-500">-- ============================================</span>
+
+<span class="text-purple-400">SELECT</span> * <span class="text-purple-400">FROM</span> cliente;
+<span class="text-purple-400">SELECT</span> * <span class="text-purple-400">FROM</span> pet;
+<span class="text-purple-400">SELECT</span> * <span class="text-purple-400">FROM</span> veterinario;
+<span class="text-purple-400">SELECT</span> * <span class="text-purple-400">FROM</span> consulta;
+
+<span class="text-slate-500">-- ============================================</span>
+<span class="text-slate-500">-- JOIN: pets com seus donos</span>
+<span class="text-slate-500">-- ============================================</span>
+
+<span class="text-purple-400">SELECT</span> p.nome <span class="text-purple-400">AS</span> pet, c.nome <span class="text-purple-400">AS</span> dono
+<span class="text-purple-400">FROM</span> pet p
+<span class="text-purple-400">INNER JOIN</span> cliente c <span class="text-purple-400">ON</span> p.cliente_id = c.id;</code></pre>
+      </div>
+
+      <!-- Tip about execution -->
+      <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-5">
+        <div class="flex items-start gap-3">
+          <span class="text-xl">💡</span>
+          <div>
+            <p class="text-emerald-300 font-semibold">Dica de execução</p>
+            <p class="text-emerald-200/80 text-sm mt-1">Você pode selecionar apenas parte do código e executar com ⚡. Útil para rodar um comando por vez!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 8: Problemas -->
+    <section id="problemas" class="mb-20">
+      <h2 class="text-3xl font-bold text-emerald-400 mb-8 flex items-center gap-3">
+        <span class="text-4xl">🔧</span> 8. Dicas e Resolução de Problemas
+      </h2>
+
+      <div class="space-y-4">
+        <!-- Problem 1 -->
+        <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">❌</span>
+            <div class="flex-1">
+              <p class="text-red-300 font-semibold">"Access denied for user 'root'@'localhost'"</p>
+              <p class="text-red-200/80 text-sm mt-2"><strong>Solução:</strong> Verifique se a senha está correta. Tente digitar novamente com cuidado (sem espaços antes/depois).</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Problem 2 -->
+        <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">❌</span>
+            <div class="flex-1">
+              <p class="text-red-300 font-semibold">"Can't connect to MySQL server"</p>
+              <p class="text-red-200/80 text-sm mt-2"><strong>Solução:</strong> O serviço MySQL não está rodando. Inicie-o:</p>
+              <div class="mt-3 space-y-2">
+                <div class="bg-slate-800 rounded-lg p-3 border border-slate-700">
+                  <p class="text-xs text-slate-400 mb-1">macOS (Homebrew):</p>
+                  <code class="text-sm font-mono text-emerald-300">brew services start mysql</code>
+                </div>
+                <div class="bg-slate-800 rounded-lg p-3 border border-slate-700">
+                  <p class="text-xs text-slate-400 mb-1">Windows:</p>
+                  <code class="text-sm font-mono text-emerald-300">Services → MySQL80 → Start</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Problem 3 -->
+        <div class="bg-red-500/10 border border-red-500/30 rounded-xl p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">❌</span>
+            <div class="flex-1">
+              <p class="text-red-300 font-semibold">"Port 3306 already in use"</p>
+              <p class="text-red-200/80 text-sm mt-2"><strong>Solução:</strong> Outra instância do MySQL (ou outro programa) está usando a porta. Verifique:</p>
+              <div class="mt-3 space-y-2">
+                <div class="bg-slate-800 rounded-lg p-3 border border-slate-700">
+                  <p class="text-xs text-slate-400 mb-1">macOS/Linux:</p>
+                  <code class="text-sm font-mono text-emerald-300">lsof -i :3306</code>
+                </div>
+                <div class="bg-slate-800 rounded-lg p-3 border border-slate-700">
+                  <p class="text-xs text-slate-400 mb-1">Windows (CMD como Admin):</p>
+                  <code class="text-sm font-mono text-emerald-300">netstat -ano | findstr 3306</code>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Problem 4 -->
+        <div class="bg-amber-500/10 border border-amber-500/30 rounded-xl p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">⚠️</span>
+            <div class="flex-1">
+              <p class="text-amber-300 font-semibold">Esqueceu a senha do root?</p>
+              <p class="text-amber-200/80 text-sm mt-2"><strong>Windows:</strong> Reinstale o MySQL ou siga o guia de reset no site oficial.</p>
+              <p class="text-amber-200/80 text-sm mt-1"><strong>macOS (Homebrew):</strong></p>
+              <pre class="bg-slate-800 rounded-lg p-3 mt-2 overflow-x-auto border border-slate-700"><code class="text-sm font-mono text-slate-300">brew services stop mysql
+mysqld_safe --skip-grant-tables &
+mysql -u root
+<span class="text-slate-500">-- Dentro do MySQL:</span>
+ALTER USER 'root'@'localhost' IDENTIFIED BY 'novaSenha123';</code></pre>
+            </div>
+          </div>
+        </div>
+
+        <!-- General tips -->
+        <div class="bg-emerald-500/10 border border-emerald-500/30 rounded-xl p-5">
+          <div class="flex items-start gap-3">
+            <span class="text-xl">💡</span>
+            <div>
+              <p class="text-emerald-300 font-semibold">Dicas gerais</p>
+              <ul class="text-emerald-200/80 text-sm mt-2 space-y-1">
+                <li>• Sempre termine comandos SQL com <code class="font-mono bg-slate-700 px-1 rounded">;</code></li>
+                <li>• Use <code class="font-mono bg-slate-700 px-1 rounded">Ctrl+Z</code> / <code class="font-mono bg-slate-700 px-1 rounded">Cmd+Z</code> no editor para desfazer</li>
+                <li>• O Workbench salva automaticamente o histórico de queries</li>
+                <li>• Para ver estrutura da tabela: clique com botão direito → "Table Inspector"</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-700/50 pt-8 mt-16 text-center">
+      <p class="text-slate-500 text-sm">
+        🐬 Guia MySQL — ETE Pernambuco — Profª Luana Cristina
+      </p>
+      <p class="text-slate-600 text-xs mt-2">
+        Administração de Bancos de Dados • 2026
+      </p>
+      <a href="../ETE/portal/disciplinas/administracao-bancos-dados.html" class="inline-block mt-4 text-emerald-400 hover:text-emerald-300 text-sm font-medium transition-colors">
+        ← Voltar para Aula de BD
+      </a>
+    </footer>
+
+  </main>
+
+</body>
+</html>
