@@ -2181,3 +2181,9 @@ aiven
 https://console.aiven.io/account/a5d341643373/project/luanacroft/services/mysql-projetoete/overview 
 
 doc: https://docs.google.com/document/d/1LBZqGQWhtyEj8_DOP1Mfpx65DI4TrXCBCXOK-KT8dhE/edit?usp=sharing
+
+https://dev.mysql.com/doc/workbench/en/wb-mysql-connections-new.html
+https://dev.mysql.com/doc/workbench/en/wb-sql-editor-query-panel.html 
+https://dev.mysql.com/doc/workbench/en/wb-table-editor-columns-tab.html 
+https://dev.mysql.com/doc/workbench/en/wb-getting-started-tutorial-create-connection.html 
+https://radialmalha.weebly.com/uploads/2/6/2/8/26285452/mysql_workbench_apontamentos.pdf 
