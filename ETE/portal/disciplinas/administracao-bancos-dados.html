@@ -217,6 +217,169 @@
       </div>
     </section>
 
+
+    <!-- SLIDE 6.1: SQL Pet Shop - CREATE TABLE -->
+    <section class="slide slide--content" data-title="SQL Pet Shop: CREATE TABLE">
+      <h2>🐾 SQL do Pet Shop — CREATE TABLE</h2>
+      <p>Transformando o DER em tabelas MySQL:</p>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Criação do banco
+CREATE DATABASE petshop;
+USE petshop;
+
+-- Tabela CLIENTE
+CREATE TABLE cliente (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  telefone VARCHAR(20),
+  email VARCHAR(100)
+);
+
+-- Tabela VETERINARIO
+CREATE TABLE veterinario (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  crmv VARCHAR(20) NOT NULL
+);
+
+-- Tabela PET (FK para cliente)
+CREATE TABLE pet (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(50) NOT NULL,
+  especie VARCHAR(30),
+  raca VARCHAR(50),
+  cliente_id INT NOT NULL,
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id)
+);
+
+-- Tabela CONSULTA (FK para cliente, pet e veterinario)
+CREATE TABLE consulta (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  data DATE NOT NULL,
+  diagnostico TEXT,
+  cliente_id INT NOT NULL,
+  pet_id INT NOT NULL,
+  vet_id INT NOT NULL,
+  FOREIGN KEY (cliente_id) REFERENCES cliente(id),
+  FOREIGN KEY (pet_id) REFERENCES pet(id),
+  FOREIGN KEY (vet_id) REFERENCES veterinario(id)
+);</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.2: SQL Pet Shop - INSERT -->
+    <section class="slide slide--dark" data-title="SQL Pet Shop: INSERT">
+      <h2>🐾 SQL do Pet Shop — INSERT (5 registros cada)</h2>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Inserindo CLIENTES
+INSERT INTO cliente (nome, telefone, email) VALUES
+  ('Maria Silva', '81999001122', 'maria@email.com'),
+  ('João Santos', '81988773344', 'joao@email.com'),
+  ('Ana Oliveira', '81977665544', 'ana@email.com'),
+  ('Carlos Lima', '81966554433', 'carlos@email.com'),
+  ('Fernanda Costa', '81955443322', 'fernanda@email.com');
+
+-- Inserindo VETERINÁRIOS
+INSERT INTO veterinario (nome, crmv) VALUES
+  ('Dr. Pedro Alves', 'CRMV-PE 1234'),
+  ('Dra. Lucia Ramos', 'CRMV-PE 5678'),
+  ('Dr. Roberto Dias', 'CRMV-PE 9012'),
+  ('Dra. Carla Mendes', 'CRMV-PE 3456'),
+  ('Dr. Marcos Vieira', 'CRMV-PE 7890');
+
+-- Inserindo PETS
+INSERT INTO pet (nome, especie, raca, cliente_id) VALUES
+  ('Rex', 'Cachorro', 'Labrador', 1),
+  ('Mimi', 'Gato', 'Siamês', 2),
+  ('Thor', 'Cachorro', 'Bulldog', 3),
+  ('Luna', 'Gato', 'Persa', 4),
+  ('Bob', 'Cachorro', 'Poodle', 5);
+
+-- Inserindo CONSULTAS
+INSERT INTO consulta (data, diagnostico, cliente_id, pet_id, vet_id) VALUES
+  ('2026-08-01', 'Vacinação anual', 1, 1, 1),
+  ('2026-08-05', 'Infecção urinária', 2, 2, 2),
+  ('2026-08-10', 'Fratura na pata', 3, 3, 3),
+  ('2026-08-12', 'Check-up geral', 4, 4, 4),
+  ('2026-08-15', 'Alergia de pele', 5, 5, 5);</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.3: SQL Pet Shop - SELECT -->
+    <section class="slide slide--content" data-title="SQL Pet Shop: SELECT">
+      <h2>🐾 SQL do Pet Shop — SELECT (consultas simples)</h2>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Selecionar todos os clientes
+SELECT * FROM cliente;
+
+-- Selecionar todos os pets
+SELECT * FROM pet;
+
+-- Selecionar todos os veterinários
+SELECT * FROM veterinario;
+
+-- Selecionar todas as consultas
+SELECT * FROM consulta;
+
+-- Selecionar apenas nomes e emails dos clientes
+SELECT nome, email FROM cliente;
+
+-- Selecionar pets que são cachorros
+SELECT nome, raca FROM pet WHERE especie = 'Cachorro';
+
+-- Selecionar consultas de agosto/2026
+SELECT * FROM consulta WHERE data BETWEEN '2026-08-01' AND '2026-08-31';
+
+-- Contar quantos pets cada espécie tem
+SELECT especie, COUNT(*) AS quantidade FROM pet GROUP BY especie;</code></pre>
+      </div>
+    </section>
+
+    <!-- SLIDE 6.4: SQL Pet Shop - JOIN -->
+    <section class="slide slide--dark" data-title="SQL Pet Shop: JOIN">
+      <h2>🐾 SQL do Pet Shop — JOIN (consultas avançadas)</h2>
+      <div class="code-block" style="margin-top:12px;">
+        <span class="lang-badge">MySQL</span>
+        <pre><code>-- Nome do pet com nome do dono
+SELECT p.nome AS pet, c.nome AS dono
+FROM pet p
+INNER JOIN cliente c ON p.cliente_id = c.id;
+
+-- Consultas com nome do pet, dono e veterinário
+SELECT 
+  con.data,
+  con.diagnostico,
+  c.nome AS cliente,
+  p.nome AS pet,
+  v.nome AS veterinario
+FROM consulta con
+INNER JOIN cliente c ON con.cliente_id = c.id
+INNER JOIN pet p ON con.pet_id = p.id
+INNER JOIN veterinario v ON con.vet_id = v.id;
+
+-- Quantas consultas cada veterinário realizou
+SELECT v.nome, COUNT(*) AS total_consultas
+FROM consulta con
+INNER JOIN veterinario v ON con.vet_id = v.id
+GROUP BY v.nome
+ORDER BY total_consultas DESC;
+
+-- Clientes que têm gatos
+SELECT DISTINCT c.nome, c.telefone
+FROM cliente c
+INNER JOIN pet p ON p.cliente_id = c.id
+WHERE p.especie = 'Gato';
+
+-- Pets que nunca tiveram consulta (LEFT JOIN)
+SELECT p.nome AS pet, p.especie
+FROM pet p
+LEFT JOIN consulta con ON p.id = con.pet_id
+WHERE con.id IS NULL;</code></pre>
+      </div>
+    </section>
     <!-- SLIDE 7: DDL -->
     <section class="slide slide--dark" data-title="DDL: CREATE, ALTER, DROP">
       <h2>🏗️ DDL — Linguagem de Definição de Dados</h2>
