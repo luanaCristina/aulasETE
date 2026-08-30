@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MySQL na Prática — ETE Pernambuco</title>
+  <meta name="description" content="MySQL do modelo relacional ao projeto final: DDL, CRUD, JOIN, views, índices, triggers e exercícios.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar"><h3>🐬 MySQL na Prática</h3><div class="sidebar-nav"></div></nav>
+  <div class="slides-wrapper">
+
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🐬 MySQL na<br><span class="accent">Prática</span></h1>
+      <p class="subtitle">Do modelo de dados ao CRUD profissional</p>
+      <p style="color:#94A3B8;margin-top:24px;font-size:1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Roteiro e competências">
+      <h2>🎯 O que você será capaz de construir</h2>
+      <div class="columns">
+        <div class="card"><h3>Competências</h3><ul><li>Modelar entidades, atributos e relacionamentos.</li><li>Criar bancos e tabelas com integridade.</li><li>Executar CRUD, filtros, agrupamentos e JOINs.</li><li>Automatizar regras simples com triggers.</li></ul></div>
+        <div class="card"><h3>Projeto do módulo</h3><p>Vamos criar o banco <strong>biblioteca_ete</strong>. Ele terá alunos, livros e empréstimos. Cada comando novo resolve uma necessidade real desse sistema.</p><div class="callout callout--tip" style="margin-top:16px;"><span class="icon">💡</span><span>SQL não é decorar comandos: é transformar uma pergunta de negócio em uma consulta confiável.</span></div></div>
+      </div>
+    </section>
+
+    <section class="slide slide--content" data-title="MySQL e o modelo relacional">
+      <h2>🗄️ MySQL organiza dados relacionados</h2>
+      <div class="columns"><div class="card"><h3>Quatro ideias essenciais</h3><table><thead><tr><th>Conceito</th><th>Exemplo</th></tr></thead><tbody><tr><td>Banco</td><td>Biblioteca inteira</td></tr><tr><td>Tabela</td><td>Cadastro de alunos</td></tr><tr><td>Linha</td><td>Ficha de Ana</td></tr><tr><td>Coluna</td><td>nome, turma, e-mail</td></tr></tbody></table></div><div class="card"><h3>Por que não usar só planilha?</h3><p>O SGBD protege relações, evita duplicidades, atende mais de uma pessoa e permite permissões, backup e consultas complexas.</p><p style="margin-top:12px;"><strong>MySQL Server</strong> executa e guarda os dados. <strong>MySQL Workbench</strong> é a interface para escrever SQL e administrar o servidor.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Chaves e relações">
+      <h2>🔑 Chaves dão identidade e conectam tabelas</h2>
+      <div class="columns"><div class="card"><h3>Chave primária (PK)</h3><p>É o identificador único de uma linha. Em geral, usamos um número criado automaticamente.</p><div class="code-block"><span class="lang-badge">SQL</span><code>id INT AUTO_INCREMENT PRIMARY KEY</code></div></div><div class="card"><h3>Chave estrangeira (FK)</h3><p>Guarda o id de outra tabela. Ela impede empréstimo para aluno inexistente e cria a relação entre os dados.</p><div class="code-block"><span class="lang-badge">SQL</span><code>aluno_id INT NOT NULL,
+FOREIGN KEY (aluno_id)
+  REFERENCES alunos(id)</code></div></div></div>
+      <div class="callout callout--info" style="margin-top:16px;"><span class="icon">📌</span><span>Relação 1:N: um aluno pode realizar muitos empréstimos; cada empréstimo pertence a um aluno.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Planeje antes de criar">
+      <h2>📐 Um banco começa pela pergunta certa</h2>
+      <div class="columns"><div class="card"><h3>Requisitos da biblioteca</h3><ol><li>Cadastrar aluno com nome, turma e e-mail único.</li><li>Cadastrar livro com título, autor e quantidade disponível.</li><li>Registrar quem pegou qual livro e a data.</li><li>Listar atrasos e os livros mais emprestados.</li></ol></div><div class="card"><h3>Modelo inicial</h3><div class="code-block"><span class="lang-badge">DER em texto</span><code>ALUNOS  1 ─── N  EMPRESTIMOS  N ─── 1  LIVROS
+
+alunos: id, nome, turma, email
+livros: id, titulo, autor, estoque
+emprestimos: id, aluno_id, livro_id,
+             retirado_em, previsto_para,
+             devolvido_em</code></div></div></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Tipos de dados">
+      <h2>🧱 Escolha tipos que representam o dado</h2>
+      <table><thead><tr><th>Tipo</th><th>Quando usar</th><th>Exemplo</th></tr></thead><tbody><tr><td><code>INT</code></td><td>números inteiros e ids</td><td><code>42</code></td></tr><tr><td><code>VARCHAR(150)</code></td><td>texto curto com limite</td><td>nome, e-mail, turma</td></tr><tr><td><code>TEXT</code></td><td>descrição longa</td><td>resumo do livro</td></tr><tr><td><code>DECIMAL(10,2)</code></td><td>valores monetários</td><td><code>19.90</code></td></tr><tr><td><code>DATE</code></td><td>data sem horário</td><td><code>2026-08-30</code></td></tr><tr><td><code>TIMESTAMP</code></td><td>data e horário automáticos</td><td>criado_em</td></tr><tr><td><code>BOOLEAN</code></td><td>sim/não</td><td>ativo</td></tr></tbody></table>
+      <div class="callout callout--warning" style="margin-top:16px;"><span class="icon">⚠️</span><span>Não use <code>FLOAT</code> para dinheiro. Arredondamentos podem alterar valores; prefira <code>DECIMAL</code>.</span></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="CREATE DATABASE e USE">
+      <h2>🏗️ DDL: crie o banco e entre nele</h2>
+      <div class="columns"><div class="card"><h3>Banco de dados</h3><div class="code-block"><span class="lang-badge">SQL</span><code>CREATE DATABASE IF NOT EXISTS biblioteca_ete
+  CHARACTER SET utf8mb4
+  COLLATE utf8mb4_unicode_ci;
+
+USE biblioteca_ete;
+
+SHOW DATABASES;
+SELECT DATABASE();</code></div></div><div class="card"><h3>Como executar no Workbench</h3><ol><li>Abra a conexão local.</li><li>Clique em <strong>New SQL Tab</strong>.</li><li>Cole um comando, selecione-o e clique no raio.</li><li>Leia <strong>Action Output</strong>; erro não é motivo para apagar o código.</li></ol><p style="margin-top:12px;">Use <code>IF NOT EXISTS</code> em exemplos de aula para repetir o script sem falhar.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="CREATE TABLE">
+      <h2>🏗️ Crie tabelas com regras desde o início</h2>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>CREATE TABLE alunos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  turma VARCHAR(20) NOT NULL,
+  email VARCHAR(150) NOT NULL UNIQUE,
+  ativo BOOLEAN NOT NULL DEFAULT TRUE,
+  criado_em TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE livros (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  titulo VARCHAR(180) NOT NULL,
+  autor VARCHAR(120) NOT NULL,
+  estoque INT NOT NULL DEFAULT 0,
+  CHECK (estoque >= 0)
+);</code></div>
+      <p style="margin-top:14px;">O nome de cada regra comunica intenção: <code>NOT NULL</code> torna obrigatório, <code>UNIQUE</code> evita repetição e <code>DEFAULT</code> cria um valor inicial coerente.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Relacionamento com FOREIGN KEY">
+      <h2>🔗 Emprestimos conectam alunos e livros</h2>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>CREATE TABLE emprestimos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  aluno_id INT NOT NULL,
+  livro_id INT NOT NULL,
+  retirado_em DATE NOT NULL,
+  previsto_para DATE NOT NULL,
+  devolvido_em DATE NULL,
+  CONSTRAINT fk_emprestimo_aluno
+    FOREIGN KEY (aluno_id) REFERENCES alunos(id),
+  CONSTRAINT fk_emprestimo_livro
+    FOREIGN KEY (livro_id) REFERENCES livros(id),
+  CHECK (previsto_para >= retirado_em)
+);</code></div>
+      <div class="callout callout--tip" style="margin-top:16px;"><span class="icon">💡</span><span>Crie primeiro as tabelas que serão referenciadas. Depois crie a tabela que contém as FKs.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="INSERT: cadastre dados">
+      <h2>➕ INSERT: cada coluna recebe um valor explícito</h2>
+      <div class="columns"><div class="card"><h3>Insira vários alunos</h3><div class="code-block"><span class="lang-badge">SQL</span><code>INSERT INTO alunos (nome, turma, email)
+VALUES
+  ('Ana Souza', 'DS 2026.2', 'ana@ete.edu.br'),
+  ('Caio Lima', 'DS 2026.2', 'caio@ete.edu.br'),
+  ('Bia Alves', 'DS 2026.1', 'bia@ete.edu.br');</code></div></div><div class="card"><h3>Insira livros</h3><div class="code-block"><span class="lang-badge">SQL</span><code>INSERT INTO livros (titulo, autor, estoque)
+VALUES
+  ('O Cortiço', 'Aluísio Azevedo', 3),
+  ('Capitães da Areia', 'Jorge Amado', 2);
+
+SELECT LAST_INSERT_ID();</code></div><p style="margin-top:10px;">Liste sempre as colunas: fica claro o que está sendo salvo e a ordem deixa de ser um risco.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="SELECT: leia com intenção">
+      <h2>🔎 SELECT transforma perguntas em resultados</h2>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>-- Quais alunos ativos são da turma DS 2026.2?
+SELECT id, nome, email
+FROM alunos
+WHERE turma = 'DS 2026.2'
+  AND ativo = TRUE
+ORDER BY nome ASC;
+
+-- Quais livros têm pelo menos duas cópias?
+SELECT titulo, autor, estoque
+FROM livros
+WHERE estoque >= 2
+ORDER BY estoque DESC, titulo;
+
+-- Paginação simples
+SELECT id, titulo FROM livros
+LIMIT 5 OFFSET 0;</code></div>
+      <p style="margin-top:14px;"><strong>Ordem de leitura:</strong> FROM → WHERE → SELECT → ORDER BY → LIMIT. Nem sempre é a mesma ordem em que escrevemos.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Filtros e padrões">
+      <h2>🎯 WHERE filtra antes de mostrar</h2>
+      <table><thead><tr><th>Objetivo</th><th>Condição</th></tr></thead><tbody><tr><td>Buscar parte de um nome</td><td><code>nome LIKE 'Ana%'</code></td></tr><tr><td>Escolher opções</td><td><code>turma IN ('DS 2026.1', 'DS 2026.2')</code></td></tr><tr><td>Intervalo de datas</td><td><code>retirado_em BETWEEN '2026-08-01' AND '2026-08-31'</code></td></tr><tr><td>Valor ausente</td><td><code>devolvido_em IS NULL</code></td></tr><tr><td>Combinar regras</td><td><code>AND</code>, <code>OR</code>, <code>NOT</code></td></tr></tbody></table>
+      <div class="callout callout--warning" style="margin-top:16px;"><span class="icon">⚠️</span><span><code>= NULL</code> não funciona. Ausência de valor é consultada com <code>IS NULL</code> ou <code>IS NOT NULL</code>.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="GROUP BY e HAVING">
+      <h2>📊 Agrupe para responder perguntas de gestão</h2>
+      <div class="columns"><div class="card"><h3>Funções agregadoras</h3><table><tbody><tr><td><code>COUNT(*)</code></td><td>quantidade de linhas</td></tr><tr><td><code>SUM()</code></td><td>soma de valores</td></tr><tr><td><code>AVG()</code></td><td>média</td></tr><tr><td><code>MIN()</code> / <code>MAX()</code></td><td>menor / maior</td></tr></tbody></table></div><div class="card"><h3>Livros mais procurados</h3><div class="code-block"><span class="lang-badge">SQL</span><code>SELECT livro_id, COUNT(*) AS total
+FROM emprestimos
+GROUP BY livro_id
+HAVING COUNT(*) >= 2
+ORDER BY total DESC;</code></div><p style="margin-top:12px;"><code>WHERE</code> filtra linhas antes do grupo. <code>HAVING</code> filtra grupos depois da contagem.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="JOIN conecta histórias">
+      <h2>🤝 JOIN reúne dados que foram modelados separados</h2>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>SELECT e.id, a.nome AS aluno, l.titulo AS livro,
+       e.retirado_em, e.previsto_para
+FROM emprestimos e
+INNER JOIN alunos a ON a.id = e.aluno_id
+INNER JOIN livros l ON l.id = e.livro_id
+WHERE e.devolvido_em IS NULL
+ORDER BY e.previsto_para;</code></div>
+      <div class="columns" style="margin-top:16px;"><div class="card"><h3>INNER JOIN</h3><p>Retorna apenas relações que existem dos dois lados.</p></div><div class="card"><h3>LEFT JOIN</h3><p>Mantém toda a tabela da esquerda, mesmo quando não há par do outro lado.</p></div></div>
+    </section>
+
+    <section class="slide slide--content" data-title="UPDATE com segurança">
+      <h2>✏️ UPDATE altera somente o que você confirma</h2>
+      <div class="columns"><div class="card"><h3>Passo seguro</h3><ol><li>Faça um <code>SELECT</code> com o mesmo <code>WHERE</code>.</li><li>Confira a quantidade e os ids retornados.</li><li>Execute o <code>UPDATE</code>.</li><li>Consulte novamente para verificar.</li></ol></div><div class="card"><h3>Exemplo: devolver livro</h3><div class="code-block"><span class="lang-badge">SQL</span><code>SELECT * FROM emprestimos
+WHERE id = 3;
+
+UPDATE emprestimos
+SET devolvido_em = CURRENT_DATE
+WHERE id = 3;
+
+SELECT id, devolvido_em
+FROM emprestimos WHERE id = 3;</code></div></div></div>
+    </section>
+
+    <section class="slide slide--content" data-title="DELETE e transações">
+      <h2>🗑️ DELETE exige uma condição inequívoca</h2>
+      <div class="columns"><div class="card"><h3>Apague uma linha</h3><div class="code-block"><span class="lang-badge">SQL</span><code>-- Primeiro confirme
+SELECT * FROM alunos WHERE id = 9;
+
+-- Depois remova só esse registro
+DELETE FROM alunos WHERE id = 9;</code></div><p style="margin-top:12px;">Sem <code>WHERE</code>, um DELETE alcança todas as linhas. Pare e revise antes de executar.</p></div><div class="card"><h3>Transação: tudo ou nada</h3><div class="code-block"><span class="lang-badge">SQL</span><code>START TRANSACTION;
+
+UPDATE livros SET estoque = estoque - 1
+WHERE id = 2 AND estoque > 0;
+
+INSERT INTO emprestimos (...)
+VALUES (...);
+
+COMMIT;   -- confirma
+-- ROLLBACK; -- desfaz se algo falhar</code></div></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Índices e views">
+      <h2>⚡ Índices aceleram; views simplificam</h2>
+      <div class="columns"><div class="card"><h3>Índice</h3><div class="code-block"><span class="lang-badge">SQL</span><code>CREATE INDEX idx_emprestimos_aluno
+ON emprestimos (aluno_id);
+
+EXPLAIN SELECT *
+FROM emprestimos
+WHERE aluno_id = 2;</code></div><p style="margin-top:10px;">Crie índice para campos muito filtrados ou usados em JOIN; índices demais também custam espaço e escrita.</p></div><div class="card"><h3>View</h3><div class="code-block"><span class="lang-badge">SQL</span><code>CREATE VIEW vw_emprestimos_abertos AS
+SELECT a.nome, l.titulo, e.previsto_para
+FROM emprestimos e
+JOIN alunos a ON a.id = e.aluno_id
+JOIN livros l ON l.id = e.livro_id
+WHERE e.devolvido_em IS NULL;
+
+SELECT * FROM vw_emprestimos_abertos;</code></div></div></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Triggers com responsabilidade">
+      <h2>⚙️ Trigger automatiza uma regra do banco</h2>
+      <div class="columns"><div class="card"><h3>Problema</h3><p>Ao registrar um empréstimo, o estoque precisa diminuir. Ao registrar a devolução, o estoque precisa aumentar.</p><p style="margin-top:12px;">Uma trigger é acionada por um evento, como <code>INSERT</code> ou <code>UPDATE</code>.</p></div><div class="card"><h3>Exemplo didático</h3><div class="code-block"><span class="lang-badge">SQL</span><code>DELIMITER //
+CREATE TRIGGER tr_baixa_estoque
+AFTER INSERT ON emprestimos
+FOR EACH ROW
+BEGIN
+  UPDATE livros
+  SET estoque = estoque - 1
+  WHERE id = NEW.livro_id
+    AND estoque > 0;
+END//
+DELIMITER ;</code></div></div></div>
+      <div class="callout callout--warning" style="margin-top:16px;"><span class="icon">⚠️</span><span>Triggers escondem lógica da aplicação. Use-as para regras pequenas, documente-as e teste antes de adotá-las em projetos reais.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Usuários, privilégios e backup">
+      <h2>🛡️ Banco seguro não usa root na aplicação</h2>
+      <div class="columns"><div class="card"><h3>Usuário da aplicação</h3><div class="code-block"><span class="lang-badge">SQL</span><code>CREATE USER 'app_biblioteca'@'localhost'
+IDENTIFIED BY 'senha-forte-unica';
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+ON biblioteca_ete.*
+TO 'app_biblioteca'@'localhost';
+
+FLUSH PRIVILEGES;</code></div></div><div class="card"><h3>Backup e restauração</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>mysqldump -u root -p biblioteca_ete \
+  > biblioteca_ete.sql
+
+mysql -u root -p biblioteca_ete \
+  < biblioteca_ete.sql</code></div><p style="margin-top:10px;">Senha e arquivos de backup não pertencem a commits públicos.</p></div></div>
+    </section>
+
+    <section class="slide slide--section" data-title="Desafio 1">
+      <h1>🧩 Desafio 1<br><span class="accent">Estruture a cantina</span></h1>
+      <p class="subtitle">Modelagem, chaves e CREATE TABLE</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: modelagem">
+      <h2>📝 Exercício 1 — Banco da cantina</h2>
+      <div class="columns"><div class="card"><h3>Situação</h3><p>A cantina vende produtos e registra pedidos. Um pedido pertence a um aluno e pode conter vários produtos.</p><h3 style="margin-top:14px;">Sua tarefa</h3><ol><li>Liste três entidades e os campos mínimos.</li><li>Defina as PKs e FKs.</li><li>Escreva <code>CREATE TABLE</code> para <code>alunos</code>, <code>produtos</code> e <code>pedidos</code>.</li></ol></div><div class="card"><h3>Critérios</h3><ul><li>Nome de aluno e produto não podem ficar vazios.</li><li>Preço deve usar <code>DECIMAL(10,2)</code>.</li><li>Quantidade deve ser positiva.</li><li>Pedido deve apontar para aluno existente.</li></ul><p style="margin-top:14px;">Tempo sugerido: 20 minutos em dupla.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: modelagem">
+      <h2>✅ Gabarito 1 — Modelo mínimo da cantina</h2>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>CREATE TABLE alunos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL
+);
+CREATE TABLE produtos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  preco DECIMAL(10,2) NOT NULL,
+  CHECK (preco >= 0)
+);
+CREATE TABLE pedidos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  aluno_id INT NOT NULL,
+  produto_id INT NOT NULL,
+  quantidade INT NOT NULL,
+  FOREIGN KEY (aluno_id) REFERENCES alunos(id),
+  FOREIGN KEY (produto_id) REFERENCES produtos(id),
+  CHECK (quantidade > 0)
+);</code></div>
+      <p style="margin-top:14px;">Em uma versão mais completa, <code>pedido</code> e <code>item_pedido</code> seriam tabelas separadas. Este gabarito prioriza o conceito de relacionamento.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: CRUD">
+      <h2>📝 Exercício 2 — Consulta e atualização</h2>
+      <div class="columns"><div class="card"><h3>Comandos solicitados</h3><ol><li>Cadastre três produtos.</li><li>Liste apenas itens com preço menor que R$ 10,00.</li><li>Aumente o preço de um produto em 10%.</li><li>Remova um produto específico com segurança.</li></ol></div><div class="card"><h3>Regra de ouro</h3><p>Antes de qualquer <code>UPDATE</code> ou <code>DELETE</code>, escreva um <code>SELECT</code> com o mesmo <code>WHERE</code>.</p><div class="callout callout--tip" style="margin-top:16px;"><span class="icon">🔍</span><span>Se o SELECT retornar mais linhas do que o esperado, não execute a alteração ainda.</span></div></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: CRUD">
+      <h2>✅ Gabarito 2 — CRUD com segurança</h2>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>INSERT INTO produtos (nome, preco) VALUES
+  ('Suco', 6.50), ('Sanduíche', 9.00), ('Bolo', 8.50);
+
+SELECT id, nome, preco FROM produtos
+WHERE preco < 10.00 ORDER BY preco;
+
+SELECT * FROM produtos WHERE nome = 'Suco';
+UPDATE produtos SET preco = preco * 1.10
+WHERE nome = 'Suco';
+
+SELECT * FROM produtos WHERE nome = 'Bolo';
+DELETE FROM produtos WHERE nome = 'Bolo';</code></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: JOIN e relatório">
+      <h2>📝 Exercício 3 — Relatório de empréstimos</h2>
+      <p>Usando <code>alunos</code>, <code>livros</code> e <code>emprestimos</code>, responda:</p>
+      <div class="columns"><div class="card"><h3>Parte A: detalhamento</h3><p>Liste nome do aluno, título do livro, data de retirada e data prevista apenas para empréstimos ainda abertos.</p></div><div class="card"><h3>Parte B: resumo</h3><p>Conte quantos empréstimos cada aluno realizou. Mostre somente alunos com dois ou mais empréstimos.</p></div><div class="card"><h3>Desafio</h3><p>Use <code>LEFT JOIN</code> para listar todos os alunos, inclusive quem ainda não fez empréstimo.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: JOIN e relatório">
+      <h2>✅ Gabarito 3 — Relatório com JOIN e GROUP BY</h2>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>SELECT a.nome, l.titulo, e.retirado_em, e.previsto_para
+FROM emprestimos e
+JOIN alunos a ON a.id = e.aluno_id
+JOIN livros l ON l.id = e.livro_id
+WHERE e.devolvido_em IS NULL;
+
+SELECT a.nome, COUNT(e.id) AS total_emprestimos
+FROM alunos a
+LEFT JOIN emprestimos e ON e.aluno_id = a.id
+GROUP BY a.id, a.nome
+HAVING COUNT(e.id) >= 2
+ORDER BY total_emprestimos DESC;</code></div>
+    </section>
+
+    <section class="slide slide--section" data-title="Projeto final">
+      <h1>🏆 Projeto final<br><span class="accent">Sistema de biblioteca</span></h1>
+      <p class="subtitle">Do DER ao relatório que apoia uma decisão</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Entrega e checklist">
+      <h2>📦 Entrega profissional do banco</h2>
+      <table><thead><tr><th>Arquivo</th><th>Deve conter</th></tr></thead><tbody><tr><td><code>01_schema.sql</code></td><td>CREATE DATABASE e CREATE TABLEs com constraints</td></tr><tr><td><code>02_seed.sql</code></td><td>dados coerentes para demonstrar o sistema</td></tr><tr><td><code>03_consultas.sql</code></td><td>CRUD, filtros, JOINs, GROUP BY e uma view</td></tr><tr><td><code>README.md</code></td><td>como criar, usar, testar e restaurar o banco</td></tr></tbody></table>
+      <div class="callout callout--info" style="margin-top:16px;"><span class="icon">🎓</span><span>Explique as decisões: por que há uma FK? Que regra uma constraint protege? Que pergunta de negócio a consulta responde?</span></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Referências e encerramento">
+      <h2>✅ Próximos passos no SQL</h2>
+      <p style="text-align:center;font-size:1.15rem;max-width:760px;margin:22px auto;">Você já consegue transformar regras de um sistema em tabelas, relacionamentos e consultas. O próximo passo é conectar este banco a uma API com Node.js ou Python.</p>
+      <div class="columns"><div class="card"><h3>Referências</h3><p><a href="https://dev.mysql.com/doc/" target="_blank" rel="noopener">MySQL Reference Manual</a><br><a href="https://dev.mysql.com/doc/workbench/en/" target="_blank" rel="noopener">MySQL Workbench Manual</a></p></div><div class="card"><h3>Desafio de extensão</h3><p>Crie uma tabela de multas e uma consulta que mostre empréstimos em atraso. Depois explique se essa regra pertence ao banco, à API ou aos dois.</p></div></div>
+    </section>
+
+  </div>
+  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button><button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button><span class="progress-text">1 / 29</span><button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button><a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a></div>
+  <script src="../slides.js"></script>
+</body>
+</html>

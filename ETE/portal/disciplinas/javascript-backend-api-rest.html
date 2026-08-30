@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Backend — API REST — ETE Pernambuco</title>
+  <meta name="description" content="Node.js, Express, APIs REST, MySQL, autenticação e testes com Postman e Bruno.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar"><h3>⚙️ JavaScript Backend</h3><div class="sidebar-nav"></div></nav>
+  <div class="slides-wrapper">
+    <section class="slide slide--cover" data-title="Capa"><h1>⚙️ JavaScript<br><span class="accent">Backend</span></h1><p class="subtitle">Node.js, APIs REST, MySQL e autenticação</p><p style="color:#94A3B8;margin-top:24px;font-size:1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p></section>
+
+    <section class="slide slide--content" data-title="Roteiro e projeto"><h2>🎯 O que vamos construir</h2><div class="columns"><div class="card"><h3>Trilha técnica</h3><ol><li>Node.js e npm.</li><li>HTTP, JSON e rotas REST.</li><li>Express, middlewares e validação.</li><li>MySQL, autenticação e testes.</li></ol></div><div class="card"><h3>Projeto guiado</h3><p>Uma <strong>API de tarefas da turma</strong>: usuários se cadastram, fazem login, criam tarefas e consultam apenas seus próprios dados.</p><div class="callout callout--tip" style="margin-top:16px;"><span class="icon">🧠</span><span>Frontend mostra a interface; backend protege regras, dados e acessos.</span></div></div></div></section>
+
+    <section class="slide slide--content" data-title="O que é backend"><h2>🏗️ Backend é a parte que trabalha longe da tela</h2><div class="columns"><div class="card"><h3>Responsabilidades</h3><ul><li>Receber uma requisição.</li><li>Validar dados e permissões.</li><li>Consultar ou alterar o banco.</li><li>Responder com status e JSON.</li></ul></div><div class="card"><h3>O que não deve fazer</h3><ul><li>Confiar em dados enviados pelo navegador.</li><li>Expor senha, token ou segredo.</li><li>Permitir que todo usuário acesse todos os dados.</li><li>Retornar um erro técnico sem explicação útil.</li></ul></div></div></section>
+
+    <section class="slide slide--dark" data-title="Cliente, API e banco"><h2>🌐 A requisição percorre três camadas</h2><div class="code-block"><span class="lang-badge">Fluxo</span><code>Frontend / Postman / Bruno
+        │  HTTP + JSON
+        ▼
+API Node.js + Express
+        │  SQL com parâmetros
+        ▼
+MySQL: usuários, tarefas, registros</code></div><div class="columns" style="margin-top:16px;"><div class="card"><h3>Cliente</h3><p>Escolhe método, URL, headers e body.</p></div><div class="card"><h3>Servidor</h3><p>Aplica regra de negócio e decide a resposta.</p></div><div class="card"><h3>Banco</h3><p>Persiste relações e protege a integridade.</p></div></div></section>
+
+    <section class="slide slide--content" data-title="Node.js no computador"><h2>🟢 Node.js executa JavaScript fora do navegador</h2><div class="columns"><div class="card"><h3>Confirme a instalação</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>node --version
+npm --version
+
+mkdir api-tarefas
+cd api-tarefas
+npm init -y</code></div><p style="margin-top:12px;">Instale a versão LTS pelo <a href="https://nodejs.org/pt-br/download" target="_blank" rel="noopener">site oficial</a>. O npm acompanha o Node e instala pacotes.</p></div><div class="card"><h3>Primeiro programa</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>// ola.js
+const turma = 'DS 2026.2';
+console.log(`Olá, ${turma}!`);
+
+// terminal
+node ola.js</code></div><p style="margin-top:12px;">No backend, <code>console.log</code> aparece no terminal do servidor, não na tela do estudante.</p></div></div></section>
+
+    <section class="slide slide--content" data-title="npm e package.json"><h2>📦 package.json documenta o projeto</h2><div class="columns"><div class="card"><h3>Dependências essenciais</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>npm install express mysql2 dotenv
+npm install -D nodemon
+
+npm run dev</code></div><p style="margin-top:12px;">Use <code>-D</code> para ferramentas de desenvolvimento. Bibliotecas usadas pelo servidor em produção ficam em <code>dependencies</code>.</p></div><div class="card"><h3>Scripts úteis</h3><div class="code-block"><span class="lang-badge">JSON</span><code>{
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js",
+    "test": "vitest run"
+  }
+}</code></div><p style="margin-top:12px;"><code>node_modules</code> é instalado pelo npm e não deve ser enviado ao Git.</p></div></div></section>
+
+    <section class="slide slide--content" data-title="Variáveis de ambiente"><h2>🔐 Segredos entram por variáveis de ambiente</h2><div class="columns"><div class="card"><h3>Arquivo .env local</h3><div class="code-block"><span class="lang-badge">.env</span><code>PORT=3000
+DB_HOST=localhost
+DB_USER=app_tarefas
+DB_PASSWORD=uma_senha_forte
+DB_NAME=api_tarefas
+JWT_SECRET=segredo_longo_aleatorio</code></div></div><div class="card"><h3>Leitura no código</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>import 'dotenv/config';
+
+const port = process.env.PORT || 3000;
+const dbHost = process.env.DB_HOST;</code></div><div class="callout callout--warning" style="margin-top:14px;"><span class="icon">⚠️</span><span>Inclua <code>.env</code> no <code>.gitignore</code>. Repositório público não é cofre de senhas.</span></div></div></div></section>
+
+    <section class="slide slide--dark" data-title="HTTP e JSON"><h2>📨 API conversa com método, URL, headers e JSON</h2><div class="columns"><div class="card"><h3>Request</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>POST /tarefas HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer token
+
+{"titulo":"Estudar SQL"}</code></div></div><div class="card"><h3>Response</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>HTTP/1.1 201 Created
+Content-Type: application/json
+
+{"id":7,"titulo":"Estudar SQL",
+ "concluida":false}</code></div></div></div><p style="margin-top:14px;text-align:center;">Método descreve a intenção; status informa o resultado; JSON transporta dados estruturados.</p></section>
+
+    <section class="slide slide--content" data-title="Status HTTP"><h2>🚦 Status é um contrato de comunicação</h2><table><thead><tr><th>Status</th><th>Significado</th><th>Exemplo</th></tr></thead><tbody><tr><td><code>200 OK</code></td><td>operação concluída</td><td>lista de tarefas</td></tr><tr><td><code>201 Created</code></td><td>recurso criado</td><td>nova tarefa</td></tr><tr><td><code>204 No Content</code></td><td>remoção concluída</td><td>DELETE sem body</td></tr><tr><td><code>400 Bad Request</code></td><td>dados inválidos</td><td>título vazio</td></tr><tr><td><code>401 Unauthorized</code></td><td>sem login válido</td><td>token ausente</td></tr><tr><td><code>403 Forbidden</code></td><td>sem permissão</td><td>editar tarefa alheia</td></tr><tr><td><code>404 Not Found</code></td><td>recurso não existe</td><td>id inexistente</td></tr><tr><td><code>500 Server Error</code></td><td>falha interna</td><td>erro de banco</td></tr></tbody></table></section>
+
+    <section class="slide slide--dark" data-title="Express: primeiro servidor"><h2>🚀 Express recebe e responde rotas</h2><div class="code-block"><span class="lang-badge">src/server.js</span><code>import express from 'express';
+
+const app = express();
+app.use(express.json());
+
+app.get('/health', (req, res) =&gt; {
+  res.status(200).json({ ok: true });
+});
+
+const port = process.env.PORT || 3000;
+app.listen(port, () =&gt; console.log(`API em ${port}`));</code></div><p style="margin-top:14px;">A ordem importa: <code>express.json()</code> deve ser registrado antes das rotas que leem <code>req.body</code>.</p></section>
+
+    <section class="slide slide--content" data-title="Rotas, params e query"><h2>🧭 URL pode identificar, filtrar e paginar</h2><div class="columns"><div class="card"><h3>Parâmetro de rota</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>app.get('/tarefas/:id', (req, res) =&gt; {
+  const id = Number(req.params.id);
+  res.json({ id });
+});
+
+// GET /tarefas/7</code></div></div><div class="card"><h3>Query string</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>app.get('/tarefas', (req, res) =&gt; {
+  const pagina = Number(req.query.pagina ?? 1);
+  const status = req.query.status;
+  // GET /tarefas?pagina=1&amp;status=aberta
+});</code></div></div></div></section>
+
+    <section class="slide slide--content" data-title="Headers, body e middleware"><h2>🧰 Middleware prepara a rota</h2><div class="columns"><div class="card"><h3>Header</h3><p>Metadado da requisição: tipo de conteúdo, token, idioma, id de rastreio.</p><div class="code-block"><span class="lang-badge">JavaScript</span><code>const token = req.headers.authorization;
+const requestId = req.headers['x-request-id'];</code></div></div><div class="card"><h3>Body JSON</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>app.post('/tarefas', (req, res) =&gt; {
+  const { titulo } = req.body;
+  res.status(201).json({ titulo });
+});</code></div><p style="margin-top:10px;">No Postman/Bruno: Header <code>Content-Type: application/json</code> + Body em JSON válido.</p></div></div></section>
+
+    <section class="slide slide--dark" data-title="CRUD REST"><h2>🛠️ Uma coleção REST tem rotas previsíveis</h2><table><thead><tr><th>Objetivo</th><th>Método e rota</th><th>Status típico</th></tr></thead><tbody><tr><td>Listar tarefas</td><td><code>GET /tarefas</code></td><td>200</td></tr><tr><td>Buscar uma tarefa</td><td><code>GET /tarefas/:id</code></td><td>200 ou 404</td></tr><tr><td>Criar tarefa</td><td><code>POST /tarefas</code></td><td>201 ou 400</td></tr><tr><td>Substituir tarefa</td><td><code>PUT /tarefas/:id</code></td><td>200, 400 ou 404</td></tr><tr><td>Atualizar um campo</td><td><code>PATCH /tarefas/:id</code></td><td>200, 400 ou 404</td></tr><tr><td>Remover tarefa</td><td><code>DELETE /tarefas/:id</code></td><td>204 ou 404</td></tr></tbody></table><p style="margin-top:14px;">Use substantivos na URL, não verbos como <code>/criarTarefa</code>. O método HTTP já representa a ação.</p></section>
+
+    <section class="slide slide--content" data-title="Validação e erros"><h2>🧪 Valide na fronteira da API</h2><div class="code-block"><span class="lang-badge">JavaScript</span><code>function validarTarefa(req, res, next) {
+  const { titulo } = req.body;
+  if (typeof titulo !== 'string' || titulo.trim().length &lt; 3) {
+    return res.status(400).json({
+      error: { code: 'TITLE_INVALID', message: 'Informe título com 3+ caracteres.' }
+    });
+  }
+  next();
+}
+
+app.post('/tarefas', validarTarefa, criarTarefa);</code></div><p style="margin-top:14px;">O frontend ajuda a pessoa a preencher; o backend confirma que dados inválidos não entram no banco.</p></section>
+
+    <section class="slide slide--content" data-title="MySQL na API"><h2>🐬 API usa conexão parametrizada com MySQL</h2><div class="columns"><div class="card"><h3>Pool de conexões</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>import mysql from 'mysql2/promise';
+
+export const db = mysql.createPool({
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_NAME
+});</code></div></div><div class="card"><h3>Consulta segura</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>const [rows] = await db.execute(
+  'SELECT id, titulo, concluida FROM tarefas WHERE usuario_id = ?',
+  [req.user.id]
+);
+res.json({ data: rows });</code></div><p style="margin-top:10px;">Use placeholders <code>?</code>. Nunca concatene dados da URL em SQL.</p></div></div></section>
+
+    <section class="slide slide--content" data-title="Autenticação: cadastro"><h2>🔒 Senha nunca vai para o banco em texto puro</h2><div class="columns"><div class="card"><h3>Cadastro seguro</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>npm install bcrypt jsonwebtoken</code></div><div class="code-block" style="margin-top:10px;"><span class="lang-badge">JavaScript</span><code>import bcrypt from 'bcrypt';
+
+const senhaHash = await bcrypt.hash(senha, 12);
+await db.execute(
+  'INSERT INTO usuarios (nome, email, senha_hash) VALUES (?, ?, ?)',
+  [nome, email, senhaHash]
+);</code></div></div><div class="card"><h3>Login</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>const valido = await bcrypt.compare(
+  senha, usuario.senha_hash
+);
+if (!valido) return res.sendStatus(401);</code></div><p style="margin-top:12px;">Hash é uma transformação de mão única. A API compara a senha recebida ao hash salvo sem precisar recuperar a senha original.</p></div></div></section>
+
+    <section class="slide slide--dark" data-title="Token e rota protegida"><h2>🪪 Token identifica o usuário em cada chamada</h2><div class="columns"><div class="card"><h3>Gerar token no login</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>import jwt from 'jsonwebtoken';
+
+const token = jwt.sign(
+  { sub: usuario.id },
+  process.env.JWT_SECRET,
+  { expiresIn: '1h' }
+);
+res.json({ token });</code></div></div><div class="card"><h3>Proteger uma rota</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>function autenticar(req, res, next) {
+  const [, token] = req.headers.authorization?.split(' ') ?? [];
+  if (!token) return res.sendStatus(401);
+  req.user = jwt.verify(token, process.env.JWT_SECRET);
+  next();
+}
+app.get('/tarefas', autenticar, listarTarefas);</code></div></div></div></section>
+
+    <section class="slide slide--content" data-title="Autorização e ownership"><h2>👤 Login não basta: valide quem pode alterar</h2><div class="code-block"><span class="lang-badge">JavaScript</span><code>const [rows] = await db.execute(
+  'SELECT id, usuario_id FROM tarefas WHERE id = ?', [req.params.id]
+);
+const tarefa = rows[0];
+if (!tarefa) return res.sendStatus(404);
+if (tarefa.usuario_id !== req.user.sub) return res.sendStatus(403);
+
+await db.execute(
+  'UPDATE tarefas SET concluida = ? WHERE id = ?',
+  [true, tarefa.id]
+);</code></div><div class="callout callout--warning" style="margin-top:16px;"><span class="icon">⚠️</span><span>Um token válido prova quem chama; a autorização decide se essa pessoa pode alterar este recurso específico.</span></div></section>
+
+    <section class="slide slide--content" data-title="CORS e cliente web"><h2>🌍 CORS define quais sites podem chamar sua API</h2><div class="columns"><div class="card"><h3>Durante desenvolvimento</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>npm install cors</code></div><div class="code-block" style="margin-top:10px;"><span class="lang-badge">JavaScript</span><code>import cors from 'cors';
+app.use(cors({
+  origin: 'http://localhost:5173',
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
+}));</code></div></div><div class="card"><h3>Regra prática</h3><p>Postman e Bruno não dependem do CORS porque não são páginas web. Já um frontend no navegador é bloqueado quando a API não autoriza sua origem.</p><p style="margin-top:12px;">Em produção, substitua <code>*</code> por domínios conhecidos e configure credenciais conscientemente.</p></div></div></section>
+
+    <section class="slide slide--content" data-title="Postman e Bruno"><h2>🧪 Teste a API sem depender do frontend</h2><div class="columns"><div class="card"><h3>Sequência de teste</h3><ol><li><code>POST /auth/register</code>: crie usuário.</li><li><code>POST /auth/login</code>: receba token.</li><li>Salve token em environment.</li><li><code>POST /tarefas</code>: crie tarefa.</li><li>Liste, atualize e remova.</li></ol></div><div class="card"><h3>Request autenticada</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>GET /tarefas
+Authorization: Bearer {{token}}
+Accept: application/json
+
+// sem body em GET</code></div><p style="margin-top:12px;">Acesse o <a href="https://eteapiplay-akbqqgv2.manus.space" target="_blank" rel="noopener">ETEA API Playground</a> para praticar método, URL, headers, body e leitura da resposta.</p></div></div></section>
+
+    <section class="slide slide--content" data-title="Estrutura de projeto"><h2>📁 Organize o backend por responsabilidade</h2><div class="code-block"><span class="lang-badge">Estrutura</span><code>api-tarefas/
+├── src/
+│   ├── server.js        # inicia Express
+│   ├── routes/          # define URLs e métodos
+│   ├── controllers/     # recebe req e envia res
+│   ├── services/        # regras de negócio
+│   ├── repositories/    # SQL e banco de dados
+│   ├── middlewares/     # auth, validação, erro
+│   └── config/          # conexão e ambiente
+├── tests/
+├── .env.example
+└── package.json</code></div><p style="margin-top:14px;">A separação reduz arquivos gigantes e ajuda a testar uma regra sem iniciar toda a aplicação.</p></section>
+
+    <section class="slide slide--section" data-title="Desafio 1"><h1>🧩 Desafio 1<br><span class="accent">Health check</span></h1><p class="subtitle">Sua primeira rota Express</p></section>
+    <section class="slide slide--content" data-title="Exercício: health check"><h2>📝 Exercício 1 — API está viva?</h2><div class="columns"><div class="card"><h3>Construa</h3><ol><li>Inicie um projeto com npm e Express.</li><li>Configure <code>express.json()</code>.</li><li>Crie <code>GET /health</code>.</li><li>Retorne <code>200</code> e JSON com <code>ok</code>, <code>app</code> e <code>timestamp</code>.</li></ol></div><div class="card"><h3>Teste</h3><p>No navegador, Postman ou Bruno, faça uma chamada para <code>http://localhost:3000/health</code>.</p><p style="margin-top:12px;">Critério: JSON válido, status 200 e nenhuma informação secreta na resposta.</p></div></div></section>
+    <section class="slide slide--dark" data-title="Gabarito: health check"><h2>✅ Gabarito 1 — Health check</h2><div class="code-block"><span class="lang-badge">JavaScript</span><code>import express from 'express';
+const app = express();
+app.use(express.json());
+
+app.get('/health', (req, res) =&gt; {
+  res.status(200).json({
+    ok: true,
+    app: 'api-tarefas',
+    timestamp: new Date().toISOString()
+  });
+});
+
+app.listen(process.env.PORT || 3000);</code></div></section>
+    <section class="slide slide--content" data-title="Exercício: tarefas CRUD"><h2>📝 Exercício 2 — CRUD em memória</h2><div class="columns"><div class="card"><h3>Rotas</h3><ul><li><code>GET /tarefas</code> lista o array.</li><li><code>POST /tarefas</code> cria com título obrigatório.</li><li><code>PATCH /tarefas/:id</code> altera concluída.</li><li><code>DELETE /tarefas/:id</code> remove e retorna 204.</li></ul></div><div class="card"><h3>Regras</h3><ul><li>Use ids numéricos únicos.</li><li>Retorne 400 para título ausente.</li><li>Retorne 404 para id inexistente.</li><li>Teste cada rota no Postman ou Bruno.</li></ul></div></div></section>
+    <section class="slide slide--dark" data-title="Gabarito: tarefas CRUD"><h2>✅ Gabarito 2 — POST com validação</h2><div class="code-block"><span class="lang-badge">JavaScript</span><code>const tarefas = [];
+let proximoId = 1;
+
+app.post('/tarefas', (req, res) =&gt; {
+  const titulo = req.body.titulo?.trim();
+  if (!titulo) {
+    return res.status(400).json({ error: 'TITLE_REQUIRED' });
+  }
+  const tarefa = { id: proximoId++, titulo, concluida: false };
+  tarefas.push(tarefa);
+  return res.status(201).json(tarefa);
+});
+
+app.get('/tarefas', (req, res) =&gt; res.json(tarefas));</code></div><p style="margin-top:14px;">Prossiga implementando PATCH e DELETE com a mesma regra: localizar, retornar 404 se necessário, alterar/remover e responder o status correto.</p></section>
+    <section class="slide slide--content" data-title="Exercício: autenticação"><h2>📝 Exercício 3 — Proteja uma rota</h2><div class="columns"><div class="card"><h3>Situação</h3><p>A turma não pode acessar a lista de tarefas sem login. A rota recebe <code>Authorization: Bearer TOKEN</code>.</p><h3 style="margin-top:14px;">Tarefa</h3><ol><li>Crie middleware que rejeite header ausente com 401.</li><li>Decodifique um JWT válido.</li><li>Guarde o usuário em <code>req.user</code>.</li><li>Aplique o middleware em <code>GET /tarefas</code>.</li></ol></div><div class="card"><h3>Reflexão</h3><p>Por que o token não deve ser lido apenas pelo frontend? Por que uma tarefa deve ser filtrada por <code>usuario_id</code> também no SQL?</p></div></div></section>
+    <section class="slide slide--dark" data-title="Gabarito: autenticação"><h2>✅ Gabarito 3 — Middleware de token</h2><div class="code-block"><span class="lang-badge">JavaScript</span><code>function autenticar(req, res, next) {
+  const header = req.headers.authorization;
+  if (!header?.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'TOKEN_REQUIRED' });
+  }
+  try {
+    req.user = jwt.verify(header.slice(7), process.env.JWT_SECRET);
+    return next();
+  } catch {
+    return res.status(401).json({ error: 'TOKEN_INVALID' });
+  }
+}
+
+app.get('/tarefas', autenticar, listarTarefas);</code></div></section>
+    <section class="slide slide--section" data-title="Projeto final"><h1>🏆 Projeto final<br><span class="accent">API da turma</span></h1><p class="subtitle">Cadastro, login, tarefas e banco MySQL</p></section>
+    <section class="slide slide--content" data-title="Checklist de entrega"><h2>📦 O que uma API pronta precisa provar</h2><table><thead><tr><th>Área</th><th>Evidência</th></tr></thead><tbody><tr><td>Contrato</td><td>README com rotas, bodies, headers e status</td></tr><tr><td>Dados</td><td>script SQL com tabelas e seed mínimo</td></tr><tr><td>Segurança</td><td>.env.example, hash de senha e rotas protegidas</td></tr><tr><td>Qualidade</td><td>testes de rota, validação e respostas de erro</td></tr><tr><td>Uso</td><td>collection Postman ou Bruno com environment</td></tr></tbody></table><div class="callout callout--info" style="margin-top:16px;"><span class="icon">🎓</span><span>Demonstre um fluxo completo: cadastro → login → token → criar tarefa → listar apenas as próprias tarefas.</span></div></section>
+    <section class="slide slide--dark" data-title="Referências e encerramento"><h2>✅ Você está pronto para conectar sistemas</h2><p style="text-align:center;font-size:1.15rem;max-width:760px;margin:22px auto;">Backend profissional não é só fazer uma rota responder: é definir contrato, validar entrada, proteger acesso, persistir com segurança e testar o comportamento.</p><div class="columns"><div class="card"><h3>Referências</h3><p><a href="https://nodejs.org/docs/latest/api/" target="_blank" rel="noopener">Node.js Documentation</a><br><a href="https://expressjs.com/" target="_blank" rel="noopener">Express Documentation</a><br><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP" target="_blank" rel="noopener">MDN HTTP</a></p></div><div class="card"><h3>Próxima conexão</h3><p>Construa um frontend HTML/CSS/JS que consuma sua API usando <code>fetch</code>. Depois, publique frontend e backend em ambientes adequados.</p></div></div></section>
+  </div>
+  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button><button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button><span class="progress-text">1 / 31</span><button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button><a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a></div>
+  <script src="../slides.js"></script>
+</body>
+</html>

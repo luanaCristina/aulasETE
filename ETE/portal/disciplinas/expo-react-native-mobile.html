@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Expo e React Native — ETE Pernambuco</title>
+  <meta name="description" content="Expo, React Native, CRUD mobile, Firebase, testes Android, APK, AAB e publicação Google Play.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar"><h3>📱 Expo &amp; React Native</h3><div class="sidebar-nav"></div></nav>
+  <div class="slides-wrapper">
+    <section class="slide slide--cover" data-title="Capa"><h1>📱 Expo &amp;<br><span class="accent">React Native</span></h1><p class="subtitle">Do primeiro app ao Android e Google Play</p><p style="color:#94A3B8;margin-top:24px;font-size:1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p></section>
+    <section class="slide slide--content" data-title="Trilha e projeto"><h2>🎯 O que vamos construir</h2><div class="columns"><div class="card"><h3>Trilha</h3><ol><li>Preparar Expo e dispositivo.</li><li>Construir telas e componentes.</li><li>Programar uma calculadora.</li><li>Criar CRUD de tarefas com Firebase.</li><li>Testar, gerar APK/AAB e publicar.</li></ol></div><div class="card"><h3>Projeto guiado</h3><p>Um app de tarefas da turma: cada usuário cria, visualiza, atualiza e remove suas próprias tarefas. A calculadora introduz estado; o CRUD introduz dados persistentes.</p><div class="callout callout--tip" style="margin-top:16px;"><span class="icon">💡</span><span>Expo acelera o início. React Native permite criar interfaces móveis com JavaScript/TypeScript.</span></div></div></div></section>
+    <section class="slide slide--content" data-title="React Native e Expo"><h2>🧭 React Native desenha nativo; Expo reduz configuração</h2><table><thead><tr><th>Camada</th><th>Função</th><th>Exemplo</th></tr></thead><tbody><tr><td>React</td><td>componentes e estado</td><td><code>useState</code></td></tr><tr><td>React Native</td><td>componentes de Android/iOS</td><td><code>View</code>, <code>Text</code>, <code>Pressable</code></td></tr><tr><td>Expo</td><td>ferramentas, SDK e builds</td><td>Expo Go, EAS Build</td></tr><tr><td>Firebase</td><td>backend em nuvem</td><td>Auth, Firestore</td></tr></tbody></table><p style="margin-top:16px;">Um único projeto pode rodar em Android, iOS e web, mas sempre teste no dispositivo mais próximo da experiência real do usuário.</p></section>
+    <section class="slide slide--dark" data-title="Pré-requisitos mínimos"><h2>🧰 Comece pelo caminho mais simples</h2><div class="columns"><div class="card"><h3>Em todo computador</h3><ol><li>Node.js LTS instalado.</li><li>VS Code e extensão Expo Tools.</li><li>Conta gratuita em <a href="https://expo.dev/" target="_blank" rel="noopener">expo.dev</a>.</li><li>Celular Android/iOS com Expo Go.</li></ol></div><div class="card"><h3>No celular Android</h3><ol><li>Abra Google Play.</li><li>Instale <strong>Expo Go</strong>.</li><li>Conecte celular e computador na mesma rede.</li><li>Use o leitor de QR do Expo Go.</li></ol><p style="margin-top:12px;">Para início de aula, esse caminho dispensa Android Studio e emulador.</p></div></div></section>
+    <section class="slide slide--content" data-title="Setup no Windows"><h2>🪟 Windows — Expo Go primeiro, Android Studio quando necessário</h2><div class="columns"><div class="card"><h3>Fluxo inicial recomendado</h3><div class="code-block"><span class="lang-badge">PowerShell</span><code>node --version
+npx create-expo-app@latest tarefas-ete
+cd tarefas-ete
+npx expo start</code></div><p style="margin-top:12px;">Instale Expo Go no Android e escaneie o QR exibido no terminal.</p></div><div class="card"><h3>Quando usar Android Studio</h3><p>Use quando o projeto precisar de emulador, depuração USB, bibliotecas nativas ou development build.</p><ul><li>Instale JDK 17 e Android Studio.</li><li>Configure <code>ANDROID_HOME</code>.</li><li>Adicione <code>platform-tools</code> ao PATH.</li><li>Confirme com <code>adb --version</code>.</li></ul></div></div></section>
+    <section class="slide slide--content" data-title="Setup no macOS"><h2>🍎 macOS — mesmo projeto, ambiente específico</h2><div class="columns"><div class="card"><h3>Começo rápido</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>node --version
+npx create-expo-app@latest tarefas-ete
+cd tarefas-ete
+npx expo start</code></div><p style="margin-top:12px;">Com Expo Go, escaneie o QR usando a câmera do iPhone ou o app no Android.</p></div><div class="card"><h3>Android local no macOS</h3><ul><li>Instale Android Studio e crie um emulador.</li><li>Instale OpenJDK 17 e configure <code>JAVA_HOME</code>.</li><li>Configure <code>ANDROID_HOME</code> e <code>platform-tools</code>.</li><li>Use <code>adb devices</code> para verificar aparelho USB.</li></ul><p style="margin-top:12px;">iOS nativo exige macOS; Android pode ser desenvolvido em Windows, macOS ou Linux.</p></div></div></section>
+    <section class="slide slide--dark" data-title="Crie e execute"><h2>🚀 Crie o app e abra no celular</h2><div class="code-block"><span class="lang-badge">Terminal</span><code>npx create-expo-app@latest tarefas-ete
+cd tarefas-ete
+npx expo start
+
+# atalhos úteis no terminal do Expo
+# a: abre em Android conectado/emulador
+# w: abre versão web
+# r: recarrega o app
+# ? : mostra outros atalhos</code></div><div class="callout callout--info" style="margin-top:16px;"><span class="icon">📱</span><span>O QR abre a versão de desenvolvimento. Salve o arquivo e veja a atualização no aparelho sem reinstalar o app.</span></div></section>
+    <section class="slide slide--content" data-title="Estrutura do projeto"><h2>📁 Localize onde cada parte do app vive</h2><div class="code-block"><span class="lang-badge">Estrutura</span><code>tarefas-ete/
+├── app/               # telas e rotas com Expo Router
+│   ├── _layout.tsx     # estrutura de navegação
+│   └── index.tsx       # tela inicial
+├── components/         # partes reutilizáveis da interface
+├── assets/             # ícones e imagens do app
+├── app.json            # nome, ícone, package Android
+├── eas.json            # perfis de build
+└── package.json        # dependências e scripts</code></div><p style="margin-top:14px;">Antes de criar arquivos, leia a estrutura gerada. O arquivo <code>app/index.tsx</code> costuma ser a primeira tela em um projeto com Expo Router.</p></section>
+    <section class="slide slide--content" data-title="Componentes essenciais"><h2>🧱 View, Text e Pressable substituem div, p e button</h2><div class="columns"><div class="card"><h3>HTML mental</h3><div class="code-block"><span class="lang-badge">HTML</span><code>&lt;div&gt;
+  &lt;p&gt;Olá&lt;/p&gt;
+  &lt;button&gt;Salvar&lt;/button&gt;
+&lt;/div&gt;</code></div></div><div class="card"><h3>React Native</h3><div class="code-block"><span class="lang-badge">TSX</span><code>&lt;View&gt;
+  &lt;Text&gt;Olá&lt;/Text&gt;
+  &lt;Pressable onPress={salvar}&gt;
+    &lt;Text&gt;Salvar&lt;/Text&gt;
+  &lt;/Pressable&gt;
+&lt;/View&gt;</code></div></div></div><p style="margin-top:14px;">A interface é descrita com TSX, mas não há tags HTML no app nativo. Use <code>StyleSheet</code> ou bibliotecas de estilo compatíveis.</p></section>
+    <section class="slide slide--content" data-title="Estilo e layout"><h2>🎨 Flexbox é o sistema de layout padrão</h2><div class="columns"><div class="card"><h3>Estilos</h3><div class="code-block"><span class="lang-badge">TSX</span><code>const styles = StyleSheet.create({
+  card: {
+    backgroundColor: '#FFFFFF',
+    padding: 16,
+    borderRadius: 12,
+    gap: 8
+  },
+  title: { fontSize: 22, fontWeight: '700' }
+});</code></div></div><div class="card"><h3>Layout</h3><div class="code-block"><span class="lang-badge">TSX</span><code>container: {
+  flex: 1,
+  padding: 24,
+  justifyContent: 'center',
+  alignItems: 'stretch'
+}</code></div><p style="margin-top:10px;"><code>flex: 1</code> ocupa a área disponível. O padrão de direção é coluna, ao contrário de muitos layouts web.</p></div></div></section>
+    <section class="slide slide--content" data-title="Estado e TextInput"><h2>🧠 useState liga o toque à interface</h2><div class="code-block"><span class="lang-badge">TSX</span><code>import { useState } from 'react';
+import { Text, TextInput, View } from 'react-native';
+
+export default function Perfil() {
+  const [nome, setNome] = useState('');
+  return (
+    &lt;View&gt;
+      &lt;TextInput value={nome} onChangeText={setNome}
+        placeholder="Seu nome" /&gt;
+      &lt;Text&gt;Olá, {nome || 'turma'}!&lt;/Text&gt;
+    &lt;/View&gt;
+  );
+}</code></div><p style="margin-top:14px;">O usuário altera o campo; <code>onChangeText</code> atualiza o estado; o React redesenha o texto que depende de <code>nome</code>.</p></section>
+    <section class="slide slide--section" data-title="Miniapp 1"><h1>🧮 Miniapp 1<br><span class="accent">Calculadora</span></h1><p class="subtitle">Estado, campos e eventos</p></section>
+    <section class="slide slide--content" data-title="Calculadora: regra"><h2>➕ Separe entrada, regra e resultado</h2><div class="columns"><div class="card"><h3>Dados de entrada</h3><p>Dois <code>TextInput</code> guardam texto. Converta para número apenas ao calcular.</p><div class="code-block"><span class="lang-badge">TSX</span><code>const [primeiro, setPrimeiro] = useState('');
+const [segundo, setSegundo] = useState('');
+const [resultado, setResultado] = useState&lt;number | null&gt;(null);</code></div></div><div class="card"><h3>Regra</h3><div class="code-block"><span class="lang-badge">TSX</span><code>function somar() {
+  const a = Number(primeiro);
+  const b = Number(segundo);
+  if (Number.isNaN(a) || Number.isNaN(b)) {
+    return Alert.alert('Atenção', 'Digite dois números.');
+  }
+  setResultado(a + b);
+}</code></div></div></div></section>
+    <section class="slide slide--dark" data-title="Calculadora: interface"><h2>✅ Gabarito — Calculadora com soma</h2><div class="code-block"><span class="lang-badge">TSX</span><code>&lt;TextInput keyboardType="numeric" value={primeiro}
+  onChangeText={setPrimeiro} placeholder="Primeiro número" /&gt;
+&lt;TextInput keyboardType="numeric" value={segundo}
+  onChangeText={setSegundo} placeholder="Segundo número" /&gt;
+&lt;Pressable style={styles.button} onPress={somar}&gt;
+  &lt;Text style={styles.buttonText}&gt;Somar&lt;/Text&gt;
+&lt;/Pressable&gt;
+{resultado !== null &amp;&amp; (
+  &lt;Text&gt;Resultado: {resultado}&lt;/Text&gt;
+)}</code></div><div class="callout callout--tip" style="margin-top:16px;"><span class="icon">🧪</span><span>Teste 2 + 3, números decimais e campo vazio. Cada cenário revela uma parte do comportamento esperado.</span></div></section>
+    <section class="slide slide--content" data-title="CRUD mobile"><h2>📋 CRUD no celular começa pelo estado local</h2><div class="columns"><div class="card"><h3>Modelo de tarefa</h3><div class="code-block"><span class="lang-badge">TypeScript</span><code>type Tarefa = {
+  id: string;
+  titulo: string;
+  concluida: boolean;
+};
+
+const [tarefas, setTarefas] = useState&lt;Tarefa[]&gt;([]);</code></div></div><div class="card"><h3>Operações</h3><table><tbody><tr><td>Create</td><td>adiciona tarefa ao array</td></tr><tr><td>Read</td><td><code>FlatList</code> mostra tarefas</td></tr><tr><td>Update</td><td>marca concluída ou edita título</td></tr><tr><td>Delete</td><td>remove pelo id</td></tr></tbody></table><p style="margin-top:12px;">O estado local ensina a regra. Firebase entra para tornar os dados persistentes e compartilhados.</p></div></div></section>
+    <section class="slide slide--content" data-title="CRUD local"><h2>✏️ Atualize uma lista sem alterar o estado diretamente</h2><div class="code-block"><span class="lang-badge">TSX</span><code>function criar(titulo: string) {
+  const tarefa = { id: crypto.randomUUID(), titulo, concluida: false };
+  setTarefas(lista =&gt; [...lista, tarefa]);
+}
+function alternar(id: string) {
+  setTarefas(lista =&gt; lista.map(t =&gt;
+    t.id === id ? { ...t, concluida: !t.concluida } : t
+  ));
+}
+function remover(id: string) {
+  setTarefas(lista =&gt; lista.filter(t =&gt; t.id !== id));
+}</code></div><p style="margin-top:14px;">Crie novos arrays e novos objetos. Alterar diretamente uma tarefa existente pode impedir o React de atualizar a interface corretamente.</p></section>
+    <section class="slide slide--content" data-title="Firebase e Firestore"><h2>☁️ Firestore transforma estado local em dados persistentes</h2><div class="columns"><div class="card"><h3>Configuração inicial</h3><ol><li>Crie projeto no Firebase Console.</li><li>Adicione aplicativo Web ao projeto Expo.</li><li>Copie a configuração pública para <code>firebase.ts</code>.</li><li>Ative Firestore em modo de teste apenas para desenvolvimento inicial.</li></ol><div class="code-block" style="margin-top:10px;"><span class="lang-badge">Terminal</span><code>npx expo install firebase</code></div></div><div class="card"><h3>Modelo recomendado</h3><div class="code-block"><span class="lang-badge">Firestore</span><code>usuarios/{uid}/tarefas/{tarefaId}
+
+{
+  titulo: 'Estudar Expo',
+  concluida: false,
+  criadaEm: serverTimestamp()
+}</code></div><p style="margin-top:10px;">O UID na rota dos dados ajuda a estruturar regras para que um estudante leia apenas suas próprias tarefas.</p></div></div></section>
+    <section class="slide slide--dark" data-title="Firestore CRUD"><h2>🔥 CRUD com Firestore</h2><div class="code-block"><span class="lang-badge">TypeScript</span><code>import { addDoc, collection, deleteDoc, doc,
+  updateDoc } from 'firebase/firestore';
+
+await addDoc(collection(db, 'usuarios', uid, 'tarefas'), {
+  titulo, concluida: false, criadaEm: new Date()
+});
+await updateDoc(doc(db, 'usuarios', uid, 'tarefas', id), {
+  concluida: true
+});
+await deleteDoc(doc(db, 'usuarios', uid, 'tarefas', id));</code></div><div class="callout callout--warning" style="margin-top:16px;"><span class="icon">🔒</span><span>Configuração do Firebase não substitui regras. Antes de publicar, escreva regras de Firestore que comparem o UID autenticado com o dono do documento.</span></div></section>
+    <section class="slide slide--content" data-title="Autenticação Firebase"><h2>🪪 Usuário autenticado define o dono dos dados</h2><div class="columns"><div class="card"><h3>Cadastro/Login</h3><div class="code-block"><span class="lang-badge">TypeScript</span><code>import { createUserWithEmailAndPassword,
+  signInWithEmailAndPassword } from 'firebase/auth';
+
+const credencial = await signInWithEmailAndPassword(
+  auth, email, senha
+);
+const uid = credencial.user.uid;</code></div></div><div class="card"><h3>Regra Firestore (ideia)</h3><div class="code-block"><span class="lang-badge">Rules</span><code>match /usuarios/{uid}/tarefas/{tarefaId} {
+  allow read, write: if request.auth != null
+    &amp;&amp; request.auth.uid == uid;
+}</code></div><p style="margin-top:10px;">Teste com dois usuários. Se um enxerga a tarefa do outro, a regra ainda não está segura.</p></div></div></section>
+    <section class="slide slide--content" data-title="Teste em Android"><h2>📲 Teste no celular antes de pensar na loja</h2><div class="columns"><div class="card"><h3>Expo Go</h3><ol><li>Execute <code>npx expo start</code>.</li><li>Abra Expo Go.</li><li>Escaneie o QR.</li><li>Teste toque, teclado, rede e tela pequena.</li></ol></div><div class="card"><h3>Checklist funcional</h3><ul><li>Texto não corta em telas estreitas.</li><li>Botões possuem área de toque confortável.</li><li>Carregamento e erro estão visíveis.</li><li>CRUD confirma sucesso e trata falha.</li><li>Não há segredo do Firebase ou senha exposta.</li></ul></div></div></section>
+    <section class="slide slide--content" data-title="Development build e ADB"><h2>🔧 Quando Expo Go não é suficiente</h2><div class="columns"><div class="card"><h3>Development build</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>npm install --global eas-cli
+eas login
+eas build:configure
+npx expo install expo-dev-client
+eas build --platform android --profile development</code></div><p style="margin-top:10px;">Use quando uma biblioteca nativa não funciona no Expo Go ou quando a equipe precisa testar uma configuração mais próxima da versão final.</p></div><div class="card"><h3>Dispositivo USB</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>adb devices
+npx expo run:android</code></div><p style="margin-top:10px;">Ative Opções do desenvolvedor e Depuração USB somente no aparelho usado para desenvolvimento. Confirme o aviso de autorização no celular.</p></div></div></section>
+    <section class="slide slide--content" data-title="APK para testar"><h2>📦 APK é para instalar e testar; AAB é para Play Store</h2><div class="columns"><div class="card"><h3>Perfil de teste</h3><div class="code-block"><span class="lang-badge">eas.json</span><code>{
+  "build": {
+    "preview": {
+      "android": { "buildType": "apk" }
+    },
+    "production": {}
+  }
+}</code></div><div class="code-block" style="margin-top:10px;"><span class="lang-badge">Terminal</span><code>eas build -p android --profile preview</code></div></div><div class="card"><h3>Use correto</h3><p>Envie o link do APK para um aparelho de teste ou instale com ADB. O APK não é o arquivo para uma nova publicação no Google Play.</p><p style="margin-top:12px;">O build de produção gera <strong>AAB</strong> por padrão: o formato aceito pela Play Store para novos apps.</p></div></div></section>
+    <section class="slide slide--content" data-title="Conta Google Play"><h2>💳 Publicar exige uma conta de desenvolvedor verificada</h2><table><thead><tr><th>Etapa</th><th>O que preparar</th></tr></thead><tbody><tr><td>Registro</td><td>Conta Google e taxa única de <strong>US$ 25</strong></td></tr><tr><td>Tipo de conta</td><td>Pessoal ou organização, com dados reais e verificáveis</td></tr><tr><td>Identidade</td><td>Nome, endereço, telefone/e-mail e verificações solicitadas</td></tr><tr><td>App</td><td>Package name único, ficha da loja, ícone, screenshots e AAB</td></tr><tr><td>Conformidade</td><td>Política de privacidade, Segurança dos dados e conteúdo do app</td></tr></tbody></table><p style="margin-top:14px;">Consulte os <a href="https://support.google.com/googleplay/android-developer/answer/6112435?hl=pt-BR" target="_blank" rel="noopener">passos oficiais do Play Console</a> e seus requisitos atuais antes de pagar ou enviar qualquer app.</p></section>
+    <section class="slide slide--content" data-title="Configure para produção"><h2>🧾 Nome e package fazem parte da identidade do app</h2><div class="columns"><div class="card"><h3>app.json</h3><div class="code-block"><span class="lang-badge">JSON</span><code>{
+  "expo": {
+    "name": "Tarefas ETE",
+    "slug": "tarefas-ete",
+    "android": {
+      "package": "br.edu.ete.tarefas"
+    }
+  }
+}</code></div></div><div class="card"><h3>Produção</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>eas build --platform android --profile production
+eas submit --platform android</code></div><p style="margin-top:10px;">Crie antes o app no Play Console e configure a credencial de service account no EAS. O primeiro envio vai para teste interno e permanece em rascunho até completar a ficha.</p></div></div></section>
+    <section class="slide slide--content" data-title="Publicação passo a passo"><h2>🚀 Um envio à Play Store é uma sequência verificável</h2><ol><li>Crie o app no Play Console com nome e package name definitivos.</li><li>Preencha ficha da loja, classificação de conteúdo, política de privacidade e Segurança dos dados.</li><li>Crie conta de serviço Google, dê permissão no Play Console e envie a chave ao EAS com segurança.</li><li>Gere AAB: <code>eas build --platform android --profile production</code>.</li><li>Envie para teste interno com <code>eas submit --platform android</code> ou pelo console.</li><li>Teste com pessoas convidadas, corrija falhas e só então promova o release.</li></ol><div class="callout callout--warning" style="margin-top:16px;"><span class="icon">⚠️</span><span>Nunca versione a chave JSON da conta de serviço, senhas ou arquivos com segredos no Git.</span></div></section>
+    <section class="slide slide--section" data-title="Desafio 1"><h1>🧩 Desafio 1<br><span class="accent">Calculadora de média</span></h1><p class="subtitle">Inputs, estado, condição e interface</p></section>
+    <section class="slide slide--content" data-title="Exercício: calculadora"><h2>📝 Exercício 1 — Média da turma</h2><div class="columns"><div class="card"><h3>Construa</h3><ol><li>Crie três campos de nota com teclado numérico.</li><li>Crie botão <strong>Calcular média</strong>.</li><li>Mostre média com uma casa decimal.</li><li>Mostre aprovado, recuperação ou reprovado.</li><li>Trate campo vazio e número inválido.</li></ol></div><div class="card"><h3>Critérios de interface</h3><ul><li>Label visível para cada campo.</li><li>Botão com contraste e área de toque.</li><li>Resultado não aparece antes do cálculo.</li><li>Mensagem de erro compreensível.</li></ul></div></div></section>
+    <section class="slide slide--dark" data-title="Gabarito: calculadora"><h2>✅ Gabarito 1 — Regra da média</h2><div class="code-block"><span class="lang-badge">TSX</span><code>function calcularMedia() {
+  const notas = [nota1, nota2, nota3].map(Number);
+  if (notas.some(Number.isNaN)) {
+    return Alert.alert('Atenção', 'Preencha as três notas.');
+  }
+  const media = notas.reduce((soma, nota) =&gt; soma + nota, 0) / 3;
+  const situacao = media &gt;= 7 ? 'Aprovado'
+    : media &gt;= 5 ? 'Recuperação' : 'Reprovado';
+  setResultado({ media, situacao });
+}</code></div><p style="margin-top:14px;">Extensão: permita limpar campos, calcule a nota mínima da recuperação e transforme a regra em uma função testável.</p></section>
+    <section class="slide slide--content" data-title="Exercício: CRUD Firebase"><h2>📝 Exercício 2 — Lista de tarefas persistente</h2><div class="columns"><div class="card"><h3>Obrigatório</h3><ol><li>Login com e-mail e senha.</li><li>Criar tarefa com título obrigatório.</li><li>Listar tarefas do usuário autenticado.</li><li>Concluir, editar e remover tarefa.</li><li>Exibir carregamento e erro.</li></ol></div><div class="card"><h3>Segurança</h3><ol><li>Use UID no caminho Firestore.</li><li>Escreva regra que bloqueie usuário não autenticado.</li><li>Teste com duas contas.</li><li>Não use modo de teste em produção.</li></ol></div></div></section>
+    <section class="slide slide--dark" data-title="Gabarito: CRUD Firebase"><h2>✅ Gabarito 2 — Leitura com filtro por usuário</h2><div class="code-block"><span class="lang-badge">TSX</span><code>import { collection, onSnapshot, orderBy, query } from 'firebase/firestore';
+
+useEffect(() =&gt; {
+  if (!uid) return;
+  const tarefasRef = collection(db, 'usuarios', uid, 'tarefas');
+  const q = query(tarefasRef, orderBy('criadaEm', 'desc'));
+  return onSnapshot(q, snapshot =&gt; {
+    setTarefas(snapshot.docs.map(doc =&gt; ({
+      id: doc.id, ...doc.data()
+    })));
+  });
+}, [uid]);</code></div><p style="margin-top:14px;">O filtro no caminho organiza os dados; a regra Firestore garante que a organização também seja uma proteção real.</p></section>
+    <section class="slide slide--section" data-title="Projeto final"><h1>🏆 Projeto final<br><span class="accent">App da turma</span></h1><p class="subtitle">Interface, dados, testes e distribuição</p></section>
+    <section class="slide slide--content" data-title="Checklist de entrega"><h2>📦 O app não termina quando abre no seu celular</h2><table><thead><tr><th>Área</th><th>Evidência esperada</th></tr></thead><tbody><tr><td>Interface</td><td>telas responsivas, textos claros e acessibilidade básica</td></tr><tr><td>Lógica</td><td>estado, validação e componentes reutilizáveis</td></tr><tr><td>Dados</td><td>CRUD Firebase e regras por usuário</td></tr><tr><td>Qualidade</td><td>cenários de sucesso, erro e offline</td></tr><tr><td>Android</td><td>APK de teste ou build AAB de produção</td></tr><tr><td>Documentação</td><td>README com setup, testes e capturas de tela</td></tr></tbody></table></section>
+    <section class="slide slide--dark" data-title="Referências e encerramento"><h2>✅ Do QR code ao app distribuído</h2><p style="text-align:center;font-size:1.15rem;max-width:760px;margin:22px auto;">A publicação começa bem antes do botão enviar: nasce na instalação reproduzível, no cuidado com dados, em testes reais e na responsabilidade com quem usará o aplicativo.</p><div class="columns"><div class="card"><h3>Referências</h3><p><a href="https://docs.expo.dev/" target="_blank" rel="noopener">Expo Documentation</a><br><a href="https://firebase.google.com/docs" target="_blank" rel="noopener">Firebase Documentation</a><br><a href="https://support.google.com/googleplay/android-developer/answer/10788890?hl=pt-BR" target="_blank" rel="noopener">Requisitos do Play Console</a></p></div><div class="card"><h3>Próximo passo</h3><p>Faça um APK para testes com a turma, registre os problemas encontrados e só então planeje um AAB e um release interno na Play Store.</p></div></div></section>
+  </div>
+  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button><button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button><span class="progress-text">1 / 33</span><button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button><a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a></div>
+  <script src="../slides.js"></script>
+</body>
+</html>

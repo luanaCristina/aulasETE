@@ -572,13 +572,131 @@ db.alunos.deleteOne({ nome: "Maria" })</code>
       <p style="color:#94A3B8; margin-top:24px; text-align:center;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
     </section>
 
+    <!-- SLIDE 16: MYSQL + WORKBENCH -->
+    <section class="slide slide--section" data-title="MySQL + Workbench">
+      <h1>🐬 MySQL +<br><span class="accent">Workbench</span></h1>
+      <p class="subtitle">Do instalador à primeira consulta SQL</p>
+      <p style="margin-top:24px; font-size:1.1rem; color:#CBD5E1;">Servidor guarda os dados. Workbench permite criar, consultar e administrar.</p>
+    </section>
+
+    <!-- SLIDE 17: WINDOWS MYSQL -->
+    <section class="slide slide--content" data-title="MySQL no Windows">
+      <h2>🪟 Windows — Instale Server e Workbench juntos</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Passo a passo</h3>
+          <ol>
+            <li>Acesse <a href="https://dev.mysql.com/downloads/installer/" target="_blank" rel="noopener">MySQL Installer</a> e baixe a edição Community.</li>
+            <li>Abra o instalador como usuário administrador e escolha <strong>Developer Default</strong>, ou selecione <strong>MySQL Server</strong> e <strong>MySQL Workbench</strong>.</li>
+            <li>Na configuração, mantenha a porta <code>3306</code>, defina e guarde a senha do usuário <code>root</code>.</li>
+            <li>Conclua a configuração do serviço e abra o MySQL Workbench.</li>
+          </ol>
+          <div class="callout callout--warning" style="margin-top:14px;">
+            <span class="icon">🔐</span><span>Nunca compartilhe a senha do <code>root</code> nem a envie em trabalhos ou repositórios.</span>
+          </div>
+        </div>
+        <div class="card">
+          <h3>Imagem-guia: MySQL Installer</h3>
+          <img src="https://eteapiplay-akbqqgv2.manus.space/manus-storage/mysql-installer-windows_00fa0bb9.png" alt="Tela do MySQL Installer no Windows mostrando a configuração do MySQL Server" style="width:100%;max-height:270px;object-fit:contain;border-radius:10px;background:#fff;margin-top:8px;">
+          <p style="font-size:.8rem;color:#94A3B8;margin-top:10px;">Procure os passos <strong>Type and Networking</strong>, <strong>Authentication Method</strong> e <strong>Accounts and Roles</strong>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 18: MACOS MYSQL -->
+    <section class="slide slide--content" data-title="MySQL no macOS">
+      <h2>🍎 macOS — Server, Workbench e primeira abertura</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Caminho visual (DMG)</h3>
+          <ol>
+            <li>Baixe o MySQL Community Server para macOS e execute o instalador <code>.dmg</code>.</li>
+            <li>Durante o assistente, memorize a senha do usuário <code>root</code> e confirme o servidor em execução.</li>
+            <li>Baixe o <a href="https://dev.mysql.com/downloads/workbench/" target="_blank" rel="noopener">MySQL Workbench</a>, abra o DMG e arraste o app para <strong>Applications</strong>.</li>
+            <li>Abra o Workbench pela pasta Applications e permita a abertura caso o macOS solicite confirmação.</li>
+          </ol>
+          <div class="code-block" style="margin-top:12px;"><span class="lang-badge">Terminal</span><code>mysql --version
+# Verifique se o cliente foi instalado
+
+mysql -u root -p
+# Digite a senha sem exibi-la na tela</code></div>
+        </div>
+        <div class="card">
+          <h3>Imagem-guia: Workbench no macOS</h3>
+          <img src="https://eteapiplay-akbqqgv2.manus.space/manus-storage/mysql-workbench-macos_284fcb51.png" alt="Janela de instalação do MySQL Workbench no macOS mostrando o aplicativo sendo arrastado para Applications" style="width:100%;max-height:270px;object-fit:contain;border-radius:10px;background:#fff;margin-top:8px;">
+          <p style="font-size:.8rem;color:#94A3B8;margin-top:10px;">Ação principal: arraste o ícone do Workbench para <strong>Applications</strong> antes de abrir.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 19: CONNECTION -->
+    <section class="slide slide--dark" data-title="Primeira conexão">
+      <h2>🔌 Workbench — Crie uma conexão local</h2>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card">
+          <h3>Configure a conexão</h3>
+          <table>
+            <thead><tr><th>Campo</th><th>Valor de aula</th></tr></thead>
+            <tbody>
+              <tr><td>Connection Name</td><td><code>MySQL local</code></td></tr>
+              <tr><td>Hostname</td><td><code>127.0.0.1</code> ou <code>localhost</code></td></tr>
+              <tr><td>Port</td><td><code>3306</code></td></tr>
+              <tr><td>Username</td><td><code>root</code> (somente no ambiente local)</td></tr>
+              <tr><td>Password</td><td>Clique em <strong>Store in Keychain/Vault</strong> apenas no computador pessoal</td></tr>
+            </tbody>
+          </table>
+          <p style="margin-top:12px;">Clique em <strong>Test Connection</strong>. Só avance quando a mensagem de sucesso aparecer.</p>
+        </div>
+        <div class="card">
+          <h3>Se a conexão falhar</h3>
+          <ol>
+            <li>Verifique se o MySQL Server está iniciado.</li>
+            <li>Confira se a porta é <code>3306</code> e se ela não está ocupada por outro serviço.</li>
+            <li>Revise usuário e senha; não tente instalar novamente antes de ler a mensagem de erro.</li>
+            <li>No Windows, abra Services e procure <code>MySQL80</code>; no macOS, confira o painel MySQL em System Settings.</li>
+          </ol>
+          <div class="callout callout--tip" style="margin-top:14px;"><span class="icon">💡</span><span>Servidor parado é diferente de senha errada. Leia a primeira linha útil do erro antes de agir.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: FIRST SQL -->
+    <section class="slide slide--content" data-title="Primeiro banco MySQL">
+      <h2>🚀 Primeiros comandos no Workbench</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Crie um banco da turma</h3>
+          <div class="code-block"><span class="lang-badge">SQL</span><code>CREATE DATABASE IF NOT EXISTS escola_ete;
+USE escola_ete;
+
+CREATE TABLE IF NOT EXISTS alunos (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  nome VARCHAR(100) NOT NULL,
+  turma VARCHAR(20) NOT NULL,
+  criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);</code></div>
+        </div>
+        <div class="card">
+          <h3>Insira e consulte</h3>
+          <div class="code-block"><span class="lang-badge">SQL</span><code>INSERT INTO alunos (nome, turma)
+VALUES ('Ana', 'DS 2026.2');
+
+SELECT id, nome, turma, criado_em
+FROM alunos
+ORDER BY nome;</code></div>
+          <p style="margin-top:12px;">No Workbench, selecione o script e clique no ícone de raio. O painel inferior mostra o resultado e possíveis erros.</p>
+        </div>
+      </div>
+      <div class="callout callout--info" style="margin-top:16px;"><span class="icon">📌</span><span>Exercício relâmpago: adicione a coluna <code>email</code> com <code>ALTER TABLE</code>, insira dois alunos e filtre apenas a turma <code>DS 2026.2</code>.</span></div>
+    </section>
+
   </div><!-- /slides-wrapper -->
 
   <!-- Controles -->
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
     <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
-    <span class="progress-text">1 / 15</span>
+    <span class="progress-text">1 / 20</span>
     <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
     <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>

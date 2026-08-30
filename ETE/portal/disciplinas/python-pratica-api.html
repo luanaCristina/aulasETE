@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Python na Prática — ETE Pernambuco</title>
+  <meta name="description" content="Python comparado com JavaScript, ambiente virtual, APIs Flask/FastAPI, exercícios e gabaritos.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar"><h3>🐍 Python na Prática</h3><div class="sidebar-nav"></div></nav>
+  <div class="slides-wrapper">
+    <section class="slide slide--cover" data-title="Capa"><h1>🐍 Python na<br><span class="accent">Prática</span></h1><p class="subtitle">Da lógica no terminal às APIs web</p><p style="color:#94A3B8;margin-top:24px;font-size:1.1rem;">ETE Pernambuco — Profª Luana Cristina — 2026.2</p></section>
+    <section class="slide slide--content" data-title="O mesmo problema, duas sintaxes"><h2>🔁 Python e JavaScript resolvem os mesmos problemas</h2><div class="columns"><div class="card"><h3>JavaScript</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>const nome = 'Ana';
+if (nome.length &gt; 0) {
+  console.log(`Olá, ${nome}`);
+}</code></div></div><div class="card"><h3>Python</h3><div class="code-block"><span class="lang-badge">Python</span><code>nome = 'Ana'
+if len(nome) &gt; 0:
+    print(f'Olá, {nome}')</code></div></div></div><p style="margin-top:14px;text-align:center;">A lógica é a mesma. Mudam palavras-chave, pontuação e a forma de delimitar blocos.</p></section>
+    <section class="slide slide--content" data-title="Execute no terminal"><h2>💻 Python começa com um arquivo e um terminal</h2><div class="columns"><div class="card"><h3>Confirme a instalação</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>python --version
+# no Windows, se necessário:
+py --version
+
+mkdir python-tarefas
+cd python-tarefas
+code .</code></div><p style="margin-top:12px;">Instale Python pelo <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">site oficial</a> e marque a opção de adicionar Python ao PATH no Windows.</p></div><div class="card"><h3>Primeiro arquivo</h3><div class="code-block"><span class="lang-badge">ola.py</span><code>turma = 'DS 2026.2'
+print(f'Olá, {turma}!')
+
+# terminal
+python ola.py</code></div><p style="margin-top:12px;">No VS Code, instale a extensão Python, abra a pasta do projeto e escolha o interpretador correto.</p></div></div></section>
+    <section class="slide slide--content" data-title="Variáveis e tipos"><h2>📦 Variáveis guardam referências para valores</h2><table><thead><tr><th>Ideia</th><th>JavaScript</th><th>Python</th></tr></thead><tbody><tr><td>Texto</td><td><code>const nome = 'Bia'</code></td><td><code>nome = 'Bia'</code></td></tr><tr><td>Número</td><td><code>let nota = 8.5</code></td><td><code>nota = 8.5</code></td></tr><tr><td>Booleano</td><td><code>true</code></td><td><code>True</code></td></tr><tr><td>Ausência</td><td><code>null</code></td><td><code>None</code></td></tr><tr><td>Tipo</td><td><code>typeof nota</code></td><td><code>type(nota)</code></td></tr></tbody></table><div class="callout callout--tip" style="margin-top:16px;"><span class="icon">💡</span><span>Python usa inferência de tipo, mas você pode declarar intenção: <code>nota: float = 8.5</code>.</span></div></section>
+    <section class="slide slide--content" data-title="Entrada, saída e conversão"><h2>🗣️ Leia texto, converta dados e mostre resultado</h2><div class="columns"><div class="card"><h3>JavaScript (navegador)</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>const idade = Number(prompt('Idade:'));
+console.log(`Ano que vem: ${idade + 1}`);</code></div></div><div class="card"><h3>Python (terminal)</h3><div class="code-block"><span class="lang-badge">Python</span><code>idade = int(input('Idade: '))
+print(f'Ano que vem: {idade + 1}')</code></div><p style="margin-top:12px;">Todo <code>input()</code> começa como texto. Converta com <code>int()</code>, <code>float()</code> ou mantenha como <code>str</code>.</p></div></div></section>
+    <section class="slide slide--dark" data-title="Condicionais"><h2>🚦 Condicionais escolhem um caminho</h2><div class="columns"><div class="card"><h3>JavaScript</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>if (media &gt;= 7) {
+  situacao = 'aprovado';
+} else if (media &gt;= 5) {
+  situacao = 'recuperação';
+} else {
+  situacao = 'reprovado';
+}</code></div></div><div class="card"><h3>Python</h3><div class="code-block"><span class="lang-badge">Python</span><code>if media &gt;= 7:
+    situacao = 'aprovado'
+elif media &gt;= 5:
+    situacao = 'recuperação'
+else:
+    situacao = 'reprovado'</code></div></div></div><p style="margin-top:14px;">Em Python, os dois-pontos e a indentação são parte da sintaxe. Quatro espaços é o padrão recomendado.</p></section>
+    <section class="slide slide--content" data-title="Repetições"><h2>🔄 Laços processam coleções sem copiar código</h2><div class="columns"><div class="card"><h3>Para cada item</h3><div class="code-block"><span class="lang-badge">Python</span><code>nomes = ['Ana', 'Caio', 'Bia']
+for nome in nomes:
+    print(nome)</code></div><div class="code-block" style="margin-top:10px;"><span class="lang-badge">JavaScript</span><code>for (const nome of nomes) {
+  console.log(nome);
+}</code></div></div><div class="card"><h3>Com contador</h3><div class="code-block"><span class="lang-badge">Python</span><code>for numero in range(1, 6):
+    print(numero)
+
+tentativas = 0
+while tentativas &lt; 3:
+    tentativas += 1</code></div><p style="margin-top:12px;"><code>range(1, 6)</code> inclui o 1 e para antes do 6.</p></div></div></section>
+    <section class="slide slide--content" data-title="Listas e dicionários"><h2>🧺 Lista agrupa valores; dicionário dá nome aos dados</h2><div class="columns"><div class="card"><h3>Lista = array</h3><div class="code-block"><span class="lang-badge">Python</span><code>tarefas = ['Estudar', 'Praticar SQL']
+tarefas.append('Revisar API')
+primeira = tarefas[0]
+
+for tarefa in tarefas:
+    print(tarefa)</code></div></div><div class="card"><h3>Dicionário = objeto</h3><div class="code-block"><span class="lang-badge">Python</span><code>aluno = {
+    'nome': 'Ana',
+    'turma': 'DS 2026.2',
+    'notas': [8, 9, 7]
+}
+print(aluno['nome'])
+aluno['ativo'] = True</code></div></div></div></section>
+    <section class="slide slide--content" data-title="Funções e retorno"><h2>🧩 Funções recebem, processam e devolvem</h2><div class="columns"><div class="card"><h3>Python com tipos</h3><div class="code-block"><span class="lang-badge">Python</span><code>def calcular_media(notas: list[float]) -&gt; float:
+    if not notas:
+        return 0.0
+    return sum(notas) / len(notas)
+
+media = calcular_media([8.0, 9.0, 7.0])</code></div></div><div class="card"><h3>Correspondência em JS</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>function calcularMedia(notas) {
+  if (notas.length === 0) return 0;
+  return notas.reduce((soma, n) =&gt; soma + n, 0) / notas.length;
+}</code></div><p style="margin-top:10px;">Prefira <code>return</code> a apenas <code>print</code>: assim a função pode ser reutilizada e testada.</p></div></div></section>
+    <section class="slide slide--content" data-title="Erros e testes"><h2>🧪 Erros são sinais para tratar, não esconder</h2><div class="columns"><div class="card"><h3>Trate um erro esperado</h3><div class="code-block"><span class="lang-badge">Python</span><code>try:
+    idade = int(input('Idade: '))
+except ValueError:
+    print('Digite um número inteiro.')
+else:
+    print(f'Idade registrada: {idade}')</code></div></div><div class="card"><h3>Teste simples</h3><div class="code-block"><span class="lang-badge">Python</span><code>def eh_aprovado(media: float) -&gt; bool:
+    return media &gt;= 7
+
+assert eh_aprovado(7.0) is True
+assert eh_aprovado(6.9) is False</code></div><p style="margin-top:10px;">Um teste descreve o comportamento esperado antes que alguém use a função de forma errada.</p></div></div></section>
+    <section class="slide slide--dark" data-title="Ambiente virtual"><h2>🧪 Cada projeto merece suas próprias dependências</h2><div class="columns"><div class="card"><h3>Windows</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>py -m venv .venv
+.venv\Scripts\activate
+python -m pip install flask
+pip freeze &gt; requirements.txt</code></div></div><div class="card"><h3>macOS e Linux</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>python3 -m venv .venv
+source .venv/bin/activate
+python -m pip install flask
+pip freeze &gt; requirements.txt</code></div><p style="margin-top:10px;">No VS Code, selecione o interpretador dentro de <code>.venv</code>.</p></div></div><div class="callout callout--warning" style="margin-top:16px;"><span class="icon">📁</span><span>Envie <code>requirements.txt</code> ao Git, mas coloque <code>.venv/</code> no <code>.gitignore</code>.</span></div></section>
+    <section class="slide slide--content" data-title="Flask: primeira API"><h2>🌶️ Flask transforma funções Python em rotas HTTP</h2><div class="code-block"><span class="lang-badge">app.py</span><code>from flask import Flask, jsonify
+
+app = Flask(__name__)
+
+@app.get('/health')
+def health():
+    return jsonify(ok=True, app='api-tarefas-python'), 200
+
+if __name__ == '__main__':
+    app.run(debug=True, port=5000)</code></div><div class="columns" style="margin-top:16px;"><div class="card"><h3>Execute</h3><p><code>python app.py</code></p></div><div class="card"><h3>Teste</h3><p><code>GET http://127.0.0.1:5000/health</code></p></div><div class="card"><h3>Resposta</h3><p><code>{"app":"api-tarefas-python","ok":true}</code></p></div></div></section>
+    <section class="slide slide--content" data-title="POST e JSON"><h2>📨 Flask lê JSON, valida e retorna status</h2><div class="code-block"><span class="lang-badge">app.py</span><code>from flask import request
+
+tarefas = []
+
+@app.post('/tarefas')
+def criar_tarefa():
+    dados = request.get_json(silent=True) or {}
+    titulo = str(dados.get('titulo', '')).strip()
+    if len(titulo) &lt; 3:
+        return jsonify(error='TITLE_INVALID'), 400
+    tarefa = {'id': len(tarefas) + 1, 'titulo': titulo, 'concluida': False}
+    tarefas.append(tarefa)
+    return jsonify(tarefa), 201</code></div><p style="margin-top:14px;">No Postman/Bruno, envie <code>Content-Type: application/json</code> e body <code>{"titulo":"Estudar Python"}</code>.</p></section>
+    <section class="slide slide--content" data-title="CRUD com Python"><h2>🛠️ As rotas REST continuam iguais</h2><table><thead><tr><th>Operação</th><th>Flask</th><th>Regra de resposta</th></tr></thead><tbody><tr><td>Listar</td><td><code>@app.get('/tarefas')</code></td><td>200 e lista JSON</td></tr><tr><td>Criar</td><td><code>@app.post('/tarefas')</code></td><td>201 ou 400</td></tr><tr><td>Atualizar parte</td><td><code>@app.patch('/tarefas/&lt;int:id&gt;')</code></td><td>200 ou 404</td></tr><tr><td>Apagar</td><td><code>@app.delete('/tarefas/&lt;int:id&gt;')</code></td><td>204 ou 404</td></tr></tbody></table><div class="callout callout--tip" style="margin-top:16px;"><span class="icon">🔁</span><span>Mudar a linguagem não muda o contrato HTTP. Método, URL, header, body JSON e status continuam sendo o acordo entre cliente e servidor.</span></div></section>
+    <section class="slide slide--content" data-title="SQLite e persistência"><h2>💾 SQLite é um banco local para aprender persistência</h2><div class="columns"><div class="card"><h3>Crie uma tabela</h3><div class="code-block"><span class="lang-badge">Python</span><code>import sqlite3
+
+with sqlite3.connect('tarefas.db') as conn:
+    conn.execute('''CREATE TABLE IF NOT EXISTS tarefas (
+      id INTEGER PRIMARY KEY,
+      titulo TEXT NOT NULL,
+      concluida INTEGER NOT NULL DEFAULT 0
+    )''')</code></div></div><div class="card"><h3>Use parâmetros</h3><div class="code-block"><span class="lang-badge">Python</span><code>conn.execute(
+  'INSERT INTO tarefas (titulo) VALUES (?)',
+  [titulo]
+)</code></div><p style="margin-top:10px;">O placeholder <code>?</code> evita que o valor do usuário se transforme em parte do comando SQL.</p></div></div></section>
+    <section class="slide slide--content" data-title="Teste com Postman e Bruno"><h2>🧪 Teste primeiro a API, depois conecte o frontend</h2><div class="columns"><div class="card"><h3>POST de teste</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>POST http://127.0.0.1:5000/tarefas
+Content-Type: application/json
+
+{"titulo":"Publicar o projeto"}</code></div></div><div class="card"><h3>Leitura da resposta</h3><ol><li>Status: deve ser <code>201 Created</code>.</li><li>Header: confirme <code>application/json</code>.</li><li>Body: confirme id, título e concluída.</li><li>Faça GET para confirmar persistência.</li></ol></div></div><p style="margin-top:12px;">Use o <a href="https://eteapiplay-akbqqgv2.manus.space" target="_blank" rel="noopener">ETEA API Playground</a> para revisar o raciocínio de requests antes de testar sua API local.</p></section>
+    <section class="slide slide--content" data-title="FastAPI: próximo nível"><h2>⚡ FastAPI adiciona tipos e documentação automática</h2><div class="columns"><div class="card"><h3>Instalação</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>python -m pip install fastapi "uvicorn[standard]"
+uvicorn main:app --reload</code></div></div><div class="card"><h3>Exemplo tipado</h3><div class="code-block"><span class="lang-badge">Python</span><code>from fastapi import FastAPI
+from pydantic import BaseModel
+
+app = FastAPI()
+class Tarefa(BaseModel):
+    titulo: str
+
+@app.post('/tarefas', status_code=201)
+def criar(tarefa: Tarefa):
+    return tarefa</code></div></div></div><p style="margin-top:14px;">Abra <code>/docs</code> para a documentação interativa gerada pelo FastAPI.</p></section>
+    <section class="slide slide--section" data-title="Desafio 1"><h1>🧩 Desafio 1<br><span class="accent">Boletim no terminal</span></h1><p class="subtitle">Funções, listas e condicionais</p></section>
+    <section class="slide slide--content" data-title="Exercício: boletim"><h2>📝 Exercício 1 — Média e situação</h2><div class="columns"><div class="card"><h3>Faça um programa que</h3><ol><li>Leia três notas com <code>input()</code>.</li><li>Crie uma função <code>calcular_media</code>.</li><li>Informe aprovado, recuperação ou reprovado.</li><li>Trate texto inválido sem encerrar o programa.</li></ol></div><div class="card"><h3>Teste obrigatório</h3><p>Execute ao menos três cenários:</p><ul><li>8, 7, 9 → aprovado;</li><li>5, 5, 6 → recuperação;</li><li>3, 4, 4 → reprovado.</li></ul></div></div></section>
+    <section class="slide slide--dark" data-title="Gabarito: boletim"><h2>✅ Gabarito 1 — Boletim com funções</h2><div class="code-block"><span class="lang-badge">Python</span><code>def calcular_media(notas):
+    return sum(notas) / len(notas)
+
+try:
+    notas = [float(input(f'Nota {n}: ')) for n in range(1, 4)]
+    media = calcular_media(notas)
+    if media &gt;= 7:
+        situacao = 'aprovado'
+    elif media &gt;= 5:
+        situacao = 'recuperação'
+    else:
+        situacao = 'reprovado'
+    print(f'Média: {media:.1f} — {situacao}')
+except ValueError:
+    print('Digite apenas números nas notas.')</code></div></section>
+    <section class="slide slide--content" data-title="Exercício: API de tarefas"><h2>📝 Exercício 2 — Sua API Flask</h2><div class="columns"><div class="card"><h3>Implemente</h3><ol><li><code>GET /tarefas</code> para listar.</li><li><code>POST /tarefas</code> com título de 3+ caracteres.</li><li><code>PATCH /tarefas/:id</code> para concluir.</li><li><code>DELETE /tarefas/:id</code> com status 204.</li></ol></div><div class="card"><h3>Documente</h3><p>Crie uma collection no Postman ou Bruno com URL, método, headers, body e status esperado de cada rota.</p><p style="margin-top:12px;">Mostre uma resposta 400 e uma resposta 404 durante a demonstração.</p></div></div></section>
+    <section class="slide slide--dark" data-title="Gabarito: API de tarefas"><h2>✅ Gabarito 2 — PATCH com validação de id</h2><div class="code-block"><span class="lang-badge">Python</span><code>@app.patch('/tarefas/&lt;int:tarefa_id&gt;')
+def concluir_tarefa(tarefa_id):
+    tarefa = next((t for t in tarefas if t['id'] == tarefa_id), None)
+    if not tarefa:
+        return jsonify(error='TASK_NOT_FOUND'), 404
+    tarefa['concluida'] = True
+    return jsonify(tarefa), 200
+
+@app.delete('/tarefas/&lt;int:tarefa_id&gt;')
+def remover_tarefa(tarefa_id):
+    tarefa = next((t for t in tarefas if t['id'] == tarefa_id), None)
+    if not tarefa:
+        return jsonify(error='TASK_NOT_FOUND'), 404
+    tarefas.remove(tarefa)
+    return '', 204</code></div></section>
+    <section class="slide slide--section" data-title="Projeto final"><h1>🏆 Projeto final<br><span class="accent">API escolar em Python</span></h1><p class="subtitle">Alunos, tarefas, banco e documentação</p></section>
+    <section class="slide slide--content" data-title="Entrega profissional"><h2>📦 Transforme exercício em projeto</h2><table><thead><tr><th>Camada</th><th>Entrega</th></tr></thead><tbody><tr><td>Lógica</td><td>funções pequenas e testadas</td></tr><tr><td>API</td><td>rotas REST, JSON e erros consistentes</td></tr><tr><td>Dados</td><td>SQLite ou MySQL com queries parametrizadas</td></tr><tr><td>Documentação</td><td>README e collection Postman/Bruno</td></tr><tr><td>Qualidade</td><td>cenários de sucesso, 400, 404 e segurança de segredos</td></tr></tbody></table></section>
+    <section class="slide slide--dark" data-title="Referências e encerramento"><h2>✅ Python amplia sua caixa de ferramentas</h2><p style="text-align:center;font-size:1.15rem;max-width:760px;margin:22px auto;">Agora você pode resolver a mesma lógica em JavaScript ou Python e escolher a ferramenta mais adequada para o problema, a equipe e o projeto.</p><div class="columns"><div class="card"><h3>Referências</h3><p><a href="https://docs.python.org/3/" target="_blank" rel="noopener">Python Documentation</a><br><a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener">Flask Documentation</a><br><a href="https://fastapi.tiangolo.com/" target="_blank" rel="noopener">FastAPI Documentation</a></p></div><div class="card"><h3>Próximo passo</h3><p>Conecte esta API a um frontend ou a um app Expo. Repita o mesmo contrato: URL, método, headers, body e respostas.</p></div></div></section>
+  </div>
+  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button><button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button><span class="progress-text">1 / 25</span><button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button><a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a></div>
+  <script src="../slides.js"></script>
+</body>
+</html>

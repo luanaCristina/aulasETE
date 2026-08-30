@@ -1,0 +1,18 @@
+# Project TODO
+
+- [x] Mapear os quadros de Guias de Instalação e Guias Full-Stack & DevTools e seus arquivos de slides.
+- [x] Criar guias introdutórios e visuais de instalação para Windows e macOS nas ferramentas existentes.
+- [x] Adicionar o guia de instalação e uso de MySQL e MySQL Workbench para Windows e macOS.
+- [x] Criar o módulo de MySQL com modelagem, DER, chaves, CRUD, SELECT, JOIN, triggers, prática e gabaritos.
+- [x] Corrigir o contador de navegação do módulo MySQL para refletir todos os slides criados.
+- [ ] Pesquisar e sintetizar os conteúdos dos repositórios de referência para o novo módulo JavaScript Backend.
+- [x] Criar o módulo de JavaScript Backend com Node.js, API REST, banco de dados, autenticação, exemplos e gabaritos.
+- [x] Corrigir o contador de navegação do módulo JavaScript Backend para refletir todos os slides criados.
+- [x] Criar o módulo comparativo de Python com execução no terminal, APIs, Postman, Bruno, exercícios e gabaritos.
+- [x] Criar o módulo Expo com instalação, CRUD mobile, calculadora, testes, Android e percurso de publicação na Play Store.
+- [x] Corrigir o contador de navegação do módulo Expo para refletir todos os slides criados.
+- [x] Criar imagens instrucionais para as etapas de instalação em Windows e macOS.
+- [x] Integrar os novos módulos, links e descrições ao portal.
+- [x] Remover a marcação residual HTML & CSS da seção de planejamento do portal.
+- [x] Validar estrutura, links, exemplos e responsividade do portal.
+- [ ] Publicar as melhorias no GitHub Pages.
