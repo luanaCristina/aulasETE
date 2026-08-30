@@ -1,0 +1,35 @@
+meta {
+  name: 04 - PATCH atualizar parte do recado
+  type: http
+  seq: 4
+}
+
+patch {
+  url: {{baseUrl}}/api/recados/{{recadoId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  X-API-Lab: ETE-API-PLAYGROUND
+  X-Request-Id: bruno-patch-001
+}
+
+body:json {
+  {
+    "context": {
+      "estudante": "Ana",
+      "ferramenta": "bruno",
+      "objetivo": "alterar somente a categoria"
+    },
+    "alteracoes": {
+      "categoria": "concluido"
+    }
+  }
+}
+
+tests {
+  test("status 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

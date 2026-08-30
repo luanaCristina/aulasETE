@@ -1,0 +1,82 @@
+{
+  "info": {
+    "_postman_id": "d4e2e6d1-5e94-4efa-88d9-ete-api-playground",
+    "name": "ETE API Playground — Recados CRUD",
+    "description": "Collection didática para testar a API pública de recados. Configure o environment de preview público antes de enviar as requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 — GET listar recados",
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('status 200', () => pm.response.to.have.status(200));", "pm.test('resposta contém lista', () => pm.expect(pm.response.json().data.items).to.be.an('array'));"] } }],
+      "request": {
+        "method": "GET",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-Lab", "value": "ETE-API-PLAYGROUND" },
+          { "key": "X-Request-Id", "value": "postman-{{$guid}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"context\": {\n    \"estudante\": \"Ana\",\n    \"ferramenta\": \"postman\",\n    \"objetivo\": \"listar os recados da turma\"\n  }\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/recados", "host": ["{{baseUrl}}"], "path": ["api", "recados"] },
+        "description": "O context é didático e não filtra a lista. Observe meta.context na resposta."
+      }
+    },
+    {
+      "name": "02 — POST criar recado",
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('status 201', () => pm.response.to.have.status(201));", "pm.environment.set('recadoId', pm.response.json().data.id);"] } }],
+      "request": {
+        "method": "POST",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-Lab", "value": "ETE-API-PLAYGROUND" },
+          { "key": "X-Request-Id", "value": "postman-{{$guid}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"context\": {\n    \"estudante\": \"Ana\",\n    \"ferramenta\": \"postman\",\n    \"objetivo\": \"criar um recado de teste\"\n  },\n  \"recado\": {\n    \"titulo\": \"Aula de APIs\",\n    \"mensagem\": \"Levar notebook carregado.\",\n    \"categoria\": \"aviso\",\n    \"autor\": \"Ana\"\n  }\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/recados", "host": ["{{baseUrl}}"], "path": ["api", "recados"] }
+      }
+    },
+    {
+      "name": "03 — PUT substituir recado",
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('status 200', () => pm.response.to.have.status(200));"] } }],
+      "request": {
+        "method": "PUT",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-Lab", "value": "ETE-API-PLAYGROUND" },
+          { "key": "X-Request-Id", "value": "postman-{{$guid}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"context\": {\n    \"estudante\": \"Ana\",\n    \"ferramenta\": \"postman\",\n    \"objetivo\": \"substituir o recado criado\"\n  },\n  \"recado\": {\n    \"titulo\": \"Aula de APIs atualizada\",\n    \"mensagem\": \"Levar notebook e fones de ouvido.\",\n    \"categoria\": \"lembrete\",\n    \"autor\": \"Ana\"\n  }\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/recados/{{recadoId}}", "host": ["{{baseUrl}}"], "path": ["api", "recados", "{{recadoId}}"] }
+      }
+    },
+    {
+      "name": "04 — PATCH atualizar parte do recado",
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('status 200', () => pm.response.to.have.status(200));"] } }],
+      "request": {
+        "method": "PATCH",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-Lab", "value": "ETE-API-PLAYGROUND" },
+          { "key": "X-Request-Id", "value": "postman-{{$guid}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"context\": {\n    \"estudante\": \"Ana\",\n    \"ferramenta\": \"postman\",\n    \"objetivo\": \"alterar somente a categoria\"\n  },\n  \"alteracoes\": {\n    \"categoria\": \"concluido\"\n  }\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/recados/{{recadoId}}", "host": ["{{baseUrl}}"], "path": ["api", "recados", "{{recadoId}}"] }
+      }
+    },
+    {
+      "name": "05 — DELETE remover recado",
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('status 204', () => pm.response.to.have.status(204));"] } }],
+      "request": {
+        "method": "DELETE",
+        "header": [
+          { "key": "Content-Type", "value": "application/json" },
+          { "key": "X-API-Lab", "value": "ETE-API-PLAYGROUND" },
+          { "key": "X-Request-Id", "value": "postman-{{$guid}}" }
+        ],
+        "body": { "mode": "raw", "raw": "{\n  \"context\": {\n    \"estudante\": \"Ana\",\n    \"ferramenta\": \"postman\",\n    \"objetivo\": \"remover o recado depois do teste\"\n  }\n}", "options": { "raw": { "language": "json" } } },
+        "url": { "raw": "{{baseUrl}}/api/recados/{{recadoId}}", "host": ["{{baseUrl}}"], "path": ["api", "recados", "{{recadoId}}"] },
+        "description": "O id na URL define qual recado será removido. O context no body não altera este alvo."
+      }
+    }
+  ]
+}

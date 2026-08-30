@@ -1,0 +1,38 @@
+meta {
+  name: 03 - PUT substituir recado
+  type: http
+  seq: 3
+}
+
+put {
+  url: {{baseUrl}}/api/recados/{{recadoId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  X-API-Lab: ETE-API-PLAYGROUND
+  X-Request-Id: bruno-put-001
+}
+
+body:json {
+  {
+    "context": {
+      "estudante": "Ana",
+      "ferramenta": "bruno",
+      "objetivo": "substituir o recado criado"
+    },
+    "recado": {
+      "titulo": "Aula de APIs atualizada",
+      "mensagem": "Levar notebook e fones de ouvido.",
+      "categoria": "lembrete",
+      "autor": "Ana"
+    }
+  }
+}
+
+tests {
+  test("status 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

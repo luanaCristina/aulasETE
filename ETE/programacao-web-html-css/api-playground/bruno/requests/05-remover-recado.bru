@@ -1,0 +1,32 @@
+meta {
+  name: 05 - DELETE remover recado
+  type: http
+  seq: 5
+}
+
+delete {
+  url: {{baseUrl}}/api/recados/{{recadoId}}
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  X-API-Lab: ETE-API-PLAYGROUND
+  X-Request-Id: bruno-delete-001
+}
+
+body:json {
+  {
+    "context": {
+      "estudante": "Ana",
+      "ferramenta": "bruno",
+      "objetivo": "remover o recado depois do teste"
+    }
+  }
+}
+
+tests {
+  test("status 204", function() {
+    expect(res.getStatus()).to.equal(204);
+  });
+}

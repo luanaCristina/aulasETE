@@ -1,0 +1,32 @@
+meta {
+  name: 01 - GET listar recados
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{baseUrl}}/api/recados
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  X-API-Lab: ETE-API-PLAYGROUND
+  X-Request-Id: bruno-get-001
+}
+
+body:json {
+  {
+    "context": {
+      "estudante": "Ana",
+      "ferramenta": "bruno",
+      "objetivo": "listar os recados da turma"
+    }
+  }
+}
+
+tests {
+  test("status 200", function() {
+    expect(res.getStatus()).to.equal(200);
+  });
+}

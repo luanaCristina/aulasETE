@@ -1,0 +1,39 @@
+meta {
+  name: 02 - POST criar recado
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{baseUrl}}/api/recados
+  body: json
+}
+
+headers {
+  Content-Type: application/json
+  X-API-Lab: ETE-API-PLAYGROUND
+  X-Request-Id: bruno-post-001
+}
+
+body:json {
+  {
+    "context": {
+      "estudante": "Ana",
+      "ferramenta": "bruno",
+      "objetivo": "criar um recado de teste"
+    },
+    "recado": {
+      "titulo": "Aula de APIs",
+      "mensagem": "Levar notebook carregado.",
+      "categoria": "aviso",
+      "autor": "Ana"
+    }
+  }
+}
+
+tests {
+  test("status 201", function() {
+    expect(res.getStatus()).to.equal(201);
+    bru.setEnvVar("recadoId", res.getBody().data.id);
+  });
+}
