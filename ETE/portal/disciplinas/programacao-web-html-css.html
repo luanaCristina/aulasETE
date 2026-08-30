@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programação Web HTML/CSS/JS — ETE Pernambuco</title>
-  <link rel="stylesheet" href="../styles.css">
+  <link rel="stylesheet" href="../styles.css?v=2026-08-web63">
 </head>
 <body>
   <div class="progress-bar"></div>
@@ -600,18 +600,1440 @@ form.addEventListener('submit', (e) => {
       <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
     </section>
 
+    <!-- SLIDE 16: SEÇÃO HTML -->
+    <section class="slide slide--section" data-title="Trilha: HTML, CSS, JS e Backend">
+      <span class="web-kicker">MÓDULO 2 • DO MARKUP À APLICAÇÃO</span>
+      <h1>🌐 Da página estática ao sistema web</h1>
+      <p class="subtitle">HTML estrutura • CSS apresenta • JavaScript interage • Backend processa</p>
+      <div class="web-stack">
+        <span>1. Conteúdo</span><b>→</b><span>2. Aparência</span><b>→</b><span>3. Comportamento</span><b>→</b><span>4. Dados</span>
+      </div>
+      <div class="callout callout--info web-hero-callout">
+        <span class="icon">🧭</span>
+        <span>Objetivo da trilha: compreender o caminho completo de uma ideia até uma experiência web publicada, acessível, responsiva e conectada a dados.</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 17: O QUE É HTML -->
+    <section class="slide slide--content" data-title="HTML: estrutura e significado">
+      <span class="web-kicker">HTML • FUNDAMENTOS</span>
+      <h2>🏗️ HTML é a estrutura da página</h2>
+      <p>HTML significa <strong>HyperText Markup Language</strong>. Ele não é uma linguagem de programação: é uma linguagem de marcação que descreve o significado e a organização do conteúdo que o navegador deve exibir.</p>
+      <div class="columns">
+        <div class="card">
+          <h3>Elemento</h3>
+          <div class="code-block code-compact"><span class="lang-badge">HTML</span><code>&lt;p class="intro"&gt;Olá, turma!&lt;/p&gt;</code></div>
+          <p>A tag de abertura, o conteúdo e a tag de fechamento formam um elemento. `class` é um atributo que fornece informação extra.</p>
+        </div>
+        <div class="card">
+          <h3>Como o navegador pensa</h3>
+          <div class="web-steps">
+            <span>1. Lê o arquivo</span><b>→</b><span>2. Monta o DOM</span><b>→</b><span>3. Renderiza</span>
+          </div>
+          <p>O navegador transforma o texto HTML em uma árvore de objetos que poderá receber estilo e comportamento.</p>
+        </div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span><strong>Semântica:</strong> escolha a tag pelo significado. Use `&lt;button&gt;` para uma ação e `&lt;a&gt;` para navegar para outro endereço.</span></div>
+    </section>
+
+    <!-- SLIDE 18: EMMET -->
+    <section class="slide slide--dark" data-title="Emmet html:5: esqueleto">
+      <span class="web-kicker">HTML • PRODUTIVIDADE</span>
+      <h2>⚡ Emmet `html:5` cria o esqueleto</h2>
+      <p style="color:#CBD5E1;">No VS Code, escreva <strong>html:5</strong> em um arquivo `.html` e pressione <kbd>Tab</kbd> ou <kbd>Enter</kbd>. O Emmet expande a abreviação para um documento inicial.</p>
+      <div class="columns">
+        <div>
+          <h3>Abreviação</h3>
+          <div class="code-block"><span class="lang-badge">EMMET</span><code>html:5</code></div>
+          <div class="callout callout--info"><span class="icon">🧩</span><span>Abreviações descrevem estruturas usando uma sintaxe parecida com seletores CSS: `nav&gt;ul&gt;li*3` cria uma navegação com três itens.</span></div>
+        </div>
+        <div>
+          <h3>Expansão principal</h3>
+          <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;!doctype html&gt;
+&lt;html lang="pt-BR"&gt;
+  &lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;&lt;/body&gt;
+&lt;/html&gt;</code></div>
+        </div>
+      </div>
+      <p class="small-note">Atalho útil não substitui compreensão: leia cada parte do esqueleto antes de começar a preencher o conteúdo.</p>
+    </section>
+
+    <!-- SLIDE 19: ANATOMIA -->
+    <section class="slide slide--content" data-title="Anatomia do documento HTML">
+      <span class="web-kicker">HTML • DOCUMENTO</span>
+      <h2>🔬 Anatomia do HTML gerado</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;!doctype html&gt;        &lt;!-- modo HTML5 --&gt;
+&lt;html lang="pt-BR"&gt;      &lt;!-- raiz + idioma --&gt;
+&lt;head&gt;                  &lt;!-- metadados --&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport"
+    content="width=device-width, initial-scale=1.0"&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;title&gt;Minha página&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;                  &lt;!-- conteúdo visível --&gt;
+  &lt;header&gt;Cabeçalho&lt;/header&gt;
+  &lt;main&gt;Conteúdo principal&lt;/main&gt;
+  &lt;footer&gt;Rodapé&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></div>
+        <div class="card">
+          <h3>O que fica onde?</h3>
+          <ul>
+            <li><strong>`doctype`:</strong> informa que o documento usa HTML moderno.</li>
+            <li><strong>`html`:</strong> envolve toda a página e declara o idioma.</li>
+            <li><strong>`head`:</strong> configura título, charset, viewport, CSS e metadados.</li>
+            <li><strong>`body`:</strong> recebe textos, imagens, formulários e scripts visíveis ou interativos.</li>
+            <li><strong>`link`:</strong> conecta um arquivo externo, como `styles.css`.</li>
+          </ul>
+          <div class="callout callout--warning"><span class="icon">⚠️</span><span>Se o `meta viewport` faltar, a página pode parecer “espremida” no celular.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 20: TEXTO -->
+    <section class="slide slide--content" data-title="HTML: títulos, parágrafos e destaque">
+      <span class="web-kicker">HTML • CONTEÚDO</span>
+      <h2>✍️ Texto: organize a leitura</h2>
+      <p>O HTML deve formar uma hierarquia de leitura. Use apenas um título principal para a página e desça pelos níveis conforme a organização do conteúdo.</p>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;h1&gt;Guia de estudos&lt;/h1&gt;
+&lt;h2&gt;Primeiros passos&lt;/h2&gt;
+&lt;h3&gt;Preparar o ambiente&lt;/h3&gt;
+
+&lt;p&gt;Um parágrafo apresenta uma ideia completa.&lt;/p&gt;
+&lt;p&gt;Use &lt;strong&gt;strong&lt;/strong&gt; para importância
+  e &lt;em&gt;em&lt;/em&gt; para ênfase.&lt;/p&gt;
+
+&lt;hr&gt;
+&lt;blockquote&gt;Aprender é construir e testar.&lt;/blockquote&gt;</code></div>
+        <div class="card">
+          <h3>Tags mais usadas</h3>
+          <table>
+            <thead><tr><th>Tag</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><code>h1–h6</code></td><td>títulos e subtítulos</td></tr>
+              <tr><td><code>p</code></td><td>parágrafo</td></tr>
+              <tr><td><code>strong</code></td><td>importância</td></tr>
+              <tr><td><code>em</code></td><td>ênfase</td></tr>
+              <tr><td><code>br</code></td><td>quebra pontual de linha</td></tr>
+              <tr><td><code>blockquote</code></td><td>citação em bloco</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">♿</span><span>Uma boa estrutura de títulos ajuda leitores de tela a navegar pelo conteúdo. Não escolha `h3` apenas porque ele parece menor: use CSS para aparência.</span></div>
+    </section>
+
+    <!-- SLIDE 21: LINKS IMAGENS LISTAS -->
+    <section class="slide slide--content" data-title="HTML: links, imagens e listas">
+      <span class="web-kicker">HTML • ELEMENTOS ESSENCIAIS</span>
+      <h2>🔗 Imagens, links e listas</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;a href="https://developer.mozilla.org/"
+   target="_blank" rel="noopener"&gt;
+  Consultar a MDN
+&lt;/a&gt;
+
+&lt;img src="imagens/perfil.jpg"
+     alt="Estudante sorrindo em frente ao computador"
+     width="320"&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;HTML&lt;/li&gt;
+  &lt;li&gt;CSS&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Planejar&lt;/li&gt;
+  &lt;li&gt;Construir&lt;/li&gt;
+&lt;/ol&gt;</code></div>
+        <div class="card">
+          <h3>Boas decisões</h3>
+          <ul>
+            <li><strong>Link:</strong> `href` define o destino; descreva o texto do link.</li>
+            <li><strong>Imagem:</strong> `src` aponta para o arquivo e `alt` descreve a imagem.</li>
+            <li><strong>Lista não ordenada:</strong> use `ul` quando a ordem não importa.</li>
+            <li><strong>Lista ordenada:</strong> use `ol` quando existe sequência.</li>
+            <li><strong>Caminhos:</strong> `imagens/foto.jpg` é relativo ao arquivo atual.</li>
+          </ul>
+          <div class="callout callout--warning"><span class="icon">🖼️</span><span>Não use imagem apenas para carregar texto. O conteúdo importante deve existir como texto acessível.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 22: SEMÂNTICA -->
+    <section class="slide slide--dark" data-title="HTML semântico: regiões da página">
+      <span class="web-kicker">HTML • SEMÂNTICA</span>
+      <h2>🧭 Dê nome às regiões da página</h2>
+      <p style="color:#CBD5E1;">Tags semânticas deixam explícito o papel de cada região. Isso facilita a manutenção, o SEO e a navegação com tecnologia assistiva.</p>
+      <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;header&gt;
+  &lt;nav aria-label="Navegação principal"&gt;
+    &lt;a href="#inicio"&gt;Início&lt;/a&gt;
+    &lt;a href="#projetos"&gt;Projetos&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main id="inicio"&gt;
+  &lt;section aria-labelledby="titulo-projetos"&gt;
+    &lt;h2 id="titulo-projetos"&gt;Meus projetos&lt;/h2&gt;
+    &lt;article&gt;Projeto 1&lt;/article&gt;
+  &lt;/section&gt;
+  &lt;aside&gt;Links relacionados&lt;/aside&gt;
+&lt;/main&gt;
+
+&lt;footer&gt;Contato e direitos autorais&lt;/footer&gt;</code></div>
+      <div class="web-tag-grid">
+        <span><strong>header</strong> introdução</span><span><strong>nav</strong> navegação</span><span><strong>main</strong> conteúdo principal</span><span><strong>section</strong> seção temática</span><span><strong>article</strong> conteúdo independente</span><span><strong>aside</strong> conteúdo complementar</span><span><strong>footer</strong> encerramento</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 23: FORMULÁRIOS -->
+    <section class="slide slide--content" data-title="HTML: formulários, campos e botões">
+      <span class="web-kicker">HTML • INTERAÇÃO</span>
+      <h2>📝 Formulários: coletar dados com significado</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;form action="/inscricoes" method="post"&gt;
+  &lt;label for="nome"&gt;Nome completo&lt;/label&gt;
+  &lt;input id="nome" name="nome" type="text"
+         placeholder="Digite seu nome" required&gt;
+
+  &lt;label for="email"&gt;E-mail&lt;/label&gt;
+  &lt;input id="email" name="email" type="email" required&gt;
+
+  &lt;label for="turma"&gt;Turma&lt;/label&gt;
+  &lt;select id="turma" name="turma"&gt;
+    &lt;option value="ds1"&gt;DS 1&lt;/option&gt;
+    &lt;option value="ds2"&gt;DS 2&lt;/option&gt;
+  &lt;/select&gt;
+
+  &lt;label for="mensagem"&gt;Mensagem&lt;/label&gt;
+  &lt;textarea id="mensagem" name="mensagem"
+            rows="4"&gt;&lt;/textarea&gt;
+
+  &lt;label&gt;&lt;input type="checkbox" name="termos" required&gt;
+    Aceito os termos&lt;/label&gt;
+  &lt;button type="submit"&gt;Enviar inscrição&lt;/button&gt;
+&lt;/form&gt;</code></div>
+        <div class="card">
+          <h3>Peças do formulário</h3>
+          <ul>
+            <li><code>form</code> agrupa dados e define o envio.</li>
+            <li><code>label for</code> conecta o rótulo ao campo pelo `id`.</li>
+            <li><code>input</code> recebe textos, números, e-mail, senha, data, checkbox e radio.</li>
+            <li><code>textarea</code> recebe textos longos.</li>
+            <li><code>select/option</code> oferece escolhas.</li>
+            <li><code>button</code> dispara ações; declare o `type`.</li>
+          </ul>
+          <div class="callout callout--tip"><span class="icon">✅</span><span>Use `type="email"`, `required`, `min`, `max` e `pattern` para aproveitar validações nativas antes do JavaScript.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24: EXERCÍCIO HTML -->
+    <section class="slide slide--accent" data-title="Exercício HTML: perfil estudantil">
+      <span class="exercise-label">EXERCÍCIO 1 • HTML</span>
+      <h2>👩‍💻 Crie um perfil estudantil</h2>
+      <p>Construa `index.html` para apresentar uma pessoa estudante e seus objetivos profissionais.</p>
+      <div class="exercise-grid">
+        <div><strong>Estrutura:</strong> use `header`, `nav`, `main`, `section`, `article` e `footer`.</div>
+        <div><strong>Conteúdo:</strong> título, dois parágrafos, lista de três habilidades e uma imagem com `alt`.</div>
+        <div><strong>Interação:</strong> inclua um link para um portfólio e um formulário com nome, e-mail, área de interesse e botão.</div>
+        <div><strong>Teste:</strong> navegue por teclado e verifique se cada campo tem um `label` associado.</div>
+      </div>
+      <div class="callout callout--info"><span class="icon">🧠</span><span>Antes de codificar, faça um rascunho: quais são as entradas, os conteúdos principais e as ações disponíveis?</span></div>
+    </section>
+
+    <!-- SLIDE 25: GABARITO HTML -->
+    <section class="slide slide--content" data-title="Gabarito HTML: perfil estudantil">
+      <span class="answer-label">GABARITO 1 • HTML</span>
+      <h2>✅ Uma solução possível</h2>
+      <div class="code-block"><span class="lang-badge">index.html</span><code>&lt;!doctype html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+  &lt;title&gt;Perfil de Ana&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;
+    &lt;h1&gt;Ana Souza&lt;/h1&gt;
+    &lt;nav&gt;&lt;a href="#contato"&gt;Contato&lt;/a&gt;&lt;/nav&gt;
+  &lt;/header&gt;
+  &lt;main&gt;
+    &lt;section&gt;
+      &lt;img src="ana.jpg" alt="Ana estudando programação" width="240"&gt;
+      &lt;p&gt;Estudante de Desenvolvimento de Sistemas.&lt;/p&gt;
+      &lt;p&gt;Quero criar soluções úteis para a comunidade.&lt;/p&gt;
+      &lt;h2&gt;Habilidades&lt;/h2&gt;
+      &lt;ul&gt;&lt;li&gt;HTML&lt;/li&gt;&lt;li&gt;CSS&lt;/li&gt;&lt;li&gt;Lógica&lt;/li&gt;&lt;/ul&gt;
+    &lt;/section&gt;
+    &lt;section id="contato"&gt;
+      &lt;h2&gt;Entre em contato&lt;/h2&gt;
+      &lt;form&gt;
+        &lt;label for="nome"&gt;Nome&lt;/label&gt;&lt;input id="nome" name="nome" required&gt;
+        &lt;label for="email"&gt;E-mail&lt;/label&gt;&lt;input id="email" name="email" type="email" required&gt;
+        &lt;button type="submit"&gt;Enviar&lt;/button&gt;
+      &lt;/form&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;Ana Souza — 2026&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></div>
+      <div class="callout callout--tip"><span class="icon">🔍</span><span>A resposta atende aos requisitos; os nomes, textos, imagem e estilos podem ser diferentes. O importante é justificar a estrutura e testar acessibilidade.</span></div>
+    </section>
+
+    <!-- SLIDE 26: CSS CONEXÃO -->
+    <section class="slide slide--section" data-title="CSS: conectando a folha de estilos">
+      <span class="web-kicker">CSS • FUNDAMENTOS</span>
+      <h1>🎨 CSS transforma estrutura em identidade</h1>
+      <p class="subtitle">Cascading Style Sheets • aparência, layout, estados e responsividade</p>
+      <div class="context-flow web-flow"><span>HTML</span><b>+</b><span class="context-js">styles.css</span><b>→</b><span>interface consistente</span></div>
+      <div class="callout callout--info web-hero-callout"><span class="icon">🖌️</span><span>A regra profissional é separar responsabilidades: HTML descreve o conteúdo; CSS define como ele deve aparecer.</span></div>
+    </section>
+
+    <!-- SLIDE 27: LIGAR CSS E SELETORES -->
+    <section class="slide slide--content" data-title="CSS: referência, seletores e cascata">
+      <span class="web-kicker">CSS • SELETORES</span>
+      <h2>🔌 Ligue o CSS e escolha seus alvos</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+&lt;/head&gt;
+
+&lt;h1 class="titulo" id="principal"&gt;
+  Minha página
+&lt;/h1&gt;
+&lt;p&gt;Texto introdutório&lt;/p&gt;</code></div>
+        <div class="code-block"><span class="lang-badge">CSS</span><code>/* elemento */
+p { line-height: 1.6; }
+
+/* classe: reutilizável */
+.titulo { color: #1D4ED8; }
+
+/* id: único na página */
+#principal { margin-bottom: 24px; }
+
+/* combinação */
+.card p { color: #475569; }
+
+/* estado */
+button:hover { transform: translateY(-2px); }</code></div>
+      </div>
+      <div class="card"><h3>Cascata em uma frase</h3><p>Quando várias regras atingem o mesmo elemento, o navegador considera origem, especificidade e ordem. Prefira classes reutilizáveis em vez de espalhar estilos inline.</p></div>
+    </section>
+
+    <!-- SLIDE 28: CORES FONTES ESPAÇAMENTO -->
+    <section class="slide slide--content" data-title="CSS: cores, fontes e espaçamento">
+      <span class="web-kicker">CSS • APARÊNCIA</span>
+      <h2>🧱 Controle cor, fonte e ritmo visual</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">CSS</span><code>:root {
+  --cor-primaria: #2563EB;
+  --cor-texto: #0F172A;
+  --espaco: 16px;
+}
+
+body {
+  font-family: Inter, Arial, sans-serif;
+  color: var(--cor-texto);
+  background-color: #F8FAFC;
+}
+
+p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin: 0 0 var(--espaco);
+}
+
+.destaque {
+  color: var(--cor-primaria);
+  font-weight: 700;
+  letter-spacing: .02em;
+}</code></div>
+        <div class="card">
+          <h3>Propriedades que você usará muito</h3>
+          <table>
+            <thead><tr><th>Propriedade</th><th>O que controla</th></tr></thead>
+            <tbody>
+              <tr><td><code>color</code></td><td>cor do texto</td></tr>
+              <tr><td><code>background</code></td><td>fundo, cor ou imagem</td></tr>
+              <tr><td><code>font-family</code></td><td>família tipográfica</td></tr>
+              <tr><td><code>font-size</code></td><td>tamanho</td></tr>
+              <tr><td><code>line-height</code></td><td>altura da linha</td></tr>
+              <tr><td><code>margin/padding</code></td><td>espaço externo/interno</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">📏</span><span>Use `rem`, `%`, `fr`, `vw` e `clamp()` quando a interface precisar se adaptar. Variáveis CSS ajudam a manter um tema consistente.</span></div>
+    </section>
+
+    <!-- SLIDE 29: BOX MODEL E BOTÕES -->
+    <section class="slide slide--dark" data-title="CSS: box model e botões">
+      <span class="web-kicker">CSS • COMPONENTES</span>
+      <h2>📦 Box Model: toda interface é feita de caixas</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">CSS</span><code>* { box-sizing: border-box; }
+
+.card {
+  width: 320px;
+  padding: 24px;          /* espaço interno */
+  border: 1px solid #CBD5E1;
+  margin: 16px;           /* espaço externo */
+  border-radius: 16px;
+  box-shadow: 0 12px 24px rgba(15,23,42,.12);
+}
+
+.btn-primary {
+  display: inline-block;
+  padding: 12px 18px;
+  border: 0;
+  border-radius: 10px;
+  background: #2563EB;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+  transition: transform .2s, background .2s;
+}
+.btn-primary:hover { background: #1D4ED8; transform: translateY(-2px); }
+.btn-primary:focus-visible { outline: 3px solid #93C5FD; }</code></div>
+        <div class="card">
+          <h3>Leia a caixa por camadas</h3>
+          <div class="web-box-model"><span>margin</span><strong>border</strong><em>padding</em><b>conteúdo</b></div>
+          <p>O conteúdo ocupa o centro. Padding cria respiro dentro da borda; margin separa o componente dos vizinhos.</p>
+          <div class="callout callout--warning"><span class="icon">⚠️</span><span>Não remova o foco de teclado. Um botão bonito que não mostra foco também cria uma barreira de acesso.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: FUNDOS IMAGENS ESTADOS -->
+    <section class="slide slide--content" data-title="CSS: fundos, imagens e estados">
+      <span class="web-kicker">CSS • DECORAÇÃO COM PROPÓSITO</span>
+      <h2>🖼️ Fundos, imagens e estados</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">CSS</span><code>.hero {
+  min-height: 360px;
+  background:
+    linear-gradient(rgba(15,23,42,.68), rgba(15,23,42,.68)),
+    url("imagens/laboratorio.jpg") center / cover;
+  color: white;
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+.avatar {
+  width: 96px;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card:nth-child(even) { background: #EFF6FF; }
+input:focus { border-color: #2563EB; }
+input:invalid:not(:placeholder-shown) { border-color: #DC2626; }
+button:disabled { opacity: .55; cursor: not-allowed; }</code></div>
+        <div class="card">
+          <h3>Imagem no conteúdo ou no fundo?</h3>
+          <ul>
+            <li>Use `&lt;img&gt;` quando a imagem é parte do significado e precisa de `alt`.</li>
+            <li>Use `background-image` quando a imagem é decorativa ou compõe o ambiente visual.</li>
+            <li>Use `object-fit: cover` para preencher um recorte sem deformar a imagem.</li>
+            <li>Use contraste entre texto e fundo; uma camada escura sobre a foto ajuda a leitura.</li>
+          </ul>
+          <div class="callout callout--info"><span class="icon">🎯</span><span>Pseudo-classes como `:hover`, `:focus`, `:checked` e `:disabled` descrevem estados sem JavaScript.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 31: FLEXBOX GRID -->
+    <section class="slide slide--content" data-title="CSS: Flexbox e Grid na prática">
+      <span class="web-kicker">CSS • LAYOUT</span>
+      <h2>📐 Escolha o layout pelo problema</h2>
+      <div class="columns">
+        <div>
+          <h3>Flexbox: uma dimensão</h3>
+          <div class="code-block"><span class="lang-badge">CSS</span><code>.menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.card-list &gt; .card { flex: 1 1 240px; }</code></div>
+        </div>
+        <div>
+          <h3>Grid: duas dimensões</h3>
+          <div class="code-block"><span class="lang-badge">CSS</span><code>.dashboard {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  grid-template-areas:
+    "sidebar header"
+    "sidebar main";
+  gap: 20px;
+}
+.sidebar { grid-area: sidebar; }
+.header  { grid-area: header; }
+.main    { grid-area: main; }
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}</code></div>
+        </div>
+      </div>
+      <div class="web-compare"><div><strong>Flex</strong><span>linha ou coluna; menu, alinhamento e distribuição.</span></div><div><strong>Grid</strong><span>linhas e colunas; dashboard, galeria e página inteira.</span></div></div>
+    </section>
+
+    <!-- SLIDE 32: RESPONSIVIDADE -->
+    <section class="slide slide--dark" data-title="CSS: responsividade e acessibilidade">
+      <span class="web-kicker">CSS • MOBILE FIRST</span>
+      <h2>📱 Uma interface deve sobreviver a tamanhos diferentes</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">CSS</span><code>/* Base: celular */
+.cards { grid-template-columns: 1fr; }
+.nav { flex-direction: column; }
+
+/* A partir de 768px */
+@media (min-width: 768px) {
+  .cards { grid-template-columns: repeat(2, 1fr); }
+  .nav { flex-direction: row; }
+}
+
+/* A partir de 1024px */
+@media (min-width: 1024px) {
+  .cards { grid-template-columns: repeat(3, 1fr); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { scroll-behavior: auto !important; transition: none !important; }
+}</code></div>
+        <div class="card">
+          <h3>Checklist de uma tela responsiva</h3>
+          <ul>
+            <li>O conteúdo cabe sem rolagem horizontal?</li>
+            <li>Os botões têm área confortável para toque?</li>
+            <li>O texto continua legível sem zoom?</li>
+            <li>O foco do teclado é visível?</li>
+            <li>As imagens não estão deformadas?</li>
+            <li>O layout funciona em orientação retrato?</li>
+          </ul>
+          <div class="callout callout--tip"><span class="icon">🧪</span><span>Abra o DevTools, alterne para o modo responsivo e teste pelo menos celular, tablet e desktop.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 33: EXERCÍCIO CSS -->
+    <section class="slide slide--accent" data-title="Exercício CSS: card responsivo">
+      <span class="exercise-label">EXERCÍCIO 2 • CSS</span>
+      <h2>🎨 Estilize um card de projeto</h2>
+      <p>Partindo do HTML abaixo, crie um `styles.css` que transforme o card em uma peça visual reutilizável.</p>
+      <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;article class="project-card"&gt;
+  &lt;img src="projeto.jpg" alt="Tela do projeto"&gt;
+  &lt;div class="project-card__body"&gt;
+    &lt;span class="tag"&gt;Web&lt;/span&gt;
+    &lt;h2&gt;Agenda da turma&lt;/h2&gt;
+    &lt;p&gt;Organiza tarefas, prazos e avisos.&lt;/p&gt;
+    &lt;a class="btn" href="#detalhes"&gt;Ver detalhes&lt;/a&gt;
+  &lt;/div&gt;
+&lt;/article&gt;</code></div>
+      <div class="exercise-grid">
+        <div>Defina largura máxima, borda arredondada, sombra e `overflow: hidden`.</div>
+        <div>Faça a imagem preencher a largura sem distorção.</div>
+        <div>Crie um botão com hover e foco visível.</div>
+        <div>Em telas maiores, coloque imagem e texto lado a lado usando Flexbox ou Grid.</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34: GABARITO CSS -->
+    <section class="slide slide--content" data-title="Gabarito CSS: card responsivo">
+      <span class="answer-label">GABARITO 2 • CSS</span>
+      <h2>✅ CSS modular para o card</h2>
+      <div class="code-block"><span class="lang-badge">styles.css</span><code>:root { --azul: #2563EB; --texto: #0F172A; }
+
+.project-card {
+  max-width: 560px;
+  margin: 24px auto;
+  border: 1px solid #E2E8F0;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #FFFFFF;
+  box-shadow: 0 12px 28px rgba(15, 23, 42, .12);
+}
+.project-card &gt; img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+.project-card__body { padding: 24px; color: var(--texto); }
+.tag { color: var(--azul); font-weight: 800; }
+.btn {
+  display: inline-block; padding: 10px 16px; border-radius: 9px;
+  background: var(--azul); color: white; text-decoration: none;
+  transition: transform .2s, background .2s;
+}
+.btn:hover { background: #1D4ED8; transform: translateY(-2px); }
+.btn:focus-visible { outline: 3px solid #93C5FD; outline-offset: 3px; }
+@media (min-width: 768px) {
+  .project-card { display: grid; grid-template-columns: 1fr 1fr; }
+  .project-card &gt; img { height: 100%; }
+}</code></div>
+      <div class="callout callout--tip"><span class="icon">🔁</span><span>O mesmo componente pode mudar de uma coluna para duas sem alterar o HTML. Esse é o valor da separação entre estrutura e apresentação.</span></div>
+    </section>
+
+    <!-- SLIDE 35: JS SCRIPT -->
+    <section class="slide slide--section" data-title="JavaScript: conectar ações à página">
+      <span class="web-kicker">JAVASCRIPT • COMPORTAMENTO</span>
+      <h1>🧠 JavaScript dá movimento à interface</h1>
+      <p class="subtitle">Dados, decisões, eventos, DOM, rede e estado da aplicação</p>
+      <div class="columns">
+        <div class="card"><h3>HTML</h3><p>Elementos, textos, campos e botões que o usuário vê.</p></div>
+        <div class="card"><h3>CSS</h3><p>Estados visuais, layout, contraste e feedback.</p></div>
+        <div class="card"><h3>JavaScript</h3><p>Regras que escutam, calculam, alteram e comunicam.</p></div>
+      </div>
+      <div class="callout callout--info web-hero-callout"><span class="icon">⚙️</span><span>Em projetos de mercado, o valor está em conectar a ação do usuário a um estado confiável e a uma resposta clara.</span></div>
+    </section>
+
+    <!-- SLIDE 36: SCRIPT DEFER -->
+    <section class="slide slide--content" data-title="JavaScript: script e defer">
+      <span class="web-kicker">JAVASCRIPT • INTEGRAÇÃO</span>
+      <h2>🔗 Como conectar JavaScript ao HTML</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;head&gt;
+  &lt;link rel="stylesheet" href="styles.css"&gt;
+  &lt;script src="app.js" defer&gt;&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;button id="btn-tema" type="button"&gt;
+    Alternar tema
+  &lt;/button&gt;
+&lt;/body&gt;</code></div>
+        <div class="card">
+          <h3>Por que `defer`?</h3>
+          <p>O navegador pode continuar lendo o HTML e executa o arquivo depois que o documento foi analisado. Assim, o script encontra os elementos e não bloqueia a construção inicial da página.</p>
+          <div class="code-block code-compact"><span class="lang-badge">JS</span><code>const botao = document.querySelector('#btn-tema');
+console.log(botao);</code></div>
+          <div class="callout callout--warning"><span class="icon">⚠️</span><span>Se o script for colocado no `<head>` sem `defer`, o código pode tentar selecionar elementos antes de eles existirem.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 37: DOM -->
+    <section class="slide slide--content" data-title="JavaScript: DOM e manipulação">
+      <span class="web-kicker">JAVASCRIPT • DOM</span>
+      <h2>🌳 O DOM é a ponte entre código e tela</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML + JS</span><code>&lt;h1 id="titulo"&gt;Olá&lt;/h1&gt;
+&lt;p class="status"&gt;Aguardando...&lt;/p&gt;
+&lt;ul id="lista"&gt;&lt;/ul&gt;
+
+const titulo = document.querySelector('#titulo');
+const status = document.querySelector('.status');
+const lista = document.querySelector('#lista');
+
+titulo.textContent = 'Página pronta';
+status.classList.add('status--ok');
+status.textContent = 'Dados carregados';
+
+const item = document.createElement('li');
+item.textContent = 'Novo item seguro';
+lista.append(item);</code></div>
+        <div class="card">
+          <h3>Operações centrais</h3>
+          <ul>
+            <li><code>querySelector</code> seleciona o primeiro elemento.</li>
+            <li><code>querySelectorAll</code> seleciona vários elementos.</li>
+            <li><code>textContent</code> altera texto sem interpretar HTML.</li>
+            <li><code>classList.add/remove/toggle</code> controla estados visuais.</li>
+            <li><code>createElement</code> cria nós novos.</li>
+            <li><code>append</code> insere o nó na página.</li>
+          </ul>
+          <div class="callout callout--tip"><span class="icon">🛡️</span><span>Prefira `textContent` para texto vindo do usuário. Inserir conteúdo sem cuidado com `innerHTML` pode abrir espaço para XSS.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 38: EVENTOS -->
+    <section class="slide slide--dark" data-title="JavaScript: eventos e interatividade">
+      <span class="web-kicker">JAVASCRIPT • EVENTOS</span>
+      <h2>🖱️ Eventos: espere a ação do usuário</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">JavaScript</span><code>const botao = document.querySelector('#btn-tema');
+const painel = document.querySelector('.painel');
+
+botao.addEventListener('click', () =&gt; {
+  painel.classList.toggle('painel--escuro');
+  const escuro = painel.classList.contains('painel--escuro');
+  botao.setAttribute('aria-pressed', String(escuro));
+  botao.textContent = escuro ? 'Tema claro' : 'Tema escuro';
+});
+
+const busca = document.querySelector('#busca');
+busca.addEventListener('input', (event) =&gt; {
+  console.log('Termo atual:', event.target.value);
+});</code></div>
+        <div class="card">
+          <h3>Eventos frequentes no mercado</h3>
+          <table>
+            <thead><tr><th>Evento</th><th>Uso</th></tr></thead>
+            <tbody>
+              <tr><td><code>click</code></td><td>botões e links de ação</td></tr>
+              <tr><td><code>submit</code></td><td>envio de formulário</td></tr>
+              <tr><td><code>input</code></td><td>busca e filtros em tempo real</td></tr>
+              <tr><td><code>change</code></td><td>select, checkbox e radio</td></tr>
+              <tr><td><code>keydown</code></td><td>atalhos e teclado</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--info"><span class="icon">⏱️</span><span>O callback só roda quando o evento acontece. O JavaScript transforma uma interface parada em uma interface reativa.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 39: FORM VALIDATION -->
+    <section class="slide slide--content" data-title="JavaScript: validação de formulário">
+      <span class="web-kicker">JAVASCRIPT • DADOS DE ENTRADA</span>
+      <h2>✅ Valide, explique e não perca a entrada</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML + JS</span><code>&lt;form id="cadastro" novalidate&gt;
+  &lt;label for="email"&gt;E-mail&lt;/label&gt;
+  &lt;input id="email" type="email" required&gt;
+  &lt;p id="erro-email" role="alert"&gt;&lt;/p&gt;
+  &lt;button type="submit"&gt;Cadastrar&lt;/button&gt;
+&lt;/form&gt;
+
+const form = document.querySelector('#cadastro');
+const email = document.querySelector('#email');
+const erro = document.querySelector('#erro-email');
+
+form.addEventListener('submit', (event) =&gt; {
+  event.preventDefault();
+  erro.textContent = '';
+  email.removeAttribute('aria-invalid');
+
+  if (!email.value.trim() || !email.validity.valid) {
+    erro.textContent = 'Digite um e-mail válido.';
+    email.setAttribute('aria-invalid', 'true');
+    email.focus();
+    return;
+  }
+  erro.textContent = 'Cadastro realizado!';
+});</code></div>
+        <div class="card">
+          <h3>Fluxo de validação</h3>
+          <div class="web-steps"><span>receber</span><b>→</b><span>normalizar</span><b>→</b><span>validar</span><b>→</b><span>feedback</span></div>
+          <ul>
+            <li><code>preventDefault()</code> impede recarregar a página.</li>
+            <li><code>trim()</code> remove espaços no começo e no fim.</li>
+            <li><code>validity</code> aproveita regras nativas do campo.</li>
+            <li><code>aria-invalid</code> comunica erro às tecnologias assistivas.</li>
+            <li>O foco deve voltar ao campo que precisa de correção.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 40: RENDERIZAÇÃO -->
+    <section class="slide slide--content" data-title="JavaScript: arrays, objetos e renderização">
+      <span class="web-kicker">JAVASCRIPT • UI DINÂMICA</span>
+      <h2>🧩 Transforme dados em elementos</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">JavaScript</span><code>const projetos = [
+  { nome: 'Portfólio', status: 'concluído' },
+  { nome: 'Dashboard', status: 'em andamento' },
+];
+
+const lista = document.querySelector('#projetos');
+
+function renderizarProjetos(dados) {
+  lista.replaceChildren();
+  dados.forEach((projeto) =&gt; {
+    const item = document.createElement('li');
+    item.className = 'projeto';
+    item.textContent = `${projeto.nome} — ${projeto.status}`;
+    lista.append(item);
+  });
+}
+
+const concluidos = projetos.filter(
+  projeto =&gt; projeto.status === 'concluído'
+);
+renderizarProjetos(concluidos);</code></div>
+        <div class="card">
+          <h3>Um padrão recorrente</h3>
+          <ol>
+            <li>Receber ou criar um array de objetos.</li>
+            <li>Filtrar, ordenar ou transformar os dados.</li>
+            <li>Limpar a área de renderização.</li>
+            <li>Criar os elementos com conteúdo seguro.</li>
+            <li>Mostrar estado vazio quando não houver resultado.</li>
+          </ol>
+          <div class="callout callout--tip"><span class="icon">📊</span><span>Arrays de objetos estão por trás de listas de produtos, tabelas, tarefas, mensagens e cards de dashboards.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 41: LOCALSTORAGE MODULES -->
+    <section class="slide slide--dark" data-title="JavaScript: estado, localStorage e módulos">
+      <span class="web-kicker">JAVASCRIPT • ORGANIZAÇÃO</span>
+      <h2>🗂️ Preserve dados e divida responsabilidades</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">JavaScript</span><code>// storage.js
+export function salvarJSON(chave, valor) {
+  localStorage.setItem(chave, JSON.stringify(valor));
+}
+export function lerJSON(chave, padrao = []) {
+  const salvo = localStorage.getItem(chave);
+  return salvo ? JSON.parse(salvo) : padrao;
+}
+
+// app.js
+import { salvarJSON, lerJSON } from './storage.js';
+const tarefas = lerJSON('tarefas');
+tarefas.push({ texto: 'Estudar DOM', feita: false });
+salvarJSON('tarefas', tarefas);</code></div>
+        <div class="card">
+          <h3>Por que modularizar?</h3>
+          <ul>
+            <li>Um arquivo pequeno tem uma responsabilidade clara.</li>
+            <li>Funções podem ser testadas e reutilizadas.</li>
+            <li>O `export/import` explicita dependências.</li>
+            <li>O `localStorage` persiste strings no navegador; use JSON para arrays e objetos.</li>
+            <li>Não guarde senhas, tokens secretos ou dados sensíveis no `localStorage`.</li>
+          </ul>
+          <div class="code-block code-compact"><span class="lang-badge">HTML</span><code>&lt;script type="module" src="app.js"&gt;&lt;/script&gt;</code></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 42: FETCH -->
+    <section class="slide slide--content" data-title="JavaScript: Fetch, JSON e async await">
+      <span class="web-kicker">JAVASCRIPT • REDE</span>
+      <h2>🌐 Buscar dados sem recarregar a página</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">JavaScript</span><code>async function carregarProdutos() {
+  const lista = document.querySelector('#lista');
+  lista.textContent = 'Carregando...';
+
+  try {
+    const resposta = await fetch('/api/produtos');
+    if (!resposta.ok) {
+      throw new Error(`HTTP ${resposta.status}`);
+    }
+    const produtos = await resposta.json();
+    renderizarProdutos(produtos);
+  } catch (erro) {
+    console.error(erro);
+    lista.textContent = 'Não foi possível carregar os produtos.';
+  }
+}
+
+carregarProdutos();</code></div>
+        <div class="card">
+          <h3>Contrato de uma requisição</h3>
+          <div class="web-api-flow"><span>URL</span><b>→</b><span>servidor</span><b>→</b><span>resposta</span><b>→</b><span>JSON</span></div>
+          <ul>
+            <li><code>fetch</code> inicia uma requisição.</li>
+            <li><code>await</code> aguarda uma Promise sem bloquear a interface.</li>
+            <li><code>response.ok</code> verifica se o status foi bem-sucedido.</li>
+            <li><code>response.json()</code> converte o corpo para dados JavaScript.</li>
+            <li><code>try/catch</code> transforma falha técnica em feedback compreensível.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--warning"><span class="icon">🔒</span><span>O frontend pode usar uma API, mas não deve conter segredos. Chaves privadas e regras sensíveis pertencem ao backend.</span></div>
+    </section>
+
+    <!-- SLIDE 43: ERROS -->
+    <section class="slide slide--dark" data-title="JavaScript: estados e erros comuns">
+      <span class="web-kicker">JAVASCRIPT • QUALIDADE</span>
+      <h2>🧪 Pense em todos os estados da interface</h2>
+      <div class="web-state-grid">
+        <div><strong>Inicial</strong><span>formulário vazio, instrução clara</span></div>
+        <div><strong>Carregando</strong><span>feedback de espera e botão controlado</span></div>
+        <div><strong>Sucesso</strong><span>resultado visível e ação seguinte</span></div>
+        <div><strong>Vazio</strong><span>nenhum item encontrado</span></div>
+        <div><strong>Erro</strong><span>mensagem acionável, sem stack trace</span></div>
+        <div><strong>Offline</strong><span>orientação para tentar novamente</span></div>
+      </div>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">JavaScript</span><code>function exibirEstado(tipo, mensagem) {
+  const painel = document.querySelector('#status');
+  painel.dataset.estado = tipo;
+  painel.textContent = mensagem;
+}
+
+try {
+  exibirEstado('loading', 'Buscando dados...');
+  await carregarDados();
+  exibirEstado('success', 'Dados atualizados.');
+} catch {
+  exibirEstado('error', 'Tente novamente em instantes.');
+}</code></div>
+        <div class="card"><h3>Debug no cotidiano</h3><p>Reproduza o erro, leia o console, confira a linha, observe os valores, teste o caso mínimo e só então altere o código. Um erro específico é mais útil que “não funcionou”.</p><div class="callout callout--tip"><span class="icon">🧭</span><span>DevTools: Elements para HTML/CSS, Console para mensagens e Network para requisições.</span></div></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 44: EXERCÍCIO JS -->
+    <section class="slide slide--accent" data-title="Exercício JavaScript: lista de tarefas">
+      <span class="exercise-label">EXERCÍCIO 3 • JAVASCRIPT</span>
+      <h2>✅ Lista de tarefas da turma</h2>
+      <p>Crie uma lista de tarefas com campo de texto, botão de adicionar e área de resultados.</p>
+      <div class="code-block"><span class="lang-badge">HTML inicial</span><code>&lt;form id="form-tarefa"&gt;
+  &lt;label for="tarefa"&gt;Nova tarefa&lt;/label&gt;
+  &lt;input id="tarefa" required&gt;
+  &lt;button type="submit"&gt;Adicionar&lt;/button&gt;
+&lt;/form&gt;
+&lt;p id="vazio"&gt;Nenhuma tarefa ainda.&lt;/p&gt;
+&lt;ul id="tarefas"&gt;&lt;/ul&gt;</code></div>
+      <div class="exercise-grid">
+        <div>Capture o `submit` sem recarregar a página e ignore entradas vazias.</div>
+        <div>Guarde cada item como objeto `{ texto, feita }`.</div>
+        <div>Renderize a lista com checkbox e botão de remover.</div>
+        <div>Persista o array no `localStorage` e mostre estado vazio.</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 45: GABARITO JS -->
+    <section class="slide slide--content" data-title="Gabarito JavaScript: lista de tarefas">
+      <span class="answer-label">GABARITO 3 • JAVASCRIPT</span>
+      <h2>✅ Uma lista com estado e renderização</h2>
+      <div class="code-block"><span class="lang-badge">app.js</span><code>const form = document.querySelector('#form-tarefa');
+const input = document.querySelector('#tarefa');
+const lista = document.querySelector('#tarefas');
+const vazio = document.querySelector('#vazio');
+let tarefas = JSON.parse(localStorage.getItem('tarefas') || '[]');
+
+function salvar() {
+  localStorage.setItem('tarefas', JSON.stringify(tarefas));
+}
+function renderizar() {
+  lista.replaceChildren();
+  vazio.hidden = tarefas.length &gt; 0;
+  tarefas.forEach((tarefa, indice) =&gt; {
+    const item = document.createElement('li');
+    const check = document.createElement('input');
+    check.type = 'checkbox'; check.checked = tarefa.feita;
+    check.addEventListener('change', () =&gt; {
+      tarefa.feita = check.checked; salvar(); renderizar();
+    });
+    const texto = document.createElement('span');
+    texto.textContent = tarefa.texto;
+    const remover = document.createElement('button');
+    remover.type = 'button'; remover.textContent = 'Remover';
+    remover.addEventListener('click', () =&gt; {
+      tarefas.splice(indice, 1); salvar(); renderizar();
+    });
+    item.append(check, texto, remover); lista.append(item);
+  });
+}
+form.addEventListener('submit', (event) =&gt; {
+  event.preventDefault();
+  const texto = input.value.trim();
+  if (!texto) return;
+  tarefas.push({ texto, feita: false }); salvar(); renderizar();
+  form.reset(); input.focus();
+});
+renderizar();</code></div>
+      <div class="callout callout--tip"><span class="icon">🔍</span><span>A solução usa um único estado (`tarefas`) e uma função central de renderização. Essa organização reduz inconsistências entre a tela e os dados.</span></div>
+    </section>
+
+    <!-- SLIDE 46: BACKEND SEÇÃO -->
+    <section class="slide slide--section" data-title="Backend: cliente, servidor e dados">
+      <span class="web-kicker">BACKEND • VISÃO DE SISTEMA</span>
+      <h1>🖥️ O que acontece depois do clique?</h1>
+      <p class="subtitle">Frontend apresenta • Backend aplica regras • Banco persiste</p>
+      <div class="web-architecture">
+        <div><strong>Navegador</strong><span>HTML, CSS, JS, interação</span></div><b>⇄ HTTP ⇄</b><div><strong>Servidor</strong><span>rotas, autenticação, regras</span></div><b>⇄</b><div><strong>Banco</strong><span>dados persistentes</span></div>
+      </div>
+      <div class="callout callout--info web-hero-callout"><span class="icon">🧱</span><span>O backend não substitui o frontend. Ele protege regras, organiza dados e atende vários clientes: navegador, aplicativo e outros serviços.</span></div>
+    </section>
+
+    <!-- SLIDE 47: HTTP REST -->
+    <section class="slide slide--content" data-title="Backend: HTTP, REST, JSON e status">
+      <span class="web-kicker">BACKEND • PROTOCOLO</span>
+      <h2>📨 Uma conversa web tem contrato</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Requisição</h3>
+          <div class="code-block code-compact"><span class="lang-badge">HTTP</span><code>POST /api/recados HTTP/1.1
+Content-Type: application/json
+
+{"texto":"Estudar APIs"}</code></div>
+          <p>Método, caminho, cabeçalhos e corpo informam a intenção do cliente.</p>
+        </div>
+        <div class="card">
+          <h3>Resposta</h3>
+          <div class="code-block code-compact"><span class="lang-badge">HTTP</span><code>201 Created
+Content-Type: application/json
+
+{"id":1,"texto":"Estudar APIs"}</code></div>
+          <p>Status, cabeçalhos e corpo comunicam resultado e dados.</p>
+        </div>
+      </div>
+      <table>
+        <thead><tr><th>Método</th><th>Intenção REST comum</th><th>Status esperado</th></tr></thead>
+        <tbody>
+          <tr><td><code>GET</code></td><td>listar ou consultar</td><td>200 OK</td></tr>
+          <tr><td><code>POST</code></td><td>criar</td><td>201 Created</td></tr>
+          <tr><td><code>PUT/PATCH</code></td><td>atualizar</td><td>200 ou 204</td></tr>
+          <tr><td><code>DELETE</code></td><td>remover</td><td>204 No Content</td></tr>
+          <tr><td>entrada inválida</td><td>feedback ao cliente</td><td>400 Bad Request</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- SLIDE 48: NODE EXPRESS -->
+    <section class="slide slide--dark" data-title="Backend: servidor mínimo com Node e Express">
+      <span class="web-kicker">BACKEND • NODE.JS</span>
+      <h2>🚀 Um servidor mínimo com Express</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">server.js</span><code>import express from 'express';
+
+const app = express();
+const PORT = 3000;
+const recados = [];
+
+app.use(express.json());
+
+app.get('/api/recados', (req, res) =&gt; {
+  res.json(recados);
+});
+
+app.post('/api/recados', (req, res) =&gt; {
+  const texto = String(req.body.texto || '').trim();
+  if (!texto) {
+    return res.status(400).json({ erro: 'Texto obrigatório' });
+  }
+  const recado = { id: Date.now(), texto };
+  recados.push(recado);
+  res.status(201).json(recado);
+});
+
+app.listen(PORT, () =&gt; {
+  console.log(`Servidor em http://localhost:${PORT}`);
+});</code></div>
+        <div class="card">
+          <h3>O que cada parte faz?</h3>
+          <ul>
+            <li><code>express()</code> cria a aplicação.</li>
+            <li><code>express.json()</code> lê corpos JSON.</li>
+            <li><code>app.get</code> e <code>app.post</code> registram rotas.</li>
+            <li><code>req.body</code> recebe dados enviados.</li>
+            <li><code>res.status().json()</code> devolve status e JSON.</li>
+            <li><code>listen</code> abre a porta para receber requisições.</li>
+          </ul>
+          <div class="callout callout--warning"><span class="icon">🧠</span><span>Esse array desaparece quando o servidor reinicia. Para produção, substitua-o por um banco de dados e trate autenticação, autorização e validação.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 49: ROTAS MIDDLEWARE -->
+    <section class="slide slide--content" data-title="Backend: rotas, middleware e segurança">
+      <span class="web-kicker">BACKEND • RESPONSABILIDADES</span>
+      <h2>🛡️ Organize o servidor para crescer</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">Express</span><code>function registrarLog(req, res, next) {
+  console.log(req.method, req.path);
+  next();
+}
+app.use(registrarLog);
+
+app.get('/api/recados/:id', (req, res) =&gt; {
+  const id = Number(req.params.id);
+  const recado = recados.find(item =&gt; item.id === id);
+  if (!recado) {
+    return res.status(404).json({ erro: 'Recado não encontrado' });
+  }
+  res.json(recado);
+});
+
+app.use((erro, req, res, next) =&gt; {
+  console.error(erro);
+  res.status(500).json({ erro: 'Erro interno' });
+});</code></div>
+        <div class="card">
+          <h3>Camadas que aparecem em projetos</h3>
+          <ul>
+            <li><strong>Rota:</strong> endereço + método.</li>
+            <li><strong>Controller:</strong> coordena a entrada e a saída.</li>
+            <li><strong>Service:</strong> aplica regra de negócio.</li>
+            <li><strong>Repository:</strong> conversa com banco ou API.</li>
+            <li><strong>Middleware:</strong> executa antes/depois da rota.</li>
+          </ul>
+          <div class="callout callout--danger"><span class="icon">🔐</span><span>Nunca coloque senhas e chaves privadas no frontend ou no Git. Use variáveis de ambiente no servidor e valide entradas no backend mesmo que o frontend já valide.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 50: FRONT BACK -->
+    <section class="slide slide--content" data-title="Backend: conectando frontend e API">
+      <span class="web-kicker">BACKEND • INTEGRAÇÃO</span>
+      <h2>🔄 Do botão do formulário até a API</h2>
+      <div class="web-request-timeline">
+        <div><strong>1</strong><span>usuário envia</span><code>submit</code></div><b>→</b><div><strong>2</strong><span>JS prepara</span><code>JSON.stringify</code></div><b>→</b><div><strong>3</strong><span>API valida</span><code>201 / 400</code></div><b>→</b><div><strong>4</strong><span>tela atualiza</span><code>renderizar</code></div>
+      </div>
+      <div class="code-block"><span class="lang-badge">Frontend</span><code>form.addEventListener('submit', async (event) =&gt; {
+  event.preventDefault();
+  const texto = input.value.trim();
+  if (!texto) return;
+
+  const resposta = await fetch('http://localhost:3000/api/recados', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ texto })
+  });
+
+  const dados = await resposta.json();
+  if (!resposta.ok) {
+    mensagem.textContent = dados.erro;
+    return;
+  }
+  mensagem.textContent = `Recado ${dados.id} criado.`;
+  form.reset();
+});</code></div>
+      <div class="callout callout--info"><span class="icon">🌍</span><span>Em desenvolvimento, frontend e backend podem usar portas diferentes e exigir CORS. Em produção, configure domínio, HTTPS, autenticação e políticas de origem corretamente.</span></div>
+    </section>
+
+    <!-- SLIDE 51: EXERCÍCIO BACKEND -->
+    <section class="slide slide--accent" data-title="Exercício full stack: mural de recados">
+      <span class="exercise-label">EXERCÍCIO 4 • FRONTEND + BACKEND</span>
+      <h2>📌 Crie um mural de recados</h2>
+      <p>Construa uma página onde estudantes possam cadastrar um recado e visualizar todos os recados enviados.</p>
+      <div class="exercise-grid">
+        <div><strong>HTML:</strong> formulário com `textarea`, `label`, botão e lista de recados.</div>
+        <div><strong>CSS:</strong> card para cada recado, estados de carregamento, erro e lista vazia.</div>
+        <div><strong>Backend:</strong> `GET /api/recados` e `POST /api/recados`, com validação de texto vazio.</div>
+        <div><strong>JS:</strong> use `fetch`, `async/await`, `try/catch`, renderização e feedback sem `alert`.</div>
+      </div>
+      <div class="callout callout--info"><span class="icon">🧪</span><span>Teste quatro casos: lista vazia, recado válido, texto só com espaços e servidor desligado.</span></div>
+    </section>
+
+    <!-- SLIDE 52: GABARITO BACKEND -->
+    <section class="slide slide--content" data-title="Gabarito full stack: mural de recados">
+      <span class="answer-label">GABARITO 4 • FRONTEND + BACKEND</span>
+      <h2>✅ Contrato simples entre tela e servidor</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">server.js</span><code>import express from 'express';
+const app = express();
+app.use(express.json());
+const recados = [];
+
+app.get('/api/recados', (req, res) =&gt; res.json(recados));
+app.post('/api/recados', (req, res) =&gt; {
+  const texto = String(req.body.texto ?? '').trim();
+  if (!texto) return res.status(400).json({ erro: 'Escreva um recado.' });
+  const recado = { id: recados.length + 1, texto, criadoEm: new Date().toISOString() };
+  recados.push(recado);
+  res.status(201).json(recado);
+});
+app.listen(3000);</code></div>
+        <div class="code-block"><span class="lang-badge">app.js</span><code>async function listar() {
+  const resposta = await fetch('/api/recados');
+  if (!resposta.ok) throw new Error('Falha ao listar');
+  const dados = await resposta.json();
+  lista.replaceChildren(...dados.map(({ texto }) =&gt; {
+    const item = document.createElement('li');
+    item.textContent = texto;
+    return item;
+  }));
+}
+
+form.addEventListener('submit', async (e) =&gt; {
+  e.preventDefault();
+  try {
+    const resposta = await fetch('/api/recados', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ texto: campo.value })
+    });
+    const dados = await resposta.json();
+    if (!resposta.ok) throw new Error(dados.erro);
+    campo.value = ''; await listar();
+  } catch (erro) { mensagem.textContent = erro.message; }
+});</code></div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">🧱</span><span>Em um projeto real, o próximo passo é mover os dados para um banco, adicionar autenticação, testes, logs e configuração por ambiente.</span></div>
+    </section>
+
+    <!-- SLIDE 53: BOOTSTRAP INTRO -->
+    <section class="slide slide--section" data-title="Bootstrap: framework via CDN">
+      <span class="web-kicker">BOOTSTRAP • COMPONENTES PRONTOS</span>
+      <h1>🧰 Quando usar um template pronto?</h1>
+      <p class="subtitle">Bootstrap acelera a construção sem esconder o HTML e o CSS</p>
+      <div class="columns">
+        <div class="card"><h3>Vantagem</h3><p>Componentes, espaçamentos, grid e estados consistentes ajudam a prototipar e entregar mais rápido.</p></div>
+        <div class="card"><h3>Responsabilidade</h3><p>Conheça o HTML e o CSS por trás das classes. Um framework não substitui semântica, acessibilidade ou design.</p></div>
+      </div>
+      <div class="callout callout--info web-hero-callout"><span class="icon">📦</span><span>Use a documentação oficial, fixe uma versão e evite misturar classes de versões diferentes.</span></div>
+    </section>
+
+    <!-- SLIDE 54: BOOTSTRAP CDN -->
+    <section class="slide slide--content" data-title="Bootstrap: inclusão pelo CDN">
+      <span class="web-kicker">BOOTSTRAP • INSTALAÇÃO</span>
+      <h2>🔌 Inclua Bootstrap no HTML</h2>
+      <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;!doctype html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;meta name="viewport" content="width=device-width, initial-scale=1"&gt;
+  &lt;link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07P4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+        crossorigin="anonymous"&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;h1 class="text-primary"&gt;Olá, Bootstrap!&lt;/h1&gt;
+
+  &lt;script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+          integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+          crossorigin="anonymous"&gt;&lt;/script&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></div>
+      <div class="columns">
+        <div class="card"><h3>CSS no `<head>`</h3><p>As classes visuais precisam estar disponíveis quando o navegador renderiza o conteúdo.</p></div>
+        <div class="card"><h3>Bundle no final</h3><p>O JavaScript do Bootstrap ativa componentes como modal, collapse, dropdown e navbar responsiva.</p></div>
+      </div>
+      <div class="callout callout--warning"><span class="icon">🌐</span><span>CDN depende de internet. Em um projeto offline, baixe e versione os arquivos conforme a política da equipe.</span></div>
+    </section>
+
+    <!-- SLIDE 55: BOOTSTRAP GRID -->
+    <section class="slide slide--content" data-title="Bootstrap: container, row e grid">
+      <span class="web-kicker">BOOTSTRAP • GRID RESPONSIVO</span>
+      <h2>🧮 O grid de 12 colunas</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;main class="container py-4"&gt;
+  &lt;div class="row g-4"&gt;
+    &lt;article class="col-12 col-md-6 col-lg-4"&gt;
+      &lt;div class="card h-100 p-3"&gt;Projeto 1&lt;/div&gt;
+    &lt;/article&gt;
+    &lt;article class="col-12 col-md-6 col-lg-4"&gt;
+      &lt;div class="card h-100 p-3"&gt;Projeto 2&lt;/div&gt;
+    &lt;/article&gt;
+    &lt;article class="col-12 col-md-12 col-lg-4"&gt;
+      &lt;div class="card h-100 p-3"&gt;Projeto 3&lt;/div&gt;
+    &lt;/article&gt;
+  &lt;/div&gt;
+&lt;/main&gt;</code></div>
+        <div class="card">
+          <h3>Leia as classes</h3>
+          <ul>
+            <li><code>container</code> centraliza e limita a largura.</li>
+            <li><code>row</code> organiza a linha.</li>
+            <li><code>g-4</code> controla o espaço entre colunas.</li>
+            <li><code>col-12</code> ocupa a linha no celular.</li>
+            <li><code>col-md-6</code> ocupa metade a partir do breakpoint médio.</li>
+            <li><code>col-lg-4</code> ocupa quatro de doze colunas em telas grandes.</li>
+          </ul>
+          <div class="callout callout--tip"><span class="icon">📱</span><span>O padrão começa empilhado e cresce para colunas maiores: mobile first.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 56: COMPONENTES BOOTSTRAP -->
+    <section class="slide slide--dark" data-title="Bootstrap: forms, botões e cards">
+      <span class="web-kicker">BOOTSTRAP • COMPONENTES</span>
+      <h2>🎛️ Classes prontas, HTML ainda semântico</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;form class="p-4 border rounded-3 shadow-sm"&gt;
+  &lt;div class="mb-3"&gt;
+    &lt;label for="nome" class="form-label"&gt;Nome&lt;/label&gt;
+    &lt;input id="nome" class="form-control" type="text"&gt;
+  &lt;/div&gt;
+  &lt;div class="mb-3 form-check"&gt;
+    &lt;input id="aceite" class="form-check-input" type="checkbox"&gt;
+    &lt;label for="aceite" class="form-check-label"&gt;Aceito&lt;/label&gt;
+  &lt;/div&gt;
+  &lt;button class="btn btn-primary" type="submit"&gt;
+    Enviar
+  &lt;/button&gt;
+  &lt;button class="btn btn-outline-secondary" type="reset"&gt;
+    Limpar
+  &lt;/button&gt;
+&lt;/form&gt;</code></div>
+        <div class="card">
+          <h3>Classes que aparecem muito</h3>
+          <div class="web-tag-grid bootstrap-tags"><span><strong>p-4</strong> padding</span><span><strong>mb-3</strong> margem inferior</span><span><strong>form-control</strong> input</span><span><strong>btn-primary</strong> ação principal</span><span><strong>btn-outline</strong> ação secundária</span><span><strong>shadow-sm</strong> sombra leve</span><span><strong>rounded-3</strong> cantos</span><span><strong>text-center</strong> alinhamento</span></div>
+          <div class="callout callout--info"><span class="icon">🎯</span><span>As classes aceleram o começo, mas podem ser sobrescritas por um CSS próprio com uma identidade visual da escola.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 57: NAVBAR MODAL ALERT -->
+    <section class="slide slide--content" data-title="Bootstrap: navbar, modal e alert">
+      <span class="web-kicker">BOOTSTRAP • COMPORTAMENTO</span>
+      <h2>🪟 Componentes que precisam de JavaScript</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;nav class="navbar navbar-expand-lg bg-body-tertiary"&gt;
+  &lt;div class="container"&gt;
+    &lt;a class="navbar-brand" href="#"&gt;ETE Web&lt;/a&gt;
+    &lt;button class="navbar-toggler" type="button"
+      data-bs-toggle="collapse" data-bs-target="#menu"&gt;
+      Menu
+    &lt;/button&gt;
+    &lt;div id="menu" class="collapse navbar-collapse"&gt;
+      &lt;ul class="navbar-nav ms-auto"&gt;
+        &lt;li class="nav-item"&gt;&lt;a class="nav-link" href="#projetos"&gt;Projetos&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+&lt;/nav&gt;
+
+&lt;div class="alert alert-success" role="alert"&gt;
+  Cadastro concluído!
+&lt;/div&gt;
+
+&lt;button class="btn btn-primary" data-bs-toggle="modal"
+  data-bs-target="#confirmacao"&gt;Abrir confirmação&lt;/button&gt;</code></div>
+        <div class="card">
+          <h3>Como o componente funciona</h3>
+          <p>Atributos `data-bs-toggle` e `data-bs-target` conectam o controle ao componente. O bundle JavaScript do Bootstrap interpreta esses atributos e gerencia estados, classes e acessibilidade.</p>
+          <table>
+            <thead><tr><th>Componente</th><th>Uso</th></tr></thead>
+            <tbody><tr><td>Navbar</td><td>navegação responsiva</td></tr><tr><td>Alert</td><td>feedback destacado</td></tr><tr><td>Modal</td><td>decisão ou detalhe sem trocar de página</td></tr><tr><td>Collapse</td><td>mostrar e ocultar conteúdo</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 58: EXERCÍCIO BOOTSTRAP -->
+    <section class="slide slide--accent" data-title="Exercício Bootstrap: painel da turma">
+      <span class="exercise-label">EXERCÍCIO 5 • BOOTSTRAP</span>
+      <h2>📚 Monte um painel da turma</h2>
+      <p>Use Bootstrap para criar uma página com cabeçalho, três cards de indicadores e um formulário de novo aviso.</p>
+      <div class="exercise-grid">
+        <div>Inclua o CSS e o bundle do Bootstrap via CDN em um documento HTML válido.</div>
+        <div>Use `container`, `row` e classes responsivas para os cards.</div>
+        <div>Use `card`, `btn`, `form-control`, `form-select` e espaçamentos utilitários.</div>
+        <div>Adicione um `alert` de sucesso após o envio simulado e um botão que abra um modal de confirmação.</div>
+      </div>
+      <div class="callout callout--info"><span class="icon">🔧</span><span>O desafio não é decorar todas as classes; é consultar a documentação, entender o padrão e justificar cada classe usada.</span></div>
+    </section>
+
+    <!-- SLIDE 59: GABARITO BOOTSTRAP -->
+    <section class="slide slide--content" data-title="Gabarito Bootstrap: painel da turma">
+      <span class="answer-label">GABARITO 5 • BOOTSTRAP</span>
+      <h2>✅ Painel usando o grid e componentes</h2>
+      <div class="code-block"><span class="lang-badge">HTML</span><code>&lt;main class="container py-4"&gt;
+  &lt;header class="d-flex justify-content-between align-items-center mb-4"&gt;
+    &lt;h1 class="h2 mb-0"&gt;Painel da turma&lt;/h1&gt;
+    &lt;button class="btn btn-primary" data-bs-toggle="modal"
+      data-bs-target="#novoAviso"&gt;Novo aviso&lt;/button&gt;
+  &lt;/header&gt;
+  &lt;div class="row g-3 mb-4"&gt;
+    &lt;div class="col-12 col-md-4"&gt;&lt;div class="card p-3"&gt;
+      &lt;span class="text-secondary"&gt;Projetos&lt;/span&gt;&lt;strong class="fs-2"&gt;12&lt;/strong&gt;
+    &lt;/div&gt;&lt;/div&gt;
+    &lt;div class="col-12 col-md-4"&gt;&lt;div class="card p-3"&gt;
+      &lt;span class="text-secondary"&gt;Presentes&lt;/span&gt;&lt;strong class="fs-2"&gt;28&lt;/strong&gt;
+    &lt;/div&gt;&lt;/div&gt;
+    &lt;div class="col-12 col-md-4"&gt;&lt;div class="card p-3"&gt;
+      &lt;span class="text-secondary"&gt;Avisos&lt;/span&gt;&lt;strong class="fs-2"&gt;4&lt;/strong&gt;
+    &lt;/div&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div class="alert alert-success" role="alert"&gt;
+    Próxima aula: JavaScript e DOM.
+  &lt;/div&gt;
+&lt;/main&gt;</code></div>
+      <div class="callout callout--tip"><span class="icon">🧩</span><span>O modal exigiria o markup complementar. A resposta principal demonstra o padrão: container → row → col → componente.</span></div>
+    </section>
+
+    <!-- SLIDE 60: PROJETO INTEGRADOR -->
+    <section class="slide slide--dark" data-title="Projeto integrador: portfólio web">
+      <span class="web-kicker">PROJETO • INTEGRAÇÃO</span>
+      <h2>🚀 Projeto: portfólio com publicação</h2>
+      <p style="color:#CBD5E1;">Construa um portfólio que mostre sua evolução de conteúdo estático a aplicação conectada.</p>
+      <div class="web-project-grid">
+        <div><strong>HTML</strong><span>semântica, navegação, projetos, contato e acessibilidade.</span></div>
+        <div><strong>CSS</strong><span>tokens, componentes, responsividade, imagens e estados.</span></div>
+        <div><strong>JavaScript</strong><span>menu, filtros, formulário, tema, dados e feedback.</span></div>
+        <div><strong>Backend</strong><span>API de mensagens ou projetos, validação e JSON.</span></div>
+        <div><strong>Bootstrap</strong><span>prototipe uma versão e compare com seu CSS.</span></div>
+        <div><strong>Deploy</strong><span>README, Git, GitHub Pages para estático ou plataforma com servidor para API.</span></div>
+      </div>
+      <div class="callout callout--info"><span class="icon">🧠</span><span>Critério de qualidade: não basta funcionar. Explique as decisões, teste estados de erro, valide no celular e publique instruções reproduzíveis.</span></div>
+    </section>
+
+    <!-- SLIDE 61: FLUXO PROFISSIONAL -->
+    <section class="slide slide--content" data-title="Fluxo profissional e boas práticas">
+      <span class="web-kicker">MERCADO • PROCESSO</span>
+      <h2>🧭 Como uma equipe entrega uma feature web</h2>
+      <div class="web-process-grid">
+        <div><b>1</b><strong>Entender</strong><span>requisito, usuário, conteúdo e critérios de aceite.</span></div>
+        <div><b>2</b><strong>Modelar</strong><span>HTML semântico, estados de tela e contrato de API.</span></div>
+        <div><b>3</b><strong>Construir</strong><span>CSS modular, JS organizado e commits pequenos.</span></div>
+        <div><b>4</b><strong>Testar</strong><span>teclado, tamanhos, erro, vazio, rede e dados inválidos.</span></div>
+        <div><b>5</b><strong>Revisar</strong><span>acessibilidade, performance, segurança e legibilidade.</span></div>
+        <div><b>6</b><strong>Publicar</strong><span>deploy, monitoramento, documentação e manutenção.</span></div>
+      </div>
+      <div class="columns">
+        <div class="card"><h3>Checklist técnico</h3><ul><li>HTML validado e semântico.</li><li>CSS responsivo e com foco visível.</li><li>JS sem erros no console.</li><li>API com status e mensagens coerentes.</li></ul></div>
+        <div class="card"><h3>Checklist humano</h3><ul><li>Textos compreensíveis.</li><li>Feedback para cada ação.</li><li>Contraste e leitura confortáveis.</li><li>README para outra pessoa executar.</li></ul></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 62: REFERÊNCIAS -->
+    <section class="slide slide--content" data-title="Referências para continuar estudando">
+      <span class="web-kicker">RECURSOS • ESTUDO CONTÍNUO</span>
+      <h2>📚 Onde consultar depois da aula</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Fundamentos</h3>
+          <ul>
+            <li><a href="https://developer.mozilla.org/pt-BR/docs/Learn_web_development" target="_blank" rel="noopener">MDN — Aprender desenvolvimento web</a></li>
+            <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTML" target="_blank" rel="noopener">MDN — HTML</a></li>
+            <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/CSS" target="_blank" rel="noopener">MDN — CSS</a></li>
+            <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank" rel="noopener">MDN — JavaScript</a></li>
+            <li><a href="https://docs.emmet.io/cheat-sheet/" target="_blank" rel="noopener">Emmet — Cheat Sheet</a></li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3>Componentes e servidor</h3>
+          <ul>
+            <li><a href="https://getbootstrap.com/docs/5.3/getting-started/introduction/" target="_blank" rel="noopener">Bootstrap — Get started</a></li>
+            <li><a href="https://getbootstrap.com/docs/5.3/layout/grid/" target="_blank" rel="noopener">Bootstrap — Grid</a></li>
+            <li><a href="https://getbootstrap.com/docs/5.3/forms/overview/" target="_blank" rel="noopener">Bootstrap — Forms</a></li>
+            <li><a href="https://expressjs.com/en/starter/hello-world.html" target="_blank" rel="noopener">Express — Hello World</a></li>
+            <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/API/Fetch_API" target="_blank" rel="noopener">MDN — Fetch API</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="callout callout--info"><span class="icon">🔎</span><span>Documentação é parte do trabalho de desenvolvimento: consulte exemplos, confira a versão e teste o código em um projeto pequeno antes de reutilizar.</span></div>
+    </section>
+
+    <!-- SLIDE 63: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento: da ideia à web">
+      <h1>🎯 Da ideia à web</h1>
+      <div class="web-closing-flow"><span>HTML estrutura</span><b>→</b><span>CSS comunica</span><b>→</b><span>JS reage</span><b>→</b><span>Backend protege</span><b>→</b><span>Bootstrap acelera</span></div>
+      <div class="callout callout--info web-hero-callout"><span class="icon">💡</span><span>Comece simples, explique cada decisão, teste com pessoas e evolua em pequenos passos. A melhor tecnologia é a que resolve o problema com clareza.</span></div>
+      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
   </div><!-- /slides-wrapper -->
 
   <!-- Controles -->
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
     <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
-    <span class="progress-text">1 / 15</span>
+    <span class="progress-text">1 / 63</span>
     <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
     <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
   </div>
 
-  <script src="../slides.js"></script>
+  <script src="../slides.js?v=2026-08-web63"></script>
 </body>
 </html>

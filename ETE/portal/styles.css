@@ -661,3 +661,64 @@ kbd { display: inline-block; padding: 2px 7px; border: 1px solid #64748B; border
   .answer-lock { padding: 22px 16px; }
   .daily-scenario { justify-content: center; }
 }
+
+/* ===== TRILHA PROGRAMACAO WEB — HTML CSS JS BACKEND BOOTSTRAP ===== */
+.web-kicker { display: inline-block; color: #2563EB; font-size: .78rem; font-weight: 900; letter-spacing: .12em; text-transform: uppercase; margin-bottom: 12px; }
+.slide--dark .web-kicker, .slide--section .web-kicker, .slide--cover .web-kicker, .slide--accent .web-kicker { color: #93C5FD; }
+.web-stack, .web-steps, .web-flow, .web-compare, .web-api-flow, .web-closing-flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 22px 0; }
+.web-stack span, .web-flow span, .web-steps span, .web-closing-flow span { padding: 9px 14px; border-radius: 999px; background: rgba(37,99,235,.14); border: 1px solid rgba(147,197,253,.45); color: #DBEAFE; font-size: .92rem; font-weight: 700; }
+.slide--content .web-steps span, .slide--content .web-flow span { color: #1E3A8A; background: #EFF6FF; border-color: #BFDBFE; }
+.web-stack b, .web-steps b, .web-flow b, .web-api-flow b, .web-closing-flow b { color: #60A5FA; font-size: 1.25rem; }
+.web-hero-callout { max-width: 800px; margin: 24px auto 0; }
+.web-tag-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 20px; }
+.web-tag-grid span { padding: 12px; border: 1px solid rgba(147,197,253,.32); border-radius: 10px; background: rgba(255,255,255,.07); color: #CBD5E1; font-size: .9rem; }
+.web-tag-grid strong { color: #FEF08A; }
+.web-box-model { display: grid; place-items: center; gap: 7px; padding: 14px; border: 2px dashed #F59E0B; border-radius: 14px; background: #FFFBEB; color: #78350F; }
+.web-box-model span, .web-box-model strong, .web-box-model em, .web-box-model b { display: block; width: 100%; padding: 8px; text-align: center; border-radius: 7px; font-style: normal; }
+.web-box-model strong { background: #FED7AA; }
+.web-box-model em { background: #FEF3C7; }
+.web-box-model b { background: #FFFFFF; border: 1px solid #FCD34D; }
+.web-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.web-compare div, .web-state-grid div, .web-project-grid div, .web-process-grid div, .web-architecture div, .web-request-timeline div { display: flex; flex-direction: column; gap: 6px; padding: 16px; border-radius: 14px; }
+.web-compare div { border: 1px solid #BFDBFE; background: #EFF6FF; }
+.web-compare strong, .web-state-grid strong, .web-project-grid strong { color: #1D4ED8; font-size: 1.15rem; }
+.web-compare span, .web-state-grid span, .web-project-grid span, .web-process-grid span { color: #475569; font-size: .92rem; }
+.web-api-flow { justify-content: flex-start; }
+.web-api-flow span { padding: 10px 13px; border-radius: 9px; background: #DBEAFE; color: #1E3A8A; font-weight: 800; }
+.web-state-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0 20px; }
+.web-state-grid div { background: #1E293B; border: 1px solid rgba(147,197,253,.25); }
+.web-state-grid strong { color: #FEF08A; }
+.web-state-grid span { color: #CBD5E1; }
+.web-architecture { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr; align-items: center; gap: 12px; width: 100%; margin: 26px 0; }
+.web-architecture div { background: rgba(255,255,255,.08); border: 1px solid rgba(147,197,253,.35); color: #E0F2FE; text-align: center; }
+.web-architecture strong { color: #FEF08A; font-size: 1.1rem; }
+.web-architecture span { color: #CBD5E1; font-size: .86rem; }
+.web-architecture > b, .web-request-timeline > b { color: #93C5FD; white-space: nowrap; }
+.web-request-timeline { display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr; align-items: center; gap: 10px; margin: 18px 0; }
+.web-request-timeline div { background: #EFF6FF; border: 1px solid #BFDBFE; }
+.web-request-timeline strong { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #2563EB; color: #FFFFFF; }
+.web-request-timeline span { color: #1E3A8A; font-weight: 700; }
+.web-request-timeline code { color: #475569; font-size: .82rem; }
+.web-project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px 0; }
+.web-project-grid div { background: #1E293B; border: 1px solid rgba(147,197,253,.25); }
+.web-project-grid strong { color: #93C5FD; }
+.web-project-grid span { color: #CBD5E1; }
+.web-process-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 20px 0; }
+.web-process-grid div { background: #F8FAFC; border: 1px solid #E2E8F0; }
+.web-process-grid b { display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: #2563EB; color: #FFFFFF; }
+.web-process-grid strong { color: #1E3A8A; font-size: 1.1rem; }
+.web-closing-flow { max-width: 860px; }
+.web-closing-flow span { background: rgba(255,255,255,.08); }
+.bootstrap-tags { grid-template-columns: repeat(2, 1fr); }
+@media (max-width: 900px) {
+  .web-architecture { grid-template-columns: 1fr; }
+  .web-architecture > b { transform: rotate(90deg); justify-self: center; }
+  .web-tag-grid, .web-state-grid, .web-project-grid, .web-process-grid { grid-template-columns: repeat(2, 1fr); }
+  .web-request-timeline { grid-template-columns: 1fr; }
+  .web-request-timeline > b { transform: rotate(90deg); justify-self: center; }
+}
+@media (max-width: 600px) {
+  .web-tag-grid, .web-state-grid, .web-project-grid, .web-process-grid, .web-compare, .bootstrap-tags { grid-template-columns: 1fr; }
+  .web-stack, .web-steps, .web-flow, .web-closing-flow { gap: 7px; }
+  .web-stack span, .web-flow span, .web-steps span, .web-closing-flow span { font-size: .8rem; padding: 7px 10px; }
+}
