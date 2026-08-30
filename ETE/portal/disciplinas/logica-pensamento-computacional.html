@@ -652,63 +652,800 @@ para (inteiro i = 0; i < tam-1; i++) {
       </div>
     </section>
 
-    <!-- SLIDE 14: RECURSOS -->
-    <section class="slide slide--content" data-title="Recursos">
-      <h2>📚 Referências e Recursos Gratuitos</h2>
-      <div class="columns">
-        <div>
-          <h3>🛠️ Ferramentas</h3>
-          <ul>
-            <li><strong>Portugol Studio</strong> — IDE para pseudocódigo (portugol.dev)</li>
-            <li><strong>Flowgorithm</strong> — Fluxogramas executáveis</li>
-            <li><strong>Python Tutor</strong> — Visualizar execução passo a passo</li>
-            <li><strong>Replit</strong> — IDE online (Python/JS)</li>
-            <li><strong>VS Code</strong> — Editor principal do curso</li>
-          </ul>
-          <h3 style="margin-top:16px;">📱 Apps para celular</h3>
-          <ul>
-            <li><strong>Grasshopper</strong> — Lógica com JavaScript (Google)</li>
-            <li><strong>SoloLearn</strong> — Cursos interativos</li>
-            <li><strong>Mimo</strong> — Exercícios gamificados</li>
-          </ul>
+
+    <!-- SLIDE 15: INÍCIO DA TRILHA JAVASCRIPT -->
+    <section class="slide slide--section js-module-cover" data-title="JavaScript: da lógica ao código">
+      <span class="js-kicker">A partir da página 15 • Trilha prática</span>
+      <h1>⚡ JavaScript:<br><span class="accent">da lógica ao código</span></h1>
+      <p class="subtitle">Do primeiro valor ao objeto completo: pensar, testar e programar</p>
+      <div class="callout callout--info js-hero-callout">
+        <span class="icon">🧠</span>
+        <span>Você já conhece a lógica. Agora vai aprender a escrever essa lógica em JavaScript, observando o que entra, o que é processado e o que sai.</span>
+      </div>
+      <div class="js-learning-goals">
+        <span>Variáveis</span><span>Condicionais</span><span>Loops</span><span>Arrays</span><span>Objetos</span><span>Funções</span>
+      </div>
+    </section>
+
+    <!-- SLIDE 16: CONTEXTO JAVASCRIPT -->
+    <section class="slide slide--content" data-title="O lugar do JavaScript">
+      <h2>🌐 O lugar do JavaScript</h2>
+      <p>JavaScript é uma <strong>linguagem de programação</strong>: usamos suas instruções para expressar algoritmos e controlar comportamentos. HTML descreve a estrutura, CSS define a aparência e JavaScript acrescenta lógica e interação.</p>
+      <div class="columns" style="margin-top:20px;">
+        <div class="card js-context-card">
+          <h3>🌍 No navegador</h3>
+          <p>Executa código na página, reage a eventos, lê entradas do usuário e atualiza a interface.</p>
+          <div class="context-flow"><span>HTML</span><b>+</b><span>CSS</span><b>+</b><span class="context-js">JS</span><b>→</b><span>página interativa</span></div>
         </div>
-        <div>
-          <h3>🎓 Cursos Gratuitos</h3>
-          <ul>
-            <li><strong>Curso em Vídeo</strong> — Python + Algoritmos (Guanabara)</li>
-            <li><strong>freeCodeCamp</strong> — JavaScript (exercícios)</li>
-            <li><strong>Khan Academy</strong> — Pensamento Computacional</li>
-            <li><strong>CS50 (Harvard)</strong> — Introdução à Computação</li>
-          </ul>
-          <h3 style="margin-top:16px;">📖 Livros</h3>
-          <ul>
-            <li><strong>"Lógica de Programação"</strong> — Forbellone & Eberspächer</li>
-            <li><strong>"Automate the Boring Stuff"</strong> — Al Sweigart (grátis)</li>
-            <li><strong>"Eloquent JavaScript"</strong> — Marijn Haverbeke (grátis)</li>
-          </ul>
+        <div class="card js-context-card">
+          <h3>🖥️ No Node.js</h3>
+          <p>Executa JavaScript fora do navegador, permitindo criar programas de terminal, APIs e serviços.</p>
+          <div class="code-block code-compact"><span class="lang-badge">Terminal</span><code>node meu-programa.js</code></div>
+        </div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:18px;"><span class="icon">💡</span><span>A sintaxe muda entre linguagens, mas a sequência lógica permanece: <strong>entrada → processamento → saída</strong>.</span></div>
+    </section>
+
+    <!-- SLIDE 17: CONSOLE E ENTRADA SAÍDA -->
+    <section class="slide slide--dark" data-title="Console, entrada e saída">
+      <h2>🧪 Laboratório: console, entrada e saída</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>🔎 Console do navegador</h3>
+          <p>Abra as ferramentas do desenvolvedor com <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>I</kbd>, escolha a aba <strong>Console</strong> e execute:</p>
+          <div class="code-block"><span class="lang-badge">JavaScript</span><code>console.log("Olá, turma!");
+
+const nome = "Pikachu";
+console.log(`Olá, ${nome}!`);</code></div>
+        </div>
+        <div class="card">
+          <h3>⌨️ Entrada no navegador</h3>
+          <div class="code-block"><span class="lang-badge">JavaScript</span><code>const nome = prompt("Qual é o seu nome?");
+const idade = Number(prompt("Qual é a sua idade?"));
+
+alert(`Olá, ${nome}!`);
+console.log(idade + 1);</code></div>
+          <div class="callout callout--warning"><span class="icon">⚠️</span><span><code>prompt()</code> devolve <strong>texto</strong>. Use <code>Number()</code> quando precisar calcular.</span></div>
         </div>
       </div>
     </section>
 
-    <!-- SLIDE 15: ENCERRAMENTO -->
-    <section class="slide slide--cover" data-title="Encerramento">
-      <h1>🎯 Resumo</h1>
-      <div style="text-align:left; max-width:700px; margin-top:24px;">
-        <table style="background:rgba(255,255,255,0.05); border-radius:12px;">
-          <thead><tr><th>Avaliação</th><th>Peso</th><th>Semana</th></tr></thead>
-          <tbody>
-            <tr><td>Avaliação Parcial 1 (Portugol)</td><td>15%</td><td>10</td></tr>
-            <tr><td>Avaliação Parcial 2 (Python/JS)</td><td>15%</td><td>20</td></tr>
-            <tr><td>Projeto Caixa de Supermercado</td><td>40%</td><td>21-24</td></tr>
-            <tr><td>Prova Regimental + Portfólio</td><td>30%</td><td>30</td></tr>
-          </tbody>
-        </table>
+    <!-- SLIDE 18: VARIÁVEIS E TIPOS JS -->
+    <section class="slide slide--content" data-title="Variáveis e tipos em JS">
+      <h2>📦 Variáveis e tipos em JavaScript</h2>
+      <p>Uma variável é um nome associado a um valor. Em JavaScript, o tipo é identificado em tempo de execução e pode ser observado com <code>typeof</code>.</p>
+      <table>
+        <thead><tr><th>Declaração</th><th>Quando usar</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><code>const</code></td><td>Valor não será reatribuído</td><td><code>const tipo = "Fogo";</code></td></tr>
+          <tr><td><code>let</code></td><td>Valor pode mudar</td><td><code>let energia = 39;</code></td></tr>
+          <tr><td><code>var</code></td><td>Forma legada; evite em código novo</td><td><code>var nome = "Ash";</code></td></tr>
+        </tbody>
+      </table>
+      <div class="columns" style="margin-top:14px;">
+        <div class="code-block"><span class="lang-badge">Tipos</span><code>const nome = "Misty";       // string
+const nivel = 18;            // number
+const capturado = true;      // boolean
+const apelido = null;        // ausência intencional
+let proximoGolpe;            // undefined
+
+console.log(typeof nome);    // "string"
+console.log(typeof nivel);   // "number"</code></div>
+        <div class="callout callout--info"><span class="icon">📏</span><span>Use nomes claros e <strong>camelCase</strong>: <code>pontosDeVida</code>, <code>poderEspecial</code>, <code>nomeDoTreinador</code>. A variável deve explicar o dado que guarda.</span></div>
       </div>
-      <div class="callout callout--info" style="max-width:600px; margin-top:32px;">
-        <span class="icon">🧠</span>
-        <span>"A lógica é o fundamento soberano — linguagens nascem e morrem, mas o raciocínio lógico é para sempre."</span>
+    </section>
+
+    <!-- SLIDE 19: CHAMANDER -->
+    <section class="slide slide--dark" data-title="Charmander: uma variável">
+      <h2>🔥 Evolução 1 — Charmander: uma variável</h2>
+      <p style="color:#CBD5E1;">Começamos com valores individuais. Na analogia, cada variável é uma “caixa” identificada que guarda <strong>um valor por vez</strong>.</p>
+      <div class="evolution-layout">
+        <div class="stage-card stage-card--charmander">
+          <div class="stage-symbol">🔥</div><span class="stage-badge">ESTÁGIO 1</span><h3>Charmander</h3>
+          <p>Pequeno, direto e focado: uma informação em cada variável.</p>
+          <div class="power-list"><span>⚔️ tipo</span><span>❤️ vida</span><span>⭐ nível</span></div>
+        </div>
+        <div class="code-block evolution-code"><span class="lang-badge">JavaScript</span><code>const nome = "Charmander";
+const tipo = "Fogo";
+let vida = 39;
+let nivel = 5;
+
+console.log(`${nome} — nível ${nivel}`);
+vida = vida - 4; // o valor pode mudar
+console.log(`Vida atual: ${vida}`);</code></div>
       </div>
-      <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+      <div class="callout callout--tip"><span class="icon">💡</span><span><code>const</code> protege a reatribuição de <code>nome</code> e <code>tipo</code>; <code>let</code> permite atualizar <code>vida</code> e <code>nivel</code>.</span></div>
+    </section>
+
+    <!-- SLIDE 20: OPERADORES -->
+    <section class="slide slide--content" data-title="Operadores e conversões">
+      <h2>➕ Operadores: os poderes matemáticos</h2>
+      <p>Operadores combinam valores para produzir novos resultados. Parênteses ajudam a deixar a intenção do algoritmo explícita.</p>
+      <table>
+        <thead><tr><th>Operador</th><th>Função</th><th>Exemplo</th><th>Resultado</th></tr></thead>
+        <tbody>
+          <tr><td><code>+</code></td><td>adição ou concatenação</td><td><code>10 + 4</code></td><td><strong>14</strong></td></tr>
+          <tr><td><code>-</code>, <code>*</code>, <code>/</code></td><td>subtrair, multiplicar, dividir</td><td><code>10 / 4</code></td><td><strong>2.5</strong></td></tr>
+          <tr><td><code>%</code></td><td>resto da divisão</td><td><code>14 % 2</code></td><td><strong>0</strong></td></tr>
+          <tr><td><code>**</code></td><td>potência</td><td><code>2 ** 3</code></td><td><strong>8</strong></td></tr>
+        </tbody>
+      </table>
+      <div class="code-block"><span class="lang-badge">Exemplo</span><code>const peso = 80;
+const altura = 1.75;
+const imc = peso / (altura ** 2);
+console.log(imc.toFixed(2)); // 26.12
+
+const numero = 14;
+const ePar = numero % 2 === 0;
+console.log(ePar); // true</code></div>
+    </section>
+
+    <!-- SLIDE 21: IGUALDADE E LOGICA -->
+    <section class="slide slide--dark" data-title="Igualdade e lógica booleana">
+      <h2>🧠 Igualdade, verdade e lógica booleana</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>⚖️ Compare valor e tipo</h3>
+          <div class="code-block"><span class="lang-badge">Comparação</span><code>3 == "3";   // true: igualdade fraca
+3 === "3";  // false: tipos diferentes
+
+3 !== "3";  // true
+5 &gt; 2;      // true</code></div>
+          <p class="small-note">Prefira <code>===</code> e <code>!==</code> para evitar conversões implícitas inesperadas.</p>
+        </div>
+        <div class="card">
+          <h3>🔗 Combine condições</h3>
+          <div class="code-block"><span class="lang-badge">Lógica</span><code>const nivel = 10;
+const energia = 20;
+const paralisado = false;
+
+const podeLutar =
+  nivel &gt;= 5 &amp;&amp; energia &gt; 0 &amp;&amp; !paralisado;
+
+console.log(podeLutar); // true</code></div>
+        </div>
+      </div>
+      <div class="truth-row"><span><strong>&amp;&amp;</strong> E: todas</span><span><strong>||</strong> OU: pelo menos uma</span><span><strong>!</strong> NÃO: inverte</span><span><strong>falsy</strong>: false, 0, "", null, undefined, NaN</span></div>
+    </section>
+
+    <!-- SLIDE 22: CONDICIONAIS -->
+    <section class="slide slide--content" data-title="Condicionais: decisões">
+      <h2>🔀 Condicionais: escolher um caminho</h2>
+      <p>Uma condição transforma uma regra em comportamento. O programa testa uma expressão booleana e executa o bloco adequado.</p>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">if / else</span><code>const energia = 42;
+
+if (energia &lt;= 0) {
+  console.log("Sem energia!");
+} else if (energia &lt; 20) {
+  console.log("Use uma poção.");
+} else {
+  console.log("Pronto para lutar!");
+}</code></div>
+        <div class="code-block"><span class="lang-badge">switch</span><code>const golpe = "brasas";
+
+switch (golpe) {
+  case "brasas":
+    console.log("Ataque de fogo!");
+    break;
+  case "arranhao":
+    console.log("Ataque físico!");
+    break;
+  default:
+    console.log("Golpe desconhecido.");
+}</code></div>
+      </div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>No <code>switch</code>, o <code>break</code> impede que a execução “caia” nos casos seguintes. Sem ele, mais de um caso pode ser executado.</span></div>
+    </section>
+
+    <!-- SLIDE 23: EXERCICIO FUNDAMENTOS -->
+    <section class="slide slide--accent" data-title="Exercício 1: fundamentos">
+      <span class="exercise-label">EXERCÍCIO 1 • tente antes de olhar a resposta</span>
+      <h2>📝 Ficha do Charmander</h2>
+      <p>Crie um programa JavaScript que declare o nome, o tipo, o nível e os pontos de vida de um Charmander. Depois:</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Exiba uma frase usando template literal.</div>
+        <div><strong>2.</strong> Verifique se ele pode lutar: nível maior ou igual a 5 e vida maior que 0.</div>
+        <div><strong>3.</strong> Se puder lutar, mostre “Ataque liberado”; caso contrário, mostre “Recupere o Pokémon”.</div>
+      </div>
+      <div class="callout callout--info"><span class="icon">⏱️</span><span>Antes de codificar, escreva a regra em linguagem natural e destaque quais valores podem mudar.</span></div>
+    </section>
+
+    <!-- SLIDE 24: GABARITO FUNDAMENTOS -->
+    <section class="slide slide--dark" data-title="Gabarito 1: fundamentos">
+      <span class="answer-label">GABARITO COMENTADO • exercício 1</span>
+      <h2>✅ Ficha do Charmander — resposta</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">JavaScript</span><code>const nome = "Charmander";
+const tipo = "Fogo";
+const nivel = 5;
+let vida = 39;
+
+console.log(`${nome} é do tipo ${tipo} e está no nível ${nivel}.`);
+
+const podeLutar = nivel &gt;= 5 &amp;&amp; vida &gt; 0;
+
+if (podeLutar) {
+  console.log("Ataque liberado!");
+} else {
+  console.log("Recupere o Pokémon.");
+}</code></div>
+        <div class="card">
+          <h3>🔍 Como pensar</h3>
+          <p>Os dados fixos foram declarados com <code>const</code>. A expressão booleana reúne duas condições com <code>&amp;&amp;</code>. O <code>if</code> transforma o resultado em uma decisão.</p>
+          <div class="mini-trace"><span>nível &gt;= 5</span><b>true</b><span>vida &gt; 0</span><b>true</b><strong>→ true</strong></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 25: LOOPS -->
+    <section class="slide slide--section" data-title="Loops: repetir com controle">
+      <h1>🔁 Loops:<br><span class="accent">repetir sem copiar</span></h1>
+      <p class="subtitle">A evolução do algoritmo: uma regra executada quantas vezes forem necessárias</p>
+      <div class="loop-compare">
+        <div><strong>for</strong><span>sei quantas vezes</span></div>
+        <div><strong>while</strong><span>sei a condição de parada</span></div>
+        <div><strong>do...while</strong><span>deve executar ao menos uma vez</span></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 26: LOOPS EXPLICADOS -->
+    <section class="slide slide--dark" data-title="For, while e do while">
+      <h2>🔄 Três formas de repetir</h2>
+      <div class="columns columns--3">
+        <div class="card loop-card"><h3>for</h3><p>Use quando o início, o limite e o passo são conhecidos.</p><div class="code-block code-compact"><code>for (let i = 1; i &lt;= 3; i++) {
+  console.log(`Turno ${i}`);
+}</code></div></div>
+        <div class="card loop-card"><h3>while</h3><p>Testa primeiro. Pode executar zero vezes.</p><div class="code-block code-compact"><code>let energia = 3;
+while (energia &gt; 0) {
+  energia--;
+}</code></div></div>
+        <div class="card loop-card"><h3>do...while</h3><p>Executa primeiro e testa depois.</p><div class="code-block code-compact"><code>let resposta;
+do {
+  resposta = "sim";
+} while (resposta !== "sim");</code></div></div>
+      </div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Todo loop precisa de uma condição que possa mudar. Sem atualização, surge o <strong>loop infinito</strong>.</span></div>
+    </section>
+
+    <!-- SLIDE 27: CONTADORES ACUMULADORES -->
+    <section class="slide slide--content" data-title="Contador e acumulador">
+      <h2>📈 Contadores, acumuladores e controle</h2>
+      <p>Um contador registra quantas vezes algo acontece. Um acumulador reúne valores ao longo das repetições.</p>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">Contador + acumulador</span><code>const pontos = [10, 5, 8, 12, 7];
+let soma = 0;
+let quantidadeAltos = 0;
+
+for (const ponto of pontos) {
+  soma += ponto;
+  if (ponto &gt;= 10) {
+    quantidadeAltos++;
+  }
+}
+
+console.log(soma);             // 42
+console.log(quantidadeAltos);  // 2</code></div>
+        <div>
+          <h3>⏯️ break e continue</h3>
+          <div class="code-block"><span class="lang-badge">Controle</span><code>for (const golpe of golpes) {
+  if (golpe === "bloqueado") continue;
+  if (golpe === "final") break;
+  console.log(golpe);
+}</code></div>
+          <div class="callout callout--info"><span class="icon">🧪</span><span>Faça um teste de mesa: registre o valor das variáveis após cada volta.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28: EXERCICIO LOOPS -->
+    <section class="slide slide--accent" data-title="Exercício 2: loops">
+      <span class="exercise-label">EXERCÍCIO 2 • repetição e acumulador</span>
+      <h2>📝 Pontuação da batalha</h2>
+      <p>Considere o array <code>const pontos = [10, 5, 8, 12, 7];</code> e escreva um programa que use um loop para:</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Calcular a soma dos pontos.</div>
+        <div><strong>2.</strong> Contar quantas pontuações são maiores ou iguais a 10.</div>
+        <div><strong>3.</strong> Exibir “Batalha vencida” se a soma for maior que 35.</div>
+      </div>
+      <p class="exercise-hint">Dica: inicialize o acumulador com zero e o contador com zero antes do loop.</p>
+    </section>
+
+    <!-- SLIDE 29: GABARITO LOOPS -->
+    <section class="slide slide--dark" data-title="Gabarito 2: loops">
+      <span class="answer-label">GABARITO COMENTADO • exercício 2</span>
+      <h2>✅ Pontuação da batalha — resposta</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">JavaScript</span><code>const pontos = [10, 5, 8, 12, 7];
+let soma = 0;
+let quantidadeAltos = 0;
+
+for (const ponto of pontos) {
+  soma += ponto;
+  if (ponto &gt;= 10) {
+    quantidadeAltos++;
+  }
+}
+
+console.log(`Soma: ${soma}`);
+console.log(`Notas altas: ${quantidadeAltos}`);
+
+if (soma &gt; 35) {
+  console.log("Batalha vencida!");
+} else {
+  console.log("Treine mais!");
+}</code></div>
+        <div class="result-card"><span>saída esperada</span><strong>Soma: 42</strong><strong>Notas altas: 2</strong><strong>Batalha vencida!</strong></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: CHARMELEON -->
+    <section class="slide slide--dark" data-title="Charmeleon: um array">
+      <h2>🦎 Evolução 2 — Charmeleon: um array</h2>
+      <p style="color:#CBD5E1;">Quando um valor já não é suficiente, agrupamos vários valores em uma lista organizada por <strong>índices</strong>.</p>
+      <div class="evolution-layout">
+        <div class="stage-card stage-card--charmeleon">
+          <div class="stage-symbol">🦎</div><span class="stage-badge">ESTÁGIO 2</span><h3>Charmeleon</h3>
+          <p>Agora temos uma coleção de poderes, acessada por posição.</p>
+          <div class="power-list"><span>📋 lista</span><span>🔢 índice</span><span>🔁 percurso</span></div>
+        </div>
+        <div class="code-block evolution-code"><span class="lang-badge">Array</span><code>const poderes = ["Brasas", "Arranhão", "Rugido"];
+
+console.log(poderes[0]);              // Brasas
+console.log(poderes.length);          // 3
+console.log(poderes[poderes.length - 1]); // Rugido
+
+poderes[1] = "Corte";
+poderes.push("Lança-chamas");</code></div>
+      </div>
+      <div class="array-index"><span>índice</span><b>[0]</b><b>[1]</b><b>[2]</b><b>[3]</b><span>→ posição começa em zero</span><strong>Brasas</strong><strong>Corte</strong><strong>Rugido</strong><strong>Lança-chamas</strong></div>
+    </section>
+
+    <!-- SLIDE 31: METODOS ARRAYS -->
+    <section class="slide slide--content" data-title="Poderes do array">
+      <h2>🛠️ Poderes principais do array</h2>
+      <p>Arrays são mutáveis: podemos consultar, trocar, adicionar e remover elementos. <code>length</code> é uma <strong>propriedade</strong>, não uma função.</p>
+      <table>
+        <thead><tr><th>Poder</th><th>O que faz</th><th>Exemplo</th></tr></thead>
+        <tbody>
+          <tr><td><code>length</code></td><td>informa o tamanho</td><td><code>poderes.length</code></td></tr>
+          <tr><td><code>push()</code></td><td>adiciona ao final</td><td><code>poderes.push("Golpe")</code></td></tr>
+          <tr><td><code>pop()</code></td><td>remove o último e o devolve</td><td><code>const ultimo = poderes.pop()</code></td></tr>
+          <tr><td><code>unshift()</code></td><td>adiciona no início</td><td><code>poderes.unshift("Defesa")</code></td></tr>
+          <tr><td><code>splice()</code></td><td>remove/adiciona a partir de um índice</td><td><code>poderes.splice(1, 1, "Corte")</code></td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Correto: <code>poderes.length</code>. Incorreto: <code>poderes.length()</code>.</span></div>
+    </section>
+
+    <!-- SLIDE 32: METODOS DE TRANSFORMACAO -->
+    <section class="slide slide--dark" data-title="Map, filter e reduce">
+      <h2>🧙 Poderes avançados: map, filter e reduce</h2>
+      <p style="color:#CBD5E1;">Esses métodos descrevem a intenção do algoritmo: transformar, selecionar ou reunir dados.</p>
+      <div class="code-block"><span class="lang-badge">Array de objetos</span><code>const golpes = [
+  { nome: "Brasas", poder: 40 },
+  { nome: "Corte", poder: 50 },
+  { nome: "Lança-chamas", poder: 90 },
+];
+
+const nomes = golpes.map(golpe =&gt; golpe.nome);
+const fortes = golpes.filter(golpe =&gt; golpe.poder &gt;= 60);
+const poderTotal = golpes.reduce(
+  (soma, golpe) =&gt; soma + golpe.poder, 0
+);
+
+console.log(nomes);       // ["Brasas", "Corte", "Lança-chamas"]
+console.log(fortes);      // [{ nome: "Lança-chamas", poder: 90 }]
+console.log(poderTotal);  // 180</code></div>
+      <div class="method-pills"><span><strong>map</strong> → um novo valor para cada item</span><span><strong>filter</strong> → somente itens que passam na regra</span><span><strong>reduce</strong> → um resultado acumulado</span></div>
+    </section>
+
+    <!-- SLIDE 33: ARRAYS ANINHADOS -->
+    <section class="slide slide--content" data-title="Arrays aninhados e matriz">
+      <h2>🗺️ Arrays aninhados: uma matriz</h2>
+      <p>Uma matriz é um array cujos elementos também são arrays. Pense em uma arena com linhas e colunas; para percorrê-la, usamos loops aninhados.</p>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">Matriz</span><code>const arena = [
+  ["🌿", "🌿", "💧"],
+  ["🔥", "⚡", "🌿"],
+  ["🌑", "🌿", "🏆"],
+];
+
+console.log(arena[1][0]); // 🔥
+
+for (let linha = 0; linha &lt; arena.length; linha++) {
+  for (let coluna = 0; coluna &lt; arena[linha].length; coluna++) {
+    console.log(arena[linha][coluna]);
+  }
+}</code></div>
+        <div class="matrix-visual"><span>linha 0</span><b>🌿</b><b>🌿</b><b>💧</b><span>linha 1</span><b>🔥</b><b>⚡</b><b>🌿</b><span>linha 2</span><b>🌑</b><b>🌿</b><b>🏆</b></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34: EXERCICIO ARRAYS -->
+    <section class="slide slide--accent" data-title="Exercício 3: arrays">
+      <span class="exercise-label">EXERCÍCIO 3 • arrays e métodos</span>
+      <h2>📝 Catálogo de poderes</h2>
+      <p>Com o array abaixo, resolva sem alterar o array original:</p>
+      <div class="code-block"><code>const golpes = [
+  { nome: "Brasas", poder: 40 },
+  { nome: "Corte", poder: 50 },
+  { nome: "Lança-chamas", poder: 90 },
+];</code></div>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Crie um array somente com os nomes usando <code>map</code>.</div>
+        <div><strong>2.</strong> Crie um array apenas com golpes de poder maior ou igual a 60 usando <code>filter</code>.</div>
+        <div><strong>3.</strong> Calcule o poder total com <code>reduce</code>.</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 35: GABARITO ARRAYS -->
+    <section class="slide slide--dark" data-title="Gabarito 3: arrays">
+      <span class="answer-label">GABARITO COMENTADO • exercício 3</span>
+      <h2>✅ Catálogo de poderes — resposta</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>const golpes = [
+  { nome: "Brasas", poder: 40 },
+  { nome: "Corte", poder: 50 },
+  { nome: "Lança-chamas", poder: 90 },
+];
+
+const nomes = golpes.map(golpe =&gt; golpe.nome);
+const golpesFortes = golpes.filter(golpe =&gt; golpe.poder &gt;= 60);
+const poderTotal = golpes.reduce(
+  (total, golpe) =&gt; total + golpe.poder, 0
+);
+
+console.log(nomes);
+console.log(golpesFortes);
+console.log(poderTotal); // 180</code></div>
+      <div class="callout callout--tip"><span class="icon">🔍</span><span>O array original continua com três itens. <code>map</code>, <code>filter</code> e <code>reduce</code> produzem resultados derivados.</span></div>
+    </section>
+
+    <!-- SLIDE 36: CHARIZARD -->
+    <section class="slide slide--dark" data-title="Charizard: objeto chave-valor">
+      <h2>🐉 Evolução 3 — Charizard: um objeto</h2>
+      <p style="color:#CBD5E1;">Um objeto organiza informações relacionadas como pares <strong>chave: valor</strong>. Na analogia, Charizard não guarda apenas uma lista: ele tem ficha, atributos e poderes nomeados.</p>
+      <div class="evolution-layout">
+        <div class="stage-card stage-card--charizard">
+          <div class="stage-symbol">🐉</div><span class="stage-badge">ESTÁGIO 3</span><h3>Charizard</h3>
+          <p>Uma estrutura descritiva que reúne propriedades e comportamentos.</p>
+          <div class="power-list"><span>🔑 chave</span><span>💎 valor</span><span>⚙️ método</span></div>
+        </div>
+        <div class="code-block evolution-code"><span class="lang-badge">Objeto</span><code>const charizard = {
+  nome: "Charizard",
+  tipo: "Fogo/Voador",
+  nivel: 36,
+  vida: 156,
+  poderes: ["Lança-chamas", "Rajada de Fogo"],
+};
+
+console.log(charizard.nome);      // Charizard
+console.log(charizard["tipo"]);  // Fogo/Voador
+console.log(charizard.poderes[0]); // Lança-chamas</code></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 37: OBJETOS E METODOS -->
+    <section class="slide slide--content" data-title="Poderes do objeto">
+      <h2>🔑 Poderes principais do objeto</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">CRUD e consulta</span><code>charizard.vida -= 20;       // atualizar
+charizard.poderes.push("Golpe Aéreo");
+charizard.apelido = "Chama Azul"; // criar
+
+console.log(Object.keys(charizard));
+console.log(Object.values(charizard));
+console.log(Object.entries(charizard));
+
+delete charizard.apelido;      // remover</code></div>
+        <div>
+          <h3>📖 Duas formas de acesso</h3>
+          <table>
+            <thead><tr><th>Forma</th><th>Quando é útil</th></tr></thead>
+            <tbody>
+              <tr><td><code>objeto.chave</code></td><td>Chave conhecida e simples.</td></tr>
+              <tr><td><code>objeto[variavel]</code></td><td>Chave dinâmica ou com espaço.</td></tr>
+            </tbody>
+          </table>
+          <div class="callout callout--info"><span class="icon">📌</span><span>Propriedades descrevem o objeto. Métodos são funções guardadas dentro dele.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 38: ARRAYS DE OBJETOS -->
+    <section class="slide slide--dark" data-title="Arrays de objetos">
+      <h2>👥 Equipe: array de objetos</h2>
+      <p style="color:#CBD5E1;">Na prática, dados aparecem combinados: uma lista de registros, em que cada registro possui chaves próprias.</p>
+      <div class="code-block"><span class="lang-badge">Pokédex</span><code>const equipe = [
+  { nome: "Charmander", tipo: "Fogo", nivel: 5 },
+  { nome: "Charmeleon", tipo: "Fogo", nivel: 16 },
+  { nome: "Charizard", tipo: "Fogo/Voador", nivel: 36 },
+];
+
+const nomes = equipe.map(pokemon =&gt; pokemon.nome);
+const voadores = equipe.filter(pokemon =&gt; pokemon.tipo.includes("Voador"));
+const nivelTotal = equipe.reduce(
+  (total, pokemon) =&gt; total + pokemon.nivel, 0
+);
+
+console.log(nomes);       // três nomes
+console.log(voadores);    // Charizard
+console.log(nivelTotal);  // 57</code></div>
+      <div class="callout callout--tip"><span class="icon">🧩</span><span>O array organiza muitos registros; o objeto dá significado a cada campo do registro.</span></div>
+    </section>
+
+    <!-- SLIDE 39: EXERCICIO OBJETOS -->
+    <section class="slide slide--accent" data-title="Exercício 4: objetos">
+      <span class="exercise-label">EXERCÍCIO 4 • objeto e chave-valor</span>
+      <h2>📝 Ficha do treinador</h2>
+      <p>Crie um objeto <code>treinador</code> com as chaves <code>nome</code>, <code>cidade</code>, <code>insignias</code> e <code>equipe</code>. A equipe deve ser um array com pelo menos dois objetos Pokémon.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Acesse e mostre o nome por notação de ponto.</div>
+        <div><strong>2.</strong> Acesse a cidade por notação de colchetes usando uma variável <code>chave</code>.</div>
+        <div><strong>3.</strong> Adicione uma insígnia e mostre quantos Pokémon existem na equipe.</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 40: GABARITO OBJETOS -->
+    <section class="slide slide--dark" data-title="Gabarito 4: objetos">
+      <span class="answer-label">GABARITO COMENTADO • exercício 4</span>
+      <h2>✅ Ficha do treinador — resposta</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>const treinador = {
+  nome: "Luna",
+  cidade: "Recife",
+  insignias: ["Pedra", "Cascata"],
+  equipe: [
+    { nome: "Pikachu", nivel: 12 },
+    { nome: "Charizard", nivel: 36 },
+  ],
+};
+
+console.log(treinador.nome);
+const chave = "cidade";
+console.log(treinador[chave]);
+
+treinador.insignias.push("Trovão");
+console.log(treinador.equipe.length); // 2</code></div>
+      <div class="callout callout--tip"><span class="icon">🔍</span><span><code>treinador[chave]</code> funciona porque a chave foi guardada na variável <code>chave</code>. Com ponto, escreveríamos literalmente <code>treinador.chave</code>.</span></div>
+    </section>
+
+    <!-- SLIDE 41: FUNCOES -->
+    <section class="slide slide--content" data-title="Funções: modularizar">
+      <h2>🧩 Funções: cada poder com uma responsabilidade</h2>
+      <p>Uma função é um bloco reutilizável. Ela pode receber <strong>parâmetros</strong>, executar um processamento e devolver um resultado com <code>return</code>.</p>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">Declaração e chamada</span><code>function calcularDano(ataque, bonus) {
+  return ataque + bonus;
+}
+
+const dano = calcularDano(40, 10);
+console.log(dano); // 50</code></div>
+        <div>
+          <h3>📤 return x console.log</h3>
+          <p><code>console.log()</code> exibe uma informação para quem desenvolve. <code>return</code> devolve um valor para o código que chamou a função.</p>
+          <div class="code-block code-compact"><code>function dobrar(numero) {
+  return numero * 2;
+}
+
+const resultado = dobrar(6);
+console.log(resultado); // 12</code></div>
+        </div>
+      </div>
+      <div class="callout callout--info"><span class="icon">🎯</span><span>Uma função deve ter um nome claro e, de preferência, fazer <strong>uma coisa bem feita</strong>.</span></div>
+    </section>
+
+    <!-- SLIDE 42: ARROW E ESCOPO -->
+    <section class="slide slide--dark" data-title="Arrow functions e escopo">
+      <h2>➡️ Função seta e escopo</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Arrow function</h3>
+          <div class="code-block"><span class="lang-badge">ES6+</span><code>const calcularDano = (ataque, bonus) =&gt; ataque + bonus;
+
+const nomes = equipe.map(pokemon =&gt; pokemon.nome);</code></div>
+          <p>Quando existe apenas uma expressão, o retorno é implícito. Em blocos com chaves, escreva <code>return</code> explicitamente.</p>
+        </div>
+        <div class="card">
+          <h3>Escopo de bloco</h3>
+          <div class="code-block"><span class="lang-badge">let / const</span><code>if (true) {
+  const segredo = "poção";
+  let energia = 10;
+  console.log(segredo);
+}
+
+// console.log(segredo); // erro</code></div>
+          <p><code>let</code> e <code>const</code> respeitam as chaves do bloco; isso reduz efeitos colaterais e bugs.</p>
+        </div>
+      </div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Não confunda “a função foi declarada” com “a função foi executada”: ela só roda quando é chamada.</span></div>
+    </section>
+
+    <!-- SLIDE 43: EXERCICIO FUNCOES -->
+    <section class="slide slide--accent" data-title="Exercício 5: funções">
+      <span class="exercise-label">EXERCÍCIO 5 • função + array de objetos</span>
+      <h2>📝 Poder total da equipe</h2>
+      <p>Crie uma função <code>calcularNivelTotal(equipe)</code> que receba um array de objetos Pokémon e retorne a soma dos níveis.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Use um acumulador com <code>reduce</code> ou um loop.</div>
+        <div><strong>2.</strong> Crie uma equipe com três Pokémon e teste a função.</div>
+        <div><strong>3.</strong> Mostre uma frase com o resultado retornado.</div>
+      </div>
+      <div class="callout callout--info"><span class="icon">🧠</span><span>Pense no contrato: <strong>entrada</strong> = array de objetos; <strong>processamento</strong> = somar níveis; <strong>saída</strong> = número.</span></div>
+    </section>
+
+    <!-- SLIDE 44: GABARITO FUNCOES -->
+    <section class="slide slide--dark" data-title="Gabarito 5: funções">
+      <span class="answer-label">GABARITO COMENTADO • exercício 5</span>
+      <h2>✅ Poder total da equipe — resposta</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>function calcularNivelTotal(equipe) {
+  return equipe.reduce(
+    (total, pokemon) =&gt; total + pokemon.nivel,
+    0
+  );
+}
+
+const equipe = [
+  { nome: "Pikachu", nivel: 12 },
+  { nome: "Charmeleon", nivel: 16 },
+  { nome: "Charizard", nivel: 36 },
+];
+
+const total = calcularNivelTotal(equipe);
+console.log(`Nível total da equipe: ${total}`); // 64</code></div>
+      <div class="callout callout--tip"><span class="icon">🧩</span><span>A função é reutilizável: podemos chamar novamente com outra equipe sem copiar a lógica.</span></div>
+    </section>
+
+    <!-- SLIDE 45: MINI PROJETO -->
+    <section class="slide slide--section" data-title="Mini projeto: Pokédex">
+      <h1>📘 Mini projeto:<br><span class="accent">Pokédex da turma</span></h1>
+      <p class="subtitle">Decompor → modelar → processar → exibir</p>
+      <div class="project-pipeline"><span>dados</span><b>→</b><span>funções</span><b>→</b><span>regras</span><b>→</b><span>relatório</span></div>
+      <div class="callout callout--info"><span class="icon">🎯</span><span>O objetivo não é decorar métodos. É escolher uma estrutura que represente bem o problema e testar cada parte.</span></div>
+    </section>
+
+    <!-- SLIDE 46: MINI PROJETO REQUISITOS -->
+    <section class="slide slide--content" data-title="Pokédex: requisitos">
+      <h2>📋 Mini projeto — requisitos e decomposição</h2>
+      <div class="columns">
+        <div>
+          <h3>Dados</h3>
+          <p>Uma equipe é um <strong>array de objetos</strong>. Cada Pokémon possui nome, tipo, nível e poder.</p>
+          <div class="code-block code-compact"><span class="lang-badge">Modelo</span><code>{
+  nome: "Charizard",
+  tipo: "Fogo/Voador",
+  nivel: 36,
+  poder: 90
+}</code></div>
+        </div>
+        <div>
+          <h3>Regras</h3>
+          <ol>
+            <li>Listar os nomes da equipe.</li>
+            <li>Encontrar o maior poder.</li>
+            <li>Somar os níveis.</li>
+            <li>Classificar a equipe.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">🧩</span><span>Decomposição evita o “código monstro”: cada tarefa pode virar uma função pequena e testável.</span></div>
+    </section>
+
+    <!-- SLIDE 47: MINI PROJETO EXEMPLO -->
+    <section class="slide slide--dark" data-title="Pokédex: exemplo completo">
+      <h2>💻 Pokédex — solução integrada</h2>
+      <div class="code-block code-compact"><span class="lang-badge">JavaScript</span><code>const equipe = [
+  { nome: "Charmander", tipo: "Fogo", nivel: 5, poder: 40 },
+  { nome: "Pikachu", tipo: "Elétrico", nivel: 12, poder: 55 },
+  { nome: "Charizard", tipo: "Fogo/Voador", nivel: 36, poder: 90 },
+];
+
+function resumoEquipe(pokemons) {
+  const nomes = pokemons.map(pokemon =&gt; pokemon.nome);
+  const nivelTotal = pokemons.reduce((total, pokemon) =&gt; total + pokemon.nivel, 0);
+  const maiorPoder = Math.max(...pokemons.map(pokemon =&gt; pokemon.poder));
+
+  return { nomes, nivelTotal, maiorPoder };
+}
+
+const resumo = resumoEquipe(equipe);
+console.log(resumo.nomes.join(", "));
+console.log(`Nível total: ${resumo.nivelTotal}`);
+console.log(`Maior poder: ${resumo.maiorPoder}`);</code></div>
+      <div class="callout callout--info"><span class="icon">🔬</span><span>Observe a composição: <strong>array</strong> guarda muitos Pokémon; cada <strong>objeto</strong> descreve um Pokémon; a <strong>função</strong> organiza o processamento.</span></div>
+    </section>
+
+    <!-- SLIDE 48: EXERCICIO PROJETO -->
+    <section class="slide slide--accent" data-title="Exercício 6: mini projeto">
+      <span class="exercise-label">EXERCÍCIO 6 • desafio de integração</span>
+      <h2>📝 Expanda a Pokédex</h2>
+      <p>Partindo de uma equipe com pelo menos quatro Pokémon:</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Crie uma função que retorne apenas Pokémon de nível maior ou igual a 10.</div>
+        <div><strong>2.</strong> Crie uma função que retorne o poder médio da equipe.</div>
+        <div><strong>3.</strong> Gere um relatório com nomes, quantidade de Pokémon e poder médio formatado com duas casas.</div>
+        <div><strong>4.</strong> Faça pelo menos um teste com equipe vazia e decida como o programa deve reagir.</div>
+      </div>
+      <p class="exercise-hint">Critério: dados bem modelados, funções pequenas, nomes claros e testes com mais de uma entrada.</p>
+    </section>
+
+    <!-- SLIDE 49: GABARITO PROJETO -->
+    <section class="slide slide--dark" data-title="Gabarito 6: mini projeto">
+      <span class="answer-label">GABARITO COMENTADO • exercício 6</span>
+      <h2>✅ Expanda a Pokédex — resposta possível</h2>
+      <div class="code-block code-compact"><span class="lang-badge">JavaScript</span><code>function nivelAlto(equipe, minimo = 10) {
+  return equipe.filter(pokemon =&gt; pokemon.nivel &gt;= minimo);
+}
+
+function poderMedio(equipe) {
+  if (equipe.length === 0) return 0;
+  const total = equipe.reduce((soma, pokemon) =&gt; soma + pokemon.poder, 0);
+  return total / equipe.length;
+}
+
+function gerarRelatorio(equipe) {
+  const nomes = equipe.map(pokemon =&gt; pokemon.nome).join(", ");
+  const media = poderMedio(equipe).toFixed(2);
+  return `${nomes} | ${equipe.length} Pokémon | média: ${media}`;
+}
+
+console.log(nivelAlto(equipe));
+console.log(gerarRelatorio(equipe));</code></div>
+      <div class="callout callout--tip"><span class="icon">🧪</span><span>A validação da equipe vazia evita divisão por zero e torna o comportamento do programa explícito.</span></div>
+    </section>
+
+    <!-- SLIDE 50: ERROS COMUNS -->
+    <section class="slide slide--content" data-title="Teste e erros comuns">
+      <h2>🧪 Testar também é pensar</h2>
+      <p>Um algoritmo confiável nasce de hipóteses testadas. Antes de entregar, experimente valores normais, limites e entradas inesperadas.</p>
+      <table>
+        <thead><tr><th>Sintoma</th><th>Causa provável</th><th>Como investigar</th></tr></thead>
+        <tbody>
+          <tr><td><code>undefined</code></td><td>índice ou chave inexistente</td><td>confira <code>length</code>, índice e nome da chave</td></tr>
+          <tr><td>loop não termina</td><td>condição não muda</td><td>trace o contador em cada iteração</td></tr>
+          <tr><td>comparação estranha</td><td>coerção de tipo</td><td>use <code>typeof</code> e prefira <code>===</code></td></tr>
+          <tr><td>função devolve <code>undefined</code></td><td>faltou <code>return</code></td><td>separe exibição de retorno</td></tr>
+          <tr><td>primeiro/último errado</td><td>índice começa em zero</td><td>último item: <code>array[array.length - 1]</code></td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info"><span class="icon">✅</span><span>Teste de mesa: acompanhe <strong>entrada</strong>, <strong>variáveis</strong>, <strong>condição</strong>, <strong>saída</strong> e <strong>próximo passo</strong>.</span></div>
+    </section>
+
+    <!-- SLIDE 51: RECURSOS JAVASCRIPT -->
+    <section class="slide slide--content" data-title="Recursos JavaScript">
+      <h2>📚 Recursos para continuar praticando</h2>
+      <div class="columns">
+        <div>
+          <h3>📖 Referências técnicas</h3>
+          <ul>
+            <li><a href="https://developer.mozilla.org/pt-BR/docs/Learn/JavaScript/First_steps" target="_blank" rel="noopener">MDN — Primeiros passos com JavaScript</a></li>
+            <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Reference/Global_Objects/Array" target="_blank" rel="noopener">MDN — Array e seus métodos</a></li>
+            <li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide/Functions" target="_blank" rel="noopener">MDN — Funções</a></li>
+            <li><a href="https://www.freecodecamp.org/learn/javascript-algorithms-and-data-structures-v8/" target="_blank" rel="noopener">freeCodeCamp — JavaScript</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3>🗂️ Fontes da aula</h3>
+          <ul>
+            <li><a href="https://github.com/reprograma/On9-Accenture-S2-Logica" target="_blank" rel="noopener">Reprograma S2 — variáveis, operadores e condicionais</a></li>
+            <li><a href="https://github.com/reprograma/On9-Accenture-S3-Logica" target="_blank" rel="noopener">Reprograma S3 — loops, escopo e funções</a></li>
+            <li><a href="https://github.com/reprograma/On9-Accenture-S4-Logica" target="_blank" rel="noopener">Reprograma S4 — objetos, arrays e métodos</a></li>
+          </ul>
+          <div class="callout callout--tip"><span class="icon">🎯</span><span>Próximo passo: traduza um algoritmo já resolvido em Portugol para JavaScript e compare a lógica, não apenas os símbolos.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 52: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento da trilha JS">
+      <span class="js-kicker">Resumo da evolução</span>
+      <h1>🧠 Lógica primeiro.<br><span class="accent">Sintaxe depois.</span></h1>
+      <div class="evolution-summary">
+        <div><strong>🔥 Charmander</strong><span>variável: um valor</span></div>
+        <div><strong>🦎 Charmeleon</strong><span>array: vários valores por índice</span></div>
+        <div><strong>🐉 Charizard</strong><span>objeto: chaves e valores</span></div>
+      </div>
+      <div class="callout callout--info" style="max-width:720px;"><span class="icon">⚡</span><span>Você evoluiu do dado isolado para estruturas capazes de representar problemas reais. Continue praticando: declarar, testar, decompor e melhorar.</span></div>
+      <p style="color:#94A3B8; margin-top:28px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
     </section>
 
   </div><!-- /slides-wrapper -->
@@ -717,7 +1454,7 @@ para (inteiro i = 0; i < tam-1; i++) {
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
     <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
-    <span class="progress-text">1 / 16</span>
+    <span class="progress-text">1 / 52</span>
     <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
     <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>

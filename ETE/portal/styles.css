@@ -505,3 +505,102 @@ html, body {
 :fullscreen .controls { opacity: 0; transition: opacity 0.3s; }
 :fullscreen .controls:hover { opacity: 1; }
 :fullscreen .progress-bar { display: none; }
+
+
+/* ===== TRILHA JAVASCRIPT — LÓGICA EVOLUTIVA ===== */
+.js-kicker, .exercise-label, .answer-label {
+  display: inline-block;
+  font-size: .78rem;
+  font-weight: 800;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: #93C5FD;
+  margin-bottom: 14px;
+}
+.exercise-label { color: #FEF3C7; }
+.answer-label { color: #86EFAC; }
+.js-hero-callout { max-width: 760px; margin-top: 24px; }
+.js-learning-goals, .method-pills, .truth-row, .project-pipeline, .loop-compare {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 20px;
+}
+.js-learning-goals span, .method-pills span, .truth-row span, .project-pipeline span, .loop-compare div {
+  border: 1px solid rgba(147,197,253,.35);
+  background: rgba(15,23,42,.36);
+  color: #DBEAFE;
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-size: .92rem;
+}
+.columns--3 { grid-template-columns: repeat(3, 1fr); }
+.js-context-card { min-height: 230px; }
+.context-flow { display: flex; align-items: center; flex-wrap: wrap; gap: 7px; margin-top: 20px; font-size: .88rem; color: var(--text-light); }
+.context-flow span { padding: 7px 10px; border-radius: 7px; background: var(--primary-light); color: var(--primary-dark); font-weight: 700; }
+.context-flow .context-js { background: #FEF08A; color: #713F12; }
+.context-flow b { color: var(--primary); }
+kbd { display: inline-block; padding: 2px 7px; border: 1px solid #64748B; border-bottom-width: 2px; border-radius: 5px; background: #334155; color: #F8FAFC; font-family: var(--mono); font-size: .8em; }
+.code-compact { padding: 16px; margin: 10px 0; }
+.code-compact code { font-size: .86rem; line-height: 1.45; }
+.small-note { font-size: .95rem !important; color: #CBD5E1 !important; }
+.evolution-layout { display: grid; grid-template-columns: minmax(210px, .75fr) minmax(0, 1.7fr); gap: 22px; align-items: stretch; margin-top: 18px; }
+.stage-card { border-radius: 18px; padding: 22px; color: #0F172A; box-shadow: 0 18px 35px rgba(0,0,0,.22); }
+.stage-card--charmander { background: linear-gradient(145deg, #FED7AA, #FB923C); }
+.stage-card--charmeleon { background: linear-gradient(145deg, #FDE68A, #F97316); }
+.stage-card--charizard { background: linear-gradient(145deg, #FCA5A5, #DC2626); color: #FFF7ED; }
+.stage-symbol { font-size: 3.4rem; line-height: 1; margin-bottom: 12px; }
+.stage-badge { display: inline-block; font-size: .68rem; font-weight: 900; letter-spacing: .1em; opacity: .75; }
+.stage-card h3 { color: inherit !important; font-size: 1.75rem; margin: 9px 0; }
+.stage-card p { color: inherit !important; font-size: 1.04rem; line-height: 1.45; }
+.power-list { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 18px; }
+.power-list span { border-radius: 999px; padding: 6px 9px; background: rgba(255,255,255,.44); font-size: .78rem; font-weight: 800; }
+.stage-card--charizard .power-list span { background: rgba(15,23,42,.27); }
+.evolution-code { margin: 0; align-self: stretch; display: flex; align-items: center; }
+.evolution-code code { font-size: .95rem; }
+.array-index { display: grid; grid-template-columns: auto repeat(4, 1fr) auto; align-items: center; gap: 0; margin-top: 18px; font-size: .78rem; text-align: center; }
+.array-index b, .array-index strong { padding: 9px 5px; border-right: 1px solid rgba(255,255,255,.2); }
+.array-index b { color: #93C5FD; }
+.array-index strong { color: #FEF3C7; font-size: .9rem; }
+.array-index span { padding: 8px; color: #94A3B8; }
+.matrix-visual { display: grid; grid-template-columns: auto repeat(3, minmax(46px, 1fr)); gap: 8px; align-items: center; padding: 18px; background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 14px; color: #475569; }
+.matrix-visual b { display: grid; place-items: center; min-height: 48px; border-radius: 10px; background: #DBEAFE; font-size: 1.55rem; }
+.matrix-visual span { font-size: .78rem; }
+.exercise-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; margin: 18px 0; }
+.exercise-grid > div { padding: 16px; border: 1px solid rgba(255,255,255,.28); border-radius: 12px; background: rgba(255,255,255,.1); font-size: 1.07rem; line-height: 1.45; }
+.exercise-hint { font-size: 1rem !important; color: #FEF3C7 !important; }
+.mini-trace { display: grid; grid-template-columns: 1fr auto; gap: 8px 14px; margin-top: 16px; font-family: var(--mono); font-size: .85rem; }
+.mini-trace b, .mini-trace strong { color: #86EFAC; }
+.result-card { display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 24px; border-radius: 14px; background: rgba(16,185,129,.13); border: 1px solid rgba(134,239,172,.35); color: #DCFCE7; }
+.result-card span { color: #86EFAC; font-size: .75rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+.result-card strong { font-size: 1.2rem; }
+.loop-compare { gap: 14px; }
+.loop-compare div { display: flex; flex-direction: column; gap: 4px; min-width: 150px; }
+.loop-compare strong { color: #FEF08A; font-size: 1.25rem; }
+.loop-compare span { color: #CBD5E1; font-size: .9rem; }
+.loop-card p { color: #CBD5E1 !important; font-size: 1rem !important; }
+.truth-row { justify-content: flex-start; }
+.truth-row span { border-color: rgba(255,255,255,.18); font-size: .85rem; }
+.truth-row strong { color: #FEF08A; }
+.project-pipeline { gap: 12px; font-size: 1.05rem; }
+.project-pipeline b { color: #93C5FD; align-self: center; }
+.evolution-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; max-width: 760px; width: 100%; margin: 24px 0; }
+.evolution-summary div { display: flex; flex-direction: column; gap: 8px; padding: 16px; border: 1px solid rgba(147,197,253,.28); border-radius: 14px; background: rgba(255,255,255,.06); }
+.evolution-summary strong { color: #FEF08A; }
+.evolution-summary span { color: #CBD5E1; font-size: .88rem; }
+
+@media (max-width: 900px) {
+  .columns--3, .evolution-layout, .evolution-summary { grid-template-columns: 1fr; }
+  .exercise-grid { grid-template-columns: 1fr; }
+  .array-index { grid-template-columns: auto repeat(4, minmax(40px, 1fr)); }
+  .array-index span:last-child { grid-column: 1 / -1; }
+}
+
+@media (max-width: 600px) {
+  .js-learning-goals span, .method-pills span { font-size: .78rem; padding: 6px 9px; }
+  .stage-card { padding: 17px; }
+  .stage-symbol { font-size: 2.8rem; }
+  .array-index { font-size: .68rem; }
+  .array-index strong { font-size: .76rem; }
+}

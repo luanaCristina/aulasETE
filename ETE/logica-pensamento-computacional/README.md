@@ -42,7 +42,7 @@
 
 ### Ementa
 
-Pilares do Pensamento Computacional (Decomposição, Reconhecimento de Padrões, Abstração, Algoritmos) • Algoritmos • Fluxogramas • Pseudocódigo • Variáveis e Tipos de Dados • Operadores (Aritméticos, Relacionais, Lógicos) • Estruturas Condicionais (Se/Senão) • Estruturas de Repetição (Enquanto/Para) • Vetores e Matrizes
+Pilares do Pensamento Computacional (Decomposição, Reconhecimento de Padrões, Abstração, Algoritmos) • Algoritmos • Fluxogramas • Pseudocódigo • JavaScript no navegador e no Node.js • Entrada e saída • Variáveis (`let`/`const`) e tipos de dados • Operadores (Aritméticos, Relacionais, Lógicos) • Estruturas Condicionais (`if`/`else`, `switch`) • Estruturas de Repetição (`for`, `while`, `do...while`) • Arrays e matrizes • Objetos chave/valor • Métodos de arrays • Funções, escopo e modularização
 
 ### Competências a Desenvolver
 
@@ -51,7 +51,8 @@ Pilares do Pensamento Computacional (Decomposição, Reconhecimento de Padrões,
 - ✅ Declarar variáveis, utilizar operadores e expressões
 - ✅ Implementar estruturas condicionais simples e compostas
 - ✅ Implementar estruturas de repetição com contadores e acumuladores
-- ✅ Manipular vetores e matrizes para armazenar coleções de dados
+- ✅ Manipular vetores, arrays, matrizes e objetos para armazenar coleções de dados
+- ✅ Criar funções reutilizáveis, compreender escopo e testar soluções em JavaScript
 - ✅ Desenvolver o raciocínio lógico-algorítmico para qualquer linguagem
 
 > 💡 **Por que Portugol?** Esta disciplina ensina LÓGICA, não uma linguagem específica. O Portugol permite escrever algoritmos em português, eliminando a barreira do inglês e focando 100% no raciocínio. Tudo que aprender aqui se aplica a Python, Java, C#, JavaScript...
