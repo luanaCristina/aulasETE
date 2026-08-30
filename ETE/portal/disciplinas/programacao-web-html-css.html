@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Programação Web HTML/CSS/JS — ETE Pernambuco</title>
-  <link rel="stylesheet" href="../styles.css?v=2026-08-web63">
+  <link rel="stylesheet" href="../styles.css?v=2026-08-api82">
 </head>
 <body>
   <div class="progress-bar"></div>
@@ -2022,18 +2022,456 @@ form.addEventListener('submit', async (e) =&gt; {
       <p style="color:#94A3B8; margin-top:32px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
     </section>
 
+    <!-- SLIDE 64: SEÇÃO API CLIENTS -->
+    <section class="slide slide--section" data-title="Testando APIs com Postman e Bruno">
+      <span class="api-kicker">API CLIENTS • PRÁTICA PROFISSIONAL</span>
+      <h1>🧪 Teste o backend antes do frontend</h1>
+      <p class="subtitle">Postman e Bruno permitem enviar requisições e observar respostas com precisão</p>
+      <div class="api-hero-flow"><span>URL</span><b>+</b><span>método</span><b>+</b><span>headers</span><b>+</b><span>body</span><b>→</b><span>resposta</span></div>
+      <div class="callout callout--info api-hero-callout"><span class="icon">🔬</span><span>Antes de montar uma tela, podemos testar a API diretamente. Assim isolamos problemas do servidor, do contrato de dados e do frontend.</span></div>
+    </section>
+
+    <!-- SLIDE 65: O QUE É API CLIENT -->
+    <section class="slide slide--content" data-title="API client: requisição e resposta">
+      <span class="api-kicker">CONCEITO • API CLIENT</span>
+      <h2>📨 O que um cliente de API faz?</h2>
+      <p>Um cliente de API é uma ferramenta que constrói requisições HTTP, envia-as para um endereço e apresenta a resposta sem exigir que exista uma interface visual pronta.</p>
+      <div class="api-request-card">
+        <div><strong>Requisição</strong><span><code>POST /api/recados</code></span><span>Headers: `Content-Type`</span><span>Body: JSON</span></div>
+        <b>→</b>
+        <div><strong>Servidor</strong><span>lê, valida e processa</span><span>aplica regras de negócio</span><span>persiste ou consulta</span></div>
+        <b>→</b>
+        <div><strong>Resposta</strong><span>Status: `201 Created`</span><span>Headers de resposta</span><span>Body: JSON</span></div>
+      </div>
+      <div class="columns">
+        <div class="card"><h3>Quando usar?</h3><p>Ao desenvolver uma rota, reproduzir um bug, validar um contrato, testar autenticação, documentar exemplos ou confirmar se o problema está no backend.</p></div>
+        <div class="card"><h3>O que observar?</h3><p>Status HTTP, tempo de resposta, headers, JSON retornado, mensagens de erro e se os dados realmente foram alterados.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 66: INSTALAR POSTMAN -->
+    <section class="slide slide--dark" data-title="Postman: instalação e primeiro acesso">
+      <span class="api-kicker">POSTMAN • INSTALAÇÃO</span>
+      <h2>🟠 Instale o Postman Desktop</h2>
+      <div class="api-install-grid">
+        <div><b>1</b><strong>Baixar</strong><span>Acesse a página oficial de download e escolha Windows, macOS ou Linux.</span></div>
+        <div><b>2</b><strong>Instalar</strong><span>Execute o instalador e aceite as opções padrão para a aula.</span></div>
+        <div><b>3</b><strong>Abrir</strong><span>Inicie o Postman Desktop e entre ou avance conforme a tela inicial.</span></div>
+        <div><b>4</b><strong>Workspace</strong><span>Use um workspace pessoal ou de aula para organizar as collections.</span></div>
+      </div>
+      <div class="code-block"><span class="lang-badge">REFERÊNCIA</span><code>Download oficial: https://www.postman.com/downloads/
+Documentação: https://learning.postman.com/docs/getting-started/quick-start
+
+Objetivo da aula:
+criar uma collection chamada "Mural de Recados"
+e testar http://localhost:3000/api/recados</code></div>
+      <div class="callout callout--info"><span class="icon">💾</span><span>A instalação desktop é o caminho mais simples para trabalhar com uma API local. A conta pode ser útil para sincronização, mas a ideia central é aprender a montar e enviar a requisição.</span></div>
+    </section>
+
+    <!-- SLIDE 67: INSTALAR BRUNO -->
+    <section class="slide slide--content" data-title="Bruno: instalação e organização local">
+      <span class="api-kicker">BRUNO • INSTALAÇÃO</span>
+      <h2>🟤 Instale o Bruno e mantenha a collection no Git</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Passo a passo</h3>
+          <ol>
+            <li>Acesse <a href="https://www.usebruno.com/downloads" target="_blank" rel="noopener">usebruno.com/downloads</a>.</li>
+            <li>Escolha o instalador do seu sistema operacional.</li>
+            <li>Abra o aplicativo e clique em `+` → <strong>Create collection</strong>.</li>
+            <li>Dê o nome `Mural de Recados` e escolha uma pasta do projeto.</li>
+            <li>Prefira uma collection que possa ser versionada com Git.</li>
+          </ol>
+        </div>
+        <div class="code-block"><span class="lang-badge">BRU / GIT</span><code>mural-de-recados/
+├── bruno.json
+├── collection.bru
+├── environments/
+│   └── local.bru
+└── requests/
+    ├── 01-listar-recados.bru
+    ├── 02-criar-recado.bru
+    ├── 03-atualizar-recado.bru
+    └── 04-remover-recado.bru</code></div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">🌿</span><span>O Bruno é local-first e Git-friendly: a collection pode viver junto do código e ser revisada pelo time, sem depender de uma coleção escondida dentro de um aplicativo.</span></div>
+    </section>
+
+    <!-- SLIDE 68: ANATOMIA -->
+    <section class="slide slide--content" data-title="Anatomia da requisição HTTP no Postman e Bruno">
+      <span class="api-kicker">HTTP • CONFIGURAÇÃO</span>
+      <h2>🧩 Separe URL, método, parâmetros, headers e body</h2>
+      <div class="api-anatomy-grid">
+        <div><strong>Method</strong><span>GET, POST, PUT, PATCH ou DELETE.</span></div>
+        <div><strong>URL</strong><span>Endereço da rota, por exemplo `/api/recados/1`.</span></div>
+        <div><strong>Params</strong><span>Dados na URL, como `?status=ativo`.</span></div>
+        <div><strong>Headers</strong><span>Metadados, tipo do conteúdo e autorização.</span></div>
+        <div><strong>Body</strong><span>Dados enviados em POST, PUT ou PATCH.</span></div>
+        <div><strong>Send</strong><span>Executa a requisição e mostra a resposta.</span></div>
+      </div>
+      <div class="code-block"><span class="lang-badge">MAPA</span><code>POST http://localhost:3000/api/recados
+
+Headers
+  Content-Type: application/json
+  Authorization: Bearer {{token}}
+
+Body → raw / JSON
+  { "texto": "Estudar API" }</code></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Header e body têm funções diferentes: o header descreve a requisição; o body carrega os dados. Não coloque JSON dentro de um campo de header.</span></div>
+    </section>
+
+    <!-- SLIDE 69: CRUD -->
+    <section class="slide slide--dark" data-title="CRUD: GET POST PUT PATCH e DELETE">
+      <span class="api-kicker">REST • CRUD</span>
+      <h2>🔁 Os métodos do ciclo de vida do recurso</h2>
+      <table>
+        <thead><tr><th>Ação</th><th>Método</th><th>URL exemplo</th><th>Body</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>listar</td><td><code>GET</code></td><td><code>/api/recados</code></td><td>não</td><td>200</td></tr>
+          <tr><td>criar</td><td><code>POST</code></td><td><code>/api/recados</code></td><td>sim</td><td>201</td></tr>
+          <tr><td>substituir</td><td><code>PUT</code></td><td><code>/api/recados/1</code></td><td>sim, completo</td><td>200</td></tr>
+          <tr><td>alterar parte</td><td><code>PATCH</code></td><td><code>/api/recados/1</code></td><td>sim, parcial</td><td>200</td></tr>
+          <tr><td>remover</td><td><code>DELETE</code></td><td><code>/api/recados/1</code></td><td>não</td><td>204</td></tr>
+        </tbody>
+      </table>
+      <div class="columns">
+        <div class="card"><h3>PUT x PATCH</h3><p>Use PUT quando a ideia é enviar a representação completa do recurso. Use PATCH quando somente alguns campos serão alterados.</p></div>
+        <div class="card"><h3>Regra de ouro</h3><p>O método comunica a intenção. A URL identifica o recurso. O status comunica o resultado. O body carrega dados quando necessário.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 70: POSTMAN GET -->
+    <section class="slide slide--content" data-title="Postman: enviar GET e visualizar resposta">
+      <span class="api-kicker">POSTMAN • GET</span>
+      <h2>🔎 Postman: consultar com GET</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Na interface</h3>
+          <ol>
+            <li>Clique em `+` para abrir uma nova aba.</li>
+            <li>Selecione <strong>GET</strong> no menu do método.</li>
+            <li>Digite `http://localhost:3000/api/recados`.</li>
+            <li>Na aba <strong>Headers</strong>, não é necessário body; `Accept: application/json` é opcional.</li>
+            <li>Clique em <strong>Send</strong>.</li>
+          </ol>
+        </div>
+        <div class="code-block"><span class="lang-badge">REQUEST</span><code>GET http://localhost:3000/api/recados
+Accept: application/json
+
+// sem body
+
+// resposta esperada — 200 OK
+[
+  { "id": 1, "texto": "Estudar API" }
+]</code></div>
+      </div>
+      <div class="api-response"><strong>Visualize</strong><span>Status `200 OK`, tempo, tamanho da resposta, cabeçalhos e aba Body em JSON.</span></div>
+      <div class="callout callout--tip"><span class="icon">🧭</span><span>Se a lista vier vazia, não significa erro: significa que a rota funcionou e ainda não existem registros.</span></div>
+    </section>
+
+    <!-- SLIDE 71: POSTMAN POST -->
+    <section class="slide slide--dark" data-title="Postman: criar com POST, header e body JSON">
+      <span class="api-kicker">POSTMAN • POST</span>
+      <h2>➕ Postman: criar com POST</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Configuração visual</h3>
+          <ol>
+            <li>Selecione <strong>POST</strong>.</li>
+            <li>Use `http://localhost:3000/api/recados`.</li>
+            <li>Abra a aba <strong>Headers</strong> e adicione `Content-Type` com valor `application/json`.</li>
+            <li>Abra <strong>Body</strong> → <strong>raw</strong> → selecione <strong>JSON</strong>.</li>
+            <li>Digite o objeto e clique em <strong>Send</strong>.</li>
+          </ol>
+        </div>
+        <div class="code-block"><span class="lang-badge">POSTMAN</span><code>POST /api/recados
+
+Headers
+Content-Type: application/json
+
+Body / raw / JSON
+{
+  "texto": "Testar no Postman"
+}
+
+Resposta: 201 Created
+{
+  "id": 2,
+  "texto": "Testar no Postman"
+}</code></div>
+      </div>
+      <div class="callout callout--warning"><span class="icon">🧪</span><span>Se o backend responder `400`, confira se o JSON é válido, se o campo se chama exatamente `texto` e se o header informa `application/json`.</span></div>
+    </section>
+
+    <!-- SLIDE 72: POSTMAN UPDATE -->
+    <section class="slide slide--content" data-title="Postman: atualizar com PUT ou PATCH">
+      <span class="api-kicker">POSTMAN • UPDATE</span>
+      <h2>✏️ Postman: atualizar um recado</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">PUT — recurso completo</span><code>PUT http://localhost:3000/api/recados/2
+Content-Type: application/json
+
+{
+  "texto": "Estudar APIs REST com Postman"
+}</code><br><span class="lang-badge">PATCH — alteração parcial</span><code>PATCH http://localhost:3000/api/recados/2
+Content-Type: application/json
+
+{
+  "fixado": true
+}</code></div>
+        <div class="card">
+          <h3>Na interface do Postman</h3>
+          <ol>
+            <li>Abra uma nova request ou duplique a request POST.</li>
+            <li>Troque o método para PUT ou PATCH.</li>
+            <li>Acrescente o `id` no final da URL.</li>
+            <li>Mantenha `Content-Type: application/json`.</li>
+            <li>Envie um body completo para PUT ou somente os campos alterados para PATCH.</li>
+            <li>Confira o JSON retornado e repita um GET para confirmar.</li>
+          </ol>
+          <div class="callout callout--info"><span class="icon">🔁</span><span>O segundo GET é uma verificação independente: consultar depois de alterar ajuda a detectar respostas “otimistas” que não foram persistidas.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 73: POSTMAN DELETE -->
+    <section class="slide slide--dark" data-title="Postman: remover com DELETE">
+      <span class="api-kicker">POSTMAN • DELETE</span>
+      <h2>🗑️ Postman: remover com DELETE</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Passos</h3>
+          <ol>
+            <li>Selecione <strong>DELETE</strong>.</li>
+            <li>Use `http://localhost:3000/api/recados/2`.</li>
+            <li>Deixe o body vazio.</li>
+            <li>Se a API exigir autenticação, configure a aba Authorization ou o header apropriado.</li>
+            <li>Clique em Send e observe `204 No Content` ou a resposta documentada.</li>
+            <li>Faça GET para verificar que o item não aparece mais.</li>
+          </ol>
+        </div>
+        <div class="code-block"><span class="lang-badge">REQUEST / RESPONSE</span><code>DELETE http://localhost:3000/api/recados/2
+
+// sem body
+
+Resposta possível:
+204 No Content
+
+// ou, se a API devolver representação:
+200 OK
+{ "mensagem": "Recado removido" }</code></div>
+      </div>
+      <div class="callout callout--danger"><span class="icon">🛡️</span><span>DELETE altera dados. Em produção, confirme permissões, registre a operação e nunca teste remoção em dados reais sem um ambiente apropriado.</span></div>
+    </section>
+
+    <!-- SLIDE 74: RESPOSTAS -->
+    <section class="slide slide--content" data-title="Postman: ler status, headers e body da resposta">
+      <span class="api-kicker">POSTMAN • DIAGNÓSTICO</span>
+      <h2>📊 A resposta conta o que aconteceu</h2>
+      <div class="api-status-grid">
+        <div><strong>200 OK</strong><span>consulta ou atualização concluída</span></div>
+        <div><strong>201 Created</strong><span>recurso criado</span></div>
+        <div><strong>204 No Content</strong><span>ação concluída sem body</span></div>
+        <div><strong>400 Bad Request</strong><span>dados inválidos ou ausentes</span></div>
+        <div><strong>401 Unauthorized</strong><span>credencial ausente ou inválida</span></div>
+        <div><strong>404 Not Found</strong><span>rota ou recurso inexistente</span></div>
+        <div><strong>500 Server Error</strong><span>falha inesperada no servidor</span></div>
+      </div>
+      <div class="columns">
+        <div class="card"><h3>Headers de resposta</h3><p>Observe `Content-Type`, cache, cookies, CORS e informações de rastreio quando existirem. Eles ajudam a entender como o cliente deve ler a resposta.</p></div>
+        <div class="card"><h3>Body de resposta</h3><p>Confira se o JSON possui os campos esperados, se tipos e nomes estão corretos e se a mensagem de erro pode orientar a pessoa usuária.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 75: POSTMAN COLLECTION ENV -->
+    <section class="slide slide--content" data-title="Postman: collections e ambientes">
+      <span class="api-kicker">POSTMAN • ORGANIZAÇÃO</span>
+      <h2>🗃️ Salve o trabalho em collection e environment</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>Collection</h3>
+          <p>Clique em <strong>Save</strong>, crie ou escolha a collection `Mural de Recados` e nomeie cada request com uma ordem clara: `01 GET listar`, `02 POST criar`, `03 PATCH atualizar`, `04 DELETE remover`.</p>
+          <p>Uma collection torna o roteiro repetível e pode receber documentação e testes.</p>
+        </div>
+        <div class="code-block"><span class="lang-badge">ENVIRONMENT: local</span><code>baseURL = http://localhost:3000
+token = exemplo-nao-real
+
+GET {{baseURL}}/api/recados
+POST {{baseURL}}/api/recados
+Authorization: Bearer {{token}}</code></div>
+      </div>
+      <div class="callout callout--warning"><span class="icon">🔐</span><span>Variáveis ajudam a trocar `localhost` por homologação. Segredos reais devem ser protegidos e nunca devem ser commitados em collection pública.</span></div>
+    </section>
+
+    <!-- SLIDE 76: BRUNO GET POST -->
+    <section class="slide slide--dark" data-title="Bruno: criar collection e enviar GET e POST">
+      <span class="api-kicker">BRUNO • REQUESTS</span>
+      <h2>🟤 Bruno: a mesma API em uma collection local</h2>
+      <div class="columns">
+        <div class="card">
+          <h3>GET</h3>
+          <ol>
+            <li>No menu da collection, escolha <strong>New Request</strong>.</li>
+            <li>Tipo <strong>HTTP</strong>, nome `01-listar-recados`.</li>
+            <li>Selecione GET e digite a URL.</li>
+            <li>Clique em <strong>Send</strong> ou use Ctrl/Cmd + Enter.</li>
+          </ol>
+        </div>
+        <div class="code-block"><span class="lang-badge">02-criar-recado.bru</span><code>meta {
+  name: 02-criar-recado
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:3000/api/recados
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "texto": "Testar no Bruno"
+  }
+}</code></div>
+      </div>
+      <div class="callout callout--info"><span class="icon">📁</span><span>O ponto pedagógico é o mesmo: criar request, selecionar método, informar URL, configurar header/body, enviar e ler a resposta. O Bruno acrescenta arquivos locais fáceis de versionar.</span></div>
+    </section>
+
+    <!-- SLIDE 77: BRUNO PUT PATCH DELETE ENV -->
+    <section class="slide slide--content" data-title="Bruno: atualizar remover e usar ambiente">
+      <span class="api-kicker">BRUNO • CRUD E AMBIENTES</span>
+      <h2>🔁 Bruno: PUT, PATCH, DELETE e `{{baseURL}}`</h2>
+      <div class="columns">
+        <div class="code-block"><span class="lang-badge">03-atualizar-recado.bru</span><code>meta {
+  name: 03-atualizar-recado
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{baseURL}}/api/recados/2
+  body: json
+}
+headers {
+  Content-Type: application/json
+}
+body:json {
+  { "texto": "Revisar headers e body" }
+}
+
+# 04-remover-recado.bru
+# delete {{baseURL}}/api/recados/2</code></div>
+        <div class="card">
+          <h3>Na interface</h3>
+          <ol>
+            <li>Abra ou crie as requests dentro da collection.</li>
+            <li>Selecione o ambiente no canto superior direito.</li>
+            <li>Use `{{baseURL}}` na URL para não repetir o endereço.</li>
+            <li>Para PATCH/PUT, abra Body → JSON e adicione o objeto.</li>
+            <li>Para DELETE, deixe o body vazio e envie.</li>
+            <li>Repita GET para confirmar o estado final.</li>
+          </ol>
+        </div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">🌿</span><span>No Bruno, a collection pode ser revisada pelo Git. O arquivo `.bru` é uma representação textual da request, útil para colaboração e histórico.</span></div>
+    </section>
+
+    <!-- SLIDE 78: COMPARAÇÃO -->
+    <section class="slide slide--content" data-title="Postman e Bruno: quando usar cada um">
+      <span class="api-kicker">COMPARAÇÃO • FERRAMENTAS</span>
+      <h2>⚖️ Postman e Bruno ensinam o mesmo contrato</h2>
+      <table>
+        <thead><tr><th>Critério</th><th>Postman</th><th>Bruno</th></tr></thead>
+        <tbody>
+          <tr><td>Primeiro contato</td><td>interface visual guiada</td><td>interface visual simples e local</td></tr>
+          <tr><td>Organização</td><td>collections e environments</td><td>collections em arquivos da pasta</td></tr>
+          <tr><td>Colaboração</td><td>workspace, export/import e compartilhamento</td><td>Git e revisão de arquivos</td></tr>
+          <tr><td>Dados</td><td>Body → raw → JSON</td><td>Body → JSON ou arquivo `.bru`</td></tr>
+          <tr><td>Automação</td><td>testes, scripts e runner</td><td>testes, scripts e CLI</td></tr>
+          <tr><td>Habilidade transferível</td><td colspan="2">entender HTTP e o contrato da API</td></tr>
+        </tbody>
+      </table>
+      <div class="callout callout--info"><span class="icon">🎯</span><span>Não transforme a aula em disputa de ferramenta. Aprenda a ler método, URL, headers, body e resposta; depois escolha o cliente que combina com o projeto.</span></div>
+    </section>
+
+    <!-- SLIDE 79: EXERCÍCIO -->
+    <section class="slide slide--accent" data-title="Exercício: testar o CRUD no Postman e Bruno">
+      <span class="exercise-label">EXERCÍCIO 6 • API CLIENTS</span>
+      <h2>🧪 Teste o Mural de Recados em duas ferramentas</h2>
+      <p>Com o servidor Node/Express da aula em execução na porta 3000, crie a collection `Mural de Recados` no Postman ou no Bruno e execute o roteiro completo.</p>
+      <div class="api-exercise-route"><span>GET listar</span><span>POST criar</span><span>GET conferir</span><span>PATCH atualizar</span><span>DELETE remover</span><span>GET final</span></div>
+      <div class="exercise-grid">
+        <div>Para POST, use header `Content-Type: application/json` e body `{"texto":"Meu primeiro recado"}`.</div>
+        <div>Para PATCH, altere o recado com ID 1 e confirme que o ID permanece o mesmo.</div>
+        <div>Para DELETE, deixe o body vazio e observe o status retornado pelo servidor.</div>
+        <div>Repita o roteiro na outra ferramenta e compare organização, resposta e facilidade de repetir.</div>
+      </div>
+      <div class="callout callout--warning"><span class="icon">🧭</span><span>Registre em uma tabela: método, URL, header, body, status recebido e uma frase explicando o resultado.</span></div>
+    </section>
+
+    <!-- SLIDE 80: GABARITO -->
+    <section class="slide slide--content" data-title="Gabarito: roteiro CRUD no Postman e Bruno">
+      <span class="answer-label">GABARITO 6 • API CLIENTS</span>
+      <h2>✅ Roteiro esperado e respostas</h2>
+      <table>
+        <thead><tr><th>#</th><th>Request</th><th>Configuração</th><th>Resultado esperado</th></tr></thead>
+        <tbody>
+          <tr><td>1</td><td>GET `/api/recados`</td><td>sem body</td><td>200 + array</td></tr>
+          <tr><td>2</td><td>POST `/api/recados`</td><td>JSON + Content-Type</td><td>201 + objeto criado</td></tr>
+          <tr><td>3</td><td>GET `/api/recados`</td><td>sem body</td><td>200 + novo item</td></tr>
+          <tr><td>4</td><td>PATCH `/api/recados/1`</td><td>JSON + Content-Type</td><td>200 + item atualizado</td></tr>
+          <tr><td>5</td><td>DELETE `/api/recados/1`</td><td>sem body</td><td>204 ou status documentado</td></tr>
+          <tr><td>6</td><td>GET `/api/recados`</td><td>sem body</td><td>200 + item ausente</td></tr>
+        </tbody>
+      </table>
+      <div class="columns">
+        <div class="card"><h3>Se der 400</h3><p>Verifique JSON, nome do campo, header e validação do servidor.</p></div>
+        <div class="card"><h3>Se der 404</h3><p>Confira a rota, o método e se o ID existe.</p></div>
+        <div class="card"><h3>Se der 401</h3><p>Confira Authorization, token e ambiente selecionado.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 81: CHECKLIST -->
+    <section class="slide slide--dark" data-title="Checklist de teste de API">
+      <span class="api-kicker">QUALIDADE • CHECKLIST</span>
+      <h2>🧾 Antes de dizer “a API funciona”</h2>
+      <div class="api-check-grid">
+        <div><strong>Contrato</strong><span>Método, URL e status correspondem à documentação.</span></div>
+        <div><strong>Dados</strong><span>Body é JSON válido e o header informa o tipo correto.</span></div>
+        <div><strong>Sucesso</strong><span>GET, POST, update e DELETE foram verificados pelo estado final.</span></div>
+        <div><strong>Erro</strong><span>Entradas inválidas retornam status e mensagem compreensíveis.</span></div>
+        <div><strong>Segurança</strong><span>Tokens não aparecem em prints, Git ou frontend.</span></div>
+        <div><strong>Repetição</strong><span>Collection e environment permitem que outra pessoa repita o teste.</span></div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">✅</span><span>Testar é produzir evidência: uma requisição configurada, uma resposta observada e uma conclusão registrada.</span></div>
+    </section>
+
+    <!-- SLIDE 82: ENCERRAMENTO -->
+    <section class="slide slide--cover" data-title="Encerramento: observe o contrato da API">
+      <span class="api-kicker">API CLIENTS • ENCERRAMENTO</span>
+      <h1>🎯 Método, dados, resposta e evidência</h1>
+      <div class="api-closing-flow"><span>Postman</span><b>ou</b><span>Bruno</span><b>→</b><span>requisição</span><b>→</b><span>API</span><b>→</b><span>resposta</span></div>
+      <div class="callout callout--info api-hero-callout"><span class="icon">💡</span><span>Quando você consegue explicar por que enviou aquele método, header e body e consegue interpretar a resposta, já está pensando como uma pessoa desenvolvedora de APIs.</span></div>
+      <p style="color:#94A3B8; margin-top:32px;">Documentação: <a href="https://learning.postman.com/docs/getting-started/quick-start" target="_blank" rel="noopener">Postman Quick Start</a> · <a href="https://docs.usebruno.com/introduction/quick-start" target="_blank" rel="noopener">Bruno Quick Start</a></p>
+    </section>
+
   </div><!-- /slides-wrapper -->
 
   <!-- Controles -->
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
     <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
-    <span class="progress-text">1 / 63</span>
+    <span class="progress-text">1 / 82</span>
     <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
     <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
   </div>
 
-  <script src="../slides.js?v=2026-08-web63"></script>
+  <script src="../slides.js?v=2026-08-api82"></script>
 </body>
 </html>
