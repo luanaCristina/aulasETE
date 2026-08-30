@@ -18,6 +18,12 @@
     .progress-track { height:8px; background:#1E293B; border-radius:999px; overflow:hidden; margin:28px 0 12px; border:1px solid #334155; }
     .progress-fill { height:100%; width:10%; background:linear-gradient(90deg,#2563EB,#38BDF8); transition:width .28s ease; }
     .progress-label { display:flex; justify-content:space-between; color:#94A3B8; font-size:.88rem; }
+    .ranking-bar { display:grid; grid-template-columns:210px 1fr; gap:18px; margin-top:22px; padding:15px 17px 0; border:1px solid #334155; border-radius:12px; background:rgba(15,23,42,.72); }
+    .ranking-title { color:#FBBF24; font:800 .78rem/1.2 Arial,sans-serif; letter-spacing:.12em; text-transform:uppercase; }
+    .ranking-title strong { display:block; margin-top:7px; color:#F8FAFC; font:700 1.05rem/1.1 Georgia,serif; letter-spacing:0; text-transform:none; }
+    .ranking-list { display:flex; flex-wrap:wrap; gap:8px; align-content:start; padding-bottom:14px; }
+    .rank-item { color:#CBD5E1; border:1px solid #334155; border-radius:999px; padding:6px 10px; font:700 .8rem/1 Arial,sans-serif; }
+    .rank-item b { color:#FBBF24; margin-right:5px; }.rank-empty{color:#94A3B8;font-size:.86rem;align-self:center;}
     .quiz-card { margin-top:25px; border:1px solid #334155; border-radius:18px; padding:clamp(22px,4vw,38px); background:rgba(30,41,59,.92); box-shadow:0 24px 60px rgba(0,0,0,.23); }
     .topic { display:inline-flex; align-items:center; gap:7px; border-radius:999px; padding:5px 10px; background:rgba(16,185,129,.12); color:#6EE7B7; border:1px solid rgba(16,185,129,.28); font-size:.78rem; font-weight:800; }
     .question { color:#fff; font-size:clamp(1.3rem,3vw,1.75rem); line-height:1.28; margin:18px 0 22px; max-width:800px; }
@@ -44,9 +50,10 @@
     .breakdown { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px; margin:26px 0; text-align:left; }
     .breakdown div { border:1px solid #334155; background:#0F172A; padding:17px; border-radius:12px; color:#CBD5E1; }
     .breakdown strong { display:block; margin-top:5px; color:#fff; font-size:1.3rem; }
+    .score-save { display:flex; justify-content:center; gap:10px; margin-top:22px; }.score-save input{min-width:230px;background:#0F172A;border:1px solid #475569;border-radius:9px;color:#F8FAFC;padding:11px 13px;font:inherit;}.score-save input:focus{outline:2px solid #60A5FA;outline-offset:2px;}
     .resources { margin-top:25px; display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
     .resources a { color:#BFDBFE; border:1px solid rgba(96,165,250,.42); padding:9px 12px; border-radius:8px; font-size:.87rem; }
-    @media(max-width:640px) { .quiz-header { flex-direction:column; } .score-chip { width:100%; } .breakdown { grid-template-columns:1fr; } }
+    @media(max-width:640px) { .quiz-header { flex-direction:column; } .score-chip { width:100%; } .breakdown { grid-template-columns:1fr; }.ranking-bar{grid-template-columns:1fr;}.score-save{flex-direction:column;}.score-save input{min-width:0;} }
   </style>
 </head>
 <body>
@@ -57,6 +64,7 @@
     </header>
     <div class="progress-track" aria-label="Progresso do quiz"><div class="progress-fill" id="progressFill"></div></div>
     <div class="progress-label"><span id="progressText">Questão 1 de 10</span><span id="topicText">MySQL</span></div>
+    <section class="ranking-bar" aria-live="polite"><div class="ranking-title">🏆 Placar da turma<strong>Top 5 neste navegador</strong></div><div class="ranking-list" id="rankingList"><span class="rank-empty">Conclua o quiz para registrar a primeira pontuação.</span></div></section>
 
     <section class="quiz-card" id="quizCard" aria-live="polite">
       <span class="topic" id="topicBadge">🐬 MySQL</span>
@@ -69,6 +77,8 @@
     <section class="quiz-card result" id="resultCard" aria-live="polite">
       <div class="eyebrow">Resultado da revisão</div><h2 id="resultTitle">Revisão concluída</h2><div class="result-score" id="resultScore"></div><p id="resultMessage"></p>
       <div class="breakdown"><div>🐬 MySQL<strong id="mysqlScore">0 / 5</strong></div><div>🐍 Python<strong id="pythonScore">0 / 5</strong></div></div>
+      <div class="score-save"><input id="playerName" maxlength="18" placeholder="Apelido para o placar" aria-label="Apelido para o placar"><button class="primary-btn" id="saveScoreButton">Salvar no placar</button></div>
+      <p id="saveMessage" style="margin-top:12px;font-size:.88rem"></p>
       <button class="primary-btn" id="restartButton">↻ Refazer quiz</button>
       <div class="resources"><a href="mysql-banco-dados-pratica.html">Revisar MySQL</a><a href="python-pratica-api.html">Revisar Python</a><a href="../../../index.html">Voltar ao portal</a></div>
     </section>
@@ -88,6 +98,19 @@
     ];
     let current = 0, score = 0, answered = false, scores = { MySQL:0, Python:0 };
     const el = (id) => document.getElementById(id);
+    const rankingKey = 'ete_quiz_mysql_python_ranking_v1';
+    function getRanking() { try { const data = JSON.parse(localStorage.getItem(rankingKey) || '[]'); return Array.isArray(data) ? data : []; } catch { return []; } }
+    function cleanName(name) { return name.replace(/[^\p{L}\p{N} _-]/gu, '').trim().slice(0, 18); }
+    function renderRanking() {
+      const list = el('rankingList'); const entries = getRanking().sort((a,b) => b.score - a.score || a.at - b.at).slice(0, 5);
+      list.innerHTML = entries.length ? entries.map((entry, index) => `<span class="rank-item"><b>${index + 1}º</b>${entry.name} · ${entry.score}/10</span>`).join('') : '<span class="rank-empty">Conclua o quiz para registrar a primeira pontuação.</span>';
+    }
+    function saveScore() {
+      const input = el('playerName'); const name = cleanName(input.value) || 'Estudante';
+      const entries = getRanking(); entries.push({ name, score, at: Date.now() }); entries.sort((a,b) => b.score - a.score || a.at - b.at);
+      localStorage.setItem(rankingKey, JSON.stringify(entries.slice(0, 20))); renderRanking();
+      el('saveMessage').textContent = `${name}, sua pontuação foi registrada neste navegador.`; input.value = name; el('saveScoreButton').disabled = true;
+    }
     function renderQuestion() {
       const item = questions[current]; answered = false;
       el('topicBadge').textContent = `${item.icon} ${item.topic}`;
@@ -122,11 +145,12 @@
       el('mysqlScore').textContent = `${scores.MySQL} / 5`; el('pythonScore').textContent = `${scores.Python} / 5`;
       el('resultTitle').textContent = score >= 8 ? 'Excelente domínio!' : score >= 5 ? 'Bom progresso!' : 'Revisão em construção';
       el('resultMessage').textContent = score >= 8 ? 'Você conectou conceitos de banco de dados, linguagem e API. Experimente os desafios dos módulos.' : 'Use os links de revisão, releia o feedback e refaça o quiz para consolidar as conexões.';
+      el('saveScoreButton').disabled = false; el('saveMessage').textContent = ''; renderRanking();
     }
     function restart() { current = 0; score = 0; scores = { MySQL:0, Python:0 }; el('scoreTop').textContent = '0 / 10'; el('resultCard').classList.remove('show'); el('quizCard').style.display = 'block'; renderQuestion(); }
-    el('nextButton').addEventListener('click', next); el('restartButton').addEventListener('click', restart);
+    el('nextButton').addEventListener('click', next); el('restartButton').addEventListener('click', restart); el('saveScoreButton').addEventListener('click', saveScore);
     document.addEventListener('keydown', (event) => { if (answered || current >= questions.length) return; const index = Number(event.key) - 1; if (index >= 0 && index < 4) answer(index); });
-    renderQuestion();
+    renderRanking(); renderQuestion();
   </script>
 </body>
 </html>

@@ -328,8 +328,141 @@ Content-Type: application/json
 {"concluida": true}</code></div><p style="margin-top:12px;">A resposta correta prova contrato, autenticação, autorização, validação, persistência e teste de API em um fluxo só.</p></div></div>
       <div class="callout callout--info" style="margin-top:16px;"><span class="icon">🎓</span><span>Ao finalizar, explique cada status HTTP. Uma boa demonstração mostra o que funciona e como a API responde a erros previsíveis.</span></div>
     </section>
+    <section class="slide slide--content" data-title="Exercício: gerar JWT">
+      <h2>🛡️ Exercício 7 — Gere um JWT no login</h2>
+      <div class="columns"><div class="card"><h3>Missão</h3><ol><li>Receba <code>email</code> e <code>senha</code>.</li><li>Localize o usuário por email.</li><li>Compare a senha com <code>bcrypt.compare</code>.</li><li>Gere token com <code>sub</code>, <code>role</code> e expiração de 15 minutos.</li></ol></div><div class="card"><h3>Contrato</h3><div class="code-block"><span class="lang-badge">JSON</span><code>// POST /auth/login
+{"email":"ana@ete.edu.br","senha":"***"}
+
+// 200
+{"token":"eyJ...","expiresIn":"15m"}</code></div><p style="margin-top:12px;">Responda 401 para credencial inválida sem revelar se o email existe.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: gerar JWT">
+      <h2>✅ Gabarito 7 — Token curto e previsível</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>app.post('/auth/login', async (req, res, next) =&gt; {
+  try {
+    const { email, senha } = req.body;
+    const usuario = await buscarPorEmail(email);
+    const valido = usuario &amp;&amp; await bcrypt.compare(senha, usuario.senha_hash);
+    if (!valido) return res.status(401).json({ error: 'INVALID_CREDENTIALS' });
+    const token = jwt.sign(
+      { sub: usuario.id, role: usuario.role },
+      process.env.JWT_SECRET,
+      { expiresIn: '15m' }
+    );
+    res.json({ token, expiresIn: '15m' });
+  } catch (error) { next(error); }
+});</code></div><p style="margin-top:12px;">O payload contém apenas identificação e autorização necessárias; nunca coloque senha ou dados sensíveis no token.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: validar Bearer">
+      <h2>🛡️ Exercício 8 — Valide Bearer antes da rota</h2>
+      <div class="columns"><div class="card"><h3>Missão</h3><p>Implemente middleware <code>autenticar</code> para <code>PATCH /tarefas/:id</code>.</p><ol><li>Exija <code>Authorization: Bearer TOKEN</code>.</li><li>Rejeite formato ausente ou inválido com 401.</li><li>Use <code>jwt.verify</code>.</li><li>Adicione apenas <code>sub</code> e <code>role</code> em <code>req.user</code>.</li></ol></div><div class="card"><h3>Casos de teste</h3><table><thead><tr><th>Header</th><th>Esperado</th></tr></thead><tbody><tr><td>Ausente</td><td>401 TOKEN_REQUIRED</td></tr><tr><td>Bearer inválido</td><td>401 TOKEN_INVALID</td></tr><tr><td>JWT expirado</td><td>401 TOKEN_EXPIRED</td></tr><tr><td>JWT válido</td><td>Próxima middleware</td></tr></tbody></table></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: validar Bearer">
+      <h2>✅ Gabarito 8 — Middleware defensivo</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>function autenticar(req, res, next) {
+  const header = req.get('authorization');
+  if (!header?.startsWith('Bearer ')) {
+    return res.status(401).json({ error: 'TOKEN_REQUIRED' });
+  }
+  try {
+    const payload = jwt.verify(header.slice(7), process.env.JWT_SECRET);
+    req.user = { sub: payload.sub, role: payload.role };
+    return next();
+  } catch (error) {
+    const code = error.name === 'TokenExpiredError' ? 'TOKEN_EXPIRED' : 'TOKEN_INVALID';
+    return res.status(401).json({ error: code });
+  }
+}
+
+app.patch('/tarefas/:id', autenticar, atualizarTarefa);</code></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: validar body">
+      <h2>🧪 Exercício 9 — Valide o body com esquema</h2>
+      <div class="columns"><div class="card"><h3>Missão</h3><p>Use Zod para validar <code>POST /tarefas</code>. O body pode conter <code>titulo</code>, <code>prioridade</code> e <code>prazo</code>.</p><ol><li>Título: 3 a 120 caracteres.</li><li>Prioridade: baixa, media ou alta.</li><li>Prazo: data ISO opcional.</li><li>Remova campos não previstos.</li></ol></div><div class="card"><h3>Teste negativo</h3><div class="code-block"><span class="lang-badge">JSON</span><code>{
+  "titulo": "ok",
+  "prioridade": "urgente",
+  "admin": true
+}</code></div><p style="margin-top:12px;">A API precisa retornar 400 com detalhes de campos inválidos, sem gravar nada.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: validar body">
+      <h2>✅ Gabarito 9 — Entrada explícita</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>import { z } from 'zod';
+
+const tarefaSchema = z.object({
+  titulo: z.string().trim().min(3).max(120),
+  prioridade: z.enum(['baixa', 'media', 'alta']).default('media'),
+  prazo: z.string().datetime().optional()
+}).strip();
+
+app.post('/tarefas', autenticar, async (req, res, next) =&gt; {
+  const parsed = tarefaSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({
+    error: 'VALIDATION_ERROR', fields: parsed.error.flatten().fieldErrors
+  });
+  try { res.status(201).json(await criarTarefa(req.user.sub, parsed.data)); }
+  catch (error) { next(error); }
+});</code></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: ownership seguro">
+      <h2>🧪 Exercício 10 — Proteja a tarefa de outra pessoa</h2>
+      <div class="columns"><div class="card"><h3>Problema</h3><p>O usuário 12 tenta editar <code>/tarefas/44</code>, mas a tarefa pertence ao usuário 8.</p><ol><li>Valide se o id é número inteiro positivo.</li><li>Busque a tarefa filtrando também por <code>usuario_id</code>.</li><li>Responda 404 se não houver linha encontrada.</li><li>Nunca aceite <code>usuario_id</code> enviado no body.</li></ol></div><div class="card"><h3>Reflexão</h3><p>Retornar 404 nesse caso evita revelar que outro usuário possui uma tarefa com esse id. A consulta parametrizada resolve autorização e reduz exposição.</p><div class="callout callout--warning" style="margin-top:15px;"><span class="icon">⚠️</span><span>Um token válido não dá permissão para alterar qualquer recurso.</span></div></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: ownership seguro">
+      <h2>✅ Gabarito 10 — Autorização no SQL</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>app.patch('/tarefas/:id', autenticar, async (req, res, next) =&gt; {
+  const id = Number(req.params.id);
+  if (!Number.isInteger(id) || id &lt; 1) {
+    return res.status(400).json({ error: 'ID_INVALID' });
+  }
+  const parsed = tarefaPatchSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: 'VALIDATION_ERROR' });
+  try {
+    const [result] = await db.execute(
+      'UPDATE tarefas SET concluida = ? WHERE id = ? AND usuario_id = ?',
+      [parsed.data.concluida, id, req.user.sub]
+    );
+    if (result.affectedRows === 0) return res.status(404).json({ error: 'TASK_NOT_FOUND' });
+    res.json({ id, ...parsed.data });
+  } catch (error) { next(error); }
+});</code></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: login resistente">
+      <h2>🧪 Exercício 11 — Responda sem expor o sistema</h2>
+      <div class="columns"><div class="card"><h3>Missão</h3><p>Fortaleça o login contra tentativas repetidas e mensagens que revelam informação.</p><ol><li>Valide email com formato correto e senha não vazia.</li><li>Use sempre <code>INVALID_CREDENTIALS</code> para usuário ou senha errados.</li><li>Crie chave de limite por IP + email.</li><li>Após 5 falhas em 15 minutos, responda 429.</li></ol></div><div class="card"><h3>Teste no Postman/Bruno</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>POST /auth/login
+Content-Type: application/json
+
+{"email":"ana@ete.edu.br","senha":"invalida"}</code></div><p style="margin-top:12px;">A collection deve provar 400 para body inválido, 401 para credencial inválida e 429 após exceder a janela.</p></div></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: login resistente">
+      <h2>✅ Gabarito 11 — Validação e limite</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>const loginSchema = z.object({
+  email: z.string().email(),
+  senha: z.string().min(1)
+});
+
+app.post('/auth/login', loginLimiter, async (req, res, next) =&gt; {
+  const parsed = loginSchema.safeParse(req.body);
+  if (!parsed.success) return res.status(400).json({ error: 'VALIDATION_ERROR' });
+  try {
+    const usuario = await buscarPorEmail(parsed.data.email);
+    const valido = usuario &amp;&amp; await bcrypt.compare(parsed.data.senha, usuario.senha_hash);
+    if (!valido) return res.status(401).json({ error: 'INVALID_CREDENTIALS' });
+    res.json({ token: gerarToken(usuario) });
+  } catch (error) { next(error); }
+});
+// loginLimiter: 5 tentativas / 15 min por IP + email; 429 ao exceder.</code></div><p style="margin-top:12px;">Em produção, use armazenamento compartilhado para o limite e registre tentativas com dados mínimos.</p>
+    </section>
   </div>
-  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button><button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button><span class="progress-text">1 / 38</span><button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button><a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a></div>
+  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button><button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button><span class="progress-text">1 / 48</span><button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button><a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a></div>
   <script src="../slides.js"></script>
 </body>
 </html>

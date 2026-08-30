@@ -24,3 +24,10 @@
 - [x] Gerar o arquivo de apresentação-resumo em formato de slides.
 - [x] Validar os exercícios, o quiz, a apresentação e os novos links do portal.
 - [x] Publicar a expansão pedagógica no GitHub Pages.
+- [x] Criar cinco exercícios avançados de API REST sobre JWT, autorização e validação de dados, com gabaritos separados.
+- [x] Corrigir o contador do módulo JavaScript Backend após incluir os exercícios avançados.
+- [x] Adicionar placar local e participativo ao quiz MySQL e Python, sem coletar dados pessoais.
+- [x] Integrar o placar ao fluxo de conclusão e reinício do quiz.
+- [x] Criar e validar uma habilidade reutilizável para ampliar portais educacionais técnicos.
+- [x] Gerar roteiro detalhado de apresentação dos novos módulos ETE.
+- [ ] Validar e publicar os novos exercícios, placar e roteiro de apresentação.
