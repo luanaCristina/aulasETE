@@ -77,8 +77,9 @@
     <section class="quiz-card result" id="resultCard" aria-live="polite">
       <div class="eyebrow">Resultado da revisão</div><h2 id="resultTitle">Revisão concluída</h2><div class="result-score" id="resultScore"></div><p id="resultMessage"></p>
       <div class="breakdown"><div>🐬 MySQL<strong id="mysqlScore">0 / 5</strong></div><div>🐍 Python<strong id="pythonScore">0 / 5</strong></div></div>
-      <div class="score-save"><input id="playerName" maxlength="18" placeholder="Apelido para o placar" aria-label="Apelido para o placar"><button class="primary-btn" id="saveScoreButton">Salvar no placar</button></div>
+      <div class="score-save"><input id="playerName" maxlength="18" placeholder="Apelido de sala (não use e-mail)" aria-label="Apelido de sala para placar e certificado"><button class="primary-btn" id="saveScoreButton">Salvar no placar</button><button class="secondary-btn" id="sendLearningButton">Registrar para certificado</button></div>
       <p id="saveMessage" style="margin-top:12px;font-size:.88rem"></p>
+      <p id="learningMessage" style="margin-top:8px;font-size:.88rem;color:#BAE6FD"></p>
       <button class="primary-btn" id="restartButton">↻ Refazer quiz</button>
       <div class="resources"><a href="mysql-banco-dados-pratica.html">Revisar MySQL</a><a href="python-pratica-api.html">Revisar Python</a><a href="../../../index.html">Voltar ao portal</a></div>
     </section>
@@ -99,6 +100,7 @@
     let current = 0, score = 0, answered = false, scores = { MySQL:0, Python:0 };
     const el = (id) => document.getElementById(id);
     const rankingKey = 'ete_quiz_mysql_python_ranking_v1';
+    const learningApiBase = 'https://eteapiplay-akbqqgv2.manus.space';
     function getRanking() { try { const data = JSON.parse(localStorage.getItem(rankingKey) || '[]'); return Array.isArray(data) ? data : []; } catch { return []; } }
     function cleanName(name) { return name.replace(/[^\p{L}\p{N} _-]/gu, '').trim().slice(0, 18); }
     function renderRanking() {
@@ -110,6 +112,18 @@
       const entries = getRanking(); entries.push({ name, score, at: Date.now() }); entries.sort((a,b) => b.score - a.score || a.at - b.at);
       localStorage.setItem(rankingKey, JSON.stringify(entries.slice(0, 20))); renderRanking();
       el('saveMessage').textContent = `${name}, sua pontuação foi registrada neste navegador.`; input.value = name; el('saveScoreButton').disabled = true;
+    }
+    async function sendLearningResult() {
+      const input = el('playerName'); const name = cleanName(input.value);
+      if (name.length < 2) { el('learningMessage').textContent = 'Informe um apelido de sala com pelo menos 2 caracteres para registrar o resultado.'; return; }
+      const button = el('sendLearningButton'); button.disabled = true; button.textContent = 'Registrando…'; el('learningMessage').textContent = '';
+      try {
+        const response = await fetch(`${learningApiBase}/api/learning/quiz`, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({ learnerTag:name, score, total:10, mysqlScore:scores.MySQL, pythonScore:scores.Python }) });
+        const payload = await response.json();
+        if (!response.ok) throw new Error(payload?.error?.message || 'Não foi possível registrar o resultado.');
+        el('learningMessage').innerHTML = `Resultado registrado para o certificado. <a href="${learningApiBase}/#aprendizagem" target="_blank" rel="noreferrer">Abrir meu percurso →</a>`;
+      } catch (error) { el('learningMessage').textContent = error.message || 'Não foi possível registrar o resultado agora.'; }
+      finally { button.disabled = false; button.textContent = 'Registrar para certificado'; }
     }
     function renderQuestion() {
       const item = questions[current]; answered = false;
@@ -145,10 +159,10 @@
       el('mysqlScore').textContent = `${scores.MySQL} / 5`; el('pythonScore').textContent = `${scores.Python} / 5`;
       el('resultTitle').textContent = score >= 8 ? 'Excelente domínio!' : score >= 5 ? 'Bom progresso!' : 'Revisão em construção';
       el('resultMessage').textContent = score >= 8 ? 'Você conectou conceitos de banco de dados, linguagem e API. Experimente os desafios dos módulos.' : 'Use os links de revisão, releia o feedback e refaça o quiz para consolidar as conexões.';
-      el('saveScoreButton').disabled = false; el('saveMessage').textContent = ''; renderRanking();
+      el('saveScoreButton').disabled = false; el('saveMessage').textContent = ''; el('learningMessage').textContent = ''; renderRanking();
     }
     function restart() { current = 0; score = 0; scores = { MySQL:0, Python:0 }; el('scoreTop').textContent = '0 / 10'; el('resultCard').classList.remove('show'); el('quizCard').style.display = 'block'; renderQuestion(); }
-    el('nextButton').addEventListener('click', next); el('restartButton').addEventListener('click', restart); el('saveScoreButton').addEventListener('click', saveScore);
+    el('nextButton').addEventListener('click', next); el('restartButton').addEventListener('click', restart); el('saveScoreButton').addEventListener('click', saveScore); el('sendLearningButton').addEventListener('click', sendLearningResult);
     document.addEventListener('keydown', (event) => { if (answered || current >= questions.length) return; const index = Number(event.key) - 1; if (index >= 0 && index < 4) answer(index); });
     renderRanking(); renderQuestion();
   </script>
