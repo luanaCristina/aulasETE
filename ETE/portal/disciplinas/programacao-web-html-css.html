@@ -2028,7 +2028,7 @@ form.addEventListener('submit', async (e) =&gt; {
       <h1>🧪 Teste o backend antes do frontend</h1>
       <p class="subtitle">Postman e Bruno permitem enviar requisições e observar respostas com precisão</p>
       <div class="api-hero-flow"><span>URL</span><b>+</b><span>método</span><b>+</b><span>headers</span><b>+</b><span>body</span><b>→</b><span>resposta</span></div>
-      <div class="callout callout--info api-hero-callout"><span class="icon">🔬</span><span>Antes de montar uma tela, podemos testar a API diretamente. Assim isolamos problemas do servidor, do contrato de dados e do frontend.</span></div>
+      <div class="callout callout--info api-hero-callout"><span class="icon">🔬</span><span>Antes de montar uma tela, podemos testar a API diretamente. Assim isolamos problemas do servidor, do contrato de dados e do frontend. <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer" target="_blank" rel="noopener">Abrir o ETE API Playground público ↗</a></span></div>
     </section>
 
     <!-- SLIDE 65: O QUE É API CLIENT -->
@@ -2063,9 +2063,9 @@ form.addEventListener('submit', async (e) =&gt; {
 Documentação: https://learning.postman.com/docs/getting-started/quick-start
 
 Objetivo da aula:
-criar uma collection chamada "Mural de Recados"
-e testar http://localhost:3000/api/recados</code></div>
-      <div class="callout callout--info"><span class="icon">💾</span><span>A instalação desktop é o caminho mais simples para trabalhar com uma API local. A conta pode ser útil para sincronização, mas a ideia central é aprender a montar e enviar a requisição.</span></div>
+importar "ETE API Playground — Recados CRUD"
+e testar https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/recados</code></div>
+      <div class="callout callout--info"><span class="icon">💾</span><span>Depois de instalar, use <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground.postman_collection_fca7b7d8.json" target="_blank" rel="noopener">este arquivo para baixar a collection</a> e <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground_public.postman_environment_83426267.json" target="_blank" rel="noopener">este para baixar o environment público</a>. No Postman, clique em Import, selecione os dois JSONs e ative o environment no canto superior direito.</span></div>
     </section>
 
     <!-- SLIDE 67: INSTALAR BRUNO -->
@@ -2079,22 +2079,22 @@ e testar http://localhost:3000/api/recados</code></div>
             <li>Acesse <a href="https://www.usebruno.com/downloads" target="_blank" rel="noopener">usebruno.com/downloads</a>.</li>
             <li>Escolha o instalador do seu sistema operacional.</li>
             <li>Abra o aplicativo e clique em `+` → <strong>Create collection</strong>.</li>
-            <li>Dê o nome `Mural de Recados` e escolha uma pasta do projeto.</li>
-            <li>Prefira uma collection que possa ser versionada com Git.</li>
+            <li>Escolha <strong>Open Collection</strong> e selecione a pasta `bruno/` do material da aula.</li>
+            <li>Baixe <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground_Bruno_Collection_439fabdd.zip" target="_blank" rel="noopener">a collection do Bruno</a>, descompacte e selecione a pasta `bruno/` no aplicativo.</li>
           </ol>
         </div>
         <div class="code-block"><span class="lang-badge">BRU / GIT</span><code>mural-de-recados/
 ├── bruno.json
 ├── collection.bru
 ├── environments/
-│   └── local.bru
+│   └── public-preview.bru
 └── requests/
     ├── 01-listar-recados.bru
     ├── 02-criar-recado.bru
     ├── 03-atualizar-recado.bru
     └── 04-remover-recado.bru</code></div>
       </div>
-      <div class="callout callout--tip"><span class="icon">🌿</span><span>O Bruno é local-first e Git-friendly: a collection pode viver junto do código e ser revisada pelo time, sem depender de uma coleção escondida dentro de um aplicativo.</span></div>
+      <div class="callout callout--tip"><span class="icon">🌿</span><span>Depois de abrir a collection, selecione o environment <strong>public-preview</strong> no canto superior direito. Ele já contém a URL pública do ETE API Playground. O Bruno é local-first e Git-friendly: a collection pode viver junto do código e ser revisada pelo time.</span></div>
     </section>
 
     <!-- SLIDE 68: ANATOMIA -->
@@ -2106,18 +2106,20 @@ e testar http://localhost:3000/api/recados</code></div>
         <div><strong>URL</strong><span>Endereço da rota, por exemplo `/api/recados/1`.</span></div>
         <div><strong>Params</strong><span>Dados na URL, como `?status=ativo`.</span></div>
         <div><strong>Headers</strong><span>Metadados, tipo do conteúdo e autorização.</span></div>
-        <div><strong>Body</strong><span>Dados enviados em POST, PUT ou PATCH.</span></div>
+        <div><strong>Body</strong><span>JSON obrigatório em todos os testes; em GET/DELETE é contexto didático.</span></div>
         <div><strong>Send</strong><span>Executa a requisição e mostra a resposta.</span></div>
       </div>
-      <div class="code-block"><span class="lang-badge">MAPA</span><code>POST http://localhost:3000/api/recados
+      <div class="code-block"><span class="lang-badge">MAPA</span><code>POST https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/recados
 
 Headers
   Content-Type: application/json
-  Authorization: Bearer {{token}}
+  X-API-Lab: ETE-API-PLAYGROUND
+  X-Request-Id: postman-ana-001
 
 Body → raw / JSON
-  { "texto": "Estudar API" }</code></div>
-      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Header e body têm funções diferentes: o header descreve a requisição; o body carrega os dados. Não coloque JSON dentro de um campo de header.</span></div>
+  { "context": { "estudante": "Ana", "ferramenta": "postman", "objetivo": "criar" },
+    "recado": { "titulo": "Aula", "mensagem": "Estudar API" } }</code></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Header e body têm funções diferentes: o header descreve a requisição; o body carrega os dados. O playground exige ambos em todos os cinco métodos. Em GET/DELETE, `context` é recebido apenas para visualização; ele não filtra nem troca o alvo da rota.</span></div>
     </section>
 
     <!-- SLIDE 69: CRUD -->
@@ -2127,16 +2129,16 @@ Body → raw / JSON
       <table>
         <thead><tr><th>Ação</th><th>Método</th><th>URL exemplo</th><th>Body</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>listar</td><td><code>GET</code></td><td><code>/api/recados</code></td><td>não</td><td>200</td></tr>
-          <tr><td>criar</td><td><code>POST</code></td><td><code>/api/recados</code></td><td>sim</td><td>201</td></tr>
-          <tr><td>substituir</td><td><code>PUT</code></td><td><code>/api/recados/1</code></td><td>sim, completo</td><td>200</td></tr>
-          <tr><td>alterar parte</td><td><code>PATCH</code></td><td><code>/api/recados/1</code></td><td>sim, parcial</td><td>200</td></tr>
-          <tr><td>remover</td><td><code>DELETE</code></td><td><code>/api/recados/1</code></td><td>não</td><td>204</td></tr>
+          <tr><td>listar</td><td><code>GET</code></td><td><code>/api/recados</code></td><td>`context` didático</td><td>200</td></tr>
+          <tr><td>criar</td><td><code>POST</code></td><td><code>/api/recados</code></td><td>`context` + `recado`</td><td>201</td></tr>
+          <tr><td>substituir</td><td><code>PUT</code></td><td><code>/api/recados/1</code></td><td>`context` + recurso completo</td><td>200</td></tr>
+          <tr><td>alterar parte</td><td><code>PATCH</code></td><td><code>/api/recados/1</code></td><td>`context` + `alteracoes`</td><td>200</td></tr>
+          <tr><td>remover</td><td><code>DELETE</code></td><td><code>/api/recados/1</code></td><td>`context` didático</td><td>204</td></tr>
         </tbody>
       </table>
       <div class="columns">
         <div class="card"><h3>PUT x PATCH</h3><p>Use PUT quando a ideia é enviar a representação completa do recurso. Use PATCH quando somente alguns campos serão alterados.</p></div>
-        <div class="card"><h3>Regra de ouro</h3><p>O método comunica a intenção. A URL identifica o recurso. O status comunica o resultado. O body carrega dados quando necessário.</p></div>
+        <div class="card"><h3>Regra de ouro</h3><p>O método comunica a intenção. A URL identifica o recurso. O status comunica o resultado. Neste laboratório, todo teste inclui headers e JSON para que a turma visualize a mensagem completa.</p></div>
       </div>
     </section>
 
@@ -2150,20 +2152,22 @@ Body → raw / JSON
           <ol>
             <li>Clique em `+` para abrir uma nova aba.</li>
             <li>Selecione <strong>GET</strong> no menu do método.</li>
-            <li>Digite `http://localhost:3000/api/recados`.</li>
-            <li>Na aba <strong>Headers</strong>, não é necessário body; `Accept: application/json` é opcional.</li>
+            <li>Cole a URL pública: `https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/recados`.</li>
+            <li>Na aba <strong>Headers</strong>, adicione `Content-Type: application/json`, `X-API-Lab: ETE-API-PLAYGROUND` e `X-Request-Id: postman-ana-001`.</li>
+            <li>Na aba <strong>Body</strong>, escolha <strong>raw → JSON</strong> e cole o contexto do exercício.</li>
             <li>Clique em <strong>Send</strong>.</li>
           </ol>
         </div>
-        <div class="code-block"><span class="lang-badge">REQUEST</span><code>GET http://localhost:3000/api/recados
-Accept: application/json
+        <div class="code-block"><span class="lang-badge">REQUEST</span><code>GET {{baseUrl}}/api/recados
+Content-Type: application/json
+X-API-Lab: ETE-API-PLAYGROUND
+X-Request-Id: postman-ana-001
 
-// sem body
+Body / raw / JSON
+{ "context": { "estudante": "Ana", "ferramenta": "postman",
+  "objetivo": "listar os recados" } }
 
-// resposta esperada — 200 OK
-[
-  { "id": 1, "texto": "Estudar API" }
-]</code></div>
+Resposta esperada: 200 + { data: { items: [] }, meta: {...} }</code></div>
       </div>
       <div class="api-response"><strong>Visualize</strong><span>Status `200 OK`, tempo, tamanho da resposta, cabeçalhos e aba Body em JSON.</span></div>
       <div class="callout callout--tip"><span class="icon">🧭</span><span>Se a lista vier vazia, não significa erro: significa que a rota funcionou e ainda não existem registros.</span></div>
@@ -2178,8 +2182,8 @@ Accept: application/json
           <h3>Configuração visual</h3>
           <ol>
             <li>Selecione <strong>POST</strong>.</li>
-            <li>Use `http://localhost:3000/api/recados`.</li>
-            <li>Abra a aba <strong>Headers</strong> e adicione `Content-Type` com valor `application/json`.</li>
+            <li>Use `https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/recados`.</li>
+            <li>Abra a aba <strong>Headers</strong> e adicione `Content-Type: application/json`, `X-API-Lab: ETE-API-PLAYGROUND` e um `X-Request-Id` único.</li>
             <li>Abra <strong>Body</strong> → <strong>raw</strong> → selecione <strong>JSON</strong>.</li>
             <li>Digite o objeto e clique em <strong>Send</strong>.</li>
           </ol>
@@ -2188,16 +2192,19 @@ Accept: application/json
 
 Headers
 Content-Type: application/json
+X-API-Lab: ETE-API-PLAYGROUND
+X-Request-Id: postman-ana-002
 
 Body / raw / JSON
 {
-  "texto": "Testar no Postman"
+  "context": { "estudante": "Ana", "ferramenta": "postman", "objetivo": "criar" },
+  "recado": { "titulo": "Aula de APIs", "mensagem": "Testar no Postman", "categoria": "aviso", "autor": "Ana" }
 }
 
 Resposta: 201 Created
 {
-  "id": 2,
-  "texto": "Testar no Postman"
+  "data": { "id": 2, "titulo": "Aula de APIs" },
+  "meta": { "requestId": "postman-ana-002" }
 }</code></div>
       </div>
       <div class="callout callout--warning"><span class="icon">🧪</span><span>Se o backend responder `400`, confira se o JSON é válido, se o campo se chama exatamente `texto` e se o header informa `application/json`.</span></div>
@@ -2208,24 +2215,22 @@ Resposta: 201 Created
       <span class="api-kicker">POSTMAN • UPDATE</span>
       <h2>✏️ Postman: atualizar um recado</h2>
       <div class="columns">
-        <div class="code-block"><span class="lang-badge">PUT — recurso completo</span><code>PUT http://localhost:3000/api/recados/2
-Content-Type: application/json
-
-{
-  "texto": "Estudar APIs REST com Postman"
-}</code><br><span class="lang-badge">PATCH — alteração parcial</span><code>PATCH http://localhost:3000/api/recados/2
-Content-Type: application/json
-
-{
-  "fixado": true
-}</code></div>
+        <div class="code-block"><span class="lang-badge">PUT — recurso completo</span><code>PUT {{baseUrl}}/api/recados/{{recadoId}}
+Content-Type: application/json · X-API-Lab: ETE-API-PLAYGROUND
+X-Request-Id: postman-ana-003
+{ "context": { "estudante": "Ana", "ferramenta": "postman", "objetivo": "substituir" },
+  "recado": { "titulo": "Atualizado", "mensagem": "Conteúdo completo", "categoria": "aviso", "autor": "Ana" } }</code><br><span class="lang-badge">PATCH — alteração parcial</span><code>PATCH {{baseUrl}}/api/recados/{{recadoId}}
+Content-Type: application/json · X-API-Lab: ETE-API-PLAYGROUND
+X-Request-Id: postman-ana-004
+{ "context": { "estudante": "Ana", "ferramenta": "postman", "objetivo": "alterar categoria" },
+  "alteracoes": { "categoria": "concluido" } }</code></div>
         <div class="card">
           <h3>Na interface do Postman</h3>
           <ol>
             <li>Abra uma nova request ou duplique a request POST.</li>
             <li>Troque o método para PUT ou PATCH.</li>
             <li>Acrescente o `id` no final da URL.</li>
-            <li>Mantenha `Content-Type: application/json`.</li>
+            <li>Mantenha os três headers obrigatórios e atualize o `X-Request-Id`.</li>
             <li>Envie um body completo para PUT ou somente os campos alterados para PATCH.</li>
             <li>Confira o JSON retornado e repita um GET para confirmar.</li>
           </ol>
@@ -2243,23 +2248,23 @@ Content-Type: application/json
           <h3>Passos</h3>
           <ol>
             <li>Selecione <strong>DELETE</strong>.</li>
-            <li>Use `http://localhost:3000/api/recados/2`.</li>
-            <li>Deixe o body vazio.</li>
-            <li>Se a API exigir autenticação, configure a aba Authorization ou o header apropriado.</li>
+            <li>Use `{{baseUrl}}/api/recados/{{recadoId}}`, trocando a variável pelo id retornado no POST.</li>
+            <li>Na aba Headers, adicione `Content-Type`, `X-API-Lab` e `X-Request-Id`.</li>
+            <li>Na aba Body → raw → JSON, cole somente o objeto `context` que registra a intenção do teste.</li>
             <li>Clique em Send e observe `204 No Content` ou a resposta documentada.</li>
             <li>Faça GET para verificar que o item não aparece mais.</li>
           </ol>
         </div>
-        <div class="code-block"><span class="lang-badge">REQUEST / RESPONSE</span><code>DELETE http://localhost:3000/api/recados/2
+        <div class="code-block"><span class="lang-badge">REQUEST / RESPONSE</span><code>DELETE {{baseUrl}}/api/recados/{{recadoId}}
+Content-Type: application/json
+X-API-Lab: ETE-API-PLAYGROUND
+X-Request-Id: postman-ana-005
 
-// sem body
+Body / raw / JSON
+{ "context": { "estudante": "Ana", "ferramenta": "postman", "objetivo": "remover após validar" } }
 
-Resposta possível:
-204 No Content
-
-// ou, se a API devolver representação:
-200 OK
-{ "mensagem": "Recado removido" }</code></div>
+Resposta: 204 No Content
+O id na URL, e não o body, define o recado removido.</code></div>
       </div>
       <div class="callout callout--danger"><span class="icon">🛡️</span><span>DELETE altera dados. Em produção, confirme permissões, registre a operação e nunca teste remoção em dados reais sem um ambiente apropriado.</span></div>
     </section>
@@ -2290,15 +2295,15 @@ Resposta possível:
       <div class="columns">
         <div class="card">
           <h3>Collection</h3>
-          <p>Clique em <strong>Save</strong>, crie ou escolha a collection `Mural de Recados` e nomeie cada request com uma ordem clara: `01 GET listar`, `02 POST criar`, `03 PATCH atualizar`, `04 DELETE remover`.</p>
-          <p>Uma collection torna o roteiro repetível e pode receber documentação e testes.</p>
+          <p>Clique em <strong>Import</strong> e selecione a <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground.postman_collection_fca7b7d8.json" target="_blank" rel="noopener">collection pronta</a> e o <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground_public.postman_environment_83426267.json" target="_blank" rel="noopener">environment público</a>.</p>
+          <p>Ative o environment no canto superior direito. Ele mantém `baseUrl` e recebe automaticamente `recadoId` depois do POST.</p>
         </div>
-        <div class="code-block"><span class="lang-badge">ENVIRONMENT: local</span><code>baseURL = http://localhost:3000
-token = exemplo-nao-real
+        <div class="code-block"><span class="lang-badge">ENVIRONMENT: public-preview</span><code>baseUrl = https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer
+recadoId = (preenchido pelo POST)
 
-GET {{baseURL}}/api/recados
-POST {{baseURL}}/api/recados
-Authorization: Bearer {{token}}</code></div>
+GET {{baseUrl}}/api/recados
+POST {{baseUrl}}/api/recados
+PUT {{baseUrl}}/api/recados/{{recadoId}}</code></div>
       </div>
       <div class="callout callout--warning"><span class="icon">🔐</span><span>Variáveis ajudam a trocar `localhost` por homologação. Segredos reais devem ser protegidos e nunca devem ser commitados em collection pública.</span></div>
     </section>
@@ -2309,11 +2314,13 @@ Authorization: Bearer {{token}}</code></div>
       <h2>🟤 Bruno: a mesma API em uma collection local</h2>
       <div class="columns">
         <div class="card">
-          <h3>GET</h3>
+          <h3>GET com body didático</h3>
           <ol>
             <li>No menu da collection, escolha <strong>New Request</strong>.</li>
             <li>Tipo <strong>HTTP</strong>, nome `01-listar-recados`.</li>
-            <li>Selecione GET e digite a URL.</li>
+            <li>Selecione GET, use `{{baseUrl}}/api/recados` e abra Headers.</li>
+            <li>Adicione `Content-Type: application/json`, `X-API-Lab: ETE-API-PLAYGROUND` e `X-Request-Id`.</li>
+            <li>Na aba Body → JSON, cole o `context` do exercício.</li>
             <li>Clique em <strong>Send</strong> ou use Ctrl/Cmd + Enter.</li>
           </ol>
         </div>
@@ -2324,18 +2331,21 @@ Authorization: Bearer {{token}}</code></div>
 }
 
 post {
-  url: http://localhost:3000/api/recados
+  url: {{baseUrl}}/api/recados
   body: json
   auth: none
 }
 
 headers {
   Content-Type: application/json
+  X-API-Lab: ETE-API-PLAYGROUND
+  X-Request-Id: bruno-post-001
 }
 
 body:json {
   {
-    "texto": "Testar no Bruno"
+    "context": { "estudante": "Ana", "ferramenta": "bruno", "objetivo": "criar" },
+    "recado": { "titulo": "Aula", "mensagem": "Testar no Bruno" }
   }
 }</code></div>
       </div>
@@ -2354,26 +2364,30 @@ body:json {
 }
 
 patch {
-  url: {{baseURL}}/api/recados/2
+  url: {{baseUrl}}/api/recados/{{recadoId}}
   body: json
 }
 headers {
   Content-Type: application/json
+  X-API-Lab: ETE-API-PLAYGROUND
+  X-Request-Id: bruno-patch-001
 }
 body:json {
-  { "texto": "Revisar headers e body" }
+  { "context": { "estudante": "Ana", "ferramenta": "bruno", "objetivo": "atualizar" },
+    "alteracoes": { "categoria": "concluido" } }
 }
 
 # 04-remover-recado.bru
-# delete {{baseURL}}/api/recados/2</code></div>
+# delete {{baseUrl}}/api/recados/{{recadoId}}
+# body: { "context": { "estudante": "Ana", "ferramenta": "bruno", "objetivo": "remover" } }</code></div>
         <div class="card">
           <h3>Na interface</h3>
           <ol>
             <li>Abra ou crie as requests dentro da collection.</li>
             <li>Selecione o ambiente no canto superior direito.</li>
-            <li>Use `{{baseURL}}` na URL para não repetir o endereço.</li>
-            <li>Para PATCH/PUT, abra Body → JSON e adicione o objeto.</li>
-            <li>Para DELETE, deixe o body vazio e envie.</li>
+            <li>Use `{{baseUrl}}` na URL para não repetir o endereço público.</li>
+            <li>Para PATCH/PUT, abra Body → JSON, adicione `context` e os campos do recurso.</li>
+            <li>Para DELETE, também envie o `context`; o alvo continua definido pelo id na URL.</li>
             <li>Repita GET para confirmar o estado final.</li>
           </ol>
         </div>
@@ -2403,12 +2417,12 @@ body:json {
     <section class="slide slide--accent" data-title="Exercício: testar o CRUD no Postman e Bruno">
       <span class="exercise-label">EXERCÍCIO 6 • API CLIENTS</span>
       <h2>🧪 Teste o Mural de Recados em duas ferramentas</h2>
-      <p>Com o servidor Node/Express da aula em execução na porta 3000, crie a collection `Mural de Recados` no Postman ou no Bruno e execute o roteiro completo.</p>
+      <p>Abra o <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer" target="_blank" rel="noopener">ETE API Playground público</a>, importe a collection do Postman ou abra a pasta do Bruno e execute o roteiro completo.</p>
       <div class="api-exercise-route"><span>GET listar</span><span>POST criar</span><span>GET conferir</span><span>PATCH atualizar</span><span>DELETE remover</span><span>GET final</span></div>
       <div class="exercise-grid">
-        <div>Para POST, use header `Content-Type: application/json` e body `{"texto":"Meu primeiro recado"}`.</div>
-        <div>Para PATCH, altere o recado com ID 1 e confirme que o ID permanece o mesmo.</div>
-        <div>Para DELETE, deixe o body vazio e observe o status retornado pelo servidor.</div>
+        <div>Em todos os métodos, use `Content-Type`, `X-API-Lab` e `X-Request-Id` nos headers e um body JSON com `context`.</div>
+        <div>Para POST, acrescente `recado`; para PUT, envie o recurso completo; para PATCH, use `alteracoes`.</div>
+        <div>Para DELETE, mantenha o `context` no body e confirme que é o id da URL que escolhe o item removido.</div>
         <div>Repita o roteiro na outra ferramenta e compare organização, resposta e facilidade de repetir.</div>
       </div>
       <div class="callout callout--warning"><span class="icon">🧭</span><span>Registre em uma tabela: método, URL, header, body, status recebido e uma frase explicando o resultado.</span></div>
@@ -2421,12 +2435,12 @@ body:json {
       <table>
         <thead><tr><th>#</th><th>Request</th><th>Configuração</th><th>Resultado esperado</th></tr></thead>
         <tbody>
-          <tr><td>1</td><td>GET `/api/recados`</td><td>sem body</td><td>200 + array</td></tr>
-          <tr><td>2</td><td>POST `/api/recados`</td><td>JSON + Content-Type</td><td>201 + objeto criado</td></tr>
-          <tr><td>3</td><td>GET `/api/recados`</td><td>sem body</td><td>200 + novo item</td></tr>
-          <tr><td>4</td><td>PATCH `/api/recados/1`</td><td>JSON + Content-Type</td><td>200 + item atualizado</td></tr>
-          <tr><td>5</td><td>DELETE `/api/recados/1`</td><td>sem body</td><td>204 ou status documentado</td></tr>
-          <tr><td>6</td><td>GET `/api/recados`</td><td>sem body</td><td>200 + item ausente</td></tr>
+          <tr><td>1</td><td>GET `/api/recados`</td><td>3 headers + body `context`</td><td>200 + array</td></tr>
+          <tr><td>2</td><td>POST `/api/recados`</td><td>3 headers + `context` + `recado`</td><td>201 + objeto criado</td></tr>
+          <tr><td>3</td><td>GET `/api/recados`</td><td>3 headers + body `context`</td><td>200 + novo item</td></tr>
+          <tr><td>4</td><td>PATCH `/api/recados/{{recadoId}}`</td><td>3 headers + `context` + `alteracoes`</td><td>200 + item atualizado</td></tr>
+          <tr><td>5</td><td>DELETE `/api/recados/{{recadoId}}`</td><td>3 headers + body `context`</td><td>204</td></tr>
+          <tr><td>6</td><td>GET `/api/recados`</td><td>3 headers + body `context`</td><td>200 + item ausente</td></tr>
         </tbody>
       </table>
       <div class="columns">
@@ -2457,7 +2471,7 @@ body:json {
       <h1>🎯 Método, dados, resposta e evidência</h1>
       <div class="api-closing-flow"><span>Postman</span><b>ou</b><span>Bruno</span><b>→</b><span>requisição</span><b>→</b><span>API</span><b>→</b><span>resposta</span></div>
       <div class="callout callout--info api-hero-callout"><span class="icon">💡</span><span>Quando você consegue explicar por que enviou aquele método, header e body e consegue interpretar a resposta, já está pensando como uma pessoa desenvolvedora de APIs.</span></div>
-      <p style="color:#94A3B8; margin-top:32px;">Documentação: <a href="https://learning.postman.com/docs/getting-started/quick-start" target="_blank" rel="noopener">Postman Quick Start</a> · <a href="https://docs.usebruno.com/introduction/quick-start" target="_blank" rel="noopener">Bruno Quick Start</a></p>
+      <p style="color:#94A3B8; margin-top:32px;">Pratique agora: <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer" target="_blank" rel="noopener">ETE API Playground</a> · <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer#materiais" target="_blank" rel="noopener">collection e guia da aula</a></p>
     </section>
 
   </div><!-- /slides-wrapper -->
