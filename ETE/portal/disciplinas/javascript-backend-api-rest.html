@@ -237,8 +237,99 @@ app.get('/tarefas', autenticar, listarTarefas);</code></div></section>
     <section class="slide slide--section" data-title="Projeto final"><h1>🏆 Projeto final<br><span class="accent">API da turma</span></h1><p class="subtitle">Cadastro, login, tarefas e banco MySQL</p></section>
     <section class="slide slide--content" data-title="Checklist de entrega"><h2>📦 O que uma API pronta precisa provar</h2><table><thead><tr><th>Área</th><th>Evidência</th></tr></thead><tbody><tr><td>Contrato</td><td>README com rotas, bodies, headers e status</td></tr><tr><td>Dados</td><td>script SQL com tabelas e seed mínimo</td></tr><tr><td>Segurança</td><td>.env.example, hash de senha e rotas protegidas</td></tr><tr><td>Qualidade</td><td>testes de rota, validação e respostas de erro</td></tr><tr><td>Uso</td><td>collection Postman ou Bruno com environment</td></tr></tbody></table><div class="callout callout--info" style="margin-top:16px;"><span class="icon">🎓</span><span>Demonstre um fluxo completo: cadastro → login → token → criar tarefa → listar apenas as próprias tarefas.</span></div></section>
     <section class="slide slide--dark" data-title="Referências e encerramento"><h2>✅ Você está pronto para conectar sistemas</h2><p style="text-align:center;font-size:1.15rem;max-width:760px;margin:22px auto;">Backend profissional não é só fazer uma rota responder: é definir contrato, validar entrada, proteger acesso, persistir com segurança e testar o comportamento.</p><div class="columns"><div class="card"><h3>Referências</h3><p><a href="https://nodejs.org/docs/latest/api/" target="_blank" rel="noopener">Node.js Documentation</a><br><a href="https://expressjs.com/" target="_blank" rel="noopener">Express Documentation</a><br><a href="https://developer.mozilla.org/pt-BR/docs/Web/HTTP" target="_blank" rel="noopener">MDN HTTP</a></p></div><div class="card"><h3>Próxima conexão</h3><p>Construa um frontend HTML/CSS/JS que consuma sua API usando <code>fetch</code>. Depois, publique frontend e backend em ambientes adequados.</p></div></div></section>
+    <section class="slide slide--section" data-title="Laboratório de fixação">
+      <h1>🧪 Laboratório de<br><span class="accent">fixação</span></h1>
+      <p class="subtitle">Três situações que aparecem em APIs reais</p>
+      <p style="margin-top:22px;color:#CBD5E1;">Resolva em dupla, registre as evidências no Postman ou Bruno e compare com o gabarito depois de testar.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: filtro e paginação">
+      <h2>📝 Exercício 4 — Filtre e pagine tarefas</h2>
+      <div class="columns">
+        <div class="card"><h3>Problema</h3><p>Implemente <code>GET /tarefas?status=aberta&amp;pagina=2&amp;limite=5</code>. A API deve devolver apenas tarefas compatíveis e metadados de paginação.</p><ol><li><code>pagina</code> padrão é 1 e não pode ser menor que 1.</li><li><code>limite</code> padrão é 10 e máximo é 50.</li><li><code>status</code> aceita <code>aberta</code> ou <code>concluida</code>.</li></ol></div>
+        <div class="card"><h3>Teste de aceitação</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>GET /tarefas?status=aberta&amp;pagina=1&amp;limite=2
+Accept: application/json
+Authorization: Bearer {{token}}</code></div><p style="margin-top:12px;">Entregue um JSON com <code>pagina</code>, <code>limite</code> e <code>dados</code>, sem expor tarefas de outros usuários.</p></div>
+      </div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: filtro e paginação">
+      <h2>✅ Gabarito 4 — Consulta previsível</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>app.get('/tarefas', autenticar, async (req, res) =&gt; {
+  const pagina = Math.max(Number(req.query.pagina) || 1, 1);
+  const limite = Math.min(Number(req.query.limite) || 10, 50);
+  const status = req.query.status;
+  if (status &amp;&amp; !['aberta', 'concluida'].includes(status)) {
+    return res.status(400).json({ error: 'STATUS_INVALID' });
+  }
+  const params = [req.user.sub];
+  let sql = 'SELECT id, titulo, concluida FROM tarefas WHERE usuario_id = ?';
+  if (status) { sql += ' AND concluida = ?'; params.push(status === 'concluida'); }
+  sql += ' LIMIT ? OFFSET ?';
+  params.push(limite, (pagina - 1) * limite);
+  const [dados] = await db.execute(sql, params);
+  res.json({ pagina, limite, dados });
+});</code></div>
+      <p style="margin-top:12px;">Use placeholders SQL. O status deve filtrar, enquanto a autorização deve limitar os dados ao usuário autenticado.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: erros centralizados">
+      <h2>📝 Exercício 5 — Um erro, uma resposta padrão</h2>
+      <div class="columns">
+        <div class="card"><h3>Situação</h3><p>Uma falha de banco não pode devolver stack trace ao aluno. Crie um middleware final que responda JSON padronizado e registre o erro técnico apenas no servidor.</p><ol><li>Crie <code>GET /tarefas/:id</code>.</li><li>Use 404 para id inexistente.</li><li>Encaminhe falha inesperada com <code>next(error)</code>.</li><li>Responda 500 com código público.</li></ol></div>
+        <div class="card"><h3>Resposta esperada</h3><div class="code-block"><span class="lang-badge">JSON</span><code>{
+  "error": {
+    "code": "INTERNAL_ERROR",
+    "message": "Não foi possível concluir agora."
+  }
+}</code></div><p style="margin-top:12px;">Teste uma rota inexistente e um id inexistente: ambos podem ser 404, mas não são erro interno.</p></div>
+      </div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: erros centralizados">
+      <h2>✅ Gabarito 5 — Tratamento centralizado</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript</span><code>app.get('/tarefas/:id', autenticar, async (req, res, next) =&gt; {
+  try {
+    const [rows] = await db.execute(
+      'SELECT id, titulo FROM tarefas WHERE id = ? AND usuario_id = ?',
+      [req.params.id, req.user.sub]
+    );
+    if (!rows[0]) return res.status(404).json({ error: 'TASK_NOT_FOUND' });
+    return res.json(rows[0]);
+  } catch (error) { return next(error); }
+});
+
+app.use((error, req, res, next) =&gt; {
+  console.error(error);
+  res.status(500).json({ error: {
+    code: 'INTERNAL_ERROR', message: 'Não foi possível concluir agora.'
+  }});
+});</code></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercício: fluxo completo">
+      <h2>📝 Exercício 6 — Prove o fluxo completo</h2>
+      <div class="columns">
+        <div class="card"><h3>Missão</h3><p>Crie uma collection no Postman ou Bruno e documente o ciclo abaixo.</p><ol><li>Cadastre um usuário e faça login.</li><li>Salve o token no environment.</li><li>Crie uma tarefa com POST.</li><li>Atualize <code>concluida</code> com PATCH.</li><li>Tente buscar sem token e registre o 401.</li></ol></div>
+        <div class="card"><h3>Evidências</h3><table><thead><tr><th>Ação</th><th>Esperado</th></tr></thead><tbody><tr><td>POST /auth/login</td><td>200 + token</td></tr><tr><td>POST /tarefas</td><td>201 + id</td></tr><tr><td>PATCH /tarefas/:id</td><td>200 + concluida true</td></tr><tr><td>GET sem token</td><td>401</td></tr></tbody></table><p style="margin-top:12px;">Registre URL, método, headers, body, status e print de cada resposta.</p></div>
+      </div>
+    </section>
+
+    <section class="slide slide--dark" data-title="Gabarito: fluxo completo">
+      <h2>✅ Gabarito 6 — Checklist de demonstração</h2>
+      <div class="columns"><div class="card"><h3>Environment</h3><div class="code-block"><span class="lang-badge">JSON</span><code>{
+  "baseUrl": "http://localhost:3000",
+  "token": "token recebido no login",
+  "tarefaId": "id recebido no POST"
+}</code></div></div><div class="card"><h3>Request PATCH</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>PATCH {{baseUrl}}/tarefas/{{tarefaId}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{"concluida": true}</code></div><p style="margin-top:12px;">A resposta correta prova contrato, autenticação, autorização, validação, persistência e teste de API em um fluxo só.</p></div></div>
+      <div class="callout callout--info" style="margin-top:16px;"><span class="icon">🎓</span><span>Ao finalizar, explique cada status HTTP. Uma boa demonstração mostra o que funciona e como a API responde a erros previsíveis.</span></div>
+    </section>
   </div>
-  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button><button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button><span class="progress-text">1 / 31</span><button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button><a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a></div>
+  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button><button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button><span class="progress-text">1 / 38</span><button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button><a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a></div>
   <script src="../slides.js"></script>
 </body>
 </html>

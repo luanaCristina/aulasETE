@@ -16,3 +16,11 @@
 - [x] Remover a marcação residual HTML & CSS da seção de planejamento do portal.
 - [x] Validar estrutura, links, exemplos e responsividade do portal.
 - [x] Publicar as melhorias no GitHub Pages.
+- [x] Criar exercícios adicionais e gabaritos para fixação de JavaScript Backend e API REST.
+- [x] Corrigir o contador do módulo JavaScript Backend para refletir os exercícios adicionais inseridos.
+- [x] Desenvolver um quiz interativo em JavaScript com questões de MySQL e Python.
+- [x] Integrar o quiz ao portal com acesso pelos quadros de banco de dados e Python.
+- [x] Preparar o roteiro de uma apresentação-resumo dos módulos novos do portal.
+- [x] Gerar o arquivo de apresentação-resumo em formato de slides.
+- [x] Validar os exercícios, o quiz, a apresentação e os novos links do portal.
+- [ ] Publicar a expansão pedagógica no GitHub Pages.
