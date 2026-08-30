@@ -164,6 +164,7 @@ CREATE DATABASE escola;</code>
             <span class="icon">📌</span>
             <span><strong>pgAdmin 4:</strong> Interface gráfica. Acesse pelo atalho ou <code>localhost:5050</code>.</span>
           </div>
+          <img src="../assets/guias-instalacao/pgadmin-registro-servidor.png" alt="Janela do pgAdmin para registrar uma conexão com servidor PostgreSQL" style="display:block;width:100%;max-height:155px;object-fit:contain;background:#fff;border-radius:8px;margin-top:10px;">
         </div>
       </div>
     </section>
@@ -269,6 +270,7 @@ git push origin main</code>
             <li>Crie algoritmos com blocos visuais</li>
             <li>Execute passo a passo (debug visual)</li>
           </ol>
+          <img src="../assets/guias-instalacao/flowgorithm-editor.png" alt="Editor Flowgorithm exibindo blocos visuais de um fluxograma" style="display:block;width:100%;max-height:108px;object-fit:contain;background:#fff;border-radius:8px;margin-top:8px;">
           <div class="callout callout--tip" style="margin-top:12px;">
             <span class="icon">💡</span>
             <span>Ideal para iniciantes — visualize a lógica ANTES de codificar.</span>
@@ -327,6 +329,7 @@ mongosh
 brew install mongodb-community@7.0
 brew services start mongodb-community</code>
           </div>
+          <img src="../assets/guias-instalacao/mongodb-compass-conexao.png" alt="Tela de conexão do MongoDB Compass" style="display:block;width:100%;max-height:84px;object-fit:contain;background:#fff;border-radius:8px;margin-top:8px;">
         </div>
         <div class="card">
           <h3>🚀 Primeiro CRUD</h3>
@@ -435,6 +438,7 @@ db.alunos.deleteOne({ nome: "Maria" })</code>
             <span class="icon">💡</span>
             <span><strong>Alternativa leve:</strong> Use o <strong>Metabase</strong> (mais moderno) via Docker.</span>
           </div>
+          <img src="../assets/guias-instalacao/pentaho-dashboard-ui.jpg" alt="Interface de um dashboard criado no Pentaho" style="display:block;width:100%;max-height:105px;object-fit:contain;background:#fff;border-radius:8px;margin-top:8px;">
         </div>
       </div>
     </section>
@@ -690,13 +694,190 @@ ORDER BY nome;</code></div>
       <div class="callout callout--info" style="margin-top:16px;"><span class="icon">📌</span><span>Exercício relâmpago: adicione a coluna <code>email</code> com <code>ALTER TABLE</code>, insira dois alunos e filtre apenas a turma <code>DS 2026.2</code>.</span></div>
     </section>
 
+    <!-- SLIDE 21: TRILHA POR ASSUNTO -->
+    <section class="slide slide--section" data-title="Trilha por assunto">
+      <h1>🧭 Instale por<br><span class="accent">assunto</span></h1>
+      <p class="subtitle">Siga um quadro completo antes de passar ao próximo.</p>
+      <div class="columns" style="margin-top:28px;">
+        <div class="card"><h3>01. Base de programação</h3><p>Python, VS Code e terminal integrado.</p></div>
+        <div class="card"><h3>02. Web e dados</h3><p>Node.js, npm, MySQL Server e Workbench.</p></div>
+        <div class="card"><h3>03. Colaboração e APIs</h3><p>Git, GitHub, GitHub Desktop, Postman e Bruno.</p></div>
+      </div>
+      <div class="callout callout--tip" style="max-width:760px;margin:24px auto 0;"><span class="icon">✅</span><span>Em cada assunto: instale pela interface, confirme pelo terminal, execute um exemplo pequeno e conclua o exercício antes de avançar.</span></div>
+    </section>
+
+    <!-- SLIDE 22: PREPARO -->
+    <section class="slide slide--content" data-title="Antes de instalar">
+      <h2>🔎 Antes de começar — evite retrabalho</h2>
+      <div class="columns">
+        <div class="card"><h3>Checklist do computador</h3><ol><li>Use uma conta com permissão para instalar programas.</li><li>Reserve pelo menos 8 GB livres e conexão estável.</li><li>Atualize o sistema e feche programas pesados.</li><li>Crie uma pasta <code>Documentos\ETE</code> para os projetos.</li></ol></div>
+        <div class="card"><h3>Regra de segurança</h3><ol><li>Baixe sempre no site oficial indicado.</li><li>Não publique senhas, tokens ou arquivos <code>.env</code>.</li><li>Não compartilhe a senha de administrador do banco.</li><li>Guarde mensagens de erro em captura de tela para pedir ajuda.</li></ol></div>
+      </div>
+      <div class="callout callout--warning" style="margin-top:16px;"><span class="icon">⚠️</span><span>Após instalar qualquer ferramenta, feche e abra novamente o terminal. Assim o sistema reconhece comandos adicionados ao PATH.</span></div>
+    </section>
+
+    <!-- SLIDE 23: PYTHON UI -->
+    <section class="slide slide--content" data-title="Python: instalar pela interface">
+      <h2>🐍 Python — instalação visual no Windows</h2>
+      <div class="columns">
+        <div class="card"><h3>Passo a passo pela interface</h3><ol><li>Acesse <a href="https://www.python.org/downloads/" target="_blank" rel="noopener">python.org/downloads</a> e escolha a versão estável atual.</li><li>Abra o arquivo baixado.</li><li>Marque <strong>Add Python to PATH</strong>.</li><li>Clique em <strong>Install Now</strong> e aguarde a confirmação.</li><li>Feche o instalador e abra um novo PowerShell ou CMD.</li></ol><p style="margin-top:12px;">No macOS, baixe o instalador em python.org ou use <code>brew install python</code> se o Homebrew já estiver configurado.</p></div>
+        <div class="card"><h3>Imagem-guia: opção essencial</h3><img src="../assets/guias-instalacao/python-path-windows.png" alt="Instalador do Python no Windows com a opção Add Python to PATH visível" style="width:100%;max-height:270px;object-fit:contain;background:#fff;border-radius:10px;"><p style="font-size:.8rem;color:#94A3B8;margin-top:10px;">A caixa de PATH permite chamar <code>python</code> diretamente pelo terminal. Referência visual: documentação oficial do Python.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 24: PYTHON TERMINAL -->
+    <section class="slide slide--dark" data-title="Python: terminal e exemplo">
+      <h2>⌨️ Python — confirme no terminal e execute seu primeiro arquivo</h2>
+      <div class="columns">
+        <div class="card"><h3>Comandos de verificação</h3><div class="code-block"><span class="lang-badge">PowerShell / CMD</span><code>python --version
+py --version
+
+# crie uma pasta e um ambiente isolado
+mkdir ola-python
+cd ola-python
+python -m venv .venv
+.venv\Scripts\Activate.ps1</code></div><p style="margin-top:12px;">No macOS/Linux, ative com <code>source .venv/bin/activate</code> e geralmente use <code>python3</code>.</p></div>
+        <div class="card"><h3>Exemplo: ola.py</h3><div class="code-block"><span class="lang-badge">Python</span><code>nome = input('Seu apelido: ')
+print(f'Olá, {nome}!')
+
+# no terminal
+python ola.py</code></div><div class="callout callout--tip" style="margin-top:14px;"><span class="icon">💡</span><span>Se <code>python</code> não for reconhecido, teste <code>py</code>, feche o terminal e confira a instalação antes de editar o PATH manualmente.</span></div></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 25: VSCODE -->
+    <section class="slide slide--content" data-title="VS Code: interface e terminal">
+      <h2>💻 VS Code — editor visual e terminal no mesmo lugar</h2>
+      <div class="columns">
+        <div class="card"><h3>Pela interface</h3><ol><li>Baixe o instalador em <a href="https://code.visualstudio.com/download" target="_blank" rel="noopener">code.visualstudio.com</a>.</li><li>Instale e abra o VS Code.</li><li>Clique no ícone <strong>Extensions</strong> na barra lateral.</li><li>Pesquise e instale <strong>Python</strong> (Microsoft), <strong>Pylance</strong>, <strong>ESLint</strong> e <strong>Prettier</strong>.</li><li>Use <strong>File → Open Folder</strong> para abrir a pasta do projeto.</li></ol></div>
+        <div class="card"><h3>Imagem-guia: extensões</h3><img src="../assets/guias-instalacao/vscode-extensao-python.png" alt="Tela do Visual Studio Code mostrando a busca e instalação da extensão Python" style="width:100%;max-height:270px;object-fit:contain;border-radius:10px;background:#0f172a;"><p style="font-size:.8rem;color:#94A3B8;margin-top:10px;">Use o botão <strong>Install</strong> apenas na extensão publicada pela Microsoft.</p></div>
+      </div>
+      <div class="code-block" style="max-width:760px;margin:16px auto 0;"><span class="lang-badge">Terminal integrado</span><code># abra a pasta atual no VS Code pelo terminal
+code .
+
+# no VS Code: Terminal → New Terminal
+python ola.py</code></div>
+    </section>
+
+    <!-- SLIDE 26: NODE UI -->
+    <section class="slide slide--content" data-title="Node.js: instalar e verificar">
+      <h2>🟢 Node.js — escolha LTS e confirme npm</h2>
+      <div class="columns">
+        <div class="card"><h3>Instalação pela interface</h3><ol><li>Acesse <a href="https://nodejs.org/en/download" target="_blank" rel="noopener">nodejs.org/download</a>.</li><li>Escolha a versão marcada como <strong>LTS</strong>, não a versão Current.</li><li>Baixe o instalador do seu sistema operacional.</li><li>Avance com as opções padrão; o npm vem junto.</li><li>Abra um novo terminal após finalizar.</li></ol><p style="margin-top:12px;">A versão LTS muda com o tempo. O importante é selecionar a opção LTS mostrada no site oficial no dia da instalação.</p></div>
+        <div class="card"><h3>Imagem-guia: instalador</h3><img src="../assets/guias-instalacao/node-installer-windows.png" alt="Janela do instalador do Node.js com a opção Add to PATH" style="width:100%;max-height:270px;object-fit:contain;background:#fff;border-radius:10px;"><p style="font-size:.8rem;color:#94A3B8;margin-top:10px;">Mantenha a integração com o PATH para usar <code>node</code> e <code>npm</code> no terminal.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 27: NODE TERMINAL -->
+    <section class="slide slide--dark" data-title="Node.js: primeiro projeto">
+      <h2>⌨️ Node.js — crie e rode um projeto pelo terminal</h2>
+      <div class="columns">
+        <div class="card"><h3>Prepare o projeto</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>node --version
+npm --version
+
+mkdir primeiro-node
+cd primeiro-node
+npm init -y</code></div><p style="margin-top:12px;">O comando <code>npm init -y</code> cria o arquivo <code>package.json</code>, que lista as configurações e dependências do projeto.</p></div>
+        <div class="card"><h3>Exemplo: index.js</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>const turma = 'DS 2026.2';
+console.log(`Olá, ${turma}!`);
+
+# no terminal
+node index.js</code></div><div class="callout callout--info" style="margin-top:14px;"><span class="icon">📌</span><span>Resultado esperado: uma mensagem no terminal. Não é necessário abrir navegador para um programa de linha de comando.</span></div></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 28: MYSQL UI E TERMINAL -->
+    <section class="slide slide--content" data-title="MySQL: UI e terminal">
+      <h2>🐬 MySQL — faça a mesma primeira tarefa na interface e no terminal</h2>
+      <div class="columns">
+        <div class="card"><h3>Workbench (interface)</h3><ol><li>Abra <strong>MySQL Workbench</strong>.</li><li>Abra a conexão local configurada nas telas anteriores.</li><li>Crie uma aba SQL com o botão <strong>+</strong>.</li><li>Cole o script e execute pelo ícone de raio.</li><li>Leia a grade de resultados na parte inferior.</li></ol><div class="code-block" style="margin-top:10px;"><span class="lang-badge">SQL</span><code>CREATE DATABASE escola_ete;
+SHOW DATABASES;</code></div></div>
+        <div class="card"><h3>Cliente MySQL (terminal)</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>mysql --version
+mysql -u root -p
+
+CREATE DATABASE escola_ete;
+SHOW DATABASES;
+EXIT;</code></div><p style="margin-top:12px;">Quando aparecer o pedido de senha, digite-a sem esperar que caracteres sejam mostrados. Não cole senhas em slides, chats ou repositórios.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 29: GIT TERMINAL -->
+    <section class="slide slide--content" data-title="Git: fluxo pelo terminal">
+      <h2>🐙 Git — os comandos principais no terminal</h2>
+      <div class="columns">
+        <div class="card"><h3>Instale e identifique seus commits</h3><ol><li>No Windows, baixe em <a href="https://git-scm.com/downloads" target="_blank" rel="noopener">git-scm.com</a> e conclua o instalador padrão.</li><li>No macOS, use <code>xcode-select --install</code> ou <code>brew install git</code>.</li><li>Abra Git Bash, PowerShell ou o terminal do VS Code.</li></ol><div class="code-block" style="margin-top:10px;"><span class="lang-badge">Terminal</span><code>git --version
+git config --global user.name "Seu Nome"
+git config --global user.email "email-da-conta@exemplo.com"
+git config --global init.defaultBranch main</code></div></div>
+        <div class="card"><h3>Ciclo mínimo de trabalho</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>git init
+git status
+git add .
+git commit -m "cria pagina inicial"
+git log --oneline</code></div><p style="margin-top:12px;">Use <code>git status</code> antes e depois de <code>git add</code>. Ele mostra o que será incluído no próximo commit.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 30: GITHUB UI -->
+    <section class="slide slide--dark" data-title="GitHub: site e comandos">
+      <h2>🌐 GitHub — crie o repositório na interface e conecte no terminal</h2>
+      <div class="columns">
+        <div class="card"><h3>No site GitHub</h3><ol><li>Entre em <a href="https://github.com" target="_blank" rel="noopener">github.com</a> e clique em <strong>New repository</strong>.</li><li>Escolha um nome, por exemplo <code>meu-primeiro-site</code>.</li><li>Para tarefas sem dados pessoais, selecione a visibilidade indicada pela professora.</li><li>Crie o repositório e copie a URL HTTPS em <strong>Code</strong>.</li><li>Não envie senhas, arquivos <code>.env</code> ou chaves privadas.</li></ol></div>
+        <div class="card"><h3>Conecte e envie pelo terminal</h3><img src="../assets/guias-instalacao/github-web-clonar.png" alt="Menu Code do GitHub mostrando as opções de clone de um repositório" style="display:block;width:100%;max-height:112px;object-fit:contain;background:#fff;border-radius:8px;margin-bottom:8px;"><div class="code-block"><span class="lang-badge">Terminal</span><code>git remote add origin https://github.com/USUARIO/meu-primeiro-site.git
+git branch -M main
+git push -u origin main
+
+# próximas alterações
+git add .
+git commit -m "atualiza cabecalho"
+git push</code></div><p style="margin-top:12px;">Troque <code>USUARIO</code> pelo seu nome de usuário. Use a URL do repositório que você acabou de criar.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 31: GITHUB DESKTOP -->
+    <section class="slide slide--content" data-title="GitHub Desktop: interface">
+      <h2>🖱️ GitHub Desktop — o mesmo fluxo pela interface</h2>
+      <div class="columns">
+        <div class="card"><h3>Passo a passo visual</h3><ol><li>Instale o <a href="https://desktop.github.com/" target="_blank" rel="noopener">GitHub Desktop</a> e entre com sua conta.</li><li>Use <strong>File → Clone repository</strong> para baixar um projeto existente, ou <strong>Create a New Repository</strong>.</li><li>Edite e salve arquivos no VS Code.</li><li>Na aba <strong>Changes</strong>, confira os arquivos marcados.</li><li>Escreva um resumo, clique em <strong>Commit to main</strong> e depois em <strong>Push origin</strong>.</li></ol></div>
+        <div class="card"><h3>Imagem-guia: publicar</h3><img src="../assets/guias-instalacao/github-desktop-publicar.png" alt="GitHub Desktop mostrando o botão Publish repository" style="width:100%;max-height:270px;object-fit:contain;border-radius:10px;background:#fff;"><p style="font-size:.8rem;color:#94A3B8;margin-top:10px;">Antes do primeiro envio, o botão pode aparecer como <strong>Publish repository</strong>. Depois, ele vira <strong>Push origin</strong>.</p></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 32: API CLIENTS -->
+    <section class="slide slide--content" data-title="Postman e Bruno: UI e comando">
+      <h2>📨 APIs — envie a mesma requisição por interface e por comando</h2>
+      <div class="columns">
+        <div class="card"><h3>Postman ou Bruno (interface)</h3><ol><li>Instale <a href="https://www.postman.com/downloads/" target="_blank" rel="noopener">Postman</a> ou <a href="https://www.usebruno.com/downloads" target="_blank" rel="noopener">Bruno</a>.</li><li>Crie uma request <strong>GET</strong>.</li><li>Informe URL, headers e body apenas quando o método precisar.</li><li>Clique em <strong>Send</strong> e leia status, headers e body da resposta.</li><li>Salve a request em uma collection da turma.</li></ol></div>
+        <div class="card"><h3>Imagem-guia: Bruno e Postman</h3><div style="display:flex;gap:8px;align-items:center;"><img src="../assets/guias-instalacao/bruno-request-ui.webp" alt="Interface do Bruno mostrando método, URL, headers, body e resposta" style="width:50%;max-height:220px;object-fit:contain;border-radius:8px;background:#fff;"><img src="../assets/guias-instalacao/postman-request-ui.jpg" alt="Interface do Postman mostrando campos de uma requisição" style="width:50%;max-height:220px;object-fit:contain;border-radius:8px;background:#fff;"></div><p style="font-size:.8rem;color:#94A3B8;margin-top:10px;">Em ambas as interfaces, configure método e URL; depois confira abas de headers/body e o painel de resposta.</p></div>
+      </div>
+      <div class="code-block" style="max-width:780px;margin:16px auto 0;"><span class="lang-badge">cURL no terminal</span><code>curl -i https://eteapiplay-akbqqgv2.manus.space/api/recados \
+  -H "X-API-Lab: ETE-API-PLAYGROUND" \
+  -H "X-Request-Id: exercicio-001"</code></div>
+    </section>
+
+    <!-- SLIDE 33: EXERCICIOS -->
+    <section class="slide slide--dark" data-title="Exercícios de instalação">
+      <h2>🧪 Exercícios — comprove que seu ambiente funciona</h2>
+      <div class="columns">
+        <div class="card"><h3>Exercício A — Python + VS Code</h3><ol><li>Crie a pasta <code>desafio-ambiente</code>.</li><li>Abra-a com <code>code .</code>.</li><li>Crie <code>boas_vindas.py</code> que leia um apelido e imprima uma saudação.</li><li>Execute pelo terminal integrado.</li><li>Tire um print mostrando arquivo, terminal e resultado.</li></ol></div>
+        <div class="card"><h3>Exercício B — Git + GitHub</h3><ol><li>Inicie um repositório local para a pasta.</li><li>Crie um <code>README.md</code> com o nome do projeto e três ferramentas instaladas.</li><li>Faça um commit com mensagem clara.</li><li>Crie um repositório vazio no GitHub.</li><li>Envie o commit via terminal <strong>ou</strong> GitHub Desktop.</li></ol></div>
+        <div class="card"><h3>Exercício C — banco e API</h3><ol><li>Crie <code>escola_ete</code> no Workbench <strong>ou</strong> no terminal.</li><li>Envie uma requisição GET no Postman ou Bruno.</li><li>Repita a GET via <code>curl</code>.</li><li>Anote o status de cada ferramenta.</li><li>Explique o que muda e o que permanece igual.</li></ol></div>
+      </div>
+    </section>
+
+    <!-- SLIDE 34: GABARITO / CRITERIOS -->
+    <section class="slide slide--content" data-title="Conferência dos exercícios">
+      <h2>✅ Conferência — o que deve aparecer ao final</h2>
+      <table style="margin-top:20px;"><thead><tr><th>Exercício</th><th>Evidência esperada</th><th>Se não funcionar</th></tr></thead><tbody><tr><td>Python + VS Code</td><td>Arquivo salvo e saudação exibida no terminal integrado.</td><td>Confirme interpretador e rode <code>python --version</code>.</td></tr><tr><td>Git + GitHub</td><td><code>git log --oneline</code> mostra o commit; página do repositório mostra o mesmo arquivo.</td><td>Rode <code>git status</code> e confira URL/remoto antes de novo push.</td></tr><tr><td>MySQL</td><td>O banco aparece em <code>SHOW DATABASES</code> ou no painel Schemas.</td><td>Verifique se o servidor está iniciado e se a porta é 3306.</td></tr><tr><td>API</td><td>Status HTTP e body aparecem tanto na UI quanto no terminal.</td><td>Revise método, URL e headers obrigatórios.</td></tr></tbody></table>
+      <div class="callout callout--info" style="margin-top:20px;max-width:800px;margin-left:auto;margin-right:auto;"><span class="icon">🎯</span><span>Entrega sugerida: envie os três prints e a URL do repositório apenas no canal definido pela professora. Não coloque dados pessoais ou segredos nas imagens.</span></div>
+    </section>
+
   </div><!-- /slides-wrapper -->
 
   <!-- Controles -->
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
     <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
-    <span class="progress-text">1 / 20</span>
+    <span class="progress-text">1 / 34</span>
     <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
     <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
