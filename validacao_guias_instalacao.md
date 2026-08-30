@@ -39,3 +39,7 @@ No quadro 37, o checklist disponibiliza doze itens e botões para imprimir ou li
 O botão **Limpar marcações** retornou o checklist a `0 de 12 etapas concluídas`. As regras de impressão isolam o quadro de checklist e ocultam navegação, controles e demais slides durante a impressão.
 
 Após separar os vídeos para manter a leitura em projeção, o quadro 36 apresenta as demonstrações de Python e o quadro 37 apresenta Git/GitHub pelo terminal e a conexão no MySQL Workbench. Os quatro vídeos foram reconhecidos pelo navegador, cada um com oito segundos e controles de reprodução visíveis.
+
+## Publicação dos recursos interativos
+
+No GitHub Pages, o quadro 35 mantém os três gabaritos ocultos até o clique no botão **Revelar resposta**. Os vídeos de Python (quadro 36) e de Git/GitHub com MySQL (quadro 37) foram carregados com duração de oito segundos e controles nativos de reprodução.
