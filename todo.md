@@ -15,4 +15,4 @@
 - [x] Integrar os novos módulos, links e descrições ao portal.
 - [x] Remover a marcação residual HTML & CSS da seção de planejamento do portal.
 - [x] Validar estrutura, links, exemplos e responsividade do portal.
-- [ ] Publicar as melhorias no GitHub Pages.
+- [x] Publicar as melhorias no GitHub Pages.
