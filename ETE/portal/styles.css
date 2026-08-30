@@ -604,3 +604,60 @@ kbd { display: inline-block; padding: 2px 7px; border: 1px solid #64748B; border
   .array-index { font-size: .68rem; }
   .array-index strong { font-size: .76rem; }
 }
+
+
+/* ===== DESAFIOS COTIDIANOS — GABARITOS PROTEGIDOS ===== */
+.daily-challenges-cover .callout, .daily-challenges-end .callout { max-width: 760px; }
+.daily-areas, .daily-scenario, .daily-review-grid, .gate-steps { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 22px; }
+.daily-areas span, .daily-scenario span, .daily-scenario strong { border: 1px solid rgba(147,197,253,.35); background: rgba(15,23,42,.38); color: #DBEAFE; border-radius: 999px; padding: 9px 14px; font-size: .92rem; }
+.daily-scenario { justify-content: flex-start; align-items: center; margin: 20px 0; }
+.daily-scenario b { color: #60A5FA; font-size: 1.25rem; }
+.daily-scenario strong { color: #FEF08A; border-color: rgba(254,240,138,.38); }
+.daily-exercise-slide .exercise-grid { margin-top: 16px; }
+.gate-steps { display: grid; grid-template-columns: repeat(3, 1fr); text-align: center; margin: 24px 0; }
+.gate-steps > div { display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 18px; border: 1px solid #E2E8F0; border-radius: 14px; background: #F8FAFC; }
+.gate-steps b { display: grid; place-items: center; width: 34px; height: 34px; border-radius: 50%; background: #2563EB; color: #fff; }
+.gate-steps strong { color: #0F172A; font-size: 1.05rem; }
+.gate-steps span { color: #475569; font-size: .9rem; }
+.teacher-gate { display: grid; grid-template-columns: auto minmax(180px, .8fr) minmax(280px, 1.2fr); align-items: center; gap: 18px; margin-top: 24px; padding: 20px; border-radius: 16px; background: linear-gradient(135deg, #EFF6FF, #F8FAFC); border: 1px solid #BFDBFE; }
+.teacher-gate h3 { color: #1E3A8A; margin-bottom: 5px; }
+.teacher-gate p { color: #475569 !important; font-size: .92rem !important; margin: 0 !important; }
+.lock-icon { font-size: 2.6rem; line-height: 1; }
+.answer-unlock-form { display: flex; flex-direction: column; gap: 7px; }
+.answer-unlock-form label { color: #334155; font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; }
+.answer-form-row { display: flex; gap: 8px; }
+.answer-password-input { min-width: 0; flex: 1; border: 1px solid #94A3B8; border-radius: 8px; padding: 10px 12px; background: #fff; color: #0F172A; font: inherit; letter-spacing: .2em; }
+.answer-password-input:focus { outline: 3px solid rgba(37,99,235,.2); border-color: #2563EB; }
+.answer-form-row button { border: 0; border-radius: 8px; padding: 10px 14px; background: #2563EB; color: #fff; font: inherit; font-weight: 800; cursor: pointer; white-space: nowrap; }
+.answer-form-row button:hover { background: #1D4ED8; }
+.answer-lock-feedback { min-height: 1.25em; color: #64748B; font-size: .8rem; }
+.answer-lock-feedback.is-error { color: #DC2626; font-weight: 700; }
+.answer-lock-feedback.is-success { color: #059669; font-weight: 700; }
+.protected-answer-slide { align-items: stretch; }
+.answer-lock { width: min(720px, 100%); margin: auto; padding: 32px; border: 1px solid rgba(147,197,253,.28); border-radius: 18px; background: linear-gradient(145deg, rgba(30,41,59,.95), rgba(15,23,42,.95)); text-align: center; box-shadow: 0 18px 45px rgba(0,0,0,.2); }
+.answer-lock h2 { margin: 10px 0; }
+.answer-lock p { color: #CBD5E1; }
+.answer-lock .answer-unlock-form { max-width: 420px; margin: 22px auto 0; text-align: left; }
+.answer-lock .answer-unlock-form label { color: #BFDBFE; }
+.answer-lock .answer-password-input { background: #0F172A; color: #F8FAFC; border-color: #475569; }
+.answer-lock .answer-lock-feedback { color: #94A3B8; }
+.answer-lock .answer-lock-feedback.is-error { color: #FCA5A5; }
+.answer-lock .answer-lock-feedback.is-success { color: #86EFAC; }
+.answer-unlocked-content[hidden] { display: none; }
+.answer-unlocked-content:not([hidden]) { width: 100%; animation: answer-reveal .28s ease-out; }
+@keyframes answer-reveal { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+.daily-review-grid { display: grid; grid-template-columns: repeat(4, 1fr); max-width: 900px; width: 100%; }
+.daily-review-grid div { display: flex; flex-direction: column; gap: 7px; padding: 16px; border: 1px solid rgba(147,197,253,.3); border-radius: 14px; background: rgba(255,255,255,.06); }
+.daily-review-grid strong { color: #FEF08A; }
+.daily-review-grid span { color: #CBD5E1; font-size: .88rem; }
+@media (max-width: 900px) {
+  .gate-steps, .teacher-gate, .daily-review-grid { grid-template-columns: 1fr; }
+  .teacher-gate { text-align: center; }
+  .teacher-gate .answer-unlock-form { text-align: left; }
+}
+@media (max-width: 600px) {
+  .answer-form-row { flex-direction: column; }
+  .answer-form-row button { width: 100%; }
+  .answer-lock { padding: 22px 16px; }
+  .daily-scenario { justify-content: center; }
+}

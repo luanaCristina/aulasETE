@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Lógica e Pensamento Computacional — ETE Pernambuco</title>
-  <link rel="stylesheet" href="../styles.css?v=2026-08-js52">
+  <link rel="stylesheet" href="../styles.css?v=2026-08-protected">
 </head>
 <body>
   <!-- Progress Bar -->
@@ -1448,18 +1448,420 @@ console.log(gerarRelatorio(equipe));</code></div>
       <p style="color:#94A3B8; margin-top:28px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
     </section>
 
+
+    <!-- SLIDE 53: DESAFIOS COTIDIANOS -->
+    <section class="slide slide--section daily-challenges-cover" data-title="Desafios da vida cotidiana">
+      <span class="js-kicker">Depois do slide 52 • Laboratório de problemas reais</span>
+      <h1>🏠 Lógica na<br><span class="accent">vida cotidiana</span></h1>
+      <p class="subtitle">De situações comuns para algoritmos que resolvem problemas</p>
+      <div class="daily-areas"><span>Rotina</span><span>Orçamento</span><span>Escola</span><span>Compras</span><span>Transporte</span><span>Casa</span></div>
+      <div class="callout callout--info"><span class="icon">🧠</span><span>Leia o problema, decomponha a situação, escolha os dados e só depois escreva o código.</span></div>
+    </section>
+
+    <!-- SLIDE 54: COMO LIBERAR -->
+    <section class="slide slide--content answer-gate-slide" data-title="Como liberar os gabaritos">
+      <h2>🔐 Como usar os desafios</h2>
+      <p>Os próximos slides alternam entre <strong>proposta</strong> e <strong>gabarito protegido</strong>. Primeiro, dê tempo para a turma criar e testar a própria solução. O gabarito só é inserido na apresentação depois da senha correta.</p>
+      <div class="gate-steps">
+        <div><b>1</b><strong>Leia</strong><span>Identifique entradas, processamento e saída.</span></div>
+        <div><b>2</b><strong>Crie</strong><span>Escreva e teste a sua solução.</span></div>
+        <div><b>3</b><strong>Compare</strong><span>Peça a liberação e analise outra estratégia.</span></div>
+      </div>
+      <div class="teacher-gate">
+        <div class="lock-icon">🔒</div>
+        <div><h3>Liberação da professora</h3><p>Digite a senha quando chegar o momento da correção. Uma liberação abre todos os gabaritos desta sequência.</p></div>
+        <form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)">
+          <label for="teacher-answer-password">Senha dos gabaritos</label>
+          <div class="answer-form-row"><input id="teacher-answer-password" class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="Digite a senha" aria-describedby="teacher-answer-feedback"><button type="submit">Liberar respostas</button></div>
+          <span id="teacher-answer-feedback" class="answer-lock-feedback" aria-live="polite">Os gabaritos permanecem ocultos.</span>
+        </form>
+      </div>
+    </section>
+
+    <!-- SLIDE 55: EXERCICIO COTIDIANO 1 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 1: rotina da manhã">
+      <span class="exercise-label">DESAFIO 1 • sequência, variáveis e condicional</span>
+      <h2>🌅 Rotina da manhã</h2>
+      <p>Crie um programa que organize a saída de uma pessoa para a escola. Declare o nome, o horário atual e o destino. O programa deve cumprimentar a pessoa e avisar se ainda é possível sair antes das 7h.</p>
+      <div class="daily-scenario"><span>Entrada: nome, hora e destino</span><b>→</b><span>Processamento: comparar a hora com 7</span><b>→</b><span>Saída: mensagem de orientação</span></div>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Use uma <code>const</code> para dados que não mudam e uma <code>let</code> para um dado que possa ser atualizado.</div>
+        <div><strong>2.</strong> Use template literal para montar a mensagem.</div>
+        <div><strong>3.</strong> Se a hora for menor que 7, mostre “Ainda dá tempo”; caso contrário, mostre “Prepare uma alternativa”.</div>
+      </div>
+      <p class="exercise-hint">Teste com 6.5 e com 7.25. O que muda na saída?</p>
+    </section>
+
+    <!-- SLIDE 56: GABARITO COTIDIANO 1 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 1: rotina da manhã" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-1">
+        <div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-1">Resposta do desafio 1</h2><p>Peça a senha à professora para exibir a solução comentada.</p>
+        <form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form>
+      </div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 1</span><h2>✅ Rotina da manhã — resposta possível</h2><div class="columns"><div class="code-block"><span class="lang-badge">JavaScript</span><code>const nome = "Luna";
+const hora = 6.5;
+const destino = "escola";
+let mensagem;
+
+console.log(`Bom dia, ${nome}! Destino: ${destino}.`);
+
+if (hora &lt; 7) {
+  mensagem = "Ainda dá tempo de sair.";
+} else {
+  mensagem = "Prepare uma alternativa de transporte.";
+}
+
+console.log(mensagem);</code></div><div class="card"><h3>🔍 Raciocínio</h3><p>O algoritmo recebe dados, compara a hora com um limite e escolhe uma mensagem. A variável <code>mensagem</code> recebe um valor diferente conforme a decisão.</p></div></div><div class="callout callout--tip"><span class="icon">🧪</span><span>Ao trocar <code>hora</code> para <code>7.25</code>, o caminho executado passa para o <code>else</code>.</span></div></template>
+    </section>
+
+    <!-- SLIDE 57: EXERCICIO COTIDIANO 2 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 2: orçamento do lanche">
+      <span class="exercise-label">DESAFIO 2 • operadores e decisão</span>
+      <h2>🥪 Orçamento do lanche</h2>
+      <p>Uma pessoa tem R$ 40 para comprar um sanduíche, uma bebida e uma fruta. Crie um programa que calcule o subtotal e aplique 10% de desconto quando a compra atingir pelo menos R$ 30.</p>
+      <div class="daily-scenario"><span>Sanduíche: R$ 18</span><span>Bebida: R$ 8</span><span>Fruta: R$ 6</span><strong>Limite: R$ 40</strong></div>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Declare os três preços e a quantia disponível.</div>
+        <div><strong>2.</strong> Calcule subtotal, desconto e total final.</div>
+        <div><strong>3.</strong> Informe se a pessoa pode pagar e mostre quanto sobra ou quanto falta.</div>
+      </div>
+      <p class="exercise-hint">Use operadores aritméticos, uma condicional e valores formatados com <code>toFixed(2)</code>.</p>
+    </section>
+
+    <!-- SLIDE 58: GABARITO COTIDIANO 2 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 2: orçamento do lanche" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-2"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-2">Resposta do desafio 2</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 2</span><h2>✅ Orçamento do lanche — resposta possível</h2><div class="columns"><div class="code-block"><span class="lang-badge">JavaScript</span><code>const sanduiche = 18;
+const bebida = 8;
+const fruta = 6;
+const disponivel = 40;
+
+const subtotal = sanduiche + bebida + fruta;
+let desconto = 0;
+
+if (subtotal &gt;= 30) {
+  desconto = subtotal * 0.10;
+}
+
+const total = subtotal - desconto;
+const saldo = disponivel - total;
+
+console.log(`Total: R$ ${total.toFixed(2)}`);
+if (saldo &gt;= 0) {
+  console.log(`Pode pagar. Sobra R$ ${saldo.toFixed(2)}.`);
+} else {
+  console.log(`Faltam R$ ${Math.abs(saldo).toFixed(2)}.`);
+}</code></div><div class="card"><h3>📊 Resultado</h3><p>O subtotal é R$ 32,00. O desconto é R$ 3,20 e o total final é R$ 28,80. Com R$ 40, sobra R$ 11,20.</p></div></div></template>
+    </section>
+
+    <!-- SLIDE 59: EXERCICIO COTIDIANO 3 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 3: média das provas">
+      <span class="exercise-label">DESAFIO 3 • array, loop e classificação</span>
+      <h2>📚 Média das provas</h2>
+      <p>Crie um programa que receba as notas de três avaliações e informe a média e a situação do estudante. Aprovado: média maior ou igual a 7; recuperação: média entre 5 e 6.99; reprovado: média menor que 5.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Armazene as três notas em um array.</div>
+        <div><strong>2.</strong> Percorra o array para calcular a soma e depois a média.</div>
+        <div><strong>3.</strong> Use <code>if / else if / else</code> para classificar a situação.</div>
+      </div>
+      <p class="exercise-hint">Teste com [8, 7, 9], [6, 5, 7] e [4, 3, 5].</p>
+    </section>
+
+    <!-- SLIDE 60: GABARITO COTIDIANO 3 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 3: média das provas" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-3"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-3">Resposta do desafio 3</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 3</span><h2>✅ Média das provas — resposta possível</h2><div class="code-block"><span class="lang-badge">JavaScript</span><code>const notas = [8, 7, 9];
+let soma = 0;
+
+for (const nota of notas) {
+  soma += nota;
+}
+
+const media = soma / notas.length;
+console.log(`Média: ${media.toFixed(2)}`);
+
+if (media &gt;= 7) {
+  console.log("Aprovado!");
+} else if (media &gt;= 5) {
+  console.log("Recuperação.");
+} else {
+  console.log("Reprovado.");
+}</code></div><div class="callout callout--tip"><span class="icon">🔍</span><span>O array evita criar <code>nota1</code>, <code>nota2</code> e <code>nota3</code> como variáveis separadas. O loop permite somar qualquer quantidade de notas.</span></div></template>
+    </section>
+
+    <!-- SLIDE 61: EXERCICIO COTIDIANO 4 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 4: lista de compras">
+      <span class="exercise-label">DESAFIO 4 • array e métodos</span>
+      <h2>🛒 Lista de compras</h2>
+      <p>Crie uma lista de compras para a casa. Adicione um item ao final, remova um item que já foi comprado e crie uma nova lista apenas com os itens que ainda não foram marcados como comprados.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Comece com um array de objetos contendo <code>nome</code> e <code>comprado</code>.</div>
+        <div><strong>2.</strong> Use <code>push</code> para adicionar um item.</div>
+        <div><strong>3.</strong> Use <code>filter</code> para mostrar somente os itens com <code>comprado === false</code>.</div>
+      </div>
+      <p class="exercise-hint">Explique por que um array de objetos representa melhor a situação do que um array apenas de strings.</p>
+    </section>
+
+    <!-- SLIDE 62: GABARITO COTIDIANO 4 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 4: lista de compras" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-4"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-4">Resposta do desafio 4</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 4</span><h2>✅ Lista de compras — resposta possível</h2><div class="columns"><div class="code-block"><span class="lang-badge">JavaScript</span><code>const compras = [
+  { nome: "Arroz", comprado: false },
+  { nome: "Leite", comprado: true },
+  { nome: "Frutas", comprado: false },
+];
+
+compras.push({ nome: "Sabão", comprado: false });
+
+const pendentes = compras.filter(item =&gt; !item.comprado);
+console.log(pendentes.map(item =&gt; item.nome));
+
+// O item "Leite" já foi comprado;
+// os demais permanecem na lista de pendências.</code></div><div class="card"><h3>🧩 Modelagem</h3><p>O objeto guarda o nome e o estado de cada item. Assim, a lista pode responder perguntas que uma lista de strings não conseguiria responder.</p></div></div></template>
+    </section>
+
+    <!-- SLIDE 63: EXERCICIO COTIDIANO 5 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 5: tempo de transporte">
+      <span class="exercise-label">DESAFIO 5 • função e validação</span>
+      <h2>🚌 Tempo de transporte</h2>
+      <p>Crie a função <code>calcularTempo(distanciaKm, velocidadeKmH)</code>. Ela deve retornar o tempo aproximado em minutos. Se a velocidade for zero ou negativa, retorne <code>null</code> e informe que os dados são inválidos.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Converta horas para minutos.</div>
+        <div><strong>2.</strong> Teste a função com 12 km a 24 km/h.</div>
+        <div><strong>3.</strong> Faça um segundo teste com velocidade 0.</div>
+      </div>
+      <p class="exercise-hint">Separe a regra de cálculo da exibição. A função deve devolver o resultado; o <code>console.log</code> fica fora dela.</p>
+    </section>
+
+    <!-- SLIDE 64: GABARITO COTIDIANO 5 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 5: tempo de transporte" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-5"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-5">Resposta do desafio 5</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 5</span><h2>✅ Tempo de transporte — resposta possível</h2><div class="code-block"><span class="lang-badge">JavaScript</span><code>function calcularTempo(distanciaKm, velocidadeKmH) {
+  if (velocidadeKmH &lt;= 0) {
+    return null;
+  }
+
+  const tempoEmHoras = distanciaKm / velocidadeKmH;
+  return tempoEmHoras * 60;
+}
+
+const tempo = calcularTempo(12, 24);
+if (tempo === null) {
+  console.log("Velocidade inválida.");
+} else {
+  console.log(`Tempo aproximado: ${tempo} minutos.`);
+}
+
+console.log(calcularTempo(12, 0)); // null</code></div><div class="callout callout--tip"><span class="icon">📤</span><span><code>return</code> entrega o valor para quem chamou a função. A decisão sobre como exibir o resultado fica no programa principal.</span></div></template>
+    </section>
+
+    <!-- SLIDE 65: EXERCICIO COTIDIANO 6 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 6: semáforo">
+      <span class="exercise-label">DESAFIO 6 • switch / case</span>
+      <h2>🚦 Semáforo do bairro</h2>
+      <p>Crie um programa que receba a cor de um semáforo e mostre a orientação correta para pedestres: vermelho significa esperar, amarelo significa atenção e verde significa atravessar com segurança.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Use uma variável <code>cor</code>.</div>
+        <div><strong>2.</strong> Use <code>switch</code>, <code>case</code>, <code>break</code> e <code>default</code>.</div>
+        <div><strong>3.</strong> Teste uma cor que não exista e trate a entrada como inválida.</div>
+      </div>
+      <p class="exercise-hint">Compare o uso de <code>switch</code> com vários <code>if / else if</code>. Qual deixa as opções fixas mais claras?</p>
+    </section>
+
+    <!-- SLIDE 66: GABARITO COTIDIANO 6 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 6: semáforo" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-6"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-6">Resposta do desafio 6</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 6</span><h2>✅ Semáforo do bairro — resposta possível</h2><div class="columns"><div class="code-block"><span class="lang-badge">JavaScript</span><code>const cor = "amarelo";
+
+switch (cor) {
+  case "vermelho":
+    console.log("Espere.");
+    break;
+  case "amarelo":
+    console.log("Atenção: prepare-se.");
+    break;
+  case "verde":
+    console.log("Atravesse com segurança.");
+    break;
+  default:
+    console.log("Cor inválida.");
+}</code></div><div class="card"><h3>🔀 Por que <code>break</code>?</h3><p>Ele encerra o caso atual. Sem <code>break</code>, o fluxo poderia continuar executando os casos seguintes.</p></div></div></template>
+    </section>
+
+    <!-- SLIDE 67: EXERCICIO COTIDIANO 7 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 7: hidratação">
+      <span class="exercise-label">DESAFIO 7 • while, condição de parada e acumulador</span>
+      <h2>💧 Hidratação do dia</h2>
+      <p>Uma pessoa quer atingir a meta de 2.000 ml de água. Dado um array com os volumes dos copos tomados ao longo do dia, use um loop para somar o consumo até atingir a meta ou acabar a lista.</p>
+      <div class="code-block code-compact"><code>const copos = [300, 500, 400, 300, 600];
+const meta = 2000;</code></div>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Controle o índice e o total consumido.</div>
+        <div><strong>2.</strong> Conte quantos copos foram necessários.</div>
+        <div><strong>3.</strong> Informe se a meta foi atingida e o total final.</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 68: GABARITO COTIDIANO 7 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 7: hidratação" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-7"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-7">Resposta do desafio 7</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 7</span><h2>✅ Hidratação do dia — resposta possível</h2><div class="code-block"><span class="lang-badge">JavaScript</span><code>const copos = [300, 500, 400, 300, 600];
+const meta = 2000;
+let total = 0;
+let coposTomados = 0;
+let indice = 0;
+
+while (total &lt; meta &amp;&amp; indice &lt; copos.length) {
+  total += copos[indice];
+  coposTomados++;
+  indice++;
+}
+
+console.log(`Total: ${total} ml`);
+console.log(`Copos: ${coposTomados}`);
+console.log(total &gt;= meta ? "Meta atingida!" : "Meta não atingida.");</code></div><div class="callout callout--warning"><span class="icon">⚠️</span><span>O índice aumenta a cada volta. Sem <code>indice++</code>, a condição poderia nunca mudar e o loop ficaria infinito.</span></div></template>
+    </section>
+
+    <!-- SLIDE 69: EXERCICIO COTIDIANO 8 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 8: gastos da semana">
+      <span class="exercise-label">DESAFIO 8 • array de objetos, filter e reduce</span>
+      <h2>💳 Gastos da semana</h2>
+      <p>Modele os gastos de uma semana com objetos contendo dia, categoria e valor. Calcule o total gasto e descubra quais despesas foram maiores que R$ 50.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Crie ao menos cinco registros no array.</div>
+        <div><strong>2.</strong> Use <code>reduce</code> para o total.</div>
+        <div><strong>3.</strong> Use <code>filter</code> para localizar os gastos acima de R$ 50 e <code>map</code> para listar os dias.</div>
+      </div>
+      <p class="exercise-hint">Explique por que a chave <code>categoria</code> é útil mesmo quando o cálculo usa apenas <code>valor</code>.</p>
+    </section>
+
+    <!-- SLIDE 70: GABARITO COTIDIANO 8 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 8: gastos da semana" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-8"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-8">Resposta do desafio 8</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 8</span><h2>✅ Gastos da semana — resposta possível</h2><div class="code-block code-compact"><span class="lang-badge">JavaScript</span><code>const gastos = [
+  { dia: "segunda", categoria: "mercado", valor: 72 },
+  { dia: "terça", categoria: "transporte", valor: 18 },
+  { dia: "quarta", categoria: "lanche", valor: 24 },
+  { dia: "quinta", categoria: "farmácia", valor: 65 },
+  { dia: "sexta", categoria: "cinema", valor: 48 },
+];
+
+const total = gastos.reduce((soma, gasto) =&gt; soma + gasto.valor, 0);
+const maiores = gastos.filter(gasto =&gt; gasto.valor &gt; 50);
+const dias = maiores.map(gasto =&gt; gasto.dia);
+
+console.log(`Total: R$ ${total.toFixed(2)}`); // R$ 227.00
+console.log(dias); // ["segunda", "quinta"]</code></div><div class="callout callout--tip"><span class="icon">📊</span><span>O mesmo array permite perguntas diferentes: total com <code>reduce</code>, seleção com <code>filter</code> e transformação com <code>map</code>.</span></div></template>
+    </section>
+
+    <!-- SLIDE 71: EXERCICIO COTIDIANO 9 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 9: agenda de tarefas">
+      <span class="exercise-label">DESAFIO 9 • objetos e funções</span>
+      <h2>🗓️ Agenda de tarefas</h2>
+      <p>Crie uma agenda com tarefas da casa. Cada objeto deve ter <code>titulo</code>, <code>prioridade</code> e <code>concluida</code>. Escreva uma função que retorne somente os títulos das tarefas pendentes.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Crie um array com pelo menos quatro objetos.</div>
+        <div><strong>2.</strong> Implemente <code>listarPendentes(tarefas)</code>.</div>
+        <div><strong>3.</strong> Mostre as tarefas pendentes e quantas são de prioridade alta.</div>
+      </div>
+      <p class="exercise-hint">A função deve retornar dados; a exibição deve acontecer fora dela.</p>
+    </section>
+
+    <!-- SLIDE 72: GABARITO COTIDIANO 9 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 9: agenda de tarefas" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-9"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-9">Resposta do desafio 9</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 9</span><h2>✅ Agenda de tarefas — resposta possível</h2><div class="columns"><div class="code-block"><span class="lang-badge">JavaScript</span><code>const tarefas = [
+  { titulo: "Lavar a louça", prioridade: "alta", concluida: false },
+  { titulo: "Estudar JS", prioridade: "alta", concluida: true },
+  { titulo: "Organizar a mochila", prioridade: "média", concluida: false },
+  { titulo: "Regar as plantas", prioridade: "baixa", concluida: false },
+];
+
+function listarPendentes(tarefas) {
+  return tarefas
+    .filter(tarefa =&gt; !tarefa.concluida)
+    .map(tarefa =&gt; tarefa.titulo);
+}
+
+const pendentes = listarPendentes(tarefas);
+const altasPendentes = tarefas.filter(
+  tarefa =&gt; !tarefa.concluida &amp;&amp; tarefa.prioridade === "alta"
+);
+
+console.log(pendentes);
+console.log(`Prioridades altas: ${altasPendentes.length}`);</code></div><div class="card"><h3>🧩 Duas perguntas</h3><p><code>filter</code> seleciona as tarefas pendentes. O segundo <code>filter</code> combina duas condições para contar apenas as pendentes de prioridade alta.</p></div></div></template>
+    </section>
+
+    <!-- SLIDE 73: EXERCICIO COTIDIANO 10 -->
+    <section class="slide slide--accent daily-exercise-slide" data-title="Desafio 10: custo da viagem">
+      <span class="exercise-label">DESAFIO 10 • função, objeto e validação</span>
+      <h2>🧳 Custo de uma viagem</h2>
+      <p>Modele uma viagem de carro. Crie uma função que receba a distância, o consumo do veículo, o preço do litro, o total de pedágios e a quantidade de passageiros. A função deve retornar um objeto com litros, custo de combustível, custo total e valor por pessoa.</p>
+      <div class="exercise-grid">
+        <div><strong>1.</strong> Valide consumo, distância e quantidade de passageiros.</div>
+        <div><strong>2.</strong> Use um objeto para devolver vários resultados nomeados.</div>
+        <div><strong>3.</strong> Teste com 360 km, consumo de 12 km/l, combustível a R$ 6,00, pedágios de R$ 48,00 e quatro pessoas.</div>
+      </div>
+      <p class="exercise-hint">Antes de programar, desenhe o contrato da função: entradas, processamento e saída.</p>
+    </section>
+
+    <!-- SLIDE 74: GABARITO COTIDIANO 10 -->
+    <section class="slide slide--dark protected-answer-slide" data-title="Gabarito 10: custo da viagem" data-protected-answer="true">
+      <div class="answer-lock" role="dialog" aria-labelledby="answer-lock-title-10"><div class="lock-icon">🔒</div><span class="answer-label">GABARITO PROTEGIDO</span><h2 id="answer-lock-title-10">Resposta do desafio 10</h2><p>Peça a senha à professora para exibir a solução comentada.</p><form class="answer-unlock-form" onsubmit="return Slides.unlockAnswers(event)"><label>Senha dos gabaritos</label><div class="answer-form-row"><input class="answer-password-input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" placeholder="••••"><button type="submit">Desbloquear</button></div><span class="answer-lock-feedback" aria-live="polite">Resposta ainda oculta.</span></form></div>
+      <div class="answer-unlocked-content" hidden></div>
+      <template class="protected-answer-template"><span class="answer-label">GABARITO COMENTADO • desafio 10</span><h2>✅ Custo da viagem — resposta possível</h2><div class="code-block code-compact"><span class="lang-badge">JavaScript</span><code>function calcularViagem(distancia, consumo, precoLitro, pedagios, passageiros) {
+  if (distancia &lt;= 0 || consumo &lt;= 0 || passageiros &lt; 1) {
+    return null;
+  }
+
+  const litros = distancia / consumo;
+  const combustivel = litros * precoLitro;
+  const total = combustivel + pedagios;
+
+  return {
+    litros,
+    combustivel,
+    total,
+    porPessoa: total / passageiros,
+  };
+}
+
+const viagem = calcularViagem(360, 12, 6, 48, 4);
+console.log(`Litros: ${viagem.litros.toFixed(2)}`);
+console.log(`Total: R$ ${viagem.total.toFixed(2)}`);
+console.log(`Por pessoa: R$ ${viagem.porPessoa.toFixed(2)}`);</code></div><div class="callout callout--tip"><span class="icon">🐉</span><span>O objeto de retorno organiza vários resultados com chaves. É a mesma evolução Charizard: um nome para cada informação relacionada.</span></div></template>
+    </section>
+
+    <!-- SLIDE 75: ENCERRAMENTO DOS DESAFIOS -->
+    <section class="slide slide--cover daily-challenges-end" data-title="Encerramento dos desafios">
+      <span class="js-kicker">Você chegou ao fim do laboratório</span>
+      <h1>🎯 Resolver é<br><span class="accent">evoluir</span></h1>
+      <div class="daily-review-grid"><div><strong>Decomponha</strong><span>separe o problema em partes menores</span></div><div><strong>Modele</strong><span>escolha variáveis, arrays e objetos</span></div><div><strong>Teste</strong><span>experimente casos normais e limites</span></div><div><strong>Explique</strong><span>defenda suas escolhas de código</span></div></div>
+      <div class="callout callout--info"><span class="icon">🔐</span><span>Os gabaritos desta sequência continuam protegidos até a senha ser informada pela professora.</span></div>
+      <p style="color:#94A3B8; margin-top:26px;">Profª Luana Cristina — ETE Pernambuco — 2026.2</p>
+    </section>
+
   </div><!-- /slides-wrapper -->
 
   <!-- Controles -->
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
     <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
-    <span class="progress-text">1 / 52</span>
+    <span class="progress-text">1 / 75</span>
     <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
     <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
   </div>
 
-  <script src="../slides.js"></script>
+  <script src="../slides.js?v=2026-08-protected"></script>
 </body>
 </html>

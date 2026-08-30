@@ -14,6 +14,7 @@
   let sidebar = null;
   let progressBar = null;
   let progressText = null;
+  const ANSWER_PASSWORD = '2323';
 
   // ===== INICIALIZAÇÃO =====
   function init() {
@@ -63,6 +64,59 @@
   function goToSlide(index) {
     showSlide(index);
     closeSidebar();
+  }
+
+  // ===== GABARITOS PROTEGIDOS =====
+  function initProtectedAnswers() {
+    const protectedSlides = document.querySelectorAll('[data-protected-answer="true"]');
+    protectedSlides.forEach((slide) => {
+      const template = slide.querySelector('.protected-answer-template');
+      const content = slide.querySelector('.answer-unlocked-content');
+      if (template && content && content.childElementCount === 0) {
+        content.appendChild(template.content.cloneNode(true));
+      }
+      if (content) content.hidden = true;
+    });
+
+  }
+
+  function revealProtectedAnswers(showFeedback = true) {
+    document.querySelectorAll('[data-protected-answer="true"]').forEach((slide) => {
+      const lock = slide.querySelector('.answer-lock');
+      const content = slide.querySelector('.answer-unlocked-content');
+      if (lock) lock.hidden = true;
+      if (content) content.hidden = false;
+      slide.classList.add('answers-unlocked');
+    });
+
+    document.querySelectorAll('.answer-lock-feedback').forEach((feedback) => {
+      feedback.textContent = showFeedback ? 'Gabaritos liberados nesta sessão.' : 'Gabaritos liberados.';
+      feedback.classList.remove('is-error');
+      feedback.classList.add('is-success');
+    });
+
+  }
+
+  function unlockAnswers(event) {
+    if (event) event.preventDefault();
+    const form = event ? event.currentTarget : null;
+    const input = form ? form.querySelector('.answer-password-input') : null;
+    const feedback = form ? form.querySelector('.answer-lock-feedback') : null;
+    const typedPassword = input ? input.value.trim() : '';
+
+    if (typedPassword === ANSWER_PASSWORD) {
+      revealProtectedAnswers(true);
+    } else if (feedback) {
+      feedback.textContent = 'Senha incorreta. A resposta continua oculta.';
+      feedback.classList.remove('is-success');
+      feedback.classList.add('is-error');
+      if (input) {
+        input.value = '';
+        input.focus();
+      }
+    }
+
+    return false;
   }
 
   // ===== PROGRESS =====
@@ -204,6 +258,7 @@
     goTo: goToSlide,
     toggleFullscreen: toggleFullscreen,
     toggleSidebar: toggleSidebar,
+    unlockAnswers: unlockAnswers,
     goHome: function() {
       // Navigate to the portal index (2 levels up from disciplinas/)
       const currentPath = window.location.pathname;
@@ -219,9 +274,10 @@
 
   // ===== AUTO-INIT =====
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => { init(); initCodeTabs(); });
+    document.addEventListener('DOMContentLoaded', () => { init(); initCodeTabs(); initProtectedAnswers(); });
   } else {
     init();
     initCodeTabs();
+    initProtectedAnswers();
   }
 })();
