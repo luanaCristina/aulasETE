@@ -2027,8 +2027,8 @@ form.addEventListener('submit', async (e) =&gt; {
       <span class="api-kicker">API CLIENTS • PRÁTICA PROFISSIONAL</span>
       <h1>🧪 Teste o backend antes do frontend</h1>
       <p class="subtitle">Postman e Bruno permitem enviar requisições e observar respostas com precisão</p>
-      <div class="api-hero-flow"><span>URL</span><b>+</b><span>método</span><b>+</b><span>headers</span><b>+</b><span>body</span><b>→</b><span>resposta</span></div>
-      <div class="callout callout--info api-hero-callout"><span class="icon">🔬</span><span>Antes de montar uma tela, podemos testar a API diretamente. Assim isolamos problemas do servidor, do contrato de dados e do frontend. <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer" target="_blank" rel="noopener">Abrir o ETE API Playground público ↗</a></span></div>
+      <div class="api-hero-flow"><span>URL</span><b>+</b><span>método</span><b>+</b><span>headers</span><b>+</b><span>JSON</span><b>→</b><span>resposta</span></div>
+      <div class="callout callout--info api-hero-callout"><span class="icon">🔬</span><span>Antes de montar uma tela, podemos testar a API diretamente. Assim isolamos problemas do servidor, do contrato de dados e do frontend. <a href="https://eteapiplay-akbqqgv2.manus.space" target="_blank" rel="noopener">Abrir o ETE API Playground público ↗</a></span></div>
     </section>
 
     <!-- SLIDE 65: O QUE É API CLIENT -->
@@ -2064,8 +2064,8 @@ Documentação: https://learning.postman.com/docs/getting-started/quick-start
 
 Objetivo da aula:
 importar "ETE API Playground — Recados CRUD"
-e testar https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/recados</code></div>
-      <div class="callout callout--info"><span class="icon">💾</span><span>Depois de instalar, use <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground.postman_collection_fca7b7d8.json" target="_blank" rel="noopener">este arquivo para baixar a collection</a> e <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground_public.postman_environment_83426267.json" target="_blank" rel="noopener">este para baixar o environment público</a>. No Postman, clique em Import, selecione os dois JSONs e ative o environment no canto superior direito.</span></div>
+e testar https://eteapiplay-akbqqgv2.manus.space/api/recados</code></div>
+      <div class="callout callout--info"><span class="icon">💾</span><span>Depois de instalar, use <a href="https://eteapiplay-akbqqgv2.manus.space/manus-storage/ETE_API_Playground.postman_collection_6cfa573f.json" target="_blank" rel="noopener">este arquivo para baixar a collection</a> e <a href="https://eteapiplay-akbqqgv2.manus.space/manus-storage/ETE_API_Playground_public.postman_environment_3aeabcb9.json" target="_blank" rel="noopener">este para baixar o environment público</a>. No Postman, clique em Import, selecione os dois JSONs e ative o environment no canto superior direito.</span></div>
     </section>
 
     <!-- SLIDE 67: INSTALAR BRUNO -->
@@ -2080,7 +2080,7 @@ e testar https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/reca
             <li>Escolha o instalador do seu sistema operacional.</li>
             <li>Abra o aplicativo e clique em `+` → <strong>Create collection</strong>.</li>
             <li>Escolha <strong>Open Collection</strong> e selecione a pasta `bruno/` do material da aula.</li>
-            <li>Baixe <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground_Bruno_Collection_439fabdd.zip" target="_blank" rel="noopener">a collection do Bruno</a>, descompacte e selecione a pasta `bruno/` no aplicativo.</li>
+            <li>Baixe <a href="https://eteapiplay-akbqqgv2.manus.space/manus-storage/ETE_API_Playground_Bruno_Collection_Production_v2_b81cff99.zip" target="_blank" rel="noopener">a collection do Bruno</a>, descompacte e selecione a pasta `bruno/` no aplicativo.</li>
           </ol>
         </div>
         <div class="code-block"><span class="lang-badge">BRU / GIT</span><code>mural-de-recados/
@@ -2106,10 +2106,10 @@ e testar https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/reca
         <div><strong>URL</strong><span>Endereço da rota, por exemplo `/api/recados/1`.</span></div>
         <div><strong>Params</strong><span>Dados na URL, como `?status=ativo`.</span></div>
         <div><strong>Headers</strong><span>Metadados, tipo do conteúdo e autorização.</span></div>
-        <div><strong>Body</strong><span>JSON obrigatório em todos os testes; em GET/DELETE é contexto didático.</span></div>
+        <div><strong>JSON</strong><span>Body em POST, PUT, PATCH e DELETE; no GET publicado, contexto JSON no header.</span></div>
         <div><strong>Send</strong><span>Executa a requisição e mostra a resposta.</span></div>
       </div>
-      <div class="code-block"><span class="lang-badge">MAPA</span><code>POST https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/recados
+      <div class="code-block"><span class="lang-badge">MAPA</span><code>POST https://eteapiplay-akbqqgv2.manus.space/api/recados
 
 Headers
   Content-Type: application/json
@@ -2119,7 +2119,7 @@ Headers
 Body → raw / JSON
   { "context": { "estudante": "Ana", "ferramenta": "postman", "objetivo": "criar" },
     "recado": { "titulo": "Aula", "mensagem": "Estudar API" } }</code></div>
-      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Header e body têm funções diferentes: o header descreve a requisição; o body carrega os dados. O playground exige ambos em todos os cinco métodos. Em GET/DELETE, `context` é recebido apenas para visualização; ele não filtra nem troca o alvo da rota.</span></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Header e body têm funções diferentes: o header descreve a requisição; o body carrega os dados. No playground publicado, GET usa `X-API-Context` com JSON porque alguns gateways recusam body em GET. POST, PUT, PATCH e DELETE usam body JSON. O contexto nunca filtra a consulta nem troca o alvo da remoção.</span></div>
     </section>
 
     <!-- SLIDE 69: CRUD -->
@@ -2129,7 +2129,7 @@ Body → raw / JSON
       <table>
         <thead><tr><th>Ação</th><th>Método</th><th>URL exemplo</th><th>Body</th><th>Status</th></tr></thead>
         <tbody>
-          <tr><td>listar</td><td><code>GET</code></td><td><code>/api/recados</code></td><td>`context` didático</td><td>200</td></tr>
+          <tr><td>listar</td><td><code>GET</code></td><td><code>/api/recados</code></td><td>header `X-API-Context`</td><td>200</td></tr>
           <tr><td>criar</td><td><code>POST</code></td><td><code>/api/recados</code></td><td>`context` + `recado`</td><td>201</td></tr>
           <tr><td>substituir</td><td><code>PUT</code></td><td><code>/api/recados/1</code></td><td>`context` + recurso completo</td><td>200</td></tr>
           <tr><td>alterar parte</td><td><code>PATCH</code></td><td><code>/api/recados/1</code></td><td>`context` + `alteracoes`</td><td>200</td></tr>
@@ -2152,7 +2152,7 @@ Body → raw / JSON
           <ol>
             <li>Clique em `+` para abrir uma nova aba.</li>
             <li>Selecione <strong>GET</strong> no menu do método.</li>
-            <li>Cole a URL pública: `https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/recados`.</li>
+            <li>Cole a URL pública: `https://eteapiplay-akbqqgv2.manus.space/api/recados`.</li>
             <li>Na aba <strong>Headers</strong>, adicione `Content-Type: application/json`, `X-API-Lab: ETE-API-PLAYGROUND` e `X-Request-Id: postman-ana-001`.</li>
             <li>Na aba <strong>Body</strong>, escolha <strong>raw → JSON</strong> e cole o contexto do exercício.</li>
             <li>Clique em <strong>Send</strong>.</li>
@@ -2182,7 +2182,7 @@ Resposta esperada: 200 + { data: { items: [] }, meta: {...} }</code></div>
           <h3>Configuração visual</h3>
           <ol>
             <li>Selecione <strong>POST</strong>.</li>
-            <li>Use `https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/api/recados`.</li>
+            <li>Use `https://eteapiplay-akbqqgv2.manus.space/api/recados`.</li>
             <li>Abra a aba <strong>Headers</strong> e adicione `Content-Type: application/json`, `X-API-Lab: ETE-API-PLAYGROUND` e um `X-Request-Id` único.</li>
             <li>Abra <strong>Body</strong> → <strong>raw</strong> → selecione <strong>JSON</strong>.</li>
             <li>Digite o objeto e clique em <strong>Send</strong>.</li>
@@ -2295,10 +2295,10 @@ O id na URL, e não o body, define o recado removido.</code></div>
       <div class="columns">
         <div class="card">
           <h3>Collection</h3>
-          <p>Clique em <strong>Import</strong> e selecione a <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground.postman_collection_fca7b7d8.json" target="_blank" rel="noopener">collection pronta</a> e o <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer/manus-storage/ETE_API_Playground_public.postman_environment_83426267.json" target="_blank" rel="noopener">environment público</a>.</p>
+          <p>Clique em <strong>Import</strong> e selecione a <a href="https://eteapiplay-akbqqgv2.manus.space/manus-storage/ETE_API_Playground.postman_collection_6cfa573f.json" target="_blank" rel="noopener">collection pronta</a> e o <a href="https://eteapiplay-akbqqgv2.manus.space/manus-storage/ETE_API_Playground_public.postman_environment_3aeabcb9.json" target="_blank" rel="noopener">environment público</a>.</p>
           <p>Ative o environment no canto superior direito. Ele mantém `baseUrl` e recebe automaticamente `recadoId` depois do POST.</p>
         </div>
-        <div class="code-block"><span class="lang-badge">ENVIRONMENT: public-preview</span><code>baseUrl = https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer
+        <div class="code-block"><span class="lang-badge">ENVIRONMENT: produção pública</span><code>baseUrl = https://eteapiplay-akbqqgv2.manus.space
 recadoId = (preenchido pelo POST)
 
 GET {{baseUrl}}/api/recados
@@ -2417,7 +2417,7 @@ body:json {
     <section class="slide slide--accent" data-title="Exercício: testar o CRUD no Postman e Bruno">
       <span class="exercise-label">EXERCÍCIO 6 • API CLIENTS</span>
       <h2>🧪 Teste o Mural de Recados em duas ferramentas</h2>
-      <p>Abra o <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer" target="_blank" rel="noopener">ETE API Playground público</a>, importe a collection do Postman ou abra a pasta do Bruno e execute o roteiro completo.</p>
+      <p>Abra o <a href="https://eteapiplay-akbqqgv2.manus.space" target="_blank" rel="noopener">ETE API Playground público</a>, importe a collection do Postman ou abra a pasta do Bruno e execute o roteiro completo.</p>
       <div class="api-exercise-route"><span>GET listar</span><span>POST criar</span><span>GET conferir</span><span>PATCH atualizar</span><span>DELETE remover</span><span>GET final</span></div>
       <div class="exercise-grid">
         <div>Em todos os métodos, use `Content-Type`, `X-API-Lab` e `X-Request-Id` nos headers e um body JSON com `context`.</div>
@@ -2471,7 +2471,7 @@ body:json {
       <h1>🎯 Método, dados, resposta e evidência</h1>
       <div class="api-closing-flow"><span>Postman</span><b>ou</b><span>Bruno</span><b>→</b><span>requisição</span><b>→</b><span>API</span><b>→</b><span>resposta</span></div>
       <div class="callout callout--info api-hero-callout"><span class="icon">💡</span><span>Quando você consegue explicar por que enviou aquele método, header e body e consegue interpretar a resposta, já está pensando como uma pessoa desenvolvedora de APIs.</span></div>
-      <p style="color:#94A3B8; margin-top:32px;">Pratique agora: <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer" target="_blank" rel="noopener">ETE API Playground</a> · <a href="https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer#materiais" target="_blank" rel="noopener">collection e guia da aula</a></p>
+      <p style="color:#94A3B8; margin-top:32px;">Pratique agora: <a href="https://eteapiplay-akbqqgv2.manus.space" target="_blank" rel="noopener">ETE API Playground</a> · <a href="https://eteapiplay-akbqqgv2.manus.space#materiais" target="_blank" rel="noopener">collection e guia da aula</a></p>
     </section>
 
   </div><!-- /slides-wrapper -->

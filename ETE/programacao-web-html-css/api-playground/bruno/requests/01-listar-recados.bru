@@ -6,23 +6,13 @@ meta {
 
 get {
   url: {{baseUrl}}/api/recados
-  body: json
 }
 
 headers {
   Content-Type: application/json
   X-API-Lab: ETE-API-PLAYGROUND
   X-Request-Id: bruno-get-001
-}
-
-body:json {
-  {
-    "context": {
-      "estudante": "Ana",
-      "ferramenta": "bruno",
-      "objetivo": "listar os recados da turma"
-    }
-  }
+  X-API-Context: {"context":{"estudante":"Ana","ferramenta":"bruno","objetivo":"listar os recados da turma"}}
 }
 
 tests {

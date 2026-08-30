@@ -14,11 +14,11 @@
         "header": [
           { "key": "Content-Type", "value": "application/json" },
           { "key": "X-API-Lab", "value": "ETE-API-PLAYGROUND" },
-          { "key": "X-Request-Id", "value": "postman-{{$guid}}" }
+          { "key": "X-Request-Id", "value": "postman-{{$guid}}" },
+          { "key": "X-API-Context", "value": "{\"context\":{\"estudante\":\"Ana\",\"ferramenta\":\"postman\",\"objetivo\":\"listar os recados da turma\"}}" }
         ],
-        "body": { "mode": "raw", "raw": "{\n  \"context\": {\n    \"estudante\": \"Ana\",\n    \"ferramenta\": \"postman\",\n    \"objetivo\": \"listar os recados da turma\"\n  }\n}", "options": { "raw": { "language": "json" } } },
         "url": { "raw": "{{baseUrl}}/api/recados", "host": ["{{baseUrl}}"], "path": ["api", "recados"] },
-        "description": "O context é didático e não filtra a lista. Observe meta.context na resposta."
+        "description": "O contexto didático é enviado no header X-API-Context porque o domínio publicado não aceita body em GET. Ele não filtra a lista; observe meta.context na resposta."
       }
     },
     {

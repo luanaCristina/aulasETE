@@ -6,10 +6,10 @@ Este material acompanha o **ETE API Playground**, uma API pública para praticar
 
 ## URL do ambiente de aula
 
-No momento, a collection usa a URL pública de pré-visualização abaixo. Ela é adequada para a demonstração enquanto o projeto está em desenvolvimento. Após a publicação definitiva do playground, importe novamente o environment atualizado com a URL permanente.
+Use o domínio público permanente abaixo em toda a atividade. O mesmo endereço já está configurado no environment de Postman e no ambiente do Bruno.
 
 ```text
-https://3000-iqayw4dw5yg3wa5kewmw4-4ebbbc96.us2.manus.computer
+https://eteapiplay-akbqqgv2.manus.space
 ```
 
 O recurso da API é:
@@ -18,9 +18,9 @@ O recurso da API é:
 {{baseUrl}}/api/recados
 ```
 
-| Operação | Método | Rota | Corpo JSON | Status de sucesso |
+| Operação | Método | Rota | Contexto ou corpo | Status de sucesso |
 |---|---|---|---|---|
-| Listar | `GET` | `/api/recados` | `context` | `200 OK` |
+| Listar | `GET` | `/api/recados` | JSON no header `X-API-Context` | `200 OK` |
 | Criar | `POST` | `/api/recados` | `context` e `recado` | `201 Created` |
 | Substituir | `PUT` | `/api/recados/:id` | `context` e `recado` completo | `200 OK` |
 | Atualizar parte | `PATCH` | `/api/recados/:id` | `context` e `alteracoes` | `200 OK` |
@@ -38,21 +38,21 @@ X-Request-Id: postman-ana-001
 
 ## Contexto em GET e DELETE
 
-GET continua consultando e DELETE continua removendo o recurso apontado por `:id`. O body obrigatório destas duas operações contém somente um `context` didático, devolvido na resposta quando houver body. Ele não filtra a lista, não escolhe o recurso nem altera a semântica da operação.
+GET continua consultando e DELETE continua removendo o recurso apontado por `:id`. No domínio permanente, envie o JSON de `context` do GET no header `X-API-Context`; ele é devolvido em `meta.context`, não filtra a lista e não altera a semântica da consulta. O DELETE usa um body JSON com `context`, mas o alvo removido permanece exclusivamente no `:id` da URL.
 
-Alguns clientes HTTP, bibliotecas, proxies e servidores podem não aceitar body em GET ou DELETE. A RFC 9110 alerta que estes conteúdos não possuem semântica geralmente definida. Este playground os aceita somente para a observação orientada em clientes de API; em sistemas reais, use parâmetros de URL e headers para a consulta e o identificador no caminho para a remoção.[1]
+Corpos em GET não possuem semântica geralmente definida e podem ser recusados por clientes, bibliotecas, proxies e gateways. Por esse motivo, a collection do Postman e a collection do Bruno usam `X-API-Context` na consulta publicada. Em sistemas reais, use parâmetros de URL e headers para a consulta e o identificador no caminho para a remoção.[1]
 
 ## Postman — instalação e uso
 
-Instale o aplicativo Desktop pela página oficial [Postman Downloads](https://www.postman.com/downloads/). Em seguida, abra o Postman, importe `ETE_API_Playground.postman_collection.json` e `ETE_API_Playground_public.postman_environment.json` por **Import**. Selecione o ambiente **ETE API Playground — Preview público** no canto superior direito e abra as requests na ordem numérica.[2]
+Instale o aplicativo Desktop pela página oficial [Postman Downloads](https://www.postman.com/downloads/). Em seguida, abra o Postman, importe `ETE_API_Playground.postman_collection.json` e `ETE_API_Playground_public.postman_environment.json` por **Import**. Selecione o ambiente **ETE API Playground — Produção pública** no canto superior direito e abra as requests na ordem numérica.[2]
 
-Em cada request, confira quatro áreas antes de usar **Send**. O seletor à esquerda da URL define o método; a própria URL usa `{{baseUrl}}`; a aba **Headers** contém os três headers; e a aba **Body** usa **raw → JSON** com o objeto apresentado. Depois do envio, leia status, headers de resposta e body. A request de criação grava automaticamente o id retornado na variável `recadoId`, que será usado em PUT, PATCH e DELETE.
+Em cada request, confira quatro áreas antes de usar **Send**. O seletor à esquerda da URL define o método; a própria URL usa `{{baseUrl}}`; a aba **Headers** contém os três headers; e a aba **Body** usa **raw → JSON** em POST, PUT, PATCH e DELETE. Na request GET, confira o JSON de contexto em `X-API-Context`. Depois do envio, leia status, headers de resposta e body. A request de criação grava automaticamente o id retornado na variável `recadoId`, que será usado em PUT, PATCH e DELETE.
 
 ## Bruno — instalação e uso
 
-Baixe o Bruno na página oficial [Bruno Downloads](https://www.usebruno.com/downloads/). No aplicativo, use **Open Collection** e selecione a pasta `bruno/` deste material. Escolha o ambiente **public-preview** no canto superior direito. Cada arquivo `.bru` representa uma request e pode ser lido, modificado e versionado com Git.[3]
+Baixe o Bruno na página oficial [Bruno Downloads](https://www.usebruno.com/downloads/). No aplicativo, use **Open Collection** e selecione a pasta `bruno/` deste material. Escolha o ambiente **public-preview** no canto superior direito; ele já aponta para o domínio permanente. Cada arquivo `.bru` representa uma request e pode ser lido, modificado e versionado com Git.[3]
 
-Abra os arquivos em `bruno/requests` na ordem numérica. Em cada um, confira o método, URL, aba **Headers** e aba **Body → JSON**. Use **Send** ou `Ctrl/Cmd + Enter`. O Bruno extrai o id do POST e o armazena no ambiente como `recadoId`; depois, PUT, PATCH e DELETE usam `{{recadoId}}` na URL.
+Abra os arquivos em `bruno/requests` na ordem numérica. Em cada um, confira o método, URL, aba **Headers** e aba **Body → JSON** para POST, PUT, PATCH e DELETE. No GET, o contexto está no header `X-API-Context`. Use **Send** ou `Ctrl/Cmd + Enter`. O Bruno extrai o id do POST e o armazena no ambiente como `recadoId`; depois, PUT, PATCH e DELETE usam `{{recadoId}}` na URL.
 
 ## Roteiro de demonstração
 
@@ -73,7 +73,7 @@ Abra os arquivos em `bruno/requests` na ordem numérica. Em cada um, confira o m
 | `400` | Header obrigatório ausente ou incorreto. | Confira `X-API-Lab` e `X-Request-Id`. |
 | `415` | O conteúdo não foi identificado como JSON. | Use `Content-Type: application/json`. |
 | `422` | O JSON não segue o contrato. | Confira nomes, aspas e campos obrigatórios. |
-| `404` | A rota ou id não existe. | Confira URL, método e `recadoId`. |
+| `404` | A rota ou id não existe. | Execute POST, copie o `data.id` retornado e só então use PUT, PATCH ou DELETE. |
 | `429` | Muitas alterações no curto período. | Aguarde um minuto e reduza os envios repetidos. |
 
 ## Referências
