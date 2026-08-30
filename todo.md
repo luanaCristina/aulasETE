@@ -30,4 +30,4 @@
 - [x] Integrar o placar ao fluxo de conclusão e reinício do quiz.
 - [x] Criar e validar uma habilidade reutilizável para ampliar portais educacionais técnicos.
 - [x] Gerar roteiro detalhado de apresentação dos novos módulos ETE.
-- [ ] Validar e publicar os novos exercícios, placar e roteiro de apresentação.
+- [x] Validar e publicar os novos exercícios, placar e roteiro de apresentação.
