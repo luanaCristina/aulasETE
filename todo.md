@@ -23,4 +23,4 @@
 - [x] Preparar o roteiro de uma apresentação-resumo dos módulos novos do portal.
 - [x] Gerar o arquivo de apresentação-resumo em formato de slides.
 - [x] Validar os exercícios, o quiz, a apresentação e os novos links do portal.
-- [ ] Publicar a expansão pedagógica no GitHub Pages.
+- [x] Publicar a expansão pedagógica no GitHub Pages.
