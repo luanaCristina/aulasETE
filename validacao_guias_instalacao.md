@@ -27,3 +27,15 @@ No quadro 11, **Pentaho BI**, a imagem do dashboard é exibida abaixo do roteiro
 No quadro 17, **MySQL no Windows**, a imagem do instalador é legível, acompanha a sequência de configuração e reforça os passos de rede, autenticação e contas.
 
 No quadro 18, **MySQL no macOS**, a imagem do Workbench e a orientação de arrastar o aplicativo para Applications aparecem de forma legível ao lado da verificação por terminal.
+
+## Recursos interativos
+
+No quadro 35, o botão **Revelar resposta** abriu corretamente o gabarito de Python e alternou o rótulo para **Ocultar resposta**. O conteúdo começa oculto e só fica visível após uma ação explícita da pessoa estudante.
+
+No quadro 36, os dois vídeos MP4 foram reconhecidos pelo navegador, cada um com oito segundos de duração, controles nativos de reprodução e uma demonstração para terminal e outra para a interface gráfica.
+
+No quadro 37, o checklist disponibiliza doze itens e botões para imprimir ou limpar marcações. Uma marcação em Python atualizou o resumo para `1 de 12 etapas concluídas` e foi preservada no armazenamento local do navegador.
+
+O botão **Limpar marcações** retornou o checklist a `0 de 12 etapas concluídas`. As regras de impressão isolam o quadro de checklist e ocultam navegação, controles e demais slides durante a impressão.
+
+Após separar os vídeos para manter a leitura em projeção, o quadro 36 apresenta as demonstrações de Python e o quadro 37 apresenta Git/GitHub pelo terminal e a conexão no MySQL Workbench. Os quatro vídeos foram reconhecidos pelo navegador, cada um com oito segundos e controles de reprodução visíveis.

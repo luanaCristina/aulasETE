@@ -5,6 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Guias de Instalação — Setup do Ambiente</title>
   <link rel="stylesheet" href="../styles.css">
+  <style>
+    .guide-action { appearance:none; border:1px solid #2563EB; border-radius:8px; padding:10px 14px; background:#1D4ED8; color:#EFF6FF; font:inherit; font-weight:700; cursor:pointer; }
+    .guide-action:hover, .guide-action:focus-visible { background:#1E40AF; outline:3px solid #93C5FD; outline-offset:2px; }
+    .guide-action--secondary { background:#0F172A; border-color:#475569; color:#E2E8F0; }
+    .answer-panel { margin-top:14px; padding:14px; border:1px solid #86EFAC; border-radius:10px; background:#F0FDF4; color:#14532D; }
+    .slide--dark .answer-panel { background:#0F2E22; border-color:#34D399; color:#D1FAE5; }
+    .answer-panel[hidden] { display:none; }
+    .demo-video { display:block; width:100%; max-height:235px; border:1px solid #475569; border-radius:10px; background:#020617; object-fit:contain; }
+    .checklist-grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px; }
+    .checklist-item { display:flex; align-items:flex-start; gap:10px; padding:8px 0; cursor:pointer; line-height:1.35; }
+    .checklist-item input { width:20px; height:20px; margin-top:1px; accent-color:#2563EB; flex:0 0 auto; }
+    .checklist-summary { text-align:center; margin:6px 0 16px; font-weight:700; }
+    @media (max-width: 850px) { .checklist-grid { grid-template-columns:1fr; } }
+    @media print {
+      .sidebar, .controls, .progress-bar, .no-print, .slide:not(.checklist-slide) { display:none !important; }
+      .slides-wrapper, .slide.checklist-slide { display:block !important; min-height:auto !important; background:#fff !important; color:#111827 !important; }
+      .slide.checklist-slide .card { border:1px solid #94A3B8 !important; box-shadow:none !important; color:#111827 !important; background:#fff !important; }
+      .checklist-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+    }
+  </style>
 </head>
 <body>
   <!-- Progress Bar -->
@@ -871,18 +891,125 @@ git push</code></div><p style="margin-top:12px;">Troque <code>USUARIO</code> pel
       <div class="callout callout--info" style="margin-top:20px;max-width:800px;margin-left:auto;margin-right:auto;"><span class="icon">🎯</span><span>Entrega sugerida: envie os três prints e a URL do repositório apenas no canal definido pela professora. Não coloque dados pessoais ou segredos nas imagens.</span></div>
     </section>
 
+    <!-- SLIDE 35: GABARITOS OCULTOS -->
+    <section class="slide slide--dark" data-title="Gabaritos dos exercícios">
+      <h2>🔐 Gabaritos — confira somente depois de tentar</h2>
+      <p style="text-align:center;color:#CBD5E1;">Compare sua solução com um caminho possível. Outros caminhos corretos também são bem-vindos.</p>
+      <div class="columns" style="margin-top:16px;">
+        <div class="card">
+          <h3>Exercício A — Python + VS Code</h3>
+          <button type="button" class="guide-action" data-answer-button="answer-python" aria-expanded="false">Revelar resposta</button>
+          <div id="answer-python" class="answer-panel" hidden><strong>Roteiro possível:</strong><div class="code-block" style="margin-top:8px;"><span class="lang-badge">Terminal</span><code>mkdir desafio-ambiente
+cd desafio-ambiente
+code .
+
+# crie boas_vindas.py e execute
+python boas_vindas.py</code></div><p style="margin-top:8px;">No arquivo: leia um apelido com <code>input()</code> e imprima uma saudação. A evidência é a mensagem aparecendo no terminal integrado.</p></div>
+        </div>
+        <div class="card">
+          <h3>Exercício B — Git + GitHub</h3>
+          <button type="button" class="guide-action" data-answer-button="answer-git" aria-expanded="false">Revelar resposta</button>
+          <div id="answer-git" class="answer-panel" hidden><strong>Roteiro possível:</strong><div class="code-block" style="margin-top:8px;"><span class="lang-badge">Terminal</span><code>git init
+git add README.md
+git commit -m "cria README"
+git branch -M main
+git remote add origin https://github.com/USUARIO/REPOSITORIO.git
+git push -u origin main</code></div><p style="margin-top:8px;">No GitHub Desktop, a alternativa é selecionar <strong>Publish repository</strong> e depois <strong>Push origin</strong>.</p></div>
+        </div>
+        <div class="card">
+          <h3>Exercício C — banco e API</h3>
+          <button type="button" class="guide-action" data-answer-button="answer-api" aria-expanded="false">Revelar resposta</button>
+          <div id="answer-api" class="answer-panel" hidden><strong>Roteiro possível:</strong><div class="code-block" style="margin-top:8px;"><span class="lang-badge">SQL + cURL</span><code>CREATE DATABASE escola_ete;
+SHOW DATABASES;
+
+curl -i https://eteapiplay-akbqqgv2.manus.space/api/recados \
+  -H "X-API-Lab: ETE-API-PLAYGROUND" \
+  -H "X-Request-Id: exercicio-001"</code></div><p style="margin-top:8px;">Compare o status HTTP exibido no terminal com o Postman ou Bruno. O método e a resposta devem ser equivalentes.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 36: DEMONSTRACOES -->
+    <section class="slide slide--content" data-title="Demonstrações curtas">
+      <h2>🎬 Demonstrações curtas — assista, pause e repita</h2>
+      <div class="columns">
+        <div class="card"><h3>⌨️ Terminal: preparar ambiente Python</h3><video class="demo-video" controls preload="metadata" aria-label="Demonstração curta de comandos para preparar um ambiente Python"><source src="../assets/guias-instalacao/demo-terminal-python.mp4" type="video/mp4">Seu navegador não suporta vídeo HTML5.</video><p style="margin-top:10px;">Sequência: conferir versão, criar pasta, entrar nela e preparar o ambiente virtual.</p></div>
+        <div class="card"><h3>🖱️ Interface: habilitar Python no PATH</h3><video class="demo-video" controls preload="metadata" aria-label="Demonstração curta da seleção Add Python to PATH no instalador"><source src="../assets/guias-instalacao/demo-ui-python-path.mp4" type="video/mp4">Seu navegador não suporta vídeo HTML5.</video><p style="margin-top:10px;">Sequência: marcar <strong>Add Python to PATH</strong>, instalar e esperar a confirmação.</p></div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:18px;"><span class="icon">💡</span><span>Assista uma vez sem pausar. Depois, repita em paralelo no seu computador e pause a cada etapa concluída.</span></div>
+    </section>
+
+    <!-- SLIDE 37: DEMONSTRACOES GIT E MYSQL -->
+    <section class="slide slide--content" data-title="Demonstrações: Git e MySQL">
+      <h2>🎬 Demonstrações curtas — Git e banco de dados</h2>
+      <div class="columns">
+        <div class="card"><h3>⌨️ Terminal: ciclo Git e GitHub</h3><video class="demo-video" controls preload="metadata" aria-label="Demonstração curta dos comandos essenciais de Git e GitHub"><source src="../assets/guias-instalacao/demo-terminal-git-github.mp4" type="video/mp4">Seu navegador não suporta vídeo HTML5.</video><p style="margin-top:10px;">Sequência: iniciar repositório, conferir status, adicionar arquivo, criar commit e enviar para o remoto.</p></div>
+        <div class="card"><h3>🖱️ Interface: conexão no MySQL Workbench</h3><video class="demo-video" controls preload="metadata" aria-label="Demonstração curta da criação de uma conexão local no MySQL Workbench"><source src="../assets/guias-instalacao/demo-ui-mysql-workbench.mp4" type="video/mp4">Seu navegador não suporta vídeo HTML5.</video><p style="margin-top:10px;">Sequência: criar conexão local, informar host e porta, testar conexão e confirmar o resultado.</p></div>
+      </div>
+      <div class="callout callout--tip" style="margin-top:18px;"><span class="icon">💡</span><span>Antes de usar GitHub ou Workbench, faça o fluxo uma vez com dados de teste e sem inserir senhas em capturas de tela.</span></div>
+    </section>
+
+    <!-- SLIDE 38: CHECKLIST -->
+    <section class="slide slide--content checklist-slide" data-title="Checklist imprimível">
+      <h2>☑️ Checklist final — marque e imprima</h2>
+      <p id="checklist-summary" class="checklist-summary" aria-live="polite">0 de 12 etapas concluídas</p>
+      <div class="checklist-grid">
+        <div class="card"><h3>Programação</h3><label class="checklist-item"><input type="checkbox" data-setup-check="python"><span>Python instalado e <code>python --version</code> confirmado.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="vscode"><span>VS Code aberto com extensões necessárias instaladas.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="node"><span>Node.js LTS e npm verificados no terminal.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="project"><span>Criei e abri uma pasta de projeto no VS Code.</span></label></div>
+        <div class="card"><h3>Dados e APIs</h3><label class="checklist-item"><input type="checkbox" data-setup-check="mysql"><span>MySQL Server e Workbench abertos ou conectados.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="postgres"><span>PostgreSQL/pgAdmin ou outra ferramenta de banco confirmada.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="api-ui"><span>Postman ou Bruno instalado e aberto.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="api-terminal"><span>Executei uma requisição com <code>curl</code> no terminal.</span></label></div>
+        <div class="card"><h3>Colaboração</h3><label class="checklist-item"><input type="checkbox" data-setup-check="git"><span>Git responde ao comando <code>git --version</code>.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="git-config"><span>Nome, e-mail e branch principal foram configurados no Git.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="github"><span>Fiz commit e enviei um repositório de teste pelo terminal ou GitHub Desktop.</span></label><label class="checklist-item"><input type="checkbox" data-setup-check="evidence"><span>Guardei prints ou link do repositório para mostrar à professora.</span></label></div>
+      </div>
+      <div class="no-print" style="display:flex;justify-content:center;gap:12px;margin-top:18px;"><button type="button" id="print-checklist" class="guide-action">🖨️ Imprimir checklist</button><button type="button" id="reset-checklist" class="guide-action guide-action--secondary">Limpar marcações</button></div>
+    </section>
+
   </div><!-- /slides-wrapper -->
 
   <!-- Controles -->
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()" title="Menu (M)">☰ Menu</button>
     <button onclick="Slides.prev()" title="Anterior (←)">◀ Anterior</button>
-    <span class="progress-text">1 / 34</span>
+    <span class="progress-text">1 / 38</span>
     <button onclick="Slides.next()" title="Próximo (→)">Próximo ▶</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()" title="Tela Cheia (F)">⛶ Tela Cheia</button>
     <a href="../../../index.html" class="btn-home" style="position:absolute;right:16px;background:#334155;border:1px solid #475569;color:#CBD5E1;padding:8px 16px;border-radius:6px;font-size:0.85rem;font-family:inherit;text-decoration:none;transition:background 0.2s;">🏠 Portal</a>
   </div>
 
   <script src="../slides.js"></script>
+  <script>
+    (function () {
+      const storageKey = 'ete-guias-instalacao-checklist-v1';
+      const inputs = Array.from(document.querySelectorAll('[data-setup-check]'));
+      const summary = document.getElementById('checklist-summary');
+      const saved = JSON.parse(localStorage.getItem(storageKey) || '{}');
+
+      function updateChecklist() {
+        const state = Object.fromEntries(inputs.map((input) => [input.dataset.setupCheck, input.checked]));
+        localStorage.setItem(storageKey, JSON.stringify(state));
+        const completed = inputs.filter((input) => input.checked).length;
+        summary.textContent = `${completed} de ${inputs.length} etapas concluídas`;
+      }
+
+      inputs.forEach((input) => {
+        input.checked = Boolean(saved[input.dataset.setupCheck]);
+        input.addEventListener('change', updateChecklist);
+      });
+      updateChecklist();
+
+      document.querySelectorAll('[data-answer-button]').forEach((button) => {
+        button.addEventListener('click', () => {
+          const panel = document.getElementById(button.dataset.answerButton);
+          const shouldReveal = panel.hidden;
+          panel.hidden = !shouldReveal;
+          button.textContent = shouldReveal ? 'Ocultar resposta' : 'Revelar resposta';
+          button.setAttribute('aria-expanded', String(shouldReveal));
+        });
+      });
+
+      document.getElementById('print-checklist').addEventListener('click', () => window.print());
+      document.getElementById('reset-checklist').addEventListener('click', () => {
+        inputs.forEach((input) => { input.checked = false; });
+        updateChecklist();
+      });
+    })();
+  </script>
 </body>
 </html>
