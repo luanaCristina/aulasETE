@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API — CRUD | ETE Pernambuco</title>
+  <meta name="description" content="API e CRUD com JavaScript, Python, Express, Flask, MongoDB, HTTP, dotenv e testes.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar"><h3>🔗 API — CRUD</h3><div class="sidebar-nav"></div></nav>
+  <div class="slides-wrapper">
+    <section class="slide slide--cover" data-title="Capa">
+      <h1>🔗 API — <span class="accent">CRUD</span></h1>
+      <p class="subtitle">Do primeiro endpoint ao banco MongoDB</p>
+      <p style="color:#94A3B8;margin-top:24px;font-size:1.1rem;">ETE Pernambuco — Módulo 1 — Fundação</p>
+      <p style="color:#CBD5E1;margin-top:12px;">JavaScript • Python • HTTP • Express • Flask • MongoDB • Git</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Objetivo da trilha">
+      <h2>🎯 O que vamos aprender?</h2>
+      <div class="columns">
+        <div class="card"><h3>Entender</h3><p>Como cliente, servidor, API e banco de dados participam de uma requisição.</p></div>
+        <div class="card"><h3>Construir</h3><p>Rotas CRUD usando Node/Express e Python/Flask, primeiro em memória e depois com MongoDB.</p></div>
+        <div class="card"><h3>Testar</h3><p>Status HTTP, JSON, Postman, curl e tratamento de erros.</p></div>
+      </div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span>Não é para decorar todos os comandos. É para saber dividir o problema, pesquisar a documentação e testar.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Cliente e servidor">
+      <h2>🌐 Cliente, servidor e banco</h2>
+      <div class="columns columns--3">
+        <div class="card"><h3>Cliente</h3><p>Navegador, Postman ou outro programa que envia uma requisição.</p><p style="margin-top:12px;"><code>GET /api/alunos</code></p></div>
+        <div class="card"><h3>Servidor</h3><p>Recebe, valida, executa regras e decide a resposta.</p><p style="margin-top:12px;"><code>Express</code> ou <code>Flask</code></p></div>
+        <div class="card"><h3>Banco</h3><p>Persiste os dados para que eles continuem existindo depois que o servidor reinicia.</p><p style="margin-top:12px;"><code>MongoDB</code></p></div>
+      </div>
+      <div class="callout callout--info"><span class="icon">🔁</span><span>O cliente não deve acessar o MongoDB diretamente. A API protege e organiza esse acesso.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="O que é CRUD">
+      <h2>🛠️ CRUD: quatro operações fundamentais</h2>
+      <table><thead><tr><th>Operação</th><th>Objetivo</th><th>HTTP</th><th>Exemplo</th></tr></thead><tbody>
+        <tr><td>Create</td><td>criar</td><td><code>POST</code></td><td>cadastrar aluno</td></tr>
+        <tr><td>Read</td><td>ler/consultar</td><td><code>GET</code></td><td>listar alunos</td></tr>
+        <tr><td>Update</td><td>atualizar</td><td><code>PUT</code> ou <code>PATCH</code></td><td>editar aluno</td></tr>
+        <tr><td>Delete</td><td>excluir</td><td><code>DELETE</code></td><td>remover aluno</td></tr>
+      </tbody></table>
+      <p style="margin-top:16px;">CRUD é uma forma de pensar o ciclo de vida do recurso. Uma API bem organizada transforma esse ciclo em rotas previsíveis.</p>
+    </section>
+
+    <section class="slide slide--dark" data-title="HTTP e status">
+      <h2>📨 HTTP é um contrato</h2>
+      <div class="columns"><div class="card"><h3>Requisição</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>POST /api/alunos
+Content-Type: application/json
+
+{"nome":"Ana","matricula":"1001"}</code></div></div><div class="card"><h3>Resposta</h3><div class="code-block"><span class="lang-badge">HTTP</span><code>HTTP/1.1 201 Created
+Content-Type: application/json
+
+{"_id":"...","nome":"Ana"}</code></div></div></div>
+      <div class="callout callout--tip"><span class="icon">✅</span><span><code>200</code> consulta/atualização · <code>201</code> criação · <code>204</code> exclusão sem corpo · <code>400</code> entrada inválida · <code>404</code> não encontrado · <code>500</code> erro inesperado.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Primeiro servidor Express">
+      <h2>🟢 Express: primeiro servidor</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>mkdir api-crud
+cd api-crud
+npm init -y
+npm install express
+node server.js</code></div>
+      <div class="code-block"><span class="lang-badge">server.js</span><code>const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/api/saudacao', (req, res) =&gt; {
+  res.status(200).json({ mensagem: 'Olá, API!' })
+})
+
+app.listen(port, () =&gt; console.log(`http://localhost:${port}`))</code></div>
+      <p>O `express()` cria a aplicação; `app.listen()` abre uma porta para o servidor receber requisições.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Porta e localhost">
+      <h2>🚪 Porta, localhost e ambientes</h2>
+      <div class="columns"><div class="card"><h3>Porta</h3><p>Identifica o serviço no computador. A porta <code>3000</code> é uma convenção, não uma obrigação.</p><div class="code-block"><code>const port = Number(process.env.PORT) || 3000</code></div></div><div class="card"><h3>Localhost</h3><p>Indica o próprio computador. A API local pode ser acessada em <code>http://localhost:3000</code>.</p><p style="margin-top:12px;">Se a porta estiver ocupada, use outra disponível.</p></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Desenvolvimento, teste e produção podem usar portas, bancos e configurações diferentes.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="dotenv e segurança">
+      <h2>🔐 dotenv: não coloque segredos no código</h2>
+      <div class="columns"><div class="card"><h3>Instale</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>npm install dotenv</code></div><h3 style="margin-top:14px;">.env</h3><div class="code-block"><code>PORT=3000
+DATABASE_URL="mongodb+srv://USUARIO:SENHA@cluster.mongodb.net"</code></div></div><div class="card"><h3>Leia no servidor</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>require('dotenv').config()
+
+const port = Number(process.env.PORT) || 3000
+const url = process.env.DATABASE_URL</code></div><h3>.gitignore</h3><div class="code-block"><code>.env
+node_modules/</code></div></div></div>
+      <p>Envie `.env.example` com placeholders, nunca o `.env` com sua senha.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="MongoDB e relacional">
+      <h2>🍃 MongoDB: documentos e coleções</h2>
+      <div class="columns"><div class="card"><h3>Documento</h3><div class="code-block"><span class="lang-badge">JSON</span><code>{
+  "nome": "Ana",
+  "matricula": "1001",
+  "ativo": true
+}</code></div><p>O documento é parecido com um objeto JavaScript ou um dicionário Python.</p></div><div class="card"><h3>Comparação</h3><table><tr><th>MongoDB</th><th>Relacional</th></tr><tr><td>coleção</td><td>tabela</td></tr><tr><td>documento</td><td>linha</td></tr><tr><td>campo</td><td>coluna</td></tr><tr><td>agregação/$lookup</td><td>JOIN</td></tr></table></div></div>
+      <p>Não existe um banco melhor para todos os problemas. A modelagem depende dos requisitos.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Conectar ao MongoDB">
+      <h2>🔌 Conexão e primeira consulta</h2>
+      <div class="code-block"><span class="lang-badge">Node.js</span><code>const { MongoClient } = require('mongodb')
+require('dotenv').config()
+
+const client = new MongoClient(process.env.DATABASE_URL)
+
+async function main() {
+  await client.connect()
+  const db = client.db('escola')
+  const alunos = db.collection('alunos')
+  const registros = await alunos.find().toArray()
+  console.log(registros)
+  await client.close()
+}
+
+main().catch(console.error)</code></div>
+      <div class="callout callout--info"><span class="icon">🧠</span><span>Pergunta de programador: qual parte conecta, qual parte escolhe o banco e qual parte escolhe a coleção?</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="CRUD MongoDB">
+      <h2>🧱 Operações CRUD no MongoDB</h2>
+      <div class="columns"><div class="card"><h3>Create / Read</h3><div class="code-block"><code>await alunos.insertOne({ nome: 'Ana' })
+const todos = await alunos.find().toArray()
+const um = await alunos.findOne({ nome: 'Ana' })</code></div></div><div class="card"><h3>Update / Delete</h3><div class="code-block"><code>await alunos.updateOne(
+  { nome: 'Ana' },
+  { $set: { ativo: true } }
+)
+await alunos.deleteOne({ nome: 'Ana' })</code></div></div></div>
+      <p>Na API, cada operação deve validar os dados, escolher o status correto e tratar erros.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Rotas CRUD">
+      <h2>🛣️ Desenho das rotas</h2>
+      <table><thead><tr><th>Método</th><th>Rota</th><th>Status esperado</th></tr></thead><tbody>
+        <tr><td><code>GET</code></td><td><code>/api/alunos</code></td><td>200 + lista</td></tr>
+        <tr><td><code>POST</code></td><td><code>/api/alunos</code></td><td>201 + criado</td></tr>
+        <tr><td><code>GET</code></td><td><code>/api/alunos/:id</code></td><td>200, 400 ou 404</td></tr>
+        <tr><td><code>PUT</code></td><td><code>/api/alunos/:id</code></td><td>200, 400 ou 404</td></tr>
+        <tr><td><code>DELETE</code></td><td><code>/api/alunos/:id</code></td><td>204, 400 ou 404</td></tr>
+      </tbody></table>
+      <div class="callout callout--tip"><span class="icon">📐</span><span>Uma rota representa um recurso. O método HTTP explica a intenção da operação.</span></div>
+    </section>
+
+    <section class="slide slide--dark" data-title="POST e validação">
+      <h2>✅ Criar: validar antes de inserir</h2>
+      <div class="code-block"><span class="lang-badge">Express</span><code>app.post('/api/alunos', async (req, res, next) =&gt; {
+  try {
+    const { nome, matricula } = req.body
+    if (!nome?.trim() || !matricula?.trim()) {
+      return res.status(400).json({ erro: 'Nome e matrícula são obrigatórios.' })
+    }
+
+    const aluno = { nome: nome.trim(), matricula: matricula.trim() }
+    const result = await alunos.insertOne(aluno)
+    return res.status(201).json({ ...aluno, _id: result.insertedId })
+  } catch (error) {
+    return next(error)
+  }
+})</code></div>
+      <p>O cliente envia dados; o servidor decide se eles são válidos. A validação do formulário não substitui a validação da API.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Python com Flask">
+      <h2>🐍 A mesma ideia em Python com Flask</h2>
+      <div class="code-block"><span class="lang-badge">Python</span><code>from flask import Flask, jsonify, request
+
+app = Flask(__name__)
+alunos = []
+
+@app.get('/api/alunos')
+def listar():
+    return jsonify(alunos), 200
+
+@app.post('/api/alunos')
+def criar():
+    dados = request.get_json(silent=True) or {}
+    if not dados.get('nome'):
+        return jsonify(erro='Nome obrigatório'), 400
+    aluno = {'id': len(alunos) + 1, 'nome': dados['nome']}
+    alunos.append(aluno)
+    return jsonify(aluno), 201
+
+app.run(port=5000, debug=True)</code></div>
+      <p>A linguagem muda, mas o contrato HTTP continua: rota, método, JSON e status.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="HTML consumindo a API">
+      <h2>🖥️ Frontend: HTML + fetch</h2>
+      <div class="code-block"><span class="lang-badge">JavaScript no navegador</span><code>async function carregarAlunos() {
+  const resposta = await fetch('/api/alunos')
+  const alunos = await resposta.json()
+
+  document.querySelector('#lista').innerHTML = alunos
+    .map(aluno =&gt; `&lt;li&gt;${aluno.nome}&lt;/li&gt;`)
+    .join('')
+}
+
+carregarAlunos()</code></div>
+      <div class="callout callout--info"><span class="icon">🔗</span><span>A tela não acessa o MongoDB. Ela chama a API e transforma o JSON em HTML.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Testar com Postman">
+      <h2>🧪 Testar antes de conectar a tela</h2>
+      <div class="columns"><div class="card"><h3>Requisição</h3><div class="code-block"><span class="lang-badge">POST</span><code>http://localhost:3000/api/alunos
+Content-Type: application/json
+
+{"nome":"Ana","matricula":"1001"}</code></div></div><div class="card"><h3>Checklist</h3><ol><li>Status: <code>201</code>.</li><li>Resposta possui <code>_id</code>.</li><li>Faça um <code>GET</code>.</li><li>Teste campo ausente: <code>400</code>.</li><li>Teste ID inexistente: <code>404</code>.</li></ol></div></div>
+      <p>Use também a coleção Postman do projeto Plus para executar cenários em sequência.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Exercícios">
+      <h2>📝 Exercícios de prática</h2>
+      <div class="columns"><div class="card"><h3>Exercício 1 — em memória</h3><ol><li>Crie <code>GET /api/livros</code>.</li><li>Crie <code>POST /api/livros</code>.</li><li>Valide título obrigatório.</li><li>Implemente <code>DELETE</code>.</li></ol></div><div class="card"><h3>Exercício 2 — MongoDB</h3><ol><li>Crie coleção <code>livros</code>.</li><li>Use <code>insertOne</code> e <code>find</code>.</li><li>Implemente <code>PUT</code>.</li><li>Trate ID inválido e inexistente.</li></ol></div></div>
+      <div class="callout callout--warning"><span class="icon">🎯</span><span>Entregue README, `.env.example`, `.gitignore`, coleção Postman e commits que expliquem suas decisões.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Projeto final">
+      <h2>🏁 Projeto final: API escolar</h2>
+      <p>Crie uma API que relacione:</p>
+      <div class="columns columns--3"><div class="card"><h3>Alunos</h3><p>nome, matrícula e situação.</p></div><div class="card"><h3>Disciplinas</h3><p>nome, carga horária e professor.</p></div><div class="card"><h3>Matrículas</h3><p>aluno, disciplina e data.</p></div></div>
+      <p style="margin-top:18px;">Requisitos: CRUD, status HTTP, MongoDB, `dotenv`, testes Postman, documentação e publicação no GitHub.</p>
+    </section>
+
+    <section class="slide slide--section" data-title="Material completo">
+      <h1>📚 Continue estudando</h1>
+      <p class="subtitle">Material completo: JavaScript, Python, APIs, MongoDB e Git/GitHub</p>
+      <p style="margin-top:24px;"><a href="https://github.com/luanaCristina/material-fundamentos-js-python-ete/blob/main/docs/MATERIAL_FUNDAMENTOS_JS_PYTHON_API_GIT.md" target="_blank" rel="noopener">Abrir o material completo no GitHub ↗</a></p>
+      <p style="margin-top:16px;color:#CBD5E1;">Pesquise a sintaxe, faça o exercício, teste o erro e explique o resultado.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Referências">
+      <h2>🔎 Referências oficiais</h2>
+      <div class="columns"><div class="card"><h3>JavaScript e Node</h3><ul><li><a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript/Guide" target="_blank" rel="noopener">MDN JavaScript</a></li><li><a href="https://nodejs.org/docs/latest/api/" target="_blank" rel="noopener">Node.js</a></li><li><a href="https://expressjs.com/pt-br/guide/routing.html" target="_blank" rel="noopener">Express — roteamento</a></li></ul></div><div class="card"><h3>Python e dados</h3><ul><li><a href="https://docs.python.org/pt-br/3/tutorial/" target="_blank" rel="noopener">Tutorial Python</a></li><li><a href="https://flask.palletsprojects.com/" target="_blank" rel="noopener">Flask</a></li><li><a href="https://www.mongodb.com/docs/manual/introduction/" target="_blank" rel="noopener">MongoDB</a></li></ul></div></div>
+      <div class="callout callout--tip"><span class="icon">✅</span><span>Documentação oficial é o lugar para confirmar a sintaxe e entender as opções disponíveis.</span></div>
+    </section>
+
+    <section class="slide slide--cover" data-title="Desafio">
+      <h1>🚀 Agora é com você</h1>
+      <p class="subtitle">Crie uma API. Teste os erros. Publique o aprendizado.</p>
+      <p style="margin-top:24px;color:#CBD5E1;">entender → pesquisar → adaptar → testar</p>
+    </section>
+  </div>
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()">☰ Menu</button>
+    <button onclick="Slides.prev()">← Anterior</button>
+    <span class="progress-text">1 / 21</span>
+    <button onclick="Slides.next()">Próximo →</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()">⛶ Tela cheia</button>
+    <button class="btn-home" onclick="Slides.goHome()">⌂ Portal</button>
+  </div>
+  <script src="../slides.js"></script>
+</body>
+</html>
