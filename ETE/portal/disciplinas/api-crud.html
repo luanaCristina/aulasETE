@@ -129,14 +129,21 @@ main().catch(console.error)</code></div>
 
     <section class="slide slide--content" data-title="CRUD MongoDB">
       <h2>🧱 Operações CRUD no MongoDB</h2>
-      <div class="columns"><div class="card"><h3>Create / Read</h3><div class="code-block"><code>await alunos.insertOne({ nome: 'Ana' })
+      <div class="columns"><div class="card"><h3>Create / Read</h3><div class="code-block"><code>const { ObjectId } = require('mongodb')
+
+await alunos.insertOne({ nome: 'Ana' })
 const todos = await alunos.find().toArray()
-const um = await alunos.findOne({ nome: 'Ana' })</code></div></div><div class="card"><h3>Update / Delete</h3><div class="code-block"><code>await alunos.updateOne(
-  { nome: 'Ana' },
+const id = new ObjectId(req.params.id)
+const aluno = await alunos.findOne({ _id: id })</code></div></div><div class="card"><h3>Update / Delete por _id</h3><div class="code-block"><code>const id = new ObjectId(req.params.id)
+
+await alunos.updateOne(
+  { _id: id },
   { $set: { ativo: true } }
 )
-await alunos.deleteOne({ nome: 'Ana' })</code></div></div></div>
-      <p>Na API, cada operação deve validar os dados, escolher o status correto e tratar erros.</p>
+
+await alunos.deleteOne({ _id: id })</code></div></div></div>
+      <div class="callout callout--info"><span class="icon">🆔</span><span>O MongoDB salva o identificador como <code>_id</code>. Como a URL traz texto, converta com <code>new ObjectId(req.params.id)</code> antes de localizar, atualizar ou excluir.</span></div>
+      <p>Na API, valide o formato do ID, escolha o status correto e trate erros.</p>
     </section>
 
     <section class="slide slide--content" data-title="Rotas CRUD">
@@ -218,6 +225,46 @@ Content-Type: application/json
       <p>Use também a coleção Postman do projeto Plus para executar cenários em sequência.</p>
     </section>
 
+    <section class="slide slide--content" data-title="Rodar os servidores">
+      <h2>▶️ Página 17 — Rodar o servidor no terminal</h2>
+      <div class="columns"><div class="card"><h3>Node.js + Express</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>cd api-crud
+npm install
+node server.js
+
+# durante o desenvolvimento, se houver script:
+npm run dev</code></div><p>Abra a API em <code>http://localhost:3000</code>.</p></div><div class="card"><h3>Python + Flask</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>cd api-python
+python -m venv .venv
+# Windows: .venv\\Scripts\\activate
+# macOS/Linux: source .venv/bin/activate
+pip install flask
+python app.py</code></div><p>Abra a API em <code>http://localhost:5000</code>.</p></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Use dois terminais se precisar manter frontend e backend rodando. Se a porta estiver ocupada, troque a porta no servidor e na URL de teste.</span></div>
+    </section>
+
+    <section class="slide slide--content" data-title="Usar rotas no Postman">
+      <h2>📮 Página 18 — Como usar cada rota no Postman</h2>
+      <div class="columns"><div class="card"><h3>1. Criar</h3><div class="code-block"><code>POST http://localhost:3000/api/alunos
+Body → raw → JSON
+{"nome":"Bia","matricula":"1002"}</code></div><p>Envie e copie o <code>_id</code> retornado.</p></div><div class="card"><h3>2. Localizar</h3><div class="code-block"><code>GET http://localhost:3000/api/alunos/ID_COPIADO</code></div><p>Substitua <code>ID_COPIADO</code> pelo valor real.</p></div></div>
+      <div class="columns"><div class="card"><h3>3. Atualizar</h3><div class="code-block"><code>PUT http://localhost:3000/api/alunos/ID_COPIADO
+Body → raw → JSON
+{"nome":"Bia Silva","matricula":"1002"}</code></div><p>Confirme o status <code>200</code>.</p></div><div class="card"><h3>4. Excluir</h3><div class="code-block"><code>DELETE http://localhost:3000/api/alunos/ID_COPIADO</code></div><p>Confirme <code>204</code> ou a resposta definida na API.</p></div></div>
+      <p>Crie uma Collection chamada <strong>API CRUD Escola</strong> e salve as quatro requisições para repetir os testes.</p>
+    </section>
+
+    <section class="slide slide--dark" data-title="Exercício extra HTML Fetch">
+      <h2>🧩 Página 19 — Exercício extra: frontend + API</h2>
+      <div class="columns"><div class="card"><h3>Desafio</h3><ol><li>Crie <code>index.html</code> com formulário de nome e matrícula.</li><li>Adicione uma lista <code>&lt;ul id="lista"&gt;</code>.</li><li>Use <code>fetch</code> para enviar <code>POST /api/alunos</code>.</li><li>Use <code>GET</code> para atualizar a lista.</li><li>Adicione botões Editar e Excluir usando o <code>_id</code>.</li></ol></div><div class="card"><h3>Critérios de teste</h3><ol><li>Cadastrar mostra status <code>201</code>.</li><li>Listar mostra nome e matrícula.</li><li>Editar usa <code>PUT /api/alunos/:id</code>.</li><li>Excluir usa <code>DELETE /api/alunos/:id</code>.</li><li>Erro <code>400</code> aparece para campos vazios.</li></ol></div></div>
+      <div class="code-block"><span class="lang-badge">fetch</span><code>const resposta = await fetch('/api/alunos', {
+  method: 'POST',
+  headers: { 'Content-Type': 'application/json' },
+  body: JSON.stringify({ nome, matricula })
+})
+const dados = await resposta.json()
+if (!resposta.ok) throw new Error(dados.erro || 'Falha na API')</code></div>
+      <p>Entregue HTML, JavaScript, API, README com comandos de execução e uma Collection do Postman.</p>
+    </section>
+
     <section class="slide slide--content" data-title="Exercícios">
       <h2>📝 Exercícios de prática</h2>
       <div class="columns"><div class="card"><h3>Exercício 1 — em memória</h3><ol><li>Crie <code>GET /api/livros</code>.</li><li>Crie <code>POST /api/livros</code>.</li><li>Valide título obrigatório.</li><li>Implemente <code>DELETE</code>.</li></ol></div><div class="card"><h3>Exercício 2 — MongoDB</h3><ol><li>Crie coleção <code>livros</code>.</li><li>Use <code>insertOne</code> e <code>find</code>.</li><li>Implemente <code>PUT</code>.</li><li>Trate ID inválido e inexistente.</li></ol></div></div>
@@ -253,7 +300,7 @@ Content-Type: application/json
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()">☰ Menu</button>
     <button onclick="Slides.prev()">← Anterior</button>
-    <span class="progress-text">1 / 21</span>
+    <span class="progress-text">1 / 24</span>
     <button onclick="Slides.next()">Próximo →</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()">⛶ Tela cheia</button>
     <button class="btn-home" onclick="Slides.goHome()">⌂ Portal</button>
