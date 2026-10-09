@@ -202,18 +202,30 @@ app.run(port=5000, debug=True)</code></div>
     </section>
 
     <section class="slide slide--content" data-title="HTML consumindo a API">
-      <h2>🖥️ Frontend: HTML + fetch</h2>
+      <h2>🖥️ Frontend: HTML + fetch + try/catch</h2>
       <div class="code-block"><span class="lang-badge">JavaScript no navegador</span><code>async function carregarAlunos() {
-  const resposta = await fetch('/api/alunos')
-  const alunos = await resposta.json()
+  const mensagem = document.querySelector('#mensagem')
 
-  document.querySelector('#lista').innerHTML = alunos
-    .map(aluno =&gt; `&lt;li&gt;${aluno.nome}&lt;/li&gt;`)
-    .join('')
+  try {
+    const resposta = await fetch('/api/alunos')
+    const dados = await resposta.json()
+
+    if (!resposta.ok) {
+      throw new Error(dados.erro || `Erro HTTP ${resposta.status}`)
+    }
+
+    document.querySelector('#lista').innerHTML = dados
+      .map(aluno =&gt; `&lt;li&gt;${aluno.nome}&lt;/li&gt;`)
+      .join('')
+    mensagem.textContent = 'Alunos carregados com sucesso.'
+  } catch (erro) {
+    console.error('Falha ao consultar a API:', erro)
+    mensagem.textContent = `Não foi possível carregar: ${erro.message}`
+  }
 }
 
 carregarAlunos()</code></div>
-      <div class="callout callout--info"><span class="icon">🔗</span><span>A tela não acessa o MongoDB. Ela chama a API e transforma o JSON em HTML.</span></div>
+      <div class="callout callout--info"><span class="icon">🔗</span><span>A tela não acessa o MongoDB. Ela chama a API e transforma o JSON em HTML. O <code>try/catch</code> trata falha de rede e respostas HTTP de erro.</span></div>
     </section>
 
     <section class="slide slide--content" data-title="Testar com Postman">
@@ -225,8 +237,43 @@ Content-Type: application/json
       <p>Use também a coleção Postman do projeto Plus para executar cenários em sequência.</p>
     </section>
 
+    <section class="slide slide--content" data-title="package.json e scripts">
+      <h2>📦 Página 17 — package.json organiza o projeto</h2>
+      <div class="code-block"><span class="lang-badge">package.json</span><code>{
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "test": "node --test"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4"
+  }
+}</code></div>
+      <div class="columns"><div class="card"><h3>Scripts</h3><p><code>npm start</code> inicia com Node. <code>npm run dev</code> usa Nodemon e reinicia quando o arquivo muda. <code>npm test</code> executa os testes nativos do Node.</p></div><div class="card"><h3>Por que separar?</h3><p><code>dependencies</code> são necessárias para a aplicação. <code>devDependencies</code> ajudam durante o desenvolvimento, mas não são parte obrigatória da execução em produção.</p></div></div>
+      <p>Depois de editar o arquivo, rode <code>npm install</code> para instalar o que foi declarado e atualizar o <code>package-lock.json</code>.</p>
+    </section>
+
+    <section class="slide slide--content" data-title="Dependências Python e Node">
+      <h2>🧰 Página 18 — Dependências: o que instalar e por quê?</h2>
+      <table><thead><tr><th>Ecossistema</th><th>Dependência</th><th>Por que usamos?</th><th>Instalação</th></tr></thead><tbody>
+        <tr><td>Node</td><td><code>express</code></td><td>rotas, middleware e servidor HTTP</td><td><code>npm install express</code></td></tr>
+        <tr><td>Node</td><td><code>mongodb</code></td><td>driver para conversar com o MongoDB</td><td><code>npm install mongodb</code></td></tr>
+        <tr><td>Node</td><td><code>dotenv</code></td><td>ler variáveis do arquivo `.env`</td><td><code>npm install dotenv</code></td></tr>
+        <tr><td>Node</td><td><code>nodemon</code></td><td>reiniciar o servidor durante o desenvolvimento</td><td><code>npm install -D nodemon</code></td></tr>
+        <tr><td>Python</td><td><code>Flask</code></td><td>rotas e servidor web</td><td><code>pip install flask</code></td></tr>
+        <tr><td>Python</td><td><code>pymongo</code></td><td>driver para o MongoDB</td><td><code>pip install pymongo</code></td></tr>
+        <tr><td>Python</td><td><code>python-dotenv</code></td><td>ler variáveis do `.env`</td><td><code>pip install python-dotenv</code></td></tr>
+      </tbody></table>
+      <div class="callout callout--tip"><span class="icon">🧠</span><span>Instalar coloca o pacote no projeto; importar no código, como <code>const express = require('express')</code> ou <code>from flask import Flask</code>, permite utilizá-lo.</span></div>
+    </section>
+
     <section class="slide slide--content" data-title="Rodar os servidores">
-      <h2>▶️ Página 17 — Rodar o servidor no terminal</h2>
+      <h2>▶️ Página 19 — Rodar o servidor no terminal</h2>
       <div class="columns"><div class="card"><h3>Node.js + Express</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>cd api-crud
 npm install
 node server.js
@@ -242,18 +289,18 @@ python app.py</code></div><p>Abra a API em <code>http://localhost:5000</code>.</
     </section>
 
     <section class="slide slide--content" data-title="Usar rotas no Postman">
-      <h2>📮 Página 18 — Como usar cada rota no Postman</h2>
+      <h2>📮 Página 20 — Como usar cada rota no Postman</h2>
       <div class="columns"><div class="card"><h3>1. Criar</h3><div class="code-block"><code>POST http://localhost:3000/api/alunos
 Body → raw → JSON
 {"nome":"Bia","matricula":"1002"}</code></div><p>Envie e copie o <code>_id</code> retornado.</p></div><div class="card"><h3>2. Localizar</h3><div class="code-block"><code>GET http://localhost:3000/api/alunos/ID_COPIADO</code></div><p>Substitua <code>ID_COPIADO</code> pelo valor real.</p></div></div>
       <div class="columns"><div class="card"><h3>3. Atualizar</h3><div class="code-block"><code>PUT http://localhost:3000/api/alunos/ID_COPIADO
 Body → raw → JSON
 {"nome":"Bia Silva","matricula":"1002"}</code></div><p>Confirme o status <code>200</code>.</p></div><div class="card"><h3>4. Excluir</h3><div class="code-block"><code>DELETE http://localhost:3000/api/alunos/ID_COPIADO</code></div><p>Confirme <code>204</code> ou a resposta definida na API.</p></div></div>
-      <p>Crie uma Collection chamada <strong>API CRUD Escola</strong> e salve as quatro requisições para repetir os testes.</p>
+      <p>Crie uma Collection chamada <strong>API CRUD Escola</strong> e salve as quatro requisições para repetir os testes. Você também pode <a href="../../../postman/api-crud-escola.postman_collection.json" download>baixar a Collection JSON pronta para importação ↗</a>.</p>
     </section>
 
     <section class="slide slide--dark" data-title="Exercício extra HTML Fetch">
-      <h2>🧩 Página 19 — Exercício extra: frontend + API</h2>
+      <h2>🧩 Página 21 — Exercício extra: frontend + API</h2>
       <div class="columns"><div class="card"><h3>Desafio</h3><ol><li>Crie <code>index.html</code> com formulário de nome e matrícula.</li><li>Adicione uma lista <code>&lt;ul id="lista"&gt;</code>.</li><li>Use <code>fetch</code> para enviar <code>POST /api/alunos</code>.</li><li>Use <code>GET</code> para atualizar a lista.</li><li>Adicione botões Editar e Excluir usando o <code>_id</code>.</li></ol></div><div class="card"><h3>Critérios de teste</h3><ol><li>Cadastrar mostra status <code>201</code>.</li><li>Listar mostra nome e matrícula.</li><li>Editar usa <code>PUT /api/alunos/:id</code>.</li><li>Excluir usa <code>DELETE /api/alunos/:id</code>.</li><li>Erro <code>400</code> aparece para campos vazios.</li></ol></div></div>
       <div class="code-block"><span class="lang-badge">fetch</span><code>const resposta = await fetch('/api/alunos', {
   method: 'POST',
@@ -300,7 +347,7 @@ if (!resposta.ok) throw new Error(dados.erro || 'Falha na API')</code></div>
   <div class="controls">
     <button class="btn-menu" onclick="Slides.toggleSidebar()">☰ Menu</button>
     <button onclick="Slides.prev()">← Anterior</button>
-    <span class="progress-text">1 / 24</span>
+    <span class="progress-text">1 / 26</span>
     <button onclick="Slides.next()">Próximo →</button>
     <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()">⛶ Tela cheia</button>
     <button class="btn-home" onclick="Slides.goHome()">⌂ Portal</button>
