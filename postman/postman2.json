@@ -1,0 +1,86 @@
+{
+  "info": {
+    "name": "CRUD MongoDB ETE Plus — Status HTTP",
+    "description": "Testes automatizados da API HTML Plus. Execute em ordem pelo Collection Runner.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3004" },
+    { "key": "alunoId", "value": "" },
+    { "key": "disciplinaId", "value": "" },
+    { "key": "matriculaId", "value": "" },
+    { "key": "missingId", "value": "000000000000000000000000" }
+  ],
+  "item": [
+    {
+      "name": "01 - Listar alunos - 200",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/alunos" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 200', () => pm.response.to.have.status(200));", "pm.test('Corpo é uma lista', () => pm.expect(pm.response.json()).to.be.an('array'));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "02 - Criar aluno - 201",
+      "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nome\": \"Aluno Postman {{$timestamp}}\",\n  \"matricula\": \"TEST{{$timestamp}}\"\n}" }, "url": "{{baseUrl}}/api/alunos" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 201', () => pm.response.to.have.status(201));", "const body = pm.response.json();", "pm.test('Resposta possui _id', () => pm.expect(body).to.have.property('_id'));", "pm.collectionVariables.set('alunoId', body._id);"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "03 - Consultar aluno - 200",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/alunos/{{alunoId}}" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 200', () => pm.response.to.have.status(200));", "pm.test('Aluno possui nome', () => pm.expect(pm.response.json()).to.have.property('nome'));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "04 - Atualizar aluno - 200",
+      "request": { "method": "PUT", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nome\": \"Aluno Atualizado Postman\",\n  \"matricula\": \"ATUALIZADA{{$timestamp}}\"\n}" }, "url": "{{baseUrl}}/api/alunos/{{alunoId}}" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 200', () => pm.response.to.have.status(200));", "pm.expect(pm.response.json().mensagem).to.eql('Aluno atualizado.');"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "05 - Dados inválidos - 400",
+      "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nome\": \"Sem matrícula\"\n}" }, "url": "{{baseUrl}}/api/alunos" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 400', () => pm.response.to.have.status(400));", "pm.expect(pm.response.json().erro).to.include('matrícula');"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "06 - ID inválido - 400",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/alunos/nao-e-um-id" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 400', () => pm.response.to.have.status(400));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "07 - Aluno inexistente - 404",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/alunos/{{missingId}}" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 404', () => pm.response.to.have.status(404));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "08 - Criar disciplina - 201",
+      "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"nome\": \"Disciplina Postman {{$timestamp}}\",\n  \"cargaHoraria\": \"40h\"\n}" }, "url": "{{baseUrl}}/api/disciplinas" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 201', () => pm.response.to.have.status(201));", "const body = pm.response.json();", "pm.collectionVariables.set('disciplinaId', body._id);"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "09 - Criar matrícula - 201",
+      "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"alunoId\": \"{{alunoId}}\",\n  \"disciplinaId\": \"{{disciplinaId}}\"\n}" }, "url": "{{baseUrl}}/api/matriculas" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 201', () => pm.response.to.have.status(201));", "const body = pm.response.json();", "pm.collectionVariables.set('matriculaId', body._id);"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "10 - Matrícula duplicada - 400",
+      "request": { "method": "POST", "header": [{ "key": "Content-Type", "value": "application/json" }], "body": { "mode": "raw", "raw": "{\n  \"alunoId\": \"{{alunoId}}\",\n  \"disciplinaId\": \"{{disciplinaId}}\"\n}" }, "url": "{{baseUrl}}/api/matriculas" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 400', () => pm.response.to.have.status(400));", "pm.expect(pm.response.json().erro).to.include('matriculado');"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "11 - Listar matrículas - 200",
+      "request": { "method": "GET", "header": [], "url": "{{baseUrl}}/api/matriculas" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 200', () => pm.response.to.have.status(200));", "const body = pm.response.json();", "pm.test('Retorna relação aluno/disciplina', () => pm.expect(body[0]).to.have.all.keys('_id', 'alunoId', 'disciplinaId', 'criadoEm', 'aluno', 'disciplina'));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "12 - Excluir matrícula - 204",
+      "request": { "method": "DELETE", "header": [], "url": "{{baseUrl}}/api/matriculas/{{matriculaId}}" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 204', () => pm.response.to.have.status(204));", "pm.test('Sem conteúdo', () => pm.expect(pm.response.text()).to.eql(''));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "13 - Excluir disciplina - 204",
+      "request": { "method": "DELETE", "header": [], "url": "{{baseUrl}}/api/disciplinas/{{disciplinaId}}" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 204', () => pm.response.to.have.status(204));"], "type": "text/javascript" } }]
+    },
+    {
+      "name": "14 - Excluir aluno - 204",
+      "request": { "method": "DELETE", "header": [], "url": "{{baseUrl}}/api/alunos/{{alunoId}}" },
+      "event": [{ "listen": "test", "script": { "exec": ["pm.test('Status 204', () => pm.response.to.have.status(204));"], "type": "text/javascript" } }]
+    }
+  ]
+}
