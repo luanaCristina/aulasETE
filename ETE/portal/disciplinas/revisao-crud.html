@@ -31,6 +31,85 @@ app.listen(port)</code></div><p>3005 é uma convenção; outra porta livre tamb�
   "telefone": "81999999999",
   "senha": "segredo123"
 }</code></div><div class="columns"><div class="card"><h3>Validação</h3><p>Campos obrigatórios, e-mail válido, senha com ao menos seis caracteres e e-mail único.</p></div><div class="card"><h3>Segurança</h3><p><code>bcrypt.hash</code> transforma a senha em hash. A senha original nunca é salva nem devolvida.</p></div></div></section>
+    <section class="slide slide--section" data-title="Plano de 3 horas"><h1>⏱️ Plano da aula: 9h às 11h</h1><div class="columns"><div class="card"><h3>9h00–9h20</h3><p>Servidor mínimo, porta e primeiro <code>GET</code>.</p></div><div class="card"><h3>9h20–9h50</h3><p><code>POST</code> simples com body e visualização no Postman.</p></div><div class="card"><h3>9h50–10h30</h3><p>Separar <code>app.js</code>, <code>server.js</code> e <code>store.js</code>; conectar o MongoDB.</p></div></div><div class="columns"><div class="card"><h3>10h30–10h50</h3><p>GET, POST, PUT e DELETE com ID e status.</p></div><div class="card"><h3>10h50–11h00</h3><p>Erros, revisão e próximo desafio.</p></div></div><div class="callout callout--tip"><span class="icon">🎯</span><span>Hoje começamos pelo que já conhecemos. <code>async</code>, <code>try/catch</code> e abstrações entram depois, com explicação curta e sem exigir decoração.</span></div></section>
+    <section class="slide slide--content" data-title="Servidor mínimo"><h2>1️⃣ Primeiro: servidor mínimo</h2><p>Antes de banco e pastas, vamos provar que o servidor responde.</p><div class="code-block"><span class="lang-badge">server-simples.js</span><code>const express = require('express')
+const app = express()
+const port = 3005
+
+app.get('/teste', (req, res) =&gt; {
+  res.status(200).json({ mensagem: 'Servidor funcionando!' })
+})
+
+app.listen(port, () =&gt; {
+  console.log(`http://localhost:${port}`)
+})</code></div><p>Primeiro identificamos: biblioteca, aplicação, porta, rota e resposta.</p></section>
+    <section class="slide slide--content" data-title="Primeiro GET no Postman"><h2>2️⃣ GET: visualizar no Postman</h2><div class="columns"><div class="card"><h3>Passo a passo</h3><ol><li>Execute <code>node server-simples.js</code>.</li><li>Abra o Postman.</li><li>Escolha <code>GET</code>.</li><li>Digite <code>http://localhost:3005/teste</code>.</li><li>Clique em Send.</li></ol></div><div class="card"><h3>Resposta</h3><div class="code-block"><span class="lang-badge">200 OK</span><code>{
+  "mensagem": "Servidor funcionando!"
+}</code></div><p>O Postman é o cliente; o arquivo é o servidor.</p></div></div><div class="callout callout--info"><span class="icon">🔁</span><span>Se aparece <code>ECONNREFUSED</code>, o servidor não está rodando ou a porta está diferente.</span></div></section>
+    <section class="slide slide--content" data-title="Primeiro POST no Postman"><h2>3️⃣ POST simples: enviar um body</h2><p>Agora o servidor recebe dados. Acrescente o middleware JSON e uma lista temporária:</p><div class="code-block"><span class="lang-badge">server-simples.js</span><code>app.use(express.json())
+const usuarios = []
+
+app.post('/usuarios', (req, res) =&gt; {
+  const usuario = req.body
+  usuarios.push(usuario)
+  res.status(201).json(usuario)
+})</code></div><div class="code-block"><span class="lang-badge">Postman — Body raw JSON</span><code>{"nome":"Ana","email":"ana@example.com"}</code></div><p>Envie <code>POST http://localhost:3005/usuarios</code> e veja o <code>201 Created</code>.</p></section>
+    <section class="slide slide--content" data-title="Criar app.js"><h2>4️⃣ Criar o app.js: responsabilidade da aplicação</h2><p>Quando o teste simples funciona, separamos a aplicação do ato de ligar a porta.</p><div class="code-block"><span class="lang-badge">src/app.js</span><code>const express = require('express')
+
+function createApp({ store }) {
+  const app = express()
+  app.use(express.json())
+
+  app.get('/api/status', (req, res) =&gt; {
+    res.status(200).json({ status: 'ok' })
+  })
+
+  app.get('/api/usuarios', async (req, res) =&gt; {
+    const usuarios = await store.listUsers()
+    res.status(200).json(usuarios)
+  })
+
+  return app
+}
+
+module.exports = { createApp }</code></div><p><code>app.js</code> descreve o que a aplicação faz: middleware, rotas e respostas.</p></section>
+    <section class="slide slide--content" data-title="Criar server.js"><h2>5️⃣ Criar o server.js: iniciar o processo</h2><div class="code-block"><span class="lang-badge">src/server.js</span><code>require('dotenv').config()
+const { createApp } = require('./app')
+const { MemoryStore } = require('./store')
+
+async function startServer() {
+  const port = Number(process.env.PORT) || 3005
+  const store = new MemoryStore()
+  const app = createApp({ store })
+
+  app.listen(port, () =&gt; {
+    console.log(`Servidor em http://localhost:${port}`)
+  })
+}
+
+startServer()</code></div><p><code>server.js</code> prepara dependências, escolhe a porta e inicia. Depois substituímos <code>MemoryStore</code> pelo MongoDB.</p></section>
+    <section class="slide slide--content" data-title="Criar store.js"><h2>6️⃣ Criar o store.js: responsabilidade dos dados</h2><p>As rotas não precisam saber se os dados estão em memória ou no MongoDB.</p><div class="code-block"><span class="lang-badge">src/store.js — primeira versão</span><code>class MemoryStore {
+  constructor() {
+    this.users = []
+  }
+
+  async listUsers() {
+    return this.users
+  }
+
+  async createUser(user) {
+    this.users.push(user)
+    return user
+  }
+}
+
+module.exports = { MemoryStore }</code></div><div class="callout callout--tip"><span class="icon">🧩</span><span>Começar em memória ajuda a entender GET e POST. Depois criamos <code>MongoStore</code> com os mesmos nomes de função.</span></div></section>
+    <section class="slide slide--content" data-title="Vocabulário do código"><h2>7️⃣ Palavras novas: entender sem decorar</h2><div class="columns"><div class="card"><h3>Funções e fluxo</h3><p><code>function</code> cria uma função; <code>=&gt;</code> é uma forma curta. <code>async</code> avisa que uma função espera uma tarefa. <code>await</code> espera o resultado.</p></div><div class="card"><h3>Dados</h3><p><code>typeof</code> verifica o tipo. <code>undefined</code> significa que um valor não foi informado. <code>trim()</code> remove espaços do começo e do fim.</p></div></div><div class="columns"><div class="card"><h3>Decisões</h3><p><code>if</code> decide; <code>try/catch</code> tenta executar e captura uma falha. Primeiro compreendemos o caminho feliz; depois tratamos erros.</p></div><div class="card"><h3><code>...document</code></h3><p>O spread copia propriedades de um objeto para outro. Ele ajuda a montar uma resposta sem alterar o documento original.</p></div></div><p>Esses conceitos serão aprofundados no módulo seguinte; aqui basta reconhecer a função que cada um cumpre.</p></section>
+    <section class="slide slide--dark" data-title="Evoluir para MongoDB"><h2>8️⃣ Da memória para o MongoDB</h2><div class="columns"><div class="card"><h3>Antes</h3><div class="code-block"><code>const store = new MemoryStore()</code></div><p>Os dados desaparecem ao reiniciar.</p></div><div class="card"><h3>Depois</h3><div class="code-block"><code>const store = await MongoStore.connect(
+  process.env.MONGODB_URI,
+  process.env.MONGODB_DB
+)</code></div><p>Os dados ficam persistidos em <code>usuarios</code> e <code>livros</code>.</p></div></div><p>As rotas continuam chamando <code>listUsers</code>, <code>createUser</code>, <code>updateUser</code> e <code>deleteUser</code>. Só muda quem executa o acesso aos dados.</p></section>
+    <section class="slide slide--content" data-title="Progressão CRUD"><h2>9️⃣ Progressão até o CRUD completo</h2><ol><li>Servidor simples: uma rota GET e uma resposta.</li><li>POST sem banco: body JSON e lista em memória.</li><li><code>app.js</code>: rotas separadas do início do servidor.</li><li><code>server.js</code>: porta, dotenv e conexão.</li><li><code>store.js</code>: operações de dados.</li><li>MongoDB: documentos e <code>ObjectId</code>.</li><li>PUT e DELETE: atualizar e remover por ID.</li><li>Validação, <code>try/catch</code>, status de erro e testes.</li></ol><div class="callout callout--info"><span class="icon">📈</span><span>Se uma etapa falhar, volte à etapa anterior que já funcionava. Programar é construir pequenos avanços verificáveis.</span></div></section>
     <section class="slide slide--content" data-title="POST usuário"><h2>➕ POST: criar usuário</h2><div class="code-block"><span class="lang-badge">Postman</span><code>POST http://localhost:3005/api/usuarios
 Content-Type: application/json
 
@@ -60,7 +139,7 @@ npm test</code></div><ol><li>Importe <code>postman/revisaoCrud.postman_collectio
     <section class="slide slide--section" data-title="Referências"><h1>📚 Referências</h1><p class="subtitle">Documentação para continuar investigando</p><p style="margin-top:24px;"><a href="https://expressjs.com/pt-br/" target="_blank" rel="noopener">Express</a> · <a href="https://www.mongodb.com/docs/drivers/node/current/" target="_blank" rel="noopener">MongoDB Node Driver</a> · <a href="https://www.npmjs.com/package/dotenv" target="_blank" rel="noopener">dotenv</a> · <a href="https://www.npmjs.com/package/nodemon" target="_blank" rel="noopener">Nodemon</a> · <a href="https://learning.postman.com/docs/" target="_blank" rel="noopener">Postman</a></p><p style="margin-top:20px;color:#CBD5E1;">Leia o guia completo do projeto, teste uma rota por vez e registre o que aprendeu.</p></section>
     <section class="slide slide--cover" data-title="Fechamento"><h1>🚀 Revisão concluída</h1><p class="subtitle">Uma API é um contrato que podemos testar, explicar e melhorar.</p><p style="margin-top:24px;color:#CBD5E1;">POST → GET → PUT → DELETE</p></section>
   </div>
-  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()">☰ Menu</button><button onclick="Slides.prev()">← Anterior</button><span class="progress-text">1 / 17</span><button onclick="Slides.next()">Próximo →</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()">⛶ Tela cheia</button><button class="btn-home" onclick="Slides.goHome()">⌂ Portal</button></div>
+  <div class="controls"><button class="btn-menu" onclick="Slides.toggleSidebar()">☰ Menu</button><button onclick="Slides.prev()">← Anterior</button><span class="progress-text">1 / 27</span><button onclick="Slides.next()">Próximo →</button><button class="btn-fullscreen" onclick="Slides.toggleFullscreen()">⛶ Tela cheia</button><button class="btn-home" onclick="Slides.goHome()">⌂ Portal</button></div>
   <script src="../slides.js"></script>
 </body>
 </html>
