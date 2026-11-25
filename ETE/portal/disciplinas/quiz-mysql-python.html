@@ -166,5 +166,6 @@
     document.addEventListener('keydown', (event) => { if (answered || current >= questions.length) return; const index = Number(event.key) - 1; if (index >= 0 && index < 4) answer(index); });
     renderRanking(); renderQuestion();
   </script>
+  <script src="../../../analytics.js"></script>
 </body>
 </html>
