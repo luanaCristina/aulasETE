@@ -9,7 +9,7 @@
  * Enquanto GOATCOUNTER_CODE estiver vazio, nada é enviado.
  */
 (function () {
-  var GOATCOUNTER_CODE = '';
+  var GOATCOUNTER_CODE = 'luanacristinaete';
 
   if (!GOATCOUNTER_CODE) return;
   // Não conta acessos locais durante o desenvolvimento
