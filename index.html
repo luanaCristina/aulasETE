@@ -133,10 +133,8 @@
     .contact a { color: #60A5FA; }
     .contact a:hover { text-decoration: underline; }
     .contact p { margin-bottom: 4px; }
-    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 760px; margin: 0 auto; text-align: left; }
-    .contact-resources { max-width: 760px; margin: 20px auto 0; text-align: left; }
-    .contact-resources h3 { color: #CBD5E1; font-size: 1rem; margin-bottom: 6px; }
-    @media (max-width: 640px) { .contact-grid { grid-template-columns: 1fr; } }
+    .contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 980px; margin: 0 auto; text-align: left; }
+    @media (max-width: 720px) { .contact-grid { grid-template-columns: 1fr; } }
     @media (max-width: 640px) {
       .header h1 { font-size: 1.8rem; }
       .grid { grid-template-columns: 1fr; }
@@ -730,15 +728,15 @@
           <p><a href="sobre.html">ℹ Sobre o site</a></p>
         </div>
         <div class="contact-col">
-          <h3>👩‍🏫 Sobre mim</h3>
+          <h3>👩‍💻 Sobre mim</h3>
           <p>Profª Luana Cristina</p>
           <p><a href="https://www.linkedin.com/in/luanacristinaas/" target="_blank" rel="noopener">🔗 LinkedIn — luanacristinaas</a></p>
         </div>
-      </div>
-      <div class="contact-resources">
-        <h3>📚 Recursos</h3>
-        <p><a href="https://luanacristina.github.io/mentoria/" target="_blank" rel="noopener">🔗 Mentoria</a></p>
-        <p><a href="https://luanacristina.github.io/mentoria/mentoria-conteudo.html" target="_blank" rel="noopener">🔗 Conteúdo da mentoria</a></p>
+        <div class="contact-col">
+          <h3>📚 Recursos</h3>
+          <p><a href="https://luanacristina.github.io/mentoria/" target="_blank" rel="noopener">🔗 Mentoria</a></p>
+          <p><a href="https://luanacristina.github.io/mentoria/mentoria-conteudo.html" target="_blank" rel="noopener">🔗 Conteúdo da mentoria</a></p>
+        </div>
       </div>
     </div>
   </footer>
