@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API CRUD simples — Python + MySQL | ETE Pernambuco</title>
+  <meta name="description" content="API CRUD simples com Python, Flask e MySQL: passo a passo, testes de cada rota e comandos SQL.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar"><h3>🐍 CRUD Python + MySQL</h3><div class="sidebar-nav"></div></nav>
+  <div class="slides-wrapper">
+    <section class="slide slide--cover" data-title="Capa">
+
+      <h1>🐍 API CRUD simples — <span class="accent">Python + MySQL</span></h1>
+      <p class="subtitle">Flask, SQL e testes de cada rota — para fazer sozinho(a)</p>
+      <p style="color:#94A3B8;margin-top:24px;font-size:1.1rem;">ETE Pernambuco — Módulo 1 — Fundação</p>
+      <p style="color:#CBD5E1;margin-top:12px;">Python • Flask • MySQL • SQL • curl</p>
+    </section>
+    <section class="slide slide--content" data-title="O que você vai construir">
+
+      <h2>🎯 O que você vai construir</h2>
+      <p>Uma API que cadastra alunos (<code>nome</code>, <code>email</code>, <code>idade</code>) em um banco MySQL e responde em <b>JSON</b>.</p>
+      <div class="columns columns--3"><div class="card"><h3>Por que fazer?</h3><p>A maioria dos sistemas guarda dados em banco relacional. Aqui você liga os dois mundos: SQL no banco e Python na aplicação.</p></div><div class="card"><h3>O que você entrega</h3><ul><li>Banco <code>escola</code> com a tabela <code>alunos</code></li><li>API Flask com <b>5 rotas</b> + 1 de boas-vindas</li><li>Validação dos dados recebidos</li><li>Tratamento de erros com código HTTP correto</li></ul></div><div class="card"><h3>Como saber se deu certo</h3><p>Cada rota tem um teste com <code>curl</code> e um comando <code>SELECT</code> para provar que a tabela mudou. No fim, você compara com o repositório da professora.</p></div></div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span>Escreva o código <b>antes</b> de abrir o repositório. Ele está no último slide para conferir ou corrigir.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Como usar esta aula">
+
+      <h2>🧭 Como usar esta aula</h2>
+      <div class="columns"><div class="card"><h3>1. Leia</h3><p>Cada função tem dois slides: <b>motivo + o que fazer</b> e <b>teste + comando SQL</b>.</p></div><div class="card"><h3>2. Escreva</h3><p>Digite no seu <code>app.py</code>. Os slides mostram a dica principal, não a resposta completa.</p></div><div class="card"><h3>3. Teste</h3><p>Rode <code>python app.py</code>, execute o <code>curl</code> e confirme o resultado.</p></div><div class="card"><h3>4. Confira no banco</h3><p>Rode o <code>SELECT</code> do slide. Resposta certa na API e tabela errada = bug (ex.: esqueceu o <code>commit</code>).</p></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Reinicie o servidor quando alterar o <code>app.py</code>, ou use <code>debug=True</code> (já recarrega sozinho ao salvar).</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Mapa CRUD">
+
+      <h2>🗺 O mapa do projeto: CRUD → HTTP → SQL</h2>
+      <table><thead><tr><th>Operação</th><th>Rota</th><th>Comando SQL</th><th>Sucesso</th></tr></thead><tbody><tr><td>Create</td><td><code>POST /alunos</code></td><td><code>INSERT INTO</code></td><td><code>201 Created</code></td></tr><tr><td>Read (lista/busca)</td><td><code>GET /alunos</code> e <code>GET /alunos?nome=Ana</code></td><td><code>SELECT ... WHERE ... LIKE</code></td><td><code>200 OK</code></td></tr><tr><td>Read (um)</td><td><code>GET /alunos/&lt;id&gt;</code></td><td><code>SELECT ... WHERE id = ?</code></td><td><code>200 OK</code></td></tr><tr><td>Update</td><td><code>PUT /alunos/&lt;id&gt;</code></td><td><code>UPDATE ... SET ... WHERE</code></td><td><code>200 OK</code></td></tr><tr><td>Delete</td><td><code>DELETE /alunos/&lt;id&gt;</code></td><td><code>DELETE FROM ... WHERE</code></td><td><code>200 OK</code></td></tr></tbody></table>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>Falhas usam outros códigos: <code>400</code> dado inválido (culpa do cliente), <code>404</code> aluno não existe, <code>500</code> erro do banco ou do servidor.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Pré-requisitos">
+
+      <h2>🧰 Ambiente: Python e MySQL</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>python3 --version      # Windows: python --version
+mysql --version</code></div>
+      <div class="columns"><div class="card"><h3>MySQL instalado</h3><p>Instale o MySQL Community Server (ou use Docker):</p><div class="code-block"><span class="lang-badge">Docker</span><code>docker run -d --name mysql-aula \
+  -e MYSQL_ROOT_PASSWORD=root \
+  -p 3306:3306 mysql:8</code></div></div><div class="card"><h3>Projeto Python</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>mkdir crud-python-mysql
+cd crud-python-mysql
+python3 -m venv .venv
+source .venv/bin/activate     # Windows: .venv\Scripts\activate
+pip install Flask mysql-connector-python</code></div></div></div>
+      <p><b>Por que <code>venv</code>?</b> Isola as bibliotecas deste projeto, sem misturar com outros projetos do computador.</p>
+    </section>
+    <section class="slide slide--section" data-title="Parte 1 — Banco de dados">
+
+      <h2>Parte 1</h2>
+      <p>Criar o banco e a tabela antes de escrever Python</p>
+    </section>
+    <section class="slide slide--content" data-title="Criar banco e tabela">
+
+      <h2>🗄 Passo 1 — Criar o banco e a tabela</h2>
+      <p><b>Por quê?</b> A aplicação só conecta em um banco que já existe. A tabela define a "forma" dos dados: colunas, tipos e regras.</p>
+      <div class="code-block"><span class="lang-badge">escola.sql</span><code>CREATE DATABASE IF NOT EXISTS escola
+    CHARACTER SET utf8mb4
+    COLLATE utf8mb4_general_ci;
+
+USE escola;
+
+CREATE TABLE IF NOT EXISTS alunos (
+    id    INT AUTO_INCREMENT PRIMARY KEY,
+    nome  VARCHAR(100) NOT NULL,
+    email VARCHAR(100) NOT NULL,
+    idade INT NOT NULL
+);</code></div>
+      <table><thead><tr><th>Parte</th><th>Significado</th></tr></thead><tbody><tr><td><code>AUTO_INCREMENT PRIMARY KEY</code></td><td>o MySQL gera o id (1, 2, 3...) e garante que ele é único</td></tr><tr><td><code>NOT NULL</code></td><td>a coluna não aceita valor vazio</td></tr><tr><td><code>utf8mb4</code></td><td>permite acentos e emojis sem quebrar</td></tr></tbody></table>
+    </section>
+    <section class="slide slide--content" data-title="Executar e conferir a tabela">
+
+      <h2>✅ Teste do Passo 1: o banco existe?</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>mysql -u root -p &lt; escola.sql      # digite a senha quando pedir
+mysql -u root -p                     # entrar no cliente</code></div>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>SHOW DATABASES;       -- "escola" deve aparecer
+USE escola;
+SHOW TABLES;          -- "alunos"
+DESCRIBE alunos;      -- colunas: id, nome, email, idade
+SELECT * FROM alunos; -- vazio (ou com os exemplos, se você os inseriu)</code></div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span>Quer dados de exemplo para testar a listagem?</span></div>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>INSERT INTO alunos (nome, email, idade) VALUES
+  ('Ana Souza', 'ana@email.com', 16),
+  ('Bruno Lima', 'bruno@email.com', 17);</code></div>
+    </section>
+    <section class="slide slide--content" data-title="Config e conexão">
+
+      <h2>🔌 Passo 2 — Configurar a conexão</h2>
+      <div class="code-block"><span class="lang-badge">app.py (início)</span><code>import os
+from flask import Flask, request, jsonify
+import mysql.connector
+from mysql.connector import Error
+
+app = Flask(__name__)
+
+DB_CONFIG = {
+    "host": os.getenv("DB_HOST", "localhost"),
+    "port": int(os.getenv("DB_PORT", "3306")),
+    "user": os.getenv("DB_USER", "root"),
+    "password": os.getenv("DB_PASSWORD", "root"),
+    "database": os.getenv("DB_NAME", "escola"),
+}
+
+def get_connection():
+    return mysql.connector.connect(**DB_CONFIG)</code></div>
+      <div class="columns"><div class="card"><h3>Por que <code>os.getenv</code>?</h3><p>Usuário e senha mudam em cada computador. Variável de ambiente evita escrever senha no código; o segundo valor é o padrão para estudo.</p></div><div class="card"><h3>Por que uma função?</h3><p>Cada rota abre sua <b>própria</b> conexão e fecha no fim. Assim uma falha em uma requisição não contamina a próxima.</p></div></div>
+    </section>
+    <section class="slide slide--content" data-title="Testar conexão">
+
+      <h2>✅ Teste do Passo 2: Python consegue falar com o MySQL?</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>python -c "from app import get_connection; c = get_connection(); print(c.is_connected()); c.close()"</code></div>
+      <div class="columns">
+        <div class="card"><h3>Esperado</h3><div class="code-block"><span class="lang-badge">Saída</span><code>True</code></div></div>
+        <div class="card"><h3>Se der erro</h3><ul><li><code>Access denied for user</code>: senha diferente de <code>root</code>. Defina <code>DB_PASSWORD</code> ou ajuste o <code>DB_CONFIG</code></li><li><code>Unknown database 'escola'</code>: o <code>escola.sql</code> não foi executado</li><li><code>Can't connect to MySQL server</code>: serviço MySQL desligado (ou Docker parado)</li></ul></div>
+      </div>
+      <div class="code-block"><span class="lang-badge">Terminal (Mac/Linux)</span><code>export DB_PASSWORD=sua_senha     # Windows PowerShell: $env:DB_PASSWORD="sua_senha"</code></div>
+    </section>
+    <section class="slide slide--section" data-title="Parte 2 — As rotas">
+
+      <h2>Parte 2</h2>
+      <p>Validação e as rotas da API: motivo, construção, teste e conferência no banco</p>
+    </section>
+    <section class="slide slide--content" data-title="Validação">
+
+      <h2>🛡 Função auxiliar — <code>validar_dados_aluno()</code></h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Nunca confie no que chega do cliente. Sem validar, um cadastro sem nome ou com idade "abc" iria para o banco (ou derrubaria a rota com erro).</p></div><div class="card"><h3>O que fazer</h3><ul><li>Receber o JSON (<code>dados</code>) e um flag <code>exigir_todos</code></li><li>No cadastro: <code>nome</code>, <code>email</code> e <code>idade</code> obrigatórios</li><li>Se <code>idade</code> vier: inteiro maior que zero</li><li>Retornar <code>None</code> se está tudo certo, ou o <b>texto do erro</b></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>def validar_dados_aluno(dados, exigir_todos=True):
+    if not dados:
+        return "Nenhum dado foi enviado."
+    if exigir_todos:
+        if not str(dados.get("nome", "")).strip():
+            return "O campo 'nome' é obrigatório."
+        # ... email e idade ...
+    if "idade" in dados:
+        try:
+            if int(dados["idade"]) &lt;= 0:
+                return "A 'idade' deve ser maior que zero."
+        except (ValueError, TypeError):
+            return "A 'idade' deve ser um número inteiro."
+    return None</code></div></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span><code>exigir_todos=False</code> serve ao <code>PUT</code>: na atualização o cliente pode mandar só o campo que quer mudar.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Rota inicial">
+
+      <h2>🏠 Função 0 — <code>GET /</code> · Boas-vindas</h2>
+      <div class="columns"><div class="card"><h3>Por que existe</h3><p>É o "alô" da API. Se ela responder, o servidor está no ar, mesmo antes de testar o banco.</p></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>@app.route("/", methods=["GET"])
+def home():
+    return jsonify({"mensagem": "API funcionando!"})
+
+# ... as outras rotas ficam ACIMA deste bloco final ...
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)</code></div></div></div>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>python app.py
+curl http://localhost:5000/</code></div>
+      <p><b>Esperado:</b> JSON com a mensagem. <b>No banco:</b> nada muda.</p>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span><b>No Mac:</b> em versões recentes do macOS, o <i>AirPlay Receiver</i> usa a porta 5000 e o <code>curl</code> recebe <code>403</code>. Troque para <code>port=5001</code> (e use 5001 nos testes) ou desligue o AirPlay Receiver em Ajustes do Sistema.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 1 — Cadastrar">
+
+      <h2>➕ Função 1 — <code>POST /alunos</code> · Cadastrar (CREATE)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Inclui um novo aluno na tabela. É a única forma de colocar dados no banco pela API.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Ler o JSON: <code>request.get_json(silent=True)</code></li><li>Validar; se houver erro, responder <code>400</code></li><li>Executar <code>INSERT</code> com <b>placeholders</b></li><li><code>commit()</code> e responder <code>201</code> com o id novo (<code>cursor.lastrowid</code>)</li><li><code>finally</code>: fechar cursor e conexão</li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>sql = "INSERT INTO alunos (nome, email, idade) VALUES (%s, %s, %s)"
+cursor.execute(sql, (nome, email, idade))
+conexao.commit()
+novo_id = cursor.lastrowid</code></div></div></div>
+      <div class="columns"><div class="card"><h3>Por que <code>%s</code> e não f-string?</h3><p>Com <code>%s</code> o driver envia os valores <b>separados</b> do SQL. Com f-string, um nome como <code>x'); DROP TABLE alunos;--</code> viraria comando: é a <b>SQL Injection</b>.</p></div><div class="card"><h3>Por que <code>commit()</code>?</h3><p>O <code>INSERT</code> só vale depois do commit. Sem ele a API responde 201, mas ao reiniciar a conexão a linha não existe.</p></div></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 1 — teste">
+
+      <h2>➕ Função 1 — teste e conferência no banco</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i -X POST http://localhost:5000/alunos \
+  -H "Content-Type: application/json" \
+  -d '{"nome":"Carla","email":"carla@email.com","idade":18}'</code></div>
+      <table><thead><tr><th>Caso</th><th>Esperado</th></tr></thead><tbody><tr><td>dados corretos</td><td><code>201 CREATED</code> e JSON com o <code>id</code> novo</td></tr><tr><td>sem <code>email</code> (<code>{"nome":"X"}</code>)</td><td><code>400 BAD REQUEST</code> com <code>"erro"</code> explicando</td></tr><tr><td><code>"idade":"abc"</code></td><td><code>400</code> e a mensagem "idade deve ser um número inteiro"</td></tr></tbody></table>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>SELECT * FROM alunos ORDER BY id DESC LIMIT 1;   -- a Carla deve estar aqui</code></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span><b>Windows:</b> no PowerShell use <code>curl.exe</code> e troque as aspas, ou teste com Postman, Thunder Client (VS Code) ou a extensão REST Client. O corpo é sempre o mesmo JSON.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 2 — Listar e buscar">
+
+      <h2>📖 Função 2 — <code>GET /alunos</code> · Listar e buscar (READ)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Mostra os alunos cadastrados. O filtro <code>?nome=</code> evita trazer tudo quando só se quer um aluno.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Ler o parâmetro: <code>request.args.get("nome")</code></li><li>Se veio nome: <code>WHERE nome LIKE %s</code> com <code>"%" + nome + "%"</code></li><li>Senão: <code>SELECT *</code></li><li>Usar <code>cursor(dictionary=True)</code> para as linhas virem como dicionários</li><li>Responder <code>{"total": n, "alunos": [...]}</code></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>cursor = conexao.cursor(dictionary=True)
+if nome_busca:
+    sql = "SELECT * FROM alunos WHERE nome LIKE %s ORDER BY id"
+    cursor.execute(sql, (f"%{nome_busca}%",))
+else:
+    cursor.execute("SELECT * FROM alunos ORDER BY id")
+alunos = cursor.fetchall()</code></div></div></div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span><b>Aqui a f-string é segura</b> porque ela só monta o <i>valor</i> (<code>%Ana%</code>) que ainda vai como parâmetro. O SQL continua com <code>%s</code>.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 2 — teste">
+
+      <h2>📖 Função 2 — teste e conferência no banco</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>curl http://localhost:5000/alunos
+curl "http://localhost:5000/alunos?nome=Ana"</code></div>
+      <table><thead><tr><th>Teste</th><th>Esperado</th></tr></thead><tbody><tr><td>listar tudo</td><td><code>200</code>, <code>total</code> igual ao <code>COUNT(*)</code> do banco</td></tr><tr><td><code>?nome=Ana</code></td><td>alunos cujo nome <b>contém</b> "Ana" (<b>Ana</b> Souza e Mari<b>ana</b> Dias)</td></tr><tr><td><code>?nome=xyz</code></td><td><code>200</code> com <code>"total": 0</code> e lista vazia (não é erro)</td></tr><tr><td><code>?nome=x' OR '1'='1</code></td><td><code>total: 0</code>: o texto malicioso é tratado só como texto</td></tr></tbody></table>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>SELECT COUNT(*) FROM alunos;
+SELECT * FROM alunos WHERE nome LIKE '%Ana%';</code></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>As chaves do JSON aparecem em ordem alfabética (<code>email</code>, <code>id</code>, <code>idade</code>, <code>nome</code>): é o comportamento padrão do <code>jsonify</code> e não afeta nada.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 3 — Buscar por id">
+
+      <h2>🔎 Função 3 — <code>GET /alunos/&lt;id&gt;</code> · Buscar um aluno</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Os outros recursos (editar, deletar, detalhes) partem de <b>um</b> aluno específico, identificado pelo id.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Rota com <code>&lt;int:id&gt;</code>: o Flask só aceita número</li><li><code>SELECT * FROM alunos WHERE id = %s</code></li><li><code>fetchone()</code>: devolve uma linha ou <code>None</code></li><li>Se <code>None</code>: <code>404</code> com mensagem</li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>@app.route("/alunos/&lt;int:id&gt;", methods=["GET"])
+def buscar_aluno(id):
+    ...
+    cursor.execute("SELECT * FROM alunos WHERE id = %s", (id,))
+    aluno = cursor.fetchone()
+    if aluno is None:
+        return jsonify({"erro": f"Aluno {id} não encontrado."}), 404</code></div></div></div>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i http://localhost:5000/alunos/1     # 200 + {"aluno": {...}}
+curl -i http://localhost:5000/alunos/999   # 404 + {"erro": ...}</code></div>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>SELECT * FROM alunos WHERE id = 1;     -- mesmos dados da API</code></div>
+      <p><b>Por que <code>(id,)</code> com vírgula?</b> O driver espera uma <i>tupla</i>; sem a vírgula, <code>(id)</code> é só um número entre parênteses.</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 4 — Atualizar">
+
+      <h2>🔄 Função 4 — <code>PUT /alunos/&lt;id&gt;</code> · Atualizar (UPDATE)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Corrige dados de um aluno que já existe (e-mail errado, idade incorreta).</p></div><div class="card"><h3>O que fazer</h3><ul><li>Validar com <code>exigir_todos=False</code></li><li>Buscar o aluno atual; se não existe, <code>404</code></li><li>Usar o valor novo se foi enviado, senão manter o atual: <code>dados.get("nome", atual["nome"])</code></li><li>Executar <code>UPDATE ... WHERE id = %s</code> e <code>commit()</code></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>sql = "UPDATE alunos SET nome=%s, email=%s, idade=%s WHERE id=%s"
+cursor.execute(sql, (novo_nome, novo_email, nova_idade, id))
+conexao.commit()</code></div></div></div>
+      <div class="callout callout--danger"><span class="icon">⚠️</span><span>Nunca esqueça o <code>WHERE</code>. <code>UPDATE alunos SET idade = 20;</code> sem <code>WHERE</code> altera <b>todos</b> os alunos da tabela.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 4 — teste">
+
+      <h2>🔄 Função 4 — teste e conferência no banco</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i -X PUT http://localhost:5000/alunos/1 \
+  -H "Content-Type: application/json" \
+  -d '{"idade":19}'</code></div>
+      <table><thead><tr><th>Caso</th><th>Esperado</th></tr></thead><tbody><tr><td>só <code>idade</code> no JSON</td><td><code>200</code>; nome e e-mail <b>permanecem</b> como estavam</td></tr><tr><td>id inexistente (<code>/alunos/999</code>)</td><td><code>404</code></td></tr><tr><td><code>{"idade": -5}</code></td><td><code>400</code> (idade deve ser maior que zero)</td></tr></tbody></table>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>SELECT * FROM alunos WHERE id = 1;   -- idade = 19
+SELECT COUNT(*) FROM alunos;          -- igual ao de antes</code></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 5 — Deletar">
+
+      <h2>🗑 Função 5 — <code>DELETE /alunos/&lt;id&gt;</code> · Deletar (DELETE)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Remove um cadastro que não deve mais existir. Verificar antes se o aluno existe permite responder <code>404</code> em vez de fingir que apagou.</p></div><div class="card"><h3>O que fazer</h3><ul><li><code>SELECT id ... WHERE id = %s</code>: se não existe, <code>404</code></li><li><code>DELETE FROM alunos WHERE id = %s</code></li><li><code>commit()</code> e <code>200</code> com mensagem</li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>cursor.execute("DELETE FROM alunos WHERE id = %s", (id,))
+conexao.commit()
+return jsonify({"mensagem": f"Aluno {id} deletado!"}), 200</code></div></div></div>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i -X DELETE http://localhost:5000/alunos/4     # 200
+curl -i -X DELETE http://localhost:5000/alunos/4     # 404 (já foi apagado)
+curl -i http://localhost:5000/alunos/4               # 404</code></div>
+      <div class="code-block"><span class="lang-badge">SQL</span><code>SELECT * FROM alunos WHERE id = 4;    -- 0 linhas</code></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>O <code>id</code> apagado <b>não é reutilizado</b>: o próximo cadastro continua a sequência do <code>AUTO_INCREMENT</code>.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Tratamento de erros e fechamento">
+
+      <h2>🧯 Padrão de cada rota: <code>try / except / finally</code></h2>
+      <div class="code-block"><span class="lang-badge">Python</span><code>conexao = None
+try:
+    conexao = get_connection()
+    cursor = conexao.cursor(dictionary=True)
+    ...                                      # SQL da rota
+except Error as e:
+    return jsonify({"erro": f"Erro no banco de dados: {e}"}), 500
+finally:
+    if conexao is not None and conexao.is_connected():
+        cursor.close()
+        conexao.close()</code></div>
+      <div class="columns"><div class="card"><h3><code>except</code></h3><p>Se o banco cair, a API responde <code>500</code> em JSON em vez de uma página de erro.</p></div><div class="card"><h3><code>finally</code></h3><p>Roda <b>sempre</b>, com sucesso ou erro. Garante que a conexão fecha e o MySQL não acumula conexões abertas.</p></div></div>
+      <p><b>Teste:</b> pare o MySQL (<code>docker stop mysql-aula</code> ou o serviço) e chame <code>GET /alunos</code>. Esperado: <code>500</code> com <code>"erro"</code>. Religue e chame de novo: volta a funcionar.</p>
+    </section>
+    <section class="slide slide--section" data-title="Parte 3 — SQL">
+
+      <h2>Parte 3</h2>
+      <p>Comandos SQL para praticar sozinho(a) e roteiro final</p>
+    </section>
+    <section class="slide slide--content" data-title="Comandos SQL">
+
+      <h2>🗄 Comandos SQL do CRUD (treine direto no MySQL)</h2>
+      <div class="columns"><div class="card"><h3>Create e Read</h3><div class="code-block"><span class="lang-badge">SQL</span><code>INSERT INTO alunos (nome, email, idade)
+VALUES ('Diego', 'diego@email.com', 17);
+
+SELECT * FROM alunos;
+SELECT nome, idade FROM alunos WHERE idade &gt;= 16;
+SELECT * FROM alunos ORDER BY nome;
+SELECT COUNT(*) FROM alunos;</code></div></div><div class="card"><h3>Update e Delete</h3><div class="code-block"><span class="lang-badge">SQL</span><code>UPDATE alunos
+SET idade = 18
+WHERE id = 2;
+
+DELETE FROM alunos WHERE id = 2;
+
+-- limpar tudo (só no seu ambiente de estudo!)
+TRUNCATE TABLE alunos;</code></div></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span><code>UPDATE</code> e <code>DELETE</code> sem <code>WHERE</code> afetam a tabela inteira. Antes de rodar, escreva um <code>SELECT</code> com o mesmo <code>WHERE</code> e confira quais linhas serão atingidas.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Roteiro de teste completo">
+
+      <h2>📋 Roteiro de teste completo</h2>
+      <table><thead><tr><th>#</th><th>Faça</th><th>Esperado</th><th>Confira no MySQL</th></tr></thead><tbody><tr><td>1</td><td><code>GET /</code></td><td>mensagem de boas-vindas</td><td>—</td></tr><tr><td>2</td><td><code>POST /alunos</code> (Carla)</td><td><code>201</code> + id</td><td><code>SELECT</code> mostra a Carla</td></tr><tr><td>3</td><td><code>POST /alunos</code> sem email</td><td><code>400</code></td><td>nenhuma linha nova</td></tr><tr><td>4</td><td><code>GET /alunos</code></td><td><code>total</code> correto</td><td><code>COUNT(*)</code> igual</td></tr><tr><td>5</td><td><code>GET /alunos?nome=Car</code></td><td>só a Carla</td><td><code>LIKE '%Car%'</code></td></tr><tr><td>6</td><td><code>GET /alunos/999</code></td><td><code>404</code></td><td>id não existe</td></tr><tr><td>7</td><td><code>PUT /alunos/&lt;id&gt;</code> idade 19</td><td><code>200</code>, resto igual</td><td><code>idade = 19</code></td></tr><tr><td>8</td><td><code>DELETE /alunos/&lt;id&gt;</code></td><td><code>200</code></td><td>0 linhas com esse id</td></tr><tr><td>9</td><td><code>DELETE</code> de novo</td><td><code>404</code></td><td>—</td></tr><tr><td>10</td><td>Reinicie a API e liste</td><td>dados continuam</td><td>persistência no MySQL</td></tr></tbody></table>
+    </section>
+    <section class="slide slide--content" data-title="Erros comuns">
+
+      <h2>🛠 Erros comuns e como resolver</h2>
+      <table><thead><tr><th>Sintoma</th><th>Causa provável</th><th>Como resolver</th></tr></thead><tbody><tr><td><code>ModuleNotFoundError: flask</code></td><td>venv não ativado ou pacote não instalado</td><td>ative o <code>.venv</code> e rode <code>pip install Flask mysql-connector-python</code></td></tr><tr><td><code>Access denied for user</code></td><td>senha diferente de <code>root</code></td><td>ajuste <code>DB_PASSWORD</code> ou <code>DB_CONFIG</code></td></tr><tr><td><code>Unknown database</code></td><td><code>escola.sql</code> não executado</td><td>rode <code>mysql -u root -p &lt; escola.sql</code></td></tr><tr><td><code>403</code> ou página estranha no Mac</td><td>AirPlay usa a porta 5000</td><td>use <code>port=5001</code> ou desligue o AirPlay Receiver</td></tr><tr><td><code>400</code> "Nenhum dado foi enviado" mesmo mandando JSON</td><td>faltou o cabeçalho <code>Content-Type</code></td><td>envie <code>-H "Content-Type: application/json"</code></td></tr><tr><td>API responde 201 mas a linha não existe</td><td>esqueceu <code>commit()</code></td><td>chame <code>conexao.commit()</code> após INSERT/UPDATE/DELETE</td></tr><tr><td><code>Error: 1064 You have an error in your SQL syntax</code></td><td>SQL digitado errado</td><td>copie o SQL do erro e teste direto no MySQL</td></tr><tr><td><code>Address already in use</code></td><td>outro servidor na mesma porta</td><td>feche o anterior (<code>Ctrl+C</code>) ou mude a porta</td></tr></tbody></table>
+    </section>
+    <section class="slide slide--content" data-title="Desafios">
+
+      <h2>🚀 Desafios para ir além</h2>
+      <div class="columns columns--3"><div class="card"><h3>Nível 1</h3><ul><li>Ordenar a listagem por <code>nome</code> com <code>?ordem=nome</code></li><li>Rota <code>GET /alunos/total</code> com o <code>COUNT(*)</code></li><li>Aceitar <code>?idade_min=16</code></li></ul></div><div class="card"><h3>Nível 2</h3><ul><li>Validar o formato do e-mail</li><li>Impedir e-mails repetidos (<code>UNIQUE</code> na coluna + erro <code>409</code>)</li><li>Adicionar o campo <code>curso</code> (<code>ALTER TABLE</code>)</li></ul></div><div class="card"><h3>Nível 3</h3><ul><li>Ler a senha do banco de um arquivo <code>.env</code> (<code>python-dotenv</code>)</li><li>Usar um <i>pool</i> de conexões</li><li>Criar uma página HTML que consome a API com <code>fetch</code></li></ul></div></div>
+    </section>
+    <section class="slide slide--content" data-title="Repositório de conferência">
+
+      <h2>📚 Resource: confira com os repositórios da professora</h2>
+      <table><thead><tr><th>Repositório</th><th>Use para</th></tr></thead><tbody><tr><td><a href="https://github.com/luanaCristina/CRUD-python-mysql-codespace" target="_blank" rel="noopener" style="color:#2563EB;font-weight:700;">CRUD-python-mysql-codespace</a></td><td>conferir esta aula: <code>app.py</code>, <code>escola.sql</code>, <code>requests.http</code>, guia do MySQL</td></tr><tr><td><a href="https://github.com/luanaCristina/crud-mongo-simples" target="_blank" rel="noopener" style="color:#2563EB;font-weight:700;">crud-mongo-simples</a></td><td>comparar o mesmo CRUD com MongoDB (JavaScript e Python)</td></tr></tbody></table>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>git clone https://github.com/luanaCristina/CRUD-python-mysql-codespace.git conferencia
+cd conferencia
+python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+pip install -r requirements.txt
+mysql -u root -p &lt; escola.sql
+python app.py</code></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Clone em uma pasta <b>separada</b> para não sobrescrever o seu código. Use o arquivo <code>requests.http</code> do repositório (extensão REST Client) para repetir os testes desta aula.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Como corrigir">
+
+      <h2>🔍 Como comparar e corrigir o seu código</h2>
+      <div class="columns columns--3"><div class="card"><h3>1. Compare</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>diff meu-projeto/app.py conferencia/app.py</code></div></div><div class="card"><h3>2. Cheque o essencial</h3><ul><li>Rotas, métodos e códigos HTTP iguais?</li><li>SQL com <code>%s</code>, nunca f-string no SQL?</li><li><code>commit()</code> depois de INSERT/UPDATE/DELETE?</li><li><code>finally</code> fechando cursor e conexão?</li><li><code>WHERE id = %s</code> no UPDATE e DELETE?</li></ul></div><div class="card"><h3>3. Entenda a diferença</h3><p>Nome de variável ou mensagem de erro diferente não é erro. Vale o <b>comportamento</b>: passe no roteiro de 10 testes e compare o banco.</p></div></div>
+      <div class="callout callout--tip"><span class="icon">🏁</span><span>Próxima aula: <b>CRUD Python + MongoDB</b>. A estrutura é a mesma; muda o banco (documentos em vez de tabelas).</span></div>
+    </section>
+  </div>
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()">☰ Menu</button>
+    <button onclick="Slides.prev()">← Anterior</button>
+    <span class="progress-text">1 / 29</span>
+    <button onclick="Slides.next()">Próximo →</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()">⛶ Tela cheia</button>
+    <button class="btn-home" onclick="Slides.goHome()">⌂ Portal</button>
+  </div>
+  <script src="../slides.js"></script>
+  <script src="../../../analytics.js"></script>
+</body>
+</html>

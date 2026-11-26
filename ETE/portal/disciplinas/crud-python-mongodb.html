@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD simples — Python + MongoDB | ETE Pernambuco</title>
+  <meta name="description" content="CRUD simples com Python, Flask e MongoDB: passo a passo, testes de cada rota e comandos do banco.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar"><h3>🐍 CRUD Python + MongoDB</h3><div class="sidebar-nav"></div></nav>
+  <div class="slides-wrapper">
+    <section class="slide slide--cover" data-title="Capa">
+
+      <h1>🐍 CRUD simples — <span class="accent">Python + MongoDB</span></h1>
+      <p class="subtitle">Flask, PyMongo e testes de cada rota — para fazer sozinho(a)</p>
+      <p style="color:#94A3B8;margin-top:24px;font-size:1.1rem;">ETE Pernambuco — Módulo 1 — Fundação</p>
+      <p style="color:#CBD5E1;margin-top:12px;">Python • Flask • Jinja2 • PyMongo • MongoDB • mongosh • curl</p>
+    </section>
+    <section class="slide slide--content" data-title="O que você vai construir">
+
+      <h2>🎯 O que você vai construir</h2>
+      <p>O mesmo cadastro de pessoas (<code>name</code> + <code>surname</code>) da aula de JavaScript, agora em <b>Python</b>, gravando no <b>mesmo</b> MongoDB.</p>
+      <div class="columns columns--3"><div class="card"><h3>Por que fazer?</h3><p>Refazer a mesma solução em outra linguagem mostra o que é <b>conceito</b> (CRUD, rotas, banco) e o que é só <b>sintaxe</b> (Express × Flask, EJS × Jinja2).</p></div><div class="card"><h3>O que você entrega</h3><ul><li>Servidor Flask com <b>6 rotas</b></li><li>Conexão com o MongoDB via PyMongo</li><li>3 templates Jinja2 (listar, novo, editar)</li><li>Registros visíveis no <code>mongosh</code></li></ul></div><div class="card"><h3>Como saber se deu certo</h3><p>Cada rota tem teste (navegador ou <code>curl</code>) e um comando no banco. No fim, compare com a pasta <code>api-python</code> do repositório da professora.</p></div></div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span>Fez a aula de JavaScript? Ótimo: as rotas são as mesmas. Se não fez, não tem problema: tudo é explicado aqui.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Como usar esta aula">
+
+      <h2>🧭 Como usar esta aula</h2>
+      <div class="columns"><div class="card"><h3>1. Leia</h3><p>Cada função tem dois slides: <b>motivo + o que fazer</b> e <b>teste + comando no banco</b>.</p></div><div class="card"><h3>2. Escreva</h3><p>Digite no seu <code>app.py</code>. Os slides mostram a dica principal, não a resposta completa.</p></div><div class="card"><h3>3. Teste</h3><p>Rode <code>python app.py</code>, faça o teste do slide e veja o resultado no <code>mongosh</code>.</p></div><div class="card"><h3>4. Confira</h3><p>No final, compare com o repositório. Em caso de erro, veja o slide de erros comuns.</p></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>Com <code>debug=True</code> o Flask reinicia sozinho ao salvar o <code>app.py</code>. Templates <code>.html</code> também atualizam com F5.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="JS x Python">
+
+      <h2>🔁 Mapa de equivalência: JavaScript × Python</h2>
+      <table><thead><tr><th>Conceito</th><th>Node.js</th><th>Python</th></tr></thead><tbody><tr><td>Servidor e rotas</td><td>Express (<code>api.get(...)</code>)</td><td>Flask (<code>@app.route(...)</code>)</td></tr><tr><td>Templates HTML</td><td>EJS (<code>&lt;%= x %&gt;</code>)</td><td>Jinja2 (<code>{{ x }}</code>)</td></tr><tr><td>Driver do MongoDB</td><td><code>mongodb</code></td><td><code>pymongo</code></td></tr><tr><td>Ler o <code>.env</code></td><td><code>dotenv</code></td><td><code>python-dotenv</code></td></tr><tr><td>Dados do formulário</td><td><code>req.body.name</code></td><td><code>request.form["name"]</code></td></tr><tr><td>Id da URL</td><td><code>req.params.id</code></td><td>parâmetro da função <code>def editar(id)</code></td></tr><tr><td>Id do Mongo</td><td><code>new ObjectId(id)</code></td><td><code>ObjectId(id)</code></td></tr><tr><td>Inserir</td><td><code>insertOne({...})</code></td><td><code>insert_one({...})</code></td></tr><tr><td>Listar</td><td><code>find().toArray()</code></td><td><code>list(find())</code></td></tr><tr><td>Atualizar / Deletar</td><td><code>updateOne</code> / <code>deleteOne</code></td><td><code>update_one</code> / <code>delete_one</code></td></tr></tbody></table>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>Em Python os métodos usam <code>snake_case</code>; em JavaScript, <code>camelCase</code>. É o erro de digitação mais comum de quem troca de linguagem.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Mapa CRUD">
+
+      <h2>🗺 O mapa do projeto</h2>
+      <table><thead><tr><th>Operação</th><th>Rota</th><th>PyMongo</th><th>mongosh</th></tr></thead><tbody><tr><td>Create</td><td><code>POST /show</code></td><td><code>insert_one()</code></td><td><code>db.crud.insertOne()</code></td></tr><tr><td>Read</td><td><code>GET /show</code></td><td><code>find()</code></td><td><code>db.crud.find()</code></td></tr><tr><td>Update</td><td><code>POST /edit/&lt;id&gt;</code></td><td><code>update_one()</code> + <code>$set</code></td><td><code>db.crud.updateOne()</code></td></tr><tr><td>Delete</td><td><code>GET /delete/&lt;id&gt;</code></td><td><code>delete_one()</code></td><td><code>db.crud.deleteOne()</code></td></tr><tr><td>Telas</td><td><code>GET /index</code>, <code>GET /edit/&lt;id&gt;</code></td><td><code>render_template()</code></td><td>—</td></tr></tbody></table>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>Formulários HTML só enviam <code>GET</code> e <code>POST</code>; por isso editar usa <code>POST</code> e deletar é um link <code>GET</code>. Simplificação didática: em uma API REST real, deletar usa <code>DELETE</code>.</span></div>
+    </section>
+    <section class="slide slide--section" data-title="Parte 1 — Preparar">
+
+      <h2>Parte 1</h2>
+      <p>Ambiente, banco e conexão</p>
+    </section>
+    <section class="slide slide--content" data-title="Ambiente">
+
+      <h2>📦 Passo 1 — Ambiente Python e MongoDB</h2>
+      <div class="columns"><div class="card"><h3>Projeto</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>mkdir crud-python-mongo
+cd crud-python-mongo
+python3 -m venv .venv
+source .venv/bin/activate    # Windows: .venv\Scripts\activate
+pip install flask pymongo python-dotenv
+mkdir templates</code></div></div><div class="card"><h3>MongoDB</h3><p>Use <b>uma</b> das opções (detalhes na aula de JavaScript):</p><div class="code-block"><span class="lang-badge">Docker</span><code>docker run -d --name mongo-aula -p 27017:27017 mongo:7</code></div><p>ou um cluster gratuito no <b>MongoDB Atlas</b>.</p></div></div>
+      <table><thead><tr><th>Pacote</th><th>Para que serve</th></tr></thead><tbody><tr><td><code>flask</code></td><td>servidor web, rotas e templates Jinja2</td></tr><tr><td><code>pymongo</code></td><td>driver oficial do MongoDB para Python (traz também o <code>bson.ObjectId</code>)</td></tr><tr><td><code>python-dotenv</code></td><td>lê o arquivo <code>.env</code></td></tr></tbody></table>
+    </section>
+    <section class="slide slide--content" data-title=".env e .gitignore">
+
+      <h2>🔑 Passo 2 — <code>.env</code> e <code>.gitignore</code></h2>
+      <div class="columns"><div class="card"><h3>.env</h3><div class="code-block"><span class="lang-badge">.env</span><code>DATABASE_URL=mongodb://localhost:27017</code></div><p><b>Motivo:</b> a URL (e a senha, no Atlas) fica fora do código e pode mudar de máquina para máquina.</p></div><div class="card"><h3>.gitignore</h3><div class="code-block"><span class="lang-badge">.gitignore</span><code>.venv/
+__pycache__/
+.env</code></div><p><b>Motivo:</b> evita enviar ao GitHub as senhas e a pasta do ambiente virtual.</p></div></div>
+      <div class="callout callout--danger"><span class="icon">🔐</span><span>Crie o <code>.gitignore</code> <b>antes</b> do primeiro <code>git add</code>. Um <code>.env</code> enviado ao GitHub expõe sua senha mesmo que você apague depois; nesse caso, troque a senha no Atlas.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Conexão">
+
+      <h2>🔌 Passo 3 — Conectar e subir o servidor</h2>
+      <div class="code-block"><span class="lang-badge">app.py</span><code>import os
+
+from bson.objectid import ObjectId
+from dotenv import load_dotenv
+from flask import Flask, redirect, render_template, request
+from pymongo import MongoClient
+
+load_dotenv()
+
+app = Flask(__name__)
+
+client = MongoClient(os.getenv("DATABASE_URL"))
+collection = client["pessoa"]["crud"]
+
+# ... suas 6 rotas entram aqui ...
+
+if __name__ == "__main__":
+    client.admin.command("ping")
+    print("Conectado ao MongoDB")
+    app.run(port=3002, debug=True)</code></div>
+      <p><b>Por que o <code>ping</code>?</b> O PyMongo conecta de forma "preguiçosa": sem o ping, você só descobriria um erro de conexão na primeira rota. O ping falha logo na inicialização.</p>
+    </section>
+    <section class="slide slide--content" data-title="Testar conexão">
+
+      <h2>✅ Teste do Passo 3: o servidor sobe?</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>python app.py</code></div>
+      <div class="columns">
+        <div class="card"><h3>Esperado</h3><div class="code-block"><span class="lang-badge">Saída</span><code>Conectado ao MongoDB
+ * Running on http://127.0.0.1:3002</code></div><p>Em <code>http://localhost:3002/</code> aparece <b>Not Found</b>. É normal: ainda não há rota <code>/</code>.</p></div>
+        <div class="card"><h3>Se não funcionou</h3><ul><li><code>ServerSelectionTimeoutError ... Connection refused</code>: o MongoDB não está rodando ou o IP não foi liberado no Atlas</li><li><code>Authentication failed</code>: usuário ou senha da URL</li><li><code>ModuleNotFoundError</code>: venv desativado; ative e rode o <code>pip install</code></li><li><code>DATABASE_URL</code> ausente: o PyMongo tenta <code>localhost:27017</code> sem avisar. Com URL vazia: <code>Empty host</code></li></ul></div>
+      </div>
+    </section>
+    <section class="slide slide--section" data-title="Parte 2 — As rotas">
+
+      <h2>Parte 2</h2>
+      <p>As 6 funções: motivo, construção, teste e conferência no banco</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 1 — Listar">
+
+      <h2>📖 Função 1 — <code>GET /show</code> · Listar (READ)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>É a tela principal e a forma de <b>enxergar</b> se as demais operações funcionaram.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Buscar todos os documentos</li><li>Converter o cursor em lista</li><li>Enviar a lista ao template <code>show.html</code></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>@app.route("/show", methods=["GET"])
+def listar():
+    pessoas = list(collection.find())
+    return render_template("show.html", pessoas=pessoas)</code></div></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span><code>find()</code> devolve um cursor (leitura sob demanda). <code>list(...)</code> carrega tudo para o Jinja2 percorrer.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 1 — view e teste">
+
+      <h2>📖 Função 1 — <code>templates/show.html</code> e teste</h2>
+      <div class="columns"><div class="card"><h3>templates/show.html</h3><div class="code-block"><span class="lang-badge">Jinja2</span><code>&lt;table border="1"&gt;
+  &lt;tr&gt;&lt;td&gt;Nome&lt;/td&gt;&lt;td&gt;Sobrenome&lt;/td&gt;&lt;td&gt;Ação&lt;/td&gt;&lt;/tr&gt;
+  {% for p in pessoas %}
+  &lt;tr&gt;
+    &lt;td&gt;{{ p.name }}&lt;/td&gt;
+    &lt;td&gt;{{ p.surname }}&lt;/td&gt;
+    &lt;td&gt;
+      &lt;a href="/edit/{{ p._id }}"&gt;Editar&lt;/a&gt; -
+      &lt;a href="/delete/{{ p._id }}"&gt;Deletar&lt;/a&gt;
+    &lt;/td&gt;
+  &lt;/tr&gt;
+  {% endfor %}
+&lt;/table&gt;
+&lt;a href="/index"&gt;Novo&lt;/a&gt;</code></div><p><code>{% %}</code> executa lógica; <code>{{ }}</code> imprime o valor <b>já escapado</b> (protege de HTML injetado).</p></div><div class="card"><h3>Como testar</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>curl http://localhost:3002/show</code></div><p>ou abra no navegador. <b>Esperado:</b> só o cabeçalho (banco vazio).</p><div class="code-block"><span class="lang-badge">mongosh</span><code>mongosh "mongodb://localhost:27017/pessoa"
+db.crud.find()</code></div><p>Vazio: <code>[]</code>.</p></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>A pasta precisa se chamar exatamente <code>templates</code>, ao lado do <code>app.py</code>. Se não, o Flask responde <code>TemplateNotFound</code>.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 2 — Formulário">
+
+      <h2>📝 Função 2 — <code>GET /index</code> · Formulário</h2>
+      <div class="columns"><div class="card"><h3>Por que existe</h3><p>O usuário precisa de uma tela para digitar. Esta rota só <b>mostra</b> o formulário; quem grava é a Função 3.</p></div><div class="card"><h3>O que fazer</h3><div class="code-block"><span class="lang-badge">Python</span><code>@app.route("/index")
+def formulario():
+    return render_template("index.html")</code></div><div class="code-block"><span class="lang-badge">templates/index.html</span><code>&lt;form action="/show" method="POST"&gt;
+  &lt;input type="text" name="name" placeholder="Nome"&gt;
+  &lt;input type="text" name="surname" placeholder="Sobrenome"&gt;
+  &lt;button type="submit"&gt;Salvar&lt;/button&gt;
+&lt;/form&gt;</code></div></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>O atributo <code>name</code> do input é a chave em <code>request.form</code>. Se não bater, o Flask responde <code>400 Bad Request</code> (<code>KeyError</code>/chave ausente).</span></div>
+      <p><b>Teste:</b> abra <code>http://localhost:3002/index</code>. <b>Banco:</b> nada muda.</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 3 — Criar">
+
+      <h2>➕ Função 3 — <code>POST /show</code> · Criar (CREATE)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Recebe o formulário e <b>grava</b> no MongoDB.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Declarar a rota com <code>methods=["POST"]</code></li><li>Ler <code>request.form["name"]</code> e <code>["surname"]</code></li><li>Inserir o documento</li><li>Redirecionar para <code>/show</code></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>@app.route("/show", methods=["POST"])
+def criar():
+    collection.insert_one({
+        "name": request.form["name"],
+        "surname": request.form["surname"],
+    })
+    return redirect("/show")</code></div></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span><b>Por que <code>redirect</code>?</b> Se a resposta fosse a página, F5 reenviaria o formulário e duplicaria o registro. O redirecionamento transforma o <code>POST</code> em um <code>GET /show</code> seguro.</span></div>
+      <p>As rotas <code>GET /show</code> e <code>POST /show</code> têm o <b>mesmo caminho</b>, mas funções diferentes: o <code>methods</code> separa uma da outra.</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 3 — teste">
+
+      <h2>➕ Função 3 — teste e conferência no banco</h2>
+      <div class="columns"><div class="card"><h3>Pelo navegador</h3><ul><li>Abra <code>/index</code></li><li>Salve <b>Ana</b> / <b>Silva</b></li><li>Esperado: volta a <code>/show</code> com a Ana</li></ul></div><div class="card"><h3>Pelo terminal</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i -X POST http://localhost:3002/show \
+  -d "name=Bruno" -d "surname=Lima"</code></div><p>Esperado: <code>302 FOUND</code> e <code>Location: /show</code>.</p></div></div>
+      <div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.find()
+db.crud.countDocuments()    // 2</code></div>
+      <div class="callout callout--tip"><span class="icon">✨</span><span>Se você já fez a aula de JavaScript com o mesmo banco <code>pessoa</code>, os registros de lá <b>também aparecem aqui</b>. Mesmo banco, linguagens diferentes: é a vantagem de o dado viver no banco e não na aplicação.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 4 — Abrir edição">
+
+      <h2>✏️ Função 4 — <code>GET /edit/&lt;id&gt;</code> · Abrir a edição</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Mostra os dados atuais em um formulário antes da alteração.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Receber <code>id</code> como parâmetro da função</li><li>Buscar <b>um</b> documento: <code>find_one</code></li><li>Renderizar <code>edit.html</code></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>@app.route("/edit/&lt;id&gt;", methods=["GET"])
+def editar_form(id):
+    pessoa = collection.find_one({"_id": ObjectId(id)})
+    return render_template("edit.html", pessoa=pessoa)</code></div></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span><b>Por que <code>ObjectId(id)</code>?</b> O <code>_id</code> no banco é um <code>ObjectId</code>, não texto. Buscar pela string da URL nunca encontra nada.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 4 — view e teste">
+
+      <h2>✏️ Função 4 — <code>templates/edit.html</code> e teste</h2>
+      <div class="columns"><div class="card"><h3>templates/edit.html</h3><div class="code-block"><span class="lang-badge">Jinja2</span><code>&lt;form action="/edit/{{ pessoa._id }}" method="POST"&gt;
+  &lt;input type="text" name="name"
+         value="{{ pessoa.name }}"&gt;
+  &lt;input type="text" name="surname"
+         value="{{ pessoa.surname }}"&gt;
+  &lt;a href="/show"&gt;Voltar&lt;/a&gt;
+  &lt;button type="submit"&gt;Salvar&lt;/button&gt;
+&lt;/form&gt;</code></div></div><div class="card"><h3>Como testar</h3><ul><li>Em <code>/show</code> clique em <b>Editar</b></li><li>Esperado: campos já preenchidos</li></ul><div class="code-block"><span class="lang-badge">Terminal</span><code>curl http://localhost:3002/edit/COLE_O_ID_AQUI</code></div><p>Descubra o id: <code>db.crud.find({}, {name: 1})</code>.</p></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span><b>Atenção:</b> com um id válido mas inexistente, esta versão simples devolve <code>200</code> com formulário vazio (o Jinja2 não reclama de valor ausente). A versão do repositório resolve com <code>abort(404)</code>: é o Desafio Nível 2.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 5 — Atualizar">
+
+      <h2>🔄 Função 5 — <code>POST /edit/&lt;id&gt;</code> · Atualizar (UPDATE)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Grava no banco o que foi alterado no formulário.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Filtro: qual documento (<code>_id</code>)</li><li>Mudança: <code>$set</code> com os novos valores</li><li>Redirecionar para <code>/show</code></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>@app.route("/edit/&lt;id&gt;", methods=["POST"])
+def editar_salvar(id):
+    collection.update_one(
+        {"_id": ObjectId(id)},
+        {"$set": {
+            "name": request.form["name"],
+            "surname": request.form["surname"],
+        }},
+    )
+    return redirect("/show")</code></div></div></div>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i -X POST http://localhost:3002/edit/COLE_O_ID_AQUI \
+  -d "name=Ana Maria" -d "surname=Silva"       # 302 FOUND</code></div>
+      <div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.find({ name: "Ana Maria" })   // mesmo _id de antes
+db.crud.countDocuments()               // não aumentou</code></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 6 — Deletar">
+
+      <h2>🗑 Função 6 — <code>GET /delete/&lt;id&gt;</code> · Deletar (DELETE)</h2>
+      <div class="columns"><div class="card"><h3>Por que existe</h3><p>Remove um cadastro errado ou duplicado.</p></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">Python</span><code>@app.route("/delete/&lt;id&gt;")
+def deletar(id):
+    collection.delete_one({"_id": ObjectId(id)})
+    return redirect("/show")</code></div></div></div>
+      <div class="columns"><div class="card"><h3>Teste</h3><ul><li>Clique em <b>Deletar</b> no Bruno</li><li>Esperado: ele some da lista</li></ul><div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i http://localhost:3002/delete/COLE_O_ID_AQUI   # 302</code></div></div><div class="card"><h3>Conferir no banco</h3><div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.find({ name: "Bruno" })   // []
+db.crud.countDocuments()          // 1</code></div></div></div>
+      <div class="callout callout--danger"><span class="icon">⚠️</span><span>Apagar por <code>GET</code> é arriscado: um link ou robô pode disparar. Aqui é só para estudo; em API real use <code>DELETE</code> e confirmação.</span></div>
+    </section>
+    <section class="slide slide--section" data-title="Parte 3 — Banco e revisão">
+
+      <h2>Parte 3</h2>
+      <p>Comandos do banco, roteiro de teste e erros comuns</p>
+    </section>
+    <section class="slide slide--content" data-title="Comandos do mongosh">
+
+      <h2>🍃 Comandos do <code>mongosh</code> para praticar</h2>
+      <div class="code-block"><span class="lang-badge">mongosh</span><code>mongosh "mongodb://localhost:27017"   # entrar (Atlas: use a string do Atlas)
+
+show dbs
+use pessoa
+show collections
+
+db.crud.find()
+db.crud.find({ name: "Ana" })
+db.crud.countDocuments()</code></div>
+      <div class="columns"><div class="card"><h3>Alterar</h3><div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.insertOne({ name: "Teste", surname: "Manual" })
+db.crud.updateOne({ name: "Teste" }, { $set: { surname: "Editado" } })
+db.crud.deleteOne({ name: "Teste" })</code></div></div><div class="card"><h3>Limpar (só no seu ambiente)</h3><div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.deleteMany({})
+db.crud.drop()</code></div></div></div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span>Insira um documento direto no <code>mongosh</code> e recarregue <code>/show</code>: ele aparece na página. Isso prova que a API apenas <b>lê</b> o que está no banco.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Roteiro de teste completo">
+
+      <h2>📋 Roteiro de teste completo</h2>
+      <p>Comece com o banco limpo: <code>db.crud.deleteMany({})</code>.</p>
+      <table><thead><tr><th>#</th><th>Faça</th><th>Esperado</th><th>Confira no mongosh</th></tr></thead><tbody><tr><td>1</td><td>Abra <code>/show</code></td><td>tabela vazia</td><td>count → 0</td></tr><tr><td>2</td><td>Salve Ana Silva em <code>/index</code></td><td>Ana na lista</td><td>count → 1</td></tr><tr><td>3</td><td>Salve Bruno Lima</td><td>duas linhas</td><td>count → 2</td></tr><tr><td>4</td><td>Clique em Editar na Ana</td><td>formulário preenchido</td><td>sem mudança</td></tr><tr><td>5</td><td>Troque para Ana Maria</td><td>lista atualizada</td><td>count → 2, mesmo <code>_id</code></td></tr><tr><td>6</td><td>Delete o Bruno</td><td>só Ana Maria</td><td>count → 1</td></tr><tr><td>7</td><td>Pare e rode <code>python app.py</code> de novo</td><td>Ana Maria continua lá</td><td>dados persistem</td></tr></tbody></table>
+    </section>
+    <section class="slide slide--content" data-title="Erros comuns">
+
+      <h2>🛠 Erros comuns e como resolver</h2>
+      <table><thead><tr><th>Sintoma</th><th>Causa provável</th><th>Como resolver</th></tr></thead><tbody><tr><td><code>ServerSelectionTimeoutError</code></td><td>MongoDB inacessível</td><td>ligue o Docker (<code>docker ps</code>) ou libere seu IP no Atlas</td></tr><tr><td><code>Authentication failed</code></td><td>usuário/senha errados</td><td>confira a URL do <code>.env</code></td></tr><tr><td><code>TemplateNotFound: show.html</code></td><td>pasta ou nome errado</td><td>pasta <code>templates/</code> ao lado do <code>app.py</code>; nome idêntico</td></tr><tr><td><code>400 Bad Request</code> ao salvar</td><td><code>name</code> do input ≠ <code>request.form[...]</code></td><td>alinhe os nomes no formulário e na rota</td></tr><tr><td><code>405 Method Not Allowed</code></td><td>faltou <code>methods=["POST"]</code></td><td>declare o método na rota</td></tr><tr><td><code>InvalidId: ... is not a valid ObjectId</code></td><td>id com formato inválido (500)</td><td>o id tem 24 caracteres hex; copie do <code>/show</code></td></tr><tr><td><code>AttributeError: ... has no attribute insertOne</code></td><td>usou camelCase do JavaScript</td><td>em Python: <code>insert_one</code>, <code>update_one</code>, <code>delete_one</code></td></tr><tr><td><code>Address already in use</code></td><td>porta 3002 ocupada</td><td>feche o outro servidor ou mude a porta</td></tr><tr><td>Mudei o <code>.py</code> e nada mudou</td><td>servidor antigo rodando</td><td><code>Ctrl+C</code> e <code>python app.py</code> (ou use <code>debug=True</code>)</td></tr></tbody></table>
+    </section>
+    <section class="slide slide--content" data-title="Desafios">
+
+      <h2>🚀 Desafios para ir além</h2>
+      <div class="columns columns--3"><div class="card"><h3>Nível 1</h3><ul><li>Ordenar por nome: <code>find().sort("name", 1)</code></li><li>Mostrar "Nenhum registro" se a lista estiver vazia</li><li>Exibir a quantidade com <code>count_documents({})</code></li></ul></div><div class="card"><h3>Nível 2</h3><ul><li>Validar: nome com 3+ letras (mostrar erro no formulário)</li><li>Se o id não existir: <code>abort(404)</code> em vez de formulário vazio</li><li>Gravar <code>criadoEm</code> com <code>datetime.now()</code></li></ul></div><div class="card"><h3>Nível 3</h3><ul><li>Adicionar e-mail, escola, curso e matrícula</li><li>Página de detalhes (<code>/detalhes/&lt;id&gt;</code>)</li><li>CSS na pasta <code>static/</code> com <code>url_for("static", ...)</code></li></ul></div></div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span>Os níveis 2 e 3 estão resolvidos em <code>api-python/</code> no repositório. Tente antes de abrir.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Repositório de conferência">
+
+      <h2>📚 Resource: confira com o repositório da professora</h2>
+      <div class="code-block"><span class="lang-badge">GitHub</span><code>https://github.com/luanaCristina/crud-mongo-simples</code></div>
+      <p><a href="https://github.com/luanaCristina/crud-mongo-simples" target="_blank" rel="noopener" style="color:#2563EB;font-weight:700;">🔗 Abrir crud-mongo-simples no GitHub</a></p>
+      <table><thead><tr><th>Pasta / arquivo</th><th>Compare com</th></tr></thead><tbody><tr><td><code>server.js</code> + <code>views/</code></td><td>a mesma lógica em JavaScript (aula anterior)</td></tr><tr><td><code>api-python/app.py</code></td><td>versão completa em Python: validação, detalhes, 404, <code>criadoEm</code></td></tr><tr><td><code>api-python/templates/</code></td><td>templates Jinja2 completos (Nível 3)</td></tr></tbody></table>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>git clone https://github.com/luanaCristina/crud-mongo-simples.git conferencia
+cd conferencia/api-python
+python3 -m venv .venv &amp;&amp; source .venv/bin/activate
+pip install -r requirements.txt
+# crie o SEU .env na pasta acima (conferencia/.env) com a SUA DATABASE_URL
+python app.py</code></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>O <code>api-python</code> lê o <code>.env</code> da pasta <b>de cima</b> e usa o banco <code>escolaETE</code> (coleção <code>alunosETE</code>), com os campos nome, e-mail, escola, curso e matrícula. Não use credenciais que apareçam no repositório: crie o seu <code>.env</code>.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Como corrigir">
+
+      <h2>🔍 Como comparar e corrigir o seu código</h2>
+      <div class="columns columns--3"><div class="card"><h3>1. Compare</h3><p>Sua versão simples corresponde às rotas de <code>server.js</code> (mesmos 6 caminhos). A versão <code>api-python/app.py</code> é a evolução dela.</p><div class="code-block"><span class="lang-badge">Terminal</span><code>diff meu-projeto/app.py conferencia/api-python/app.py</code></div></div><div class="card"><h3>2. Cheque o essencial</h3><ul><li>Rotas e métodos iguais?</li><li><code>ObjectId(id)</code> nos filtros?</li><li><code>"$set"</code> no <code>update_one</code>?</li><li>Nomes em <code>snake_case</code> (<code>insert_one</code>)?</li><li>Redirect depois de gravar?</li></ul></div><div class="card"><h3>3. Entenda</h3><p>Diferenças de nome de variável não são erro. Valem o <b>comportamento</b> e o roteiro de 7 testes.</p></div></div>
+      <div class="callout callout--tip"><span class="icon">🏁</span><span>Terminou? Passe no roteiro completo e confirme os 7 passos. Depois compare com as aulas de <b>JavaScript + MongoDB</b> e <b>Python + MySQL</b>: o que muda é o banco e a sintaxe; o CRUD é o mesmo.</span></div>
+    </section>
+  </div>
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()">☰ Menu</button>
+    <button onclick="Slides.prev()">← Anterior</button>
+    <span class="progress-text">1 / 27</span>
+    <button onclick="Slides.next()">Próximo →</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()">⛶ Tela cheia</button>
+    <button class="btn-home" onclick="Slides.goHome()">⌂ Portal</button>
+  </div>
+  <script src="../slides.js"></script>
+  <script src="../../../analytics.js"></script>
+</body>
+</html>

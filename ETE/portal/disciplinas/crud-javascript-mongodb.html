@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API CRUD simples — JavaScript + MongoDB | ETE Pernambuco</title>
+  <meta name="description" content="API CRUD simples com JavaScript, Express e MongoDB: passo a passo, testes de cada rota e comandos do banco.">
+  <link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+  <div class="progress-bar"></div>
+  <nav class="sidebar"><h3>🟢 CRUD JS + MongoDB</h3><div class="sidebar-nav"></div></nav>
+  <div class="slides-wrapper">
+    <section class="slide slide--cover" data-title="Capa">
+
+      <h1>🟢 API CRUD simples — <span class="accent">JavaScript + MongoDB</span></h1>
+      <p class="subtitle">Construa, teste cada rota e confira no banco — sozinho(a)</p>
+      <p style="color:#94A3B8;margin-top:24px;font-size:1.1rem;">ETE Pernambuco — Módulo 1 — Fundação</p>
+      <p style="color:#CBD5E1;margin-top:12px;">Node.js • Express • EJS • MongoDB • mongosh • curl</p>
+    </section>
+    <section class="slide slide--content" data-title="O que você vai construir">
+
+      <h2>🎯 O que você vai construir</h2>
+      <p>Um cadastro de pessoas (<code>name</code> + <code>surname</code>) com as quatro operações do CRUD, páginas HTML e dados guardados no MongoDB.</p>
+      <div class="columns columns--3"><div class="card"><h3>Por que fazer?</h3><p>CRUD está em quase todo sistema: cadastro de alunos, produtos, pedidos. Quem domina as 4 operações consegue montar a base de qualquer aplicação.</p></div><div class="card"><h3>O que você entrega</h3><ul><li>Servidor Express com <b>6 rotas</b></li><li>Conexão com o MongoDB</li><li>3 páginas EJS (listar, novo, editar)</li><li>Registros visíveis no <code>mongosh</code></li></ul></div><div class="card"><h3>Como saber se deu certo</h3><p>Cada rota tem um <b>teste</b> (navegador ou <code>curl</code>) e um <b>comando no banco</b> para provar que o dado mudou. No fim, você compara com o repositório da professora.</p></div></div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span>Regra desta aula: escreva o código <b>antes</b> de olhar o repositório. Ele fica no último slide, para conferir ou corrigir.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Como usar esta aula">
+
+      <h2>🧭 Como usar esta aula</h2>
+      <div class="columns"><div class="card"><h3>1. Leia</h3><p>Cada função tem dois slides: <b>motivo + o que fazer</b> e depois <b>como testar + comando no banco</b>.</p></div><div class="card"><h3>2. Escreva</h3><p>Digite o código no seu <code>server.js</code>. Os slides mostram a dica principal, não a resposta completa.</p></div><div class="card"><h3>3. Teste</h3><p>Rode o servidor, execute o teste do slide e confirme o resultado esperado no <code>mongosh</code>.</p></div><div class="card"><h3>4. Confira</h3><p>No final, compare com o repositório. Se algo falhou, use o slide de erros comuns.</p></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Reinicie o servidor (<code>Ctrl+C</code> e <code>node server.js</code>) sempre que alterar o <code>server.js</code>. Mudanças nas views <code>.ejs</code> só precisam de F5 no navegador.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="CRUD, Mongo, HTTP e rotas">
+
+      <h2>🗺 O mapa do projeto: CRUD → HTTP → MongoDB</h2>
+      <table><thead><tr><th>Operação</th><th>Rota</th><th>Método do driver</th><th>Comando equivalente no mongosh</th></tr></thead><tbody><tr><td>Create</td><td><code>POST /show</code></td><td><code>insertOne()</code></td><td><code>db.crud.insertOne({...})</code></td></tr><tr><td>Read (lista)</td><td><code>GET /show</code></td><td><code>find().toArray()</code></td><td><code>db.crud.find()</code></td></tr><tr><td>Update</td><td><code>POST /edit/:id</code></td><td><code>updateOne()</code> + <code>$set</code></td><td><code>db.crud.updateOne({_id}, {$set:{...}})</code></td></tr><tr><td>Delete</td><td><code>GET /delete/:id</code></td><td><code>deleteOne()</code></td><td><code>db.crud.deleteOne({_id})</code></td></tr><tr><td>Telas</td><td><code>GET /index</code>, <code>GET /edit/:id</code></td><td><code>render()</code>, <code>find()</code></td><td>—</td></tr></tbody></table>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>Formulários HTML só enviam <code>GET</code> e <code>POST</code>. Por isso o projeto usa <code>POST</code> para editar e um link <code>GET</code> para deletar. É uma simplificação didática: em uma API REST de verdade, deletar usa <code>DELETE</code>.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Pré-requisitos">
+
+      <h2>🧰 Antes de começar: confira o ambiente</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>node -v      # precisa mostrar uma versão (use a LTS atual)
+npm -v
+mongosh --version   # cliente para ver o banco</code></div>
+      <p><b>Por quê?</b> Se algum comando não existir, o erro lá na frente será confuso. Resolva agora.</p>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>Não tem <code>mongosh</code>? Instale em <b>mongodb.com/try/download/shell</b>. No Mac: <code>brew install mongosh</code>.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Onde fica o MongoDB">
+
+      <h2>🍃 Escolha onde o MongoDB vai rodar</h2>
+      <div class="columns"><div class="card"><h3>Opção A — Atlas (nuvem, grátis)</h3><ul><li>Crie conta em <b>mongodb.com/atlas</b> e um cluster gratuito (M0)</li><li>Em <b>Database Access</b>, crie um usuário e senha</li><li>Em <b>Network Access</b>, libere seu IP</li><li>Em <b>Connect → Drivers</b>, copie a string e troque <code>&lt;password&gt;</code> pela senha</li></ul><div class="code-block"><span class="lang-badge">.env</span><code>DATABASE_URL=mongodb+srv://USUARIO:SENHA@SEU-CLUSTER.mongodb.net/</code></div></div><div class="card"><h3>Opção B — Docker (local)</h3><p>Sobe um MongoDB no seu computador, sem conta nenhuma:</p><div class="code-block"><span class="lang-badge">Terminal</span><code>docker run -d --name mongo-aula -p 27017:27017 mongo:7</code></div><div class="code-block"><span class="lang-badge">.env</span><code>DATABASE_URL=mongodb://localhost:27017</code></div></div></div>
+      <div class="callout callout--danger"><span class="icon">🔐</span><span>A string do Atlas contém a <b>sua senha</b>. Ela vai só no <code>.env</code>, nunca no código e <b>nunca no GitHub</b>. Use a sua própria conta; não reaproveite credenciais de outra pessoa.</span></div>
+    </section>
+    <section class="slide slide--section" data-title="Parte 1 — Preparar o projeto">
+
+      <h2>Parte 1</h2>
+      <p>Preparar o projeto e conectar ao banco</p>
+    </section>
+    <section class="slide slide--content" data-title="Criar o projeto">
+
+      <h2>📦 Passo 1 — Criar o projeto e instalar pacotes</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>mkdir crud-js-mongo
+cd crud-js-mongo
+npm init -y
+npm install express ejs mongodb dotenv</code></div>
+      <table><thead><tr><th>Pacote</th><th>Para que serve</th></tr></thead><tbody><tr><td><code>express</code></td><td>servidor web e rotas</td></tr><tr><td><code>ejs</code></td><td>gera HTML com dados do banco (as views)</td></tr><tr><td><code>mongodb</code></td><td>driver oficial: conversa com o MongoDB</td></tr><tr><td><code>dotenv</code></td><td>lê o arquivo <code>.env</code> (configuração e segredos)</td></tr></tbody></table>
+      <p><b>Teste:</b> <code>ls node_modules</code> deve listar as pastas, e o <code>package.json</code> deve ter <code>"dependencies"</code> com os 4 pacotes.</p>
+    </section>
+    <section class="slide slide--content" data-title=".env e .gitignore">
+
+      <h2>🔑 Passo 2 — Arquivos <code>.env</code> e <code>.gitignore</code></h2>
+      <div class="columns"><div class="card"><h3>.env</h3><div class="code-block"><span class="lang-badge">.env</span><code>DATABASE_URL=mongodb://localhost:27017</code></div><p><b>Motivo:</b> a URL do banco muda de máquina para máquina e pode ter senha. Fora do código, você troca sem editar o programa.</p></div><div class="card"><h3>.gitignore</h3><div class="code-block"><span class="lang-badge">.gitignore</span><code>node_modules/
+.env</code></div><p><b>Motivo:</b> impede que o <code>.env</code> (senhas) e a pasta pesada <code>node_modules</code> sejam enviados ao GitHub.</p></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Crie o <code>.gitignore</code> <b>antes</b> do primeiro <code>git add</code>. Se o <code>.env</code> já foi enviado ao GitHub, trocar a senha do banco é obrigatório: apagar o arquivo depois não remove do histórico.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Conexão e servidor">
+
+      <h2>🔌 Passo 3 — Conectar ao banco e subir o servidor</h2>
+      <div class="code-block"><span class="lang-badge">server.js</span><code>const express = require("express")
+const { MongoClient, ObjectId } = require("mongodb")
+const dotenv = require("dotenv")
+dotenv.config()
+
+const api = express()
+const client = new MongoClient(process.env.DATABASE_URL)
+let collection
+
+api.set("view engine", "ejs")
+api.use(express.urlencoded({ extended: true }))
+
+// ... suas 6 rotas entram aqui ...
+
+async function iniciar() {
+  await client.connect()
+  collection = client.db("pessoa").collection("crud")
+  console.log("Conectado ao MongoDB")
+  api.listen(3000, () =&gt; console.log("Servidor na porta 3000"))
+}
+iniciar().catch((erro) =&gt; console.error("Erro ao iniciar:", erro))</code></div>
+      <p><b>Por que conectar antes do <code>listen</code>?</b> Assim nenhuma requisição chega antes de <code>collection</code> existir.</p>
+    </section>
+    <section class="slide slide--content" data-title="Testar a conexão">
+
+      <h2>✅ Teste do Passo 3: o servidor sobe?</h2>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>node server.js</code></div>
+      <div class="columns">
+        <div class="card"><h3>Esperado</h3><div class="code-block"><span class="lang-badge">Saída</span><code>Conectado ao MongoDB
+Servidor na porta 3000</code></div><p>Abra <code>http://localhost:3000/</code>: aparece <b>Cannot GET /</b>. Isso é <b>normal</b>: ainda não existe rota <code>/</code>. Prova que o Express está respondendo.</p></div>
+        <div class="card"><h3>Se não funcionou</h3><ul><li><code>Cannot read properties of undefined (reading 'startsWith')</code>: o <code>.env</code> não foi lido (nome errado, pasta errada ou falta <code>DATABASE_URL</code>)</li><li>Fica ~30 s parado e depois <code>MongoServerSelectionError</code>: o MongoDB não está acessível (Docker desligado, IP não liberado no Atlas)</li><li><code>Authentication failed</code>: usuário ou senha da string estão errados</li></ul></div>
+      </div>
+    </section>
+    <section class="slide slide--section" data-title="Parte 2 — As rotas">
+
+      <h2>Parte 2</h2>
+      <p>As 6 funções do servidor: motivo, como construir, como testar e o que conferir no banco</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 1 — Listar (motivo)">
+
+      <h2>📖 Função 1 — <code>GET /show</code> · Listar (READ)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>É a tela principal: mostra tudo o que está no banco. Também é como você <b>enxerga</b> se as outras operações funcionaram.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Buscar todos os documentos da coleção</li><li>Entregar a lista para a view <code>show.ejs</code></li><li>Rota <b>assíncrona</b>: o banco responde depois</li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>api.get("/show", async (req, res) =&gt; {
+  const crud = await collection.find().toArray()
+  res.render("show.ejs", { crud })
+})</code></div></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span><code>find()</code> devolve um cursor (um "ponteiro" para os resultados). <code>.toArray()</code> carrega tudo em uma lista que o EJS consegue percorrer. <code>await</code> espera o banco responder.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 1 — Listar (view e teste)">
+
+      <h2>📖 Função 1 — a view <code>views/show.ejs</code> e o teste</h2>
+      <div class="columns"><div class="card"><h3>views/show.ejs</h3><div class="code-block"><span class="lang-badge">EJS</span><code>&lt;table border="1"&gt;
+  &lt;tr&gt;&lt;td&gt;Nome&lt;/td&gt;&lt;td&gt;Sobrenome&lt;/td&gt;&lt;td&gt;Ação&lt;/td&gt;&lt;/tr&gt;
+  &lt;% crud.forEach(function(details) { %&gt;
+    &lt;tr&gt;
+      &lt;td&gt;&lt;%= details.name %&gt;&lt;/td&gt;
+      &lt;td&gt;&lt;%= details.surname %&gt;&lt;/td&gt;
+      &lt;td&gt;
+        &lt;a href="/edit/&lt;%= details._id %&gt;"&gt;Editar&lt;/a&gt; -
+        &lt;a href="/delete/&lt;%= details._id %&gt;"&gt;Deletar&lt;/a&gt;
+      &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;% }) %&gt;
+&lt;/table&gt;
+&lt;a href="/index"&gt;Novo&lt;/a&gt;</code></div><p><code>&lt;% %&gt;</code> executa JavaScript (laço). <code>&lt;%= %&gt;</code> imprime o valor <b>já escapado</b>, o que protege contra HTML injetado.</p></div><div class="card"><h3>Como testar</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>curl http://localhost:3000/show</code></div><p>Ou abra <code>http://localhost:3000/show</code> no navegador. <b>Esperado:</b> tabela só com o cabeçalho (banco vazio).</p><p><b>No banco:</b></p><div class="code-block"><span class="lang-badge">mongosh</span><code>mongosh "mongodb://localhost:27017/pessoa"
+db.crud.find()</code></div><p>Vazio: <code>[]</code>. Depois da Função 3, os registros aparecem nos dois lugares.</p></div></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 2 — Formulário">
+
+      <h2>📝 Função 2 — <code>GET /index</code> · Formulário de cadastro</h2>
+      <div class="columns"><div class="card"><h3>Por que existe</h3><p>O usuário precisa de uma tela para digitar os dados. A rota só <b>mostra</b> o formulário; quem grava é a Função 3.</p></div><div class="card"><h3>O que fazer</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>api.get("/index", (req, res) =&gt; {
+  res.render("index.ejs")
+})</code></div><div class="code-block"><span class="lang-badge">views/index.ejs</span><code>&lt;form action="/show" method="POST"&gt;
+  &lt;input type="text" name="name" placeholder="Nome"&gt;
+  &lt;input type="text" name="surname" placeholder="Sobrenome"&gt;
+  &lt;button type="submit"&gt;Salvar&lt;/button&gt;
+&lt;/form&gt;</code></div></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>O atributo <code>name</code> de cada input vira a chave em <code>req.body</code>. Se escrever <code>name="nome"</code> aqui e <code>req.body.name</code> no servidor, o valor chega <b>undefined</b>.</span></div>
+      <p><b>Teste:</b> abra <code>http://localhost:3000/index</code>. Esperado: dois campos e um botão. <b>Banco:</b> nada muda (rota só de leitura).</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 3 — Criar (motivo)">
+
+      <h2>➕ Função 3 — <code>POST /show</code> · Criar (CREATE)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Recebe os dados do formulário e <b>grava</b> no MongoDB. Sem ela, o banco nunca ganha dados.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Ler <code>req.body.name</code> e <code>req.body.surname</code></li><li>Inserir um documento na coleção</li><li>Redirecionar para <code>/show</code></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>api.post("/show", async (req, res) =&gt; {
+  await collection.insertOne({
+    name: req.body.name,
+    surname: req.body.surname,
+  })
+  res.redirect("/show")
+})</code></div></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span><b>Por que <code>redirect</code> e não <code>render</code>?</b> Se a resposta fosse a própria página, apertar F5 reenviaria o formulário e duplicaria o registro. O redirecionamento troca o <code>POST</code> por um <code>GET /show</code> seguro.</span></div>
+      <p>O <code>express.urlencoded</code> do Passo 3 é o que transforma o corpo do formulário em <code>req.body</code>.</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 3 — Criar (teste)">
+
+      <h2>➕ Função 3 — teste e conferência no banco</h2>
+      <div class="columns"><div class="card"><h3>Teste pelo navegador</h3><ul><li>Abra <code>/index</code></li><li>Digite <b>Ana</b> e <b>Silva</b> e clique em Salvar</li><li>Esperado: volta para <code>/show</code> com a Ana na tabela</li></ul></div><div class="card"><h3>Teste pelo terminal</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i -X POST http://localhost:3000/show \
+  -d "name=Bruno" -d "surname=Lima"</code></div><p>Esperado: <code>HTTP/1.1 302 Found</code> e <code>Location: /show</code>. O 302 é o redirecionamento.</p></div></div>
+      <p><b>Conferir no banco:</b></p>
+      <div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.find()
+db.crud.countDocuments()    // deve ser 2</code></div>
+      <p>Cada documento ganhou um <code>_id</code> automático do tipo <code>ObjectId</code> (você não o criou).</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 4 — Abrir edição">
+
+      <h2>✏️ Função 4 — <code>GET /edit/:id</code> · Abrir a edição</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Antes de alterar, o usuário precisa ver os dados atuais do registro dentro de um formulário preenchido.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Ler o <code>:id</code> da URL (<code>req.params.id</code>)</li><li>Buscar <b>esse</b> documento</li><li>Renderizar <code>edit.ejs</code> com os valores</li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>api.get("/edit/:id", async (req, res) =&gt; {
+  const crud = await collection
+    .find({ _id: new ObjectId(req.params.id) })
+    .toArray()
+  res.render("edit.ejs", { crud })
+})</code></div></div></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span><b>Por que <code>new ObjectId(...)</code>?</b> No banco, o <code>_id</code> não é texto: é um <code>ObjectId</code>. Comparar com a string da URL nunca encontra nada. Esse é o erro mais comum do CRUD com MongoDB.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 4 — Abrir edição (view e teste)">
+
+      <h2>✏️ Função 4 — a view <code>views/edit.ejs</code> e o teste</h2>
+      <div class="columns"><div class="card"><h3>views/edit.ejs</h3><div class="code-block"><span class="lang-badge">EJS</span><code>&lt;% crud.forEach(function(details) { %&gt;
+  &lt;form action="/edit/&lt;%= details._id %&gt;" method="POST"&gt;
+    &lt;input type="text" name="name"
+           value="&lt;%= details.name %&gt;"&gt;
+    &lt;input type="text" name="surname"
+           value="&lt;%= details.surname %&gt;"&gt;
+    &lt;a href="/show"&gt;Todos&lt;/a&gt;
+    &lt;button type="submit"&gt;Editar&lt;/button&gt;
+  &lt;/form&gt;
+&lt;% }) %&gt;</code></div></div><div class="card"><h3>Como testar</h3><ul><li>Em <code>/show</code>, clique em <b>Editar</b> na Ana</li><li>Esperado: formulário já com <b>Ana</b> e <b>Silva</b></li></ul><div class="code-block"><span class="lang-badge">Terminal</span><code>curl http://localhost:3000/edit/COLE_O_ID_AQUI</code></div><p>Pegue o id no <code>mongosh</code>: <code>db.crud.find({}, {_id: 1, name: 1})</code>.</p></div></div>
+      <p><b>No banco:</b> nada muda (só leitura).</p>
+    </section>
+    <section class="slide slide--content" data-title="Função 5 — Atualizar (motivo)">
+
+      <h2>🔄 Função 5 — <code>POST /edit/:id</code> · Atualizar (UPDATE)</h2>
+      <div class="columns columns--3"><div class="card"><h3>Por que existe</h3><p>Grava no banco as alterações feitas no formulário da Função 4.</p></div><div class="card"><h3>O que fazer</h3><ul><li>Localizar o documento pelo <code>_id</code></li><li>Trocar <code>name</code> e <code>surname</code></li><li>Redirecionar para <code>/show</code></li></ul></div><div class="card"><h3>Dica</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>api.post("/edit/:id", async (req, res) =&gt; {
+  await collection.updateOne(
+    { _id: new ObjectId(req.params.id) },
+    { $set: {
+        name: req.body.name,
+        surname: req.body.surname,
+    } }
+  )
+  res.redirect("/show")
+})</code></div></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span><b>Dois argumentos:</b> o <b>filtro</b> (qual documento) e a <b>mudança</b>. O <code>$set</code> altera só os campos listados e preserva o resto do documento.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 5 — Atualizar (teste)">
+
+      <h2>🔄 Função 5 — teste e conferência no banco</h2>
+      <div class="columns"><div class="card"><h3>Teste pelo navegador</h3><ul><li>Edite a Ana para <b>Ana Maria</b></li><li>Clique em Editar</li><li>Esperado: <code>/show</code> mostra "Ana Maria"</li></ul></div><div class="card"><h3>Teste pelo terminal</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i -X POST http://localhost:3000/edit/COLE_O_ID_AQUI \
+  -d "name=Ana Maria" -d "surname=Silva"</code></div><p>Esperado: <code>302 Found</code> com <code>Location: /show</code>.</p></div></div>
+      <p><b>Conferir no banco:</b></p>
+      <div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.find({ name: "Ana Maria" })
+db.crud.countDocuments()    // continua 2: atualizar NÃO cria registro</code></div>
+      <div class="callout callout--tip"><span class="icon">✅</span><span>O <code>_id</code> da Ana é o mesmo de antes. Se o número de documentos aumentou, você criou em vez de atualizar.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Função 6 — Deletar">
+
+      <h2>🗑 Função 6 — <code>GET /delete/:id</code> · Deletar (DELETE)</h2>
+      <div class="columns"><div class="card"><h3>Por que existe</h3><p>Remove um registro que não é mais necessário (cadastro errado, duplicado).</p></div><div class="card"><h3>O que fazer</h3><div class="code-block"><span class="lang-badge">JavaScript</span><code>api.get("/delete/:id", async (req, res) =&gt; {
+  await collection.deleteOne({
+    _id: new ObjectId(req.params.id),
+  })
+  res.redirect("/show")
+})</code></div></div></div>
+      <div class="columns">
+        <div class="card"><h3>Teste</h3><ul><li>Em <code>/show</code>, clique em <b>Deletar</b> no Bruno</li><li>Esperado: ele some da tabela</li></ul><div class="code-block"><span class="lang-badge">Terminal</span><code>curl -i http://localhost:3000/delete/COLE_O_ID_AQUI</code></div><p>Esperado: <code>302 Found</code>.</p></div>
+        <div class="card"><h3>Conferir no banco</h3><div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.find({ name: "Bruno" })   // []
+db.crud.countDocuments()          // 1</code></div></div>
+      </div>
+      <div class="callout callout--danger"><span class="icon">⚠️</span><span>Deletar com <code>GET</code> é <b>perigoso</b> em sistemas reais: um link ou um robô de busca pode apagar dados. Aqui é só para estudo; em API de verdade use <code>DELETE</code> e peça confirmação.</span></div>
+    </section>
+    <section class="slide slide--section" data-title="Parte 3 — Banco">
+
+      <h2>Parte 3</h2>
+      <p>Comandos do banco para você praticar sozinho(a)</p>
+    </section>
+    <section class="slide slide--content" data-title="Comandos do mongosh">
+
+      <h2>🍃 Comandos do <code>mongosh</code> que você vai usar</h2>
+      <div class="code-block"><span class="lang-badge">mongosh</span><code>mongosh "mongodb://localhost:27017"   # entrar (Atlas: use a string do Atlas)
+
+show dbs                  // lista os bancos
+use pessoa                // escolhe (ou prepara) o banco "pessoa"
+show collections          // lista as coleções do banco atual
+
+db.crud.find()                         // todos os documentos
+db.crud.find({ name: "Ana" })          // com filtro
+db.crud.countDocuments()               // quantos existem</code></div>
+      <div class="columns"><div class="card"><h3>Alterar (conferir a Função 5 e 6)</h3><div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.updateOne(
+  { name: "Ana" },
+  { $set: { surname: "Souza" } }
+)
+db.crud.deleteOne({ name: "Ana" })</code></div></div><div class="card"><h3>Cuidado</h3><div class="code-block"><span class="lang-badge">mongosh</span><code>db.crud.deleteMany({})   // apaga TODOS
+db.crud.drop()            // apaga a coleção</code></div><p>Use para limpar o ambiente de estudo. Nunca em um banco que não seja o seu.</p></div></div>
+      <div class="callout callout--info"><span class="icon">ℹ️</span><span>O banco <code>pessoa</code> e a coleção <code>crud</code> só passam a existir quando você grava o primeiro documento. Não precisa criá-los antes.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Roteiro de teste completo">
+
+      <h2>📋 Roteiro de teste completo</h2>
+      <p>Comece com o banco limpo: <code>db.crud.deleteMany({})</code>.</p>
+      <table><thead><tr><th>#</th><th>Faça</th><th>Esperado na tela</th><th>Confira no mongosh</th></tr></thead><tbody><tr><td>1</td><td>Abra <code>/show</code></td><td>tabela vazia</td><td><code>db.crud.countDocuments()</code> → 0</td></tr><tr><td>2</td><td>Em <code>/index</code>, salve Ana Silva</td><td>Ana aparece em <code>/show</code></td><td>count → 1</td></tr><tr><td>3</td><td>Salve Bruno Lima</td><td>duas linhas</td><td>count → 2</td></tr><tr><td>4</td><td>Clique Editar na Ana</td><td>formulário preenchido</td><td>sem mudança</td></tr><tr><td>5</td><td>Troque para Ana Maria</td><td>lista mostra Ana Maria</td><td>count → 2 (mesmo <code>_id</code>)</td></tr><tr><td>6</td><td>Delete o Bruno</td><td>só Ana Maria</td><td>count → 1</td></tr><tr><td>7</td><td>Reinicie o servidor e abra <code>/show</code></td><td>Ana Maria continua lá</td><td>dados persistem no banco</td></tr></tbody></table>
+      <div class="callout callout--tip"><span class="icon">✅</span><span>O passo 7 é o motivo de usar banco: os dados <b>sobrevivem</b> ao reinício do servidor. Se estivessem em um array na memória, sumiriam.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Erros comuns">
+
+      <h2>🛠 Erros comuns e como resolver</h2>
+      <table><thead><tr><th>Sintoma</th><th>Causa provável</th><th>Como resolver</th></tr></thead><tbody><tr><td><code>reading 'startsWith'</code></td><td><code>DATABASE_URL</code> não carregou</td><td>confira o nome do arquivo (<code>.env</code>), a pasta e a linha <code>DATABASE_URL=...</code></td></tr><tr><td><code>MongoServerSelectionError</code> após ~30 s</td><td>banco inacessível</td><td>ligue o Docker (<code>docker ps</code>) ou libere seu IP no Atlas</td></tr><tr><td><code>Authentication failed</code></td><td>usuário ou senha incorretos</td><td>recrie o usuário no Atlas; use senha sem caracteres especiais ou codifique-os na URL</td></tr><tr><td><code>EADDRINUSE :::3000</code></td><td>porta já usada</td><td>feche o outro <code>node</code> ou mude a porta no <code>listen</code></td></tr><tr><td><code>Cannot GET /show</code></td><td>rota ausente ou servidor antigo</td><td>confira a grafia e reinicie o servidor</td></tr><tr><td>Valores <code>undefined</code> no banco</td><td><code>name</code> do input diferente do <code>req.body</code></td><td>alinhe os nomes; confirme o <code>express.urlencoded</code></td></tr><tr><td>Erro 500 ao clicar em Editar/Deletar</td><td><code>BSONError</code>: id inválido</td><td>o id precisa ter 24 caracteres hex; use <code>new ObjectId(...)</code></td></tr><tr><td>Editar não altera nada</td><td>esqueceu o <code>$set</code> ou o <code>new ObjectId</code></td><td>confira os dois argumentos de <code>updateOne</code></td></tr></tbody></table>
+    </section>
+    <section class="slide slide--content" data-title="Desafios">
+
+      <h2>🚀 Desafios para ir além</h2>
+      <div class="columns columns--3"><div class="card"><h3>Nível 1</h3><ul><li>Mostrar a quantidade de pessoas na lista</li><li>Ordenar por nome: <code>find().sort({ name: 1 })</code></li><li>Mostrar mensagem "Nenhum registro" quando a lista estiver vazia</li></ul></div><div class="card"><h3>Nível 2</h3><ul><li>Validar: nome com pelo menos 3 letras</li><li>Se o <code>id</code> for inválido, responder 404 em vez de 500</li><li>Criar o campo <code>criadoEm</code> com <code>new Date()</code></li></ul></div><div class="card"><h3>Nível 3</h3><ul><li>Adicionar e-mail, curso e matrícula</li><li>Página de detalhes (<code>/detalhes/:id</code>)</li><li>Separar CSS em <code>public/style.css</code> com <code>express.static</code></li></ul></div></div>
+      <div class="callout callout--tip"><span class="icon">💡</span><span>O Nível 2 e 3 estão resolvidos na pasta <code>cadastro/</code> do repositório. Tente antes de abrir.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Repositório de conferência">
+
+      <h2>📚 Resource: confira com o repositório da professora</h2>
+      <div class="code-block"><span class="lang-badge">GitHub</span><code>https://github.com/luanaCristina/crud-mongo-simples</code></div>
+      <p><a href="https://github.com/luanaCristina/crud-mongo-simples" target="_blank" rel="noopener" style="color:#2563EB;font-weight:700;">🔗 Abrir crud-mongo-simples no GitHub</a></p>
+      <table><thead><tr><th>Pasta / arquivo</th><th>Compare com</th></tr></thead><tbody><tr><td><code>server.js</code> + <code>views/</code></td><td>esta aula inteira (CRUD simples: Funções 1 a 6)</td></tr><tr><td><code>cadastro/server-cadastro.js</code></td><td>desafios Nível 2 e 3 (validação, detalhes, CSS)</td></tr><tr><td><code>api-python/</code></td><td>a mesma ideia em Python (aula "Python + MongoDB")</td></tr></tbody></table>
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>git clone https://github.com/luanaCristina/crud-mongo-simples.git conferencia
+cd conferencia
+npm install
+# crie o SEU .env com a SUA DATABASE_URL, depois:
+node server.js</code></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>Clone em uma pasta <b>separada</b> da sua (<code>conferencia</code>) para não sobrescrever o seu código. Não use credenciais que apareçam no repositório: crie o seu <code>.env</code>.</span></div>
+    </section>
+    <section class="slide slide--content" data-title="Como corrigir">
+
+      <h2>🔍 Como comparar e corrigir o seu código</h2>
+      <div class="columns columns--3"><div class="card"><h3>1. Compare arquivos</h3><div class="code-block"><span class="lang-badge">Terminal</span><code>diff meu-projeto/server.js conferencia/server.js
+# ou no VS Code: botão direito → "Select for Compare"</code></div></div><div class="card"><h3>2. Ache a diferença</h3><ul><li>Mesma rota e mesmo método (<code>get</code>/<code>post</code>)?</li><li>Mesmo nome de campo (<code>name</code>, <code>surname</code>)?</li><li>Usou <code>new ObjectId</code> e <code>$set</code>?</li><li>Há <code>await</code> nas chamadas ao banco?</li></ul></div><div class="card"><h3>3. Entenda, não copie</h3><p>Diferença de nome de variável ou de estilo não é erro. Se o <b>comportamento</b> do roteiro de teste é o mesmo, seu código está certo.</p></div></div>
+      <div class="callout callout--tip"><span class="icon">🏁</span><span>Terminou? Passe pelo roteiro de teste completo uma última vez e confirme os 7 passos. Depois siga para a aula <b>CRUD Python + MySQL</b>.</span></div>
+    </section>
+  </div>
+  <div class="controls">
+    <button class="btn-menu" onclick="Slides.toggleSidebar()">☰ Menu</button>
+    <button onclick="Slides.prev()">← Anterior</button>
+    <span class="progress-text">1 / 29</span>
+    <button onclick="Slides.next()">Próximo →</button>
+    <button class="btn-fullscreen" onclick="Slides.toggleFullscreen()">⛶ Tela cheia</button>
+    <button class="btn-home" onclick="Slides.goHome()">⌂ Portal</button>
+  </div>
+  <script src="../slides.js"></script>
+  <script src="../../../analytics.js"></script>
+</body>
+</html>
