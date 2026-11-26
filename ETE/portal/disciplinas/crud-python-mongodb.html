@@ -265,16 +265,16 @@ db.crud.drop()</code></div></div></div>
     <section class="slide slide--content" data-title="Repositório de conferência">
 
       <h2>📚 Resource: confira com o repositório da professora</h2>
-      <div class="code-block"><span class="lang-badge">GitHub</span><code>https://github.com/luanaCristina/crud-mongo-simples</code></div>
-      <p><a href="https://github.com/luanaCristina/crud-mongo-simples" target="_blank" rel="noopener" style="color:#2563EB;font-weight:700;">🔗 Abrir crud-mongo-simples no GitHub</a></p>
+      <div class="code-block"><span class="lang-badge">GitHub</span><code>https://github.com/luanaCristina/crud-mongo-simples-gabarito</code></div>
+      <p><a href="https://github.com/luanaCristina/crud-mongo-simples-gabarito" target="_blank" rel="noopener" style="color:#2563EB;font-weight:700;">🔗 Abrir crud-mongo-simples-gabarito no GitHub</a></p>
       <table><thead><tr><th>Pasta / arquivo</th><th>Compare com</th></tr></thead><tbody><tr><td><code>server.js</code> + <code>views/</code></td><td>a mesma lógica em JavaScript (aula anterior)</td></tr><tr><td><code>api-python/app.py</code></td><td>versão completa em Python: validação, detalhes, 404, <code>criadoEm</code></td></tr><tr><td><code>api-python/templates/</code></td><td>templates Jinja2 completos (Nível 3)</td></tr></tbody></table>
-      <div class="code-block"><span class="lang-badge">Terminal</span><code>git clone https://github.com/luanaCristina/crud-mongo-simples.git conferencia
+      <div class="code-block"><span class="lang-badge">Terminal</span><code>git clone https://github.com/luanaCristina/crud-mongo-simples-gabarito.git conferencia
 cd conferencia/api-python
 python3 -m venv .venv &amp;&amp; source .venv/bin/activate
 pip install -r requirements.txt
-# crie o SEU .env na pasta acima (conferencia/.env) com a SUA DATABASE_URL
+cp ../.env.example ../.env   # edite o .env com a SUA DATABASE_URL
 python app.py</code></div>
-      <div class="callout callout--warning"><span class="icon">⚠️</span><span>O <code>api-python</code> lê o <code>.env</code> da pasta <b>de cima</b> e usa o banco <code>escolaETE</code> (coleção <code>alunosETE</code>), com os campos nome, e-mail, escola, curso e matrícula. Não use credenciais que apareçam no repositório: crie o seu <code>.env</code>.</span></div>
+      <div class="callout callout--warning"><span class="icon">⚠️</span><span>O <code>api-python</code> lê o <code>.env</code> da pasta <b>de cima</b> e usa o banco <code>escolaETE</code> (coleção <code>alunosETE</code>), com os campos nome, e-mail, escola, curso e matrícula. O repositório não traz <code>.env</code>: copie o <code>.env.example</code> para <code>.env</code> e use a <b>sua</b> string de conexão.</span></div>
     </section>
     <section class="slide slide--content" data-title="Como corrigir">
 
